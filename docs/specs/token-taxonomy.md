@@ -28,7 +28,7 @@ States use the fixed vocabulary: `default | hover | active | focus | disabled | 
 | `shadow` | `raised`, `overlay`, `focus-ring` | elevation ramp from brand tier |
 | `motion` | `duration-{fast,normal,slow}`, `easing-{standard,enter,exit}` | |
 | `z` | `dropdown`, `sticky`, `overlay`, `toast`, `tooltip` | fixed ordering |
-| `size` | `control-{sm,md,lg}`, `icon-{sm,md,lg}` | control heights; icon/indicator boxes. Space tokens are never sizes (NR-006) |
+| `size` | `control-{sm,md,lg}`, `icon-{sm,md,lg}`, `container-{sm,md,lg}` | control heights; icon/indicator boxes; content-column/page-shell max widths (derived 16×/24×/30× from the md control height) — the only legal source of layout widths. Space tokens are never sizes (NR-006) |
 
 ## Brand tier shape (`brands/*.json`)
 
@@ -36,11 +36,11 @@ Raw ramps only — no intent: `palette.{neutral,primary,…}.{50…950}`, `typef
 
 ## Component-tier notes
 
-Component tokens may carry brand-derived `calc()` expressions over semantic refs (e.g. `dialog.width-*`, `tooltip.max-width`, `switch.track-width`). There is no `opacity` semantic category yet; `dialog.backdrop-opacity` is a component-tier percentage — if more opacity needs appear, promote a semantic `opacity.*` category (build.ts `SEMANTIC_CATEGORIES` must be updated with it).
+Component tokens may carry brand-derived `calc()` expressions over semantic refs (e.g. `dialog.width-*`, `tooltip.max-width`, `switch.track-width`); `size.container.*` does the same at the semantic tier over brand `derived.*` ramps (`dialog.width-lg` and `container-sm` share the 16× derivation but stay independent tokens). There is no `opacity` semantic category yet; `dialog.backdrop-opacity` is a component-tier percentage — if more opacity needs appear, promote a semantic `opacity.*` category (build.ts `SEMANTIC_CATEGORIES` must be updated with it).
 
 ## Rules (validator-enforced)
 
 1. Component CSS references semantic or component tokens only.
 2. Brand tokens are referenced only by semantic-tier aliases.
 3. Every public token appears in generated `registries/tokens-index.json` with tier, DTCG type, description, and default-brand resolved value.
-4. Every `color.*` mapping ships with a computed contrast result; AA failures fail the build.
+4. Every `color.*` mapping ships with a computed contrast result; AA failures fail the build. The contrast report also publishes `resolvesTo`/`aliasIndex`/`unaudited`: component-tier color aliases inherit their audited pairs, and every component color token must appear in `aliasIndex` or the reasoned `unaudited` list (build/test-enforced).

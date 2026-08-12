@@ -60,6 +60,7 @@ const EXPECTED_SEMANTIC: readonly string[] = [
   ...["standard", "enter", "exit"].map((e) => `motion.easing.${e}`),
   ...["dropdown", "sticky", "overlay", "toast", "tooltip"].map((z) => `z.${z}`),
   ...["sm", "md", "lg"].map((s) => `size.control.${s}`),
+  ...["sm", "md", "lg"].map((s) => `size.container.${s}`),
   ...["sm", "md", "lg"].map((s) => `size.icon.${s}`),
 ];
 
@@ -203,6 +204,86 @@ describe("WCAG 2.2 AA contrast gate", () => {
     };
     for (const tone of ["info", "success", "warning", "danger"]) {
       expect(ratio(`color.status.${tone}.emphasis`)).toBeGreaterThan(ratio(`color.status.${tone}.default`));
+    }
+  });
+});
+
+describe("container size vocabulary (FB-1)", () => {
+  it("derives container widths from the brand space ramp (640/960/1200px at the default brand)", () => {
+    const value = new Map(defaultBuild.tokens.map((t) => [t.name, t.value]));
+    expect(value.get("size.container.sm")).toBe("calc(40px * 16)");
+    expect(value.get("size.container.md")).toBe("calc(40px * 24)");
+    expect(value.get("size.container.lg")).toBe("calc(40px * 30)");
+  });
+
+  it("container widths rescale with the brand space base", () => {
+    const defaults = new Map(defaultBuild.tokens.map((t) => [t.name, t.value]));
+    const fixtures = new Map(fixtureBuild.tokens.map((t) => [t.name, t.value]));
+    for (const s of ["sm", "md", "lg"]) {
+      expect(fixtures.get(`size.container.${s}`)).not.toBe(defaults.get(`size.container.${s}`));
+    }
+  });
+});
+
+describe("contrast alias resolution (FB-5)", () => {
+  const report = (): ContrastReport =>
+    JSON.parse(readFileSync(join(workDir, "default", "registries", "contrast-report.json"), "utf8")) as ContrastReport;
+
+  it("every pair carries a stable id and a resolvesTo of component cssVars", () => {
+    const componentVars = new Set(
+      defaultBuild.tokens.filter((t) => t.tier === "component").map((t) => t.cssVar),
+    );
+    for (const pair of report().pairs) {
+      expect(pair.id).toBe(`${pair.foreground}|${pair.background}`);
+      for (const cssVar of [...pair.resolvesTo.foreground, ...pair.resolvesTo.background]) {
+        expect(componentVars, `${cssVar} must be a real component token`).toContain(cssVar);
+      }
+    }
+  });
+
+  it("surface.raised pairs resolve to the component surface hooks that alias it", () => {
+    const pair = report().pairs.find(
+      (p) => p.foreground === "color.text.primary" && p.background === "color.surface.raised",
+    );
+    expect(pair).toBeDefined();
+    for (const cssVar of ["--ds-card-surface", "--ds-dialog-surface", "--ds-field-surface"]) {
+      expect(pair?.resolvesTo.background).toContain(cssVar);
+    }
+  });
+
+  it("aliasIndex lets a checker verify text on a component surface via the alias", () => {
+    const { aliasIndex } = report();
+    expect(aliasIndex["--ds-card-surface"]).toContain("color.text.primary|color.surface.raised");
+    expect(aliasIndex["--ds-alert-text-danger"]).toContain("color.status.danger.text|color.status.danger.surface");
+    expect(aliasIndex["--ds-button-surface-primary-default"]).toContain(
+      "color.text.on-accent|color.accent.default",
+    );
+  });
+
+  it("alias completeness: every component-tier color token is in aliasIndex or unaudited (with reason)", () => {
+    const { aliasIndex, unaudited, pairs } = report();
+    const indexed = new Set(Object.keys(aliasIndex));
+    const unauditedVars = new Set(unaudited.map((u) => u.cssVar));
+    const componentColorTokens = defaultBuild.tokens.filter((t) => t.tier === "component" && t.type === "color");
+    expect(componentColorTokens.length).toBeGreaterThan(0);
+    for (const t of componentColorTokens) {
+      const covered = indexed.has(t.cssVar) || unauditedVars.has(t.cssVar);
+      expect(covered, `${t.cssVar} missing from both aliasIndex and unaudited`).toBe(true);
+      expect(indexed.has(t.cssVar) && unauditedVars.has(t.cssVar), `${t.cssVar} in both lists`).toBe(false);
+    }
+    // No phantom entries either: both lists contain only real component color tokens.
+    const colorVars = new Set(componentColorTokens.map((t) => t.cssVar));
+    for (const cssVar of [...indexed, ...unauditedVars]) {
+      expect(colorVars, `${cssVar} is not a component-tier color token`).toContain(cssVar);
+    }
+    // Every inherited pair id is a real audited pair; every reason is substantive.
+    const pairIds = new Set(pairs.map((p) => p.id));
+    for (const ids of Object.values(aliasIndex)) {
+      expect(ids.length).toBeGreaterThan(0);
+      for (const id of ids) expect(pairIds).toContain(id);
+    }
+    for (const u of unaudited) {
+      expect(u.reason.trim().length, `${u.cssVar} needs a real reason`).toBeGreaterThan(10);
     }
   });
 });

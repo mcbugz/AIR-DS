@@ -55,6 +55,8 @@ export interface PublicToken {
 }
 
 export interface ContrastPair {
+  /** Stable pair id: "<foreground>|<background>". Keys aliasIndex entries. */
+  id: string;
   foreground: string;
   background: string;
   foregroundValue: string;
@@ -62,14 +64,40 @@ export interface ContrastPair {
   ratio: number;
   required: number;
   pass: boolean;
+  /**
+   * FB-5: every component-tier cssVar whose value chain resolves to the same
+   * color as this pair's foreground / background semantic token, so text on a
+   * component surface (e.g. --ds-card-surface) is verifiable via the alias.
+   */
+  resolvesTo: {
+    foreground: string[];
+    background: string[];
+  };
+}
+
+/** A component-tier color token that inherits no audited pair, with the reason. */
+export interface UnauditedToken {
+  name: string;
+  cssVar: string;
+  /** The semantic token it aliases, or null if the value is not a pure alias. */
+  aliasOf: string | null;
+  reason: string;
 }
 
 export interface ContrastReport {
+  $description: string;
   standard: string;
   threshold: number;
   brand: string;
   failures: number;
   pairs: ContrastPair[];
+  /**
+   * FB-5: component-tier color cssVar -> ids of the audited pairs it inherits
+   * (its semantic alias target appears as that pair's foreground or background).
+   */
+  aliasIndex: Record<string, string[]>;
+  /** Component-tier color tokens covered by no audited pair, each with a reason. */
+  unaudited: UnauditedToken[];
 }
 
 export interface BuildOptions {
@@ -361,7 +389,51 @@ function mandatedPairs(): ReadonlyArray<readonly [string, string]> {
   return pairs;
 }
 
-function runContrast(semantic: ReadonlyMap<string, string | number>, brandLabel: string): ContrastReport {
+/**
+ * FB-5 alias extraction: component-tier color tokens are (by tier rule) pure
+ * aliases into the semantic tier. Map each one to its semantic target so the
+ * contrast report can express which audited pairs it inherits. A color token
+ * whose $value is not a whole-token reference maps to null (goes to `unaudited`).
+ */
+function componentColorAliases(componentRaw: ReadonlyMap<string, RawToken>): Map<string, string | null> {
+  const aliases = new Map<string, string | null>();
+  for (const [name, tok] of componentRaw.entries()) {
+    if (tok.type !== "color") continue;
+    const whole = typeof tok.value === "string" ? WHOLE_REF_RE.exec(tok.value) : null;
+    aliases.set(name, whole ? (whole[1] as string) : null);
+  }
+  return aliases;
+}
+
+function unauditedReason(aliasOf: string | null): string {
+  if (aliasOf === null) {
+    return "Value is not a pure semantic alias, so no audited pair can be inherited.";
+  }
+  if (aliasOf === "color.surface.overlay") {
+    return `Aliases ${aliasOf}, a scrim that is never a text background — outside the normal-text gate by design.`;
+  }
+  if (aliasOf.startsWith("color.border.") || /^color\.status\.[a-z]+\.border$/.test(aliasOf)) {
+    return `Aliases ${aliasOf}, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited).`;
+  }
+  return `Aliases ${aliasOf}, which appears in no mandated contrast pair.`;
+}
+
+function runContrast(
+  semantic: ReadonlyMap<string, string | number>,
+  brandLabel: string,
+  componentRaw: ReadonlyMap<string, RawToken>,
+): ContrastReport {
+  // semantic token name -> component cssVars that alias it (sorted for determinism).
+  const aliases = componentColorAliases(componentRaw);
+  const aliasedBy = new Map<string, string[]>();
+  for (const name of [...aliases.keys()].sort()) {
+    const target = aliases.get(name);
+    if (target === null || target === undefined) continue;
+    const list = aliasedBy.get(target) ?? [];
+    list.push(toCssVar(name));
+    aliasedBy.set(target, list);
+  }
+
   const pairs: ContrastPair[] = [];
   for (const [fg, bg] of mandatedPairs()) {
     const fgValue = semantic.get(fg);
@@ -371,6 +443,7 @@ function runContrast(semantic: ReadonlyMap<string, string | number>, brandLabel:
     }
     const ratio = contrastRatio(fgValue, bgValue);
     pairs.push({
+      id: `${fg}|${bg}`,
       foreground: fg,
       background: bg,
       foregroundValue: fgValue,
@@ -378,14 +451,45 @@ function runContrast(semantic: ReadonlyMap<string, string | number>, brandLabel:
       ratio: Math.round(ratio * 100) / 100,
       required: AA_NORMAL_TEXT,
       pass: ratio >= AA_NORMAL_TEXT,
+      resolvesTo: {
+        foreground: aliasedBy.get(fg) ?? [],
+        background: aliasedBy.get(bg) ?? [],
+      },
     });
   }
+
+  // aliasIndex: component cssVar -> ids of the audited pairs its target appears in.
+  // unaudited: component color tokens whose alias target is in no pair (or no pure alias).
+  const pairIdsBySemantic = new Map<string, string[]>();
+  for (const pair of pairs) {
+    for (const semanticName of [pair.foreground, pair.background]) {
+      const ids = pairIdsBySemantic.get(semanticName) ?? [];
+      if (!ids.includes(pair.id)) ids.push(pair.id);
+      pairIdsBySemantic.set(semanticName, ids);
+    }
+  }
+  const aliasIndex: Record<string, string[]> = {};
+  const unaudited: UnauditedToken[] = [];
+  for (const name of [...aliases.keys()].sort()) {
+    const aliasOf = aliases.get(name) ?? null;
+    const inheritedPairIds = aliasOf === null ? undefined : pairIdsBySemantic.get(aliasOf);
+    if (inheritedPairIds !== undefined) {
+      aliasIndex[toCssVar(name)] = inheritedPairIds;
+    } else {
+      unaudited.push({ name, cssVar: toCssVar(name), aliasOf, reason: unauditedReason(aliasOf) });
+    }
+  }
+
   return {
+    $description:
+      "GENERATED WCAG audit for the active brand. `pairs` are the mandated semantic foreground/background checks; each pair's `resolvesTo` lists every component-tier cssVar whose value chain resolves to that same color. `aliasIndex` maps each component-tier color cssVar to the audited pair ids it inherits (e.g. text on --ds-card-surface is verified by the color.surface.raised pairs). Component color tokens under `unaudited` inherit no pair; each entry states why. A foreground/background combination in no pair and no alias entry is unverified.",
     standard: "WCAG 2.2 AA (normal text)",
     threshold: AA_NORMAL_TEXT,
     brand: brandLabel,
     failures: pairs.filter((p) => !p.pass).length,
     pairs,
+    aliasIndex,
+    unaudited,
   };
 }
 
@@ -499,12 +603,8 @@ export function buildTokens(options: BuildOptions = {}): BuildResult {
   const semanticValues = new Map<string, string | number>(semantic.map((t) => [t.name, t.value]));
 
   // 3. Component tier: aliases into the semantic tier only.
-  const component = resolveTier(
-    loadTierDir(join(PKG_ROOT, "src", "component")),
-    "component",
-    (ref) => semanticValues.get(ref),
-    "semantic-tier",
-  );
+  const componentRaw = loadTierDir(join(PKG_ROOT, "src", "component"));
+  const component = resolveTier(componentRaw, "component", (ref) => semanticValues.get(ref), "semantic-tier");
 
   const all: PublicToken[] = [...semantic, ...component];
 
@@ -543,7 +643,7 @@ export function buildTokens(options: BuildOptions = {}): BuildResult {
   );
 
   // 5. WCAG gate — report is always written; failures fail the build.
-  const contrast = runContrast(semanticValues, brandLabel);
+  const contrast = runContrast(semanticValues, brandLabel, componentRaw);
   writeOut(files.contrastReport, `${JSON.stringify(contrast, null, 2)}\n`);
   if (contrast.failures > 0) {
     const failing = contrast.pairs
