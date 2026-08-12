@@ -1,0 +1,20 @@
+{
+  "name": "@ds/context",
+  "version": "0.1.0",
+  "description": "AIR-DS context compiler: deterministically emits every agent-facing artifact (llms.txt family, markdown twins, skills, repo agent files, editor rules, auditor agent, manifest) from the machine registries, per brand.",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/context lint: no-op placeholder (token-value lint lives in @ds/validate)'"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.0.0"
+  }
+}
