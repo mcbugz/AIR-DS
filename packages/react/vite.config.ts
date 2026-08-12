@@ -14,9 +14,11 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: path.join(here, 'src/index.ts'),
+      entry: {
+        index: path.join(here, 'src/index.ts'),
+        'icons/index': path.join(here, 'src/icons/index.ts'),
+      },
       formats: ['es'],
-      fileName: 'index',
     },
     rollupOptions: {
       // Peers and the token layer stay external; `import '@ds/tokens/css'`

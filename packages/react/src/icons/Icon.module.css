@@ -1,0 +1,25 @@
+/* Token-only CSS (CLAUDE.md rule 2). Icons deliberately carry NO styling
+   beyond the size scale: the only values in this file are the semantic
+   --ds-size-icon-* vars (NR-006: size tokens, never space tokens, size a
+   box). Color is inherited via `stroke="currentColor"` in markup; SVG
+   geometry attributes (viewBox, stroke-width, path data) live in markup,
+   not CSS — exempt, like Button's spinner geometry. */
+
+.icon {
+  flex: none;
+}
+
+.sm {
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+}
+
+.md {
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+}
+
+.lg {
+  inline-size: var(--ds-size-icon-lg);
+  block-size: var(--ds-size-icon-lg);
+}
