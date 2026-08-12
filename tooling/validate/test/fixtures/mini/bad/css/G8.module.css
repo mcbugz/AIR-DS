@@ -1,0 +1,9 @@
+.button:hover {
+  background-color: var(--ds-color-accent-emphasis);
+}
+.input:focus-visible {
+  border-color: var(--ds-color-border-focus);
+}
+.field:disabled {
+  color: var(--ds-color-text-muted);
+}

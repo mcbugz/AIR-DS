@@ -1,0 +1,43 @@
+# Nightly benchmark (ADR-005): agent-generated screens scored deterministically
+# vs the committed raw-Tailwind baseline. Report-only — losses are logged, not
+# merge-blocking. The generator command is pluggable; until one is wired via
+# repo settings, this runs the harness in dry-run mode so the scoreboard and
+# scorer stay exercised nightly.
+name: nightly-benchmark
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build registries
+        run: pnpm build
+
+      - name: Run benchmark harness (report-only)
+        # To benchmark a real generator, replace --dry-run with:
+        #   --generator '{"name":"claude","cmd":"claude -p \"$SCENARIO_PROMPT ... write files to $SCENARIO_OUT\""}'
+        # Generators are NEVER invoked from tests or merge-blocking CI.
+        run: pnpm --filter @ds/validate run benchmark -- --dry-run --report-only
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: tooling/validate/benchmark-results/
+          if-no-files-found: warn

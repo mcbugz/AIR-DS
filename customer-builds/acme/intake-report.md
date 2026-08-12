@@ -104,6 +104,7 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 - `context/skills/use-system/references/negative-rules.md`
 - `context/skills/use-system/references/tokens.md`
 - `intake-report.md`
+- `intake-report.md`
 - `publish-plan.json`
 - `registries/contrast-report.json`
 - `registries/tokens-index.json`
@@ -113,12 +114,12 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 
 ## Timings
 
-- validate: 0 ms
+- validate: 1 ms
 - generate-brand: 2 ms
-- tokens-build: 118 ms
-- context-build: 139 ms
+- tokens-build: 120 ms
+- context-build: 134 ms
 - bundle: 2 ms
-- total: 262 ms
+- total: 260 ms
 
 ## Gaps / follow-ups
 

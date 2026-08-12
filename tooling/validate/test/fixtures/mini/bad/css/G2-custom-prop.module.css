@@ -1,0 +1,6 @@
+.thing {
+  color: var(--brand-primary);
+}
+.other {
+  --local-alias: var(--ds-color-text-primary);
+}

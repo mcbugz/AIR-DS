@@ -1,0 +1,4 @@
+/* Seeded violation: generic base class (NR-010) */
+.root {
+  padding: var(--ds-card-padding);
+}

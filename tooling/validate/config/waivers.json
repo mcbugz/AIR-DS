@@ -1,0 +1,4 @@
+{
+  "$description": "G4 dead-hook waivers: registered --ds-<component>-* tokens intentionally not consumed by that component's CSS. Empty by default — every waiver needs a review rationale in the PR that adds it.",
+  "deadHookWaivers": []
+}

@@ -1,0 +1,9 @@
+.button[data-hovered] {
+  background-color: var(--ds-color-accent-emphasis);
+}
+.input[data-focus-visible] {
+  border-color: var(--ds-color-border-focus);
+}
+.input::placeholder {
+  color: var(--ds-color-text-muted);
+}

@@ -1,0 +1,395 @@
+{
+  "$description": "Deterministic regression evals for the AIR-DS rule set (ADR-005). Every negative rule NR-001..NR-010 plus the core canon rules has a prompt -> expectation pair: wrong_output MUST fail validation with the expected rule id, right_output MUST pass clean. Run with: pnpm --filter @ds/validate run evals. No LLM anywhere — the runner executes each pair through validateSources() against evals/registry-fixture.json. Critical pairs gate at 1.0 pass rate; overall gate is 0.95.",
+  "evals": [
+    {
+      "id": "EV-NR-001",
+      "rule": "NR-001",
+      "critical": true,
+      "prompt": "Agent was asked to build a settings page with a vertical form layout: 'Stack the profile fields with medium spacing and wrap them in a container.'",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/settings/SettingsPage.tsx",
+            "content": "import { Stack, Box, Container } from '@ds/react';\nimport { TextField } from '@ds/react';\n\nexport function SettingsPage() {\n  return (\n    <Container>\n      <Stack gap=\"md\">\n        <TextField label=\"Display name\" />\n        <TextField label=\"Email\" />\n      </Stack>\n    </Container>\n  );\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/settings/SettingsPage.tsx",
+            "content": "import { TextField } from '@ds/react';\nimport styles from './SettingsPage.module.css';\n\nexport function SettingsPage() {\n  return (\n    <div className={styles.page}>\n      <TextField label=\"Display name\" />\n      <TextField label=\"Email\" />\n    </div>\n  );\n}\n"
+          },
+          {
+            "path": "src/settings/SettingsPage.module.css",
+            "content": ".page {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ds-space-gap-md);\n  padding: var(--ds-space-inset-lg);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-002",
+      "rule": "NR-002",
+      "critical": true,
+      "prompt": "Agent was asked to add a section header to a dashboard card: 'Add a level-2 heading that says Usage, with small secondary helper text under it.'",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/dashboard/UsageSection.tsx",
+            "content": "import { Heading, Text } from '@ds/react';\n\nexport function UsageSection() {\n  return (\n    <section>\n      <Heading level={2}>Usage</Heading>\n      <Text size=\"sm\">Updated every 15 minutes.</Text>\n    </section>\n  );\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/dashboard/UsageSection.tsx",
+            "content": "import styles from './UsageSection.module.css';\n\nexport function UsageSection() {\n  return (\n    <section>\n      <h2 className={styles.title}>Usage</h2>\n      <p className={styles.helper}>Updated every 15 minutes.</p>\n    </section>\n  );\n}\n"
+          },
+          {
+            "path": "src/dashboard/UsageSection.module.css",
+            "content": ".title {\n  font-size: var(--ds-text-size-xl);\n  font-weight: var(--ds-text-weight-semibold);\n  color: var(--ds-color-text-primary);\n  margin: 0;\n}\n\n.helper {\n  font-size: var(--ds-text-size-sm);\n  color: var(--ds-color-text-secondary);\n  margin: 0;\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-003",
+      "rule": "NR-003",
+      "critical": true,
+      "prompt": "Agent was asked to style a promo banner: 'Give it the brand blue background with white text.'",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/marketing/PromoBanner.module.css",
+            "content": ".banner {\n  background-color: var(--ds-blue-500);\n  color: var(--ds-palette-primary-600);\n  padding: var(--ds-space-inset-md);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/marketing/PromoBanner.module.css",
+            "content": ".banner {\n  background-color: var(--ds-color-accent-default);\n  color: var(--ds-color-text-on-accent);\n  padding: var(--ds-space-inset-md);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-004",
+      "rule": "NR-004",
+      "critical": true,
+      "prompt": "Agent was asked to build a stat card quickly: 'Just a padded rounded card with gray helper text.'",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/dashboard/StatCard.tsx",
+            "content": "export function StatCard({ label, value }: { label: string; value: string }) {\n  return (\n    <div className=\"p-4 rounded-lg shadow-sm bg-white\">\n      <span className=\"text-gray-600 text-sm\">{label}</span>\n      <strong>{value}</strong>\n    </div>\n  );\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/dashboard/StatCard.tsx",
+            "content": "import styles from './StatCard.module.css';\n\nexport function StatCard({ label, value }: { label: string; value: string }) {\n  return (\n    <div className={styles.statcard}>\n      <span className={styles.label}>{label}</span>\n      <strong className={styles.value}>{value}</strong>\n    </div>\n  );\n}\n"
+          },
+          {
+            "path": "src/dashboard/StatCard.module.css",
+            "content": ".statcard {\n  background-color: var(--ds-color-surface-raised);\n  border-radius: var(--ds-radius-lg);\n  box-shadow: var(--ds-shadow-raised);\n  padding: var(--ds-space-inset-md);\n}\n\n.label {\n  color: var(--ds-color-text-secondary);\n  font-size: var(--ds-text-size-sm);\n}\n\n.value {\n  color: var(--ds-color-text-primary);\n  font-size: var(--ds-text-size-xl);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-005",
+      "rule": "NR-005",
+      "critical": true,
+      "prompt": "Agent was asked to add a submit button, and its stale training data suggests dist-path imports for tree shaking.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/checkout/SubmitRow.tsx",
+            "content": "import Button from '@ds/react/dist/Button';\n\nexport function SubmitRow() {\n  return <Button variant=\"primary\">Place order</Button>;\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/checkout/SubmitRow.tsx",
+            "content": "import { Button } from '@ds/react';\n\nexport function SubmitRow() {\n  return <Button variant=\"primary\">Place order</Button>;\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-006",
+      "rule": "NR-006",
+      "critical": true,
+      "prompt": "Agent was asked to render a square status indicator dot: 'Make it a small fixed-size box.' Tailwind-trained output pattern-matches the spacing scale for sizing.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/status/IndicatorDot.module.css",
+            "content": ".dot {\n  inline-size: var(--ds-space-4);\n  block-size: var(--ds-space-4);\n  border-radius: var(--ds-radius-full);\n  background-color: var(--ds-color-status-success-default);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/status/IndicatorDot.module.css",
+            "content": ".dot {\n  inline-size: var(--ds-size-icon-sm);\n  block-size: var(--ds-size-icon-sm);\n  border-radius: var(--ds-radius-full);\n  background-color: var(--ds-color-status-success-default);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-007",
+      "rule": "NR-007",
+      "critical": true,
+      "prompt": "Agent was asked to style a solid danger chip: 'Danger red fill with readable text on top.' Because on-accent exists, agents extrapolate on-danger.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/alerts/DangerChip.module.css",
+            "content": ".chip {\n  background-color: var(--ds-color-status-danger-default);\n  color: var(--ds-color-text-on-danger);\n  padding: var(--ds-space-1) var(--ds-space-2);\n  border-radius: var(--ds-radius-full);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/alerts/DangerChip.module.css",
+            "content": ".chip {\n  background-color: var(--ds-color-status-danger-default);\n  color: var(--ds-color-text-inverse);\n  padding: var(--ds-space-1) var(--ds-space-2);\n  border-radius: var(--ds-radius-full);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-008",
+      "rule": "NR-008",
+      "critical": true,
+      "prompt": "Agent was asked to give Badge an informational look and borrows Alert's surface hook because the names look interchangeable.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Badge/Badge.module.css",
+            "content": ".badge {\n  display: inline-flex;\n  align-items: center;\n  background-color: var(--ds-alert-surface-info);\n  color: var(--ds-alert-text-info);\n  border-radius: var(--ds-badge-radius);\n  padding-inline: var(--ds-badge-padding-x);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Badge/Badge.module.css",
+            "content": ".badge {\n  display: inline-flex;\n  align-items: center;\n  background-color: var(--ds-badge-surface-info);\n  color: var(--ds-badge-text-info);\n  border-radius: var(--ds-badge-radius);\n  padding-inline: var(--ds-badge-padding-x);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-009",
+      "rule": "NR-009",
+      "critical": true,
+      "prompt": "Agent was asked to add hover and focus feedback to a custom action button built on the Button component's CSS pattern.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Button/Button.module.css",
+            "content": ".button {\n  background-color: var(--ds-color-accent-default);\n  color: var(--ds-color-text-on-accent);\n}\n\n.button:hover {\n  background-color: var(--ds-color-accent-emphasis);\n}\n\n.button:focus-visible {\n  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Button/Button.module.css",
+            "content": ".button {\n  background-color: var(--ds-color-accent-default);\n  color: var(--ds-color-text-on-accent);\n}\n\n.button[data-hovered] {\n  background-color: var(--ds-color-accent-emphasis);\n}\n\n.button[data-focus-visible] {\n  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);\n  box-shadow: var(--ds-shadow-focus-ring);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-010",
+      "rule": "NR-010",
+      "critical": false,
+      "prompt": "Agent was asked to scaffold the Card component's stylesheet and reaches for a generic .wrapper base class.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Card/Card.module.css",
+            "content": ".wrapper {\n  background-color: var(--ds-card-surface);\n  border-radius: var(--ds-card-radius);\n  padding: var(--ds-card-padding);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "packages/react/src/components/Card/Card.module.css",
+            "content": ".card {\n  background-color: var(--ds-card-surface);\n  border-radius: var(--ds-card-radius);\n  padding: var(--ds-card-padding);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G1-fabricated-scale-step",
+      "rule": "G1",
+      "critical": true,
+      "prompt": "Agent was asked for extra-roomy spacing in a hero section and invents a plausible-but-unregistered scale step: gap-xl.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/hero/Hero.module.css",
+            "content": ".hero {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ds-space-gap-xl);\n  padding: var(--ds-space-inset-lg);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/hero/Hero.module.css",
+            "content": ".hero {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ds-space-gap-lg);\n  padding: var(--ds-space-inset-lg);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G2-hex",
+      "rule": "G2",
+      "critical": true,
+      "prompt": "Agent was asked to match a screenshot and hard-codes the sampled colors instead of mapping them to intent tokens.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/banner/Banner.module.css",
+            "content": ".banner {\n  background-color: #2563eb;\n  color: #ffffff;\n  border: 1px solid #1d4ed8;\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/banner/Banner.module.css",
+            "content": ".banner {\n  background-color: var(--ds-color-accent-default);\n  color: var(--ds-color-text-on-accent);\n  border: var(--ds-border-width-1) solid var(--ds-color-accent-emphasis);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G2-px",
+      "rule": "G2",
+      "critical": true,
+      "prompt": "Agent was asked for a comfortable form row and writes raw pixel and rem values from muscle memory.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/forms/FormRow.module.css",
+            "content": ".row {\n  padding: 16px;\n  margin-block-end: 12px;\n  font-size: 0.875rem;\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/forms/FormRow.module.css",
+            "content": ".row {\n  padding: var(--ds-space-inset-md);\n  margin-block-end: var(--ds-space-3);\n  font-size: var(--ds-text-size-sm);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G2-font-family",
+      "rule": "G2",
+      "critical": false,
+      "prompt": "Agent was asked to make a metrics readout look technical and hard-codes a font stack.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/metrics/Readout.module.css",
+            "content": ".readout {\n  font-family: \"JetBrains Mono\", monospace;\n  color: var(--ds-color-text-primary);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/metrics/Readout.module.css",
+            "content": ".readout {\n  font-family: var(--ds-font-family-mono);\n  color: var(--ds-color-text-primary);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G3-category-misuse",
+      "rule": "G3",
+      "critical": true,
+      "prompt": "Agent was asked to round a thumbnail and grabs a spacing token for the corner radius because the numbers looked right.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/media/Thumb.module.css",
+            "content": ".thumb {\n  border-radius: var(--ds-space-2);\n  inline-size: var(--ds-size-icon-lg);\n  block-size: var(--ds-size-icon-lg);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/media/Thumb.module.css",
+            "content": ".thumb {\n  border-radius: var(--ds-radius-md);\n  inline-size: var(--ds-size-icon-lg);\n  block-size: var(--ds-size-icon-lg);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G5-fabricated-component",
+      "rule": "G5",
+      "critical": true,
+      "prompt": "Agent was asked to render tabular usage data and imports a DataTable that this system does not ship.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/usage/UsageTable.tsx",
+            "content": "import { DataTable, Card } from '@ds/react';\n\nexport function UsageTable({ rows }: { rows: unknown[] }) {\n  return (\n    <Card>\n      <DataTable rows={rows} />\n    </Card>\n  );\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/usage/UsageTable.tsx",
+            "content": "import { Card } from '@ds/react';\nimport styles from './UsageTable.module.css';\n\nexport function UsageTable({ rows }: { rows: { id: string; label: string }[] }) {\n  return (\n    <Card>\n      <table className={styles.table}>\n        <tbody>\n          {rows.map((r) => (\n            <tr key={r.id}>\n              <td>{r.label}</td>\n            </tr>\n          ))}\n        </tbody>\n      </table>\n    </Card>\n  );\n}\n"
+          },
+          {
+            "path": "src/usage/UsageTable.module.css",
+            "content": ".table {\n  inline-size: 100%;\n  border-collapse: collapse;\n  font-size: var(--ds-text-size-sm);\n  color: var(--ds-color-text-primary);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-G8-focus",
+      "rule": "G8",
+      "critical": true,
+      "prompt": "Agent was asked to add a visible focus treatment to a custom search input wrapper and writes pseudo-class selectors.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/search/SearchBox.module.css",
+            "content": ".input:focus {\n  border-color: var(--ds-color-border-focus);\n}\n\n.input:disabled {\n  color: var(--ds-color-text-muted);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/search/SearchBox.module.css",
+            "content": ".input[data-focus-visible] {\n  border-color: var(--ds-color-border-focus);\n  box-shadow: var(--ds-shadow-focus-ring);\n}\n\n.input[data-disabled] {\n  color: var(--ds-color-text-muted);\n}\n"
+          }
+        ]
+      }
+    }
+  ]
+}

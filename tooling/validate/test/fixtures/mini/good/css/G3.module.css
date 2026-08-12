@@ -1,0 +1,11 @@
+/* Clean twin: category conformance incl. the documented calc()/transform
+   relaxations for size tokens (Switch/Dialog derivation pattern). */
+.box {
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+  border-radius: var(--ds-radius-md);
+  padding: calc((var(--ds-size-icon-md) - var(--ds-size-icon-sm)) / 2);
+  translate: var(--ds-size-icon-md) 0;
+  margin-block-end: var(--ds-space-3);
+  z-index: var(--ds-z-sticky);
+}

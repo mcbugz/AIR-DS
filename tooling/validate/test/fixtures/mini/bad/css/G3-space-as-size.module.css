@@ -1,0 +1,4 @@
+.dot {
+  inline-size: var(--ds-space-4);
+  block-size: var(--ds-space-4);
+}

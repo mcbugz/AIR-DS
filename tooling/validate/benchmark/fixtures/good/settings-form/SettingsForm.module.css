@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-gap-md);
+  padding: var(--ds-space-inset-lg);
+  max-inline-size: var(--ds-size-control-lg);
+}
+
+.actions {
+  display: flex;
+  gap: var(--ds-space-gap-sm);
+  margin-block-start: var(--ds-space-4);
+}

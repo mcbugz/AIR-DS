@@ -1,0 +1,32 @@
+/* Clean twin: stresses the literal allowlist — keywords, 0, percentages,
+   angles, calc over tokens, color-mix, keyframe names, RAC runtime var. */
+.panel {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  inline-size: 100%;
+  min-inline-size: var(--trigger-width);
+  rotate: 90deg;
+  flex: 1;
+  opacity: 0.5;
+  background-color: color-mix(in srgb, var(--ds-color-surface-inverse) 50%, transparent);
+  translate: 0 calc(var(--ds-border-width-2) * -1);
+  font-family: var(--ds-font-family-mono);
+  font-weight: var(--ds-text-weight-semibold);
+  line-height: var(--ds-text-leading-normal);
+  z-index: var(--ds-z-overlay);
+  transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+  animation: pulse var(--ds-motion-duration-slow) linear infinite;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

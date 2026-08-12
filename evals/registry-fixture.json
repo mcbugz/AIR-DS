@@ -1,0 +1,1328 @@
+{
+ "$description": "HERMETIC registry snapshot for the eval runner and rule unit tests. Deliberately frozen so evals do not race live registry regeneration; refresh intentionally when the taxonomy changes.",
+ "tokens-index": {
+  "tokens": [
+   {
+    "name": "border.width.1",
+    "cssVar": "--ds-border-width-1",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "border.width.2",
+    "cssVar": "--ds-border-width-2",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "color.accent.default",
+    "cssVar": "--ds-color-accent-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.accent.emphasis",
+    "cssVar": "--ds-color-accent-emphasis",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.accent.muted",
+    "cssVar": "--ds-color-accent-muted",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.border.default",
+    "cssVar": "--ds-color-border-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.border.focus",
+    "cssVar": "--ds-color-border-focus",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.border.muted",
+    "cssVar": "--ds-color-border-muted",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.border.strong",
+    "cssVar": "--ds-color-border-strong",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.danger.border",
+    "cssVar": "--ds-color-status-danger-border",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.danger.default",
+    "cssVar": "--ds-color-status-danger-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.danger.emphasis",
+    "cssVar": "--ds-color-status-danger-emphasis",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.danger.surface",
+    "cssVar": "--ds-color-status-danger-surface",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.danger.text",
+    "cssVar": "--ds-color-status-danger-text",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.info.border",
+    "cssVar": "--ds-color-status-info-border",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.info.default",
+    "cssVar": "--ds-color-status-info-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.info.emphasis",
+    "cssVar": "--ds-color-status-info-emphasis",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.info.surface",
+    "cssVar": "--ds-color-status-info-surface",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.info.text",
+    "cssVar": "--ds-color-status-info-text",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.success.border",
+    "cssVar": "--ds-color-status-success-border",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.success.default",
+    "cssVar": "--ds-color-status-success-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.success.emphasis",
+    "cssVar": "--ds-color-status-success-emphasis",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.success.surface",
+    "cssVar": "--ds-color-status-success-surface",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.success.text",
+    "cssVar": "--ds-color-status-success-text",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.warning.border",
+    "cssVar": "--ds-color-status-warning-border",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.warning.default",
+    "cssVar": "--ds-color-status-warning-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.warning.emphasis",
+    "cssVar": "--ds-color-status-warning-emphasis",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.warning.surface",
+    "cssVar": "--ds-color-status-warning-surface",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.status.warning.text",
+    "cssVar": "--ds-color-status-warning-text",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.default",
+    "cssVar": "--ds-color-surface-default",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.inverse",
+    "cssVar": "--ds-color-surface-inverse",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.overlay",
+    "cssVar": "--ds-color-surface-overlay",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.raised",
+    "cssVar": "--ds-color-surface-raised",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.sunken",
+    "cssVar": "--ds-color-surface-sunken",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.surface.sunken-hover",
+    "cssVar": "--ds-color-surface-sunken-hover",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.inverse",
+    "cssVar": "--ds-color-text-inverse",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.link",
+    "cssVar": "--ds-color-text-link",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.muted",
+    "cssVar": "--ds-color-text-muted",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.on-accent",
+    "cssVar": "--ds-color-text-on-accent",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.primary",
+    "cssVar": "--ds-color-text-primary",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "color.text.secondary",
+    "cssVar": "--ds-color-text-secondary",
+    "tier": "semantic",
+    "type": "color"
+   },
+   {
+    "name": "font.family.mono",
+    "cssVar": "--ds-font-family-mono",
+    "tier": "semantic",
+    "type": "fontFamily"
+   },
+   {
+    "name": "font.family.sans",
+    "cssVar": "--ds-font-family-sans",
+    "tier": "semantic",
+    "type": "fontFamily"
+   },
+   {
+    "name": "motion.duration.fast",
+    "cssVar": "--ds-motion-duration-fast",
+    "tier": "semantic",
+    "type": "duration"
+   },
+   {
+    "name": "motion.duration.normal",
+    "cssVar": "--ds-motion-duration-normal",
+    "tier": "semantic",
+    "type": "duration"
+   },
+   {
+    "name": "motion.duration.slow",
+    "cssVar": "--ds-motion-duration-slow",
+    "tier": "semantic",
+    "type": "duration"
+   },
+   {
+    "name": "motion.easing.enter",
+    "cssVar": "--ds-motion-easing-enter",
+    "tier": "semantic",
+    "type": "cubicBezier"
+   },
+   {
+    "name": "motion.easing.exit",
+    "cssVar": "--ds-motion-easing-exit",
+    "tier": "semantic",
+    "type": "cubicBezier"
+   },
+   {
+    "name": "motion.easing.standard",
+    "cssVar": "--ds-motion-easing-standard",
+    "tier": "semantic",
+    "type": "cubicBezier"
+   },
+   {
+    "name": "radius.full",
+    "cssVar": "--ds-radius-full",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "radius.lg",
+    "cssVar": "--ds-radius-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "radius.md",
+    "cssVar": "--ds-radius-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "radius.sm",
+    "cssVar": "--ds-radius-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "shadow.focus-ring",
+    "cssVar": "--ds-shadow-focus-ring",
+    "tier": "semantic",
+    "type": "shadow"
+   },
+   {
+    "name": "shadow.overlay",
+    "cssVar": "--ds-shadow-overlay",
+    "tier": "semantic",
+    "type": "shadow"
+   },
+   {
+    "name": "shadow.raised",
+    "cssVar": "--ds-shadow-raised",
+    "tier": "semantic",
+    "type": "shadow"
+   },
+   {
+    "name": "size.control.lg",
+    "cssVar": "--ds-size-control-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "size.control.md",
+    "cssVar": "--ds-size-control-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "size.control.sm",
+    "cssVar": "--ds-size-control-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "size.icon.lg",
+    "cssVar": "--ds-size-icon-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "size.icon.md",
+    "cssVar": "--ds-size-icon-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "size.icon.sm",
+    "cssVar": "--ds-size-icon-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.0",
+    "cssVar": "--ds-space-0",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.1",
+    "cssVar": "--ds-space-1",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.10",
+    "cssVar": "--ds-space-10",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.2",
+    "cssVar": "--ds-space-2",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.3",
+    "cssVar": "--ds-space-3",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.4",
+    "cssVar": "--ds-space-4",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.5",
+    "cssVar": "--ds-space-5",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.6",
+    "cssVar": "--ds-space-6",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.7",
+    "cssVar": "--ds-space-7",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.8",
+    "cssVar": "--ds-space-8",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.9",
+    "cssVar": "--ds-space-9",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.gap.lg",
+    "cssVar": "--ds-space-gap-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.gap.md",
+    "cssVar": "--ds-space-gap-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.gap.sm",
+    "cssVar": "--ds-space-gap-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.inset.lg",
+    "cssVar": "--ds-space-inset-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.inset.md",
+    "cssVar": "--ds-space-inset-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "space.inset.sm",
+    "cssVar": "--ds-space-inset-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.leading.loose",
+    "cssVar": "--ds-text-leading-loose",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "text.leading.normal",
+    "cssVar": "--ds-text-leading-normal",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "text.leading.tight",
+    "cssVar": "--ds-text-leading-tight",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "text.size.2xl",
+    "cssVar": "--ds-text-size-2xl",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.3xl",
+    "cssVar": "--ds-text-size-3xl",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.lg",
+    "cssVar": "--ds-text-size-lg",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.md",
+    "cssVar": "--ds-text-size-md",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.sm",
+    "cssVar": "--ds-text-size-sm",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.xl",
+    "cssVar": "--ds-text-size-xl",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.size.xs",
+    "cssVar": "--ds-text-size-xs",
+    "tier": "semantic",
+    "type": "dimension"
+   },
+   {
+    "name": "text.weight.bold",
+    "cssVar": "--ds-text-weight-bold",
+    "tier": "semantic",
+    "type": "fontWeight"
+   },
+   {
+    "name": "text.weight.medium",
+    "cssVar": "--ds-text-weight-medium",
+    "tier": "semantic",
+    "type": "fontWeight"
+   },
+   {
+    "name": "text.weight.regular",
+    "cssVar": "--ds-text-weight-regular",
+    "tier": "semantic",
+    "type": "fontWeight"
+   },
+   {
+    "name": "text.weight.semibold",
+    "cssVar": "--ds-text-weight-semibold",
+    "tier": "semantic",
+    "type": "fontWeight"
+   },
+   {
+    "name": "z.dropdown",
+    "cssVar": "--ds-z-dropdown",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "z.overlay",
+    "cssVar": "--ds-z-overlay",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "z.sticky",
+    "cssVar": "--ds-z-sticky",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "z.toast",
+    "cssVar": "--ds-z-toast",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "z.tooltip",
+    "cssVar": "--ds-z-tooltip",
+    "tier": "semantic",
+    "type": "number"
+   },
+   {
+    "name": "alert.border-width",
+    "cssVar": "--ds-alert-border-width",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "alert.border.danger",
+    "cssVar": "--ds-alert-border-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.border.info",
+    "cssVar": "--ds-alert-border-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.border.success",
+    "cssVar": "--ds-alert-border-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.border.warning",
+    "cssVar": "--ds-alert-border-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.dismiss.surface.hover",
+    "cssVar": "--ds-alert-dismiss-surface-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.dismiss.surface.pressed",
+    "cssVar": "--ds-alert-dismiss-surface-pressed",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.gap",
+    "cssVar": "--ds-alert-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "alert.icon.danger",
+    "cssVar": "--ds-alert-icon-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.icon.info",
+    "cssVar": "--ds-alert-icon-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.icon.success",
+    "cssVar": "--ds-alert-icon-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.icon.warning",
+    "cssVar": "--ds-alert-icon-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.padding",
+    "cssVar": "--ds-alert-padding",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "alert.radius",
+    "cssVar": "--ds-alert-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "alert.surface.danger",
+    "cssVar": "--ds-alert-surface-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.surface.info",
+    "cssVar": "--ds-alert-surface-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.surface.success",
+    "cssVar": "--ds-alert-surface-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.surface.warning",
+    "cssVar": "--ds-alert-surface-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.text.danger",
+    "cssVar": "--ds-alert-text-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.text.info",
+    "cssVar": "--ds-alert-text-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.text.success",
+    "cssVar": "--ds-alert-text-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "alert.text.warning",
+    "cssVar": "--ds-alert-text-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.font-size",
+    "cssVar": "--ds-badge-font-size",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "badge.font-weight",
+    "cssVar": "--ds-badge-font-weight",
+    "tier": "component",
+    "type": "fontWeight"
+   },
+   {
+    "name": "badge.padding-x",
+    "cssVar": "--ds-badge-padding-x",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "badge.padding-y",
+    "cssVar": "--ds-badge-padding-y",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "badge.radius",
+    "cssVar": "--ds-badge-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "badge.surface.danger",
+    "cssVar": "--ds-badge-surface-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.surface.info",
+    "cssVar": "--ds-badge-surface-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.surface.neutral",
+    "cssVar": "--ds-badge-surface-neutral",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.surface.success",
+    "cssVar": "--ds-badge-surface-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.surface.warning",
+    "cssVar": "--ds-badge-surface-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.text.danger",
+    "cssVar": "--ds-badge-text-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.text.info",
+    "cssVar": "--ds-badge-text-info",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.text.neutral",
+    "cssVar": "--ds-badge-text-neutral",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.text.success",
+    "cssVar": "--ds-badge-text-success",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "badge.text.warning",
+    "cssVar": "--ds-badge-text-warning",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.border.secondary",
+    "cssVar": "--ds-button-border-secondary",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.font-weight",
+    "cssVar": "--ds-button-font-weight",
+    "tier": "component",
+    "type": "fontWeight"
+   },
+   {
+    "name": "button.gap",
+    "cssVar": "--ds-button-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.height.lg",
+    "cssVar": "--ds-button-height-lg",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.height.md",
+    "cssVar": "--ds-button-height-md",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.height.sm",
+    "cssVar": "--ds-button-height-sm",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.padding-x.lg",
+    "cssVar": "--ds-button-padding-x-lg",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.padding-x.md",
+    "cssVar": "--ds-button-padding-x-md",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.padding-x.sm",
+    "cssVar": "--ds-button-padding-x-sm",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.radius",
+    "cssVar": "--ds-button-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "button.surface.danger.default",
+    "cssVar": "--ds-button-surface-danger-default",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.danger.hover",
+    "cssVar": "--ds-button-surface-danger-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.ghost.hover",
+    "cssVar": "--ds-button-surface-ghost-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.primary.default",
+    "cssVar": "--ds-button-surface-primary-default",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.primary.hover",
+    "cssVar": "--ds-button-surface-primary-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.secondary.default",
+    "cssVar": "--ds-button-surface-secondary-default",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.surface.secondary.hover",
+    "cssVar": "--ds-button-surface-secondary-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.text.danger",
+    "cssVar": "--ds-button-text-danger",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.text.ghost",
+    "cssVar": "--ds-button-text-ghost",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.text.primary",
+    "cssVar": "--ds-button-text-primary",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "button.text.secondary",
+    "cssVar": "--ds-button-text-secondary",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "card.border",
+    "cssVar": "--ds-card-border",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "card.gap",
+    "cssVar": "--ds-card-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "card.padding",
+    "cssVar": "--ds-card-padding",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "card.radius",
+    "cssVar": "--ds-card-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "card.shadow",
+    "cssVar": "--ds-card-shadow",
+    "tier": "component",
+    "type": "shadow"
+   },
+   {
+    "name": "card.surface",
+    "cssVar": "--ds-card-surface",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "dialog.backdrop",
+    "cssVar": "--ds-dialog-backdrop",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "dialog.backdrop-opacity",
+    "cssVar": "--ds-dialog-backdrop-opacity",
+    "tier": "component",
+    "type": "number"
+   },
+   {
+    "name": "dialog.gap",
+    "cssVar": "--ds-dialog-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.padding",
+    "cssVar": "--ds-dialog-padding",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.radius",
+    "cssVar": "--ds-dialog-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.shadow",
+    "cssVar": "--ds-dialog-shadow",
+    "tier": "component",
+    "type": "shadow"
+   },
+   {
+    "name": "dialog.surface",
+    "cssVar": "--ds-dialog-surface",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "dialog.width.lg",
+    "cssVar": "--ds-dialog-width-lg",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.width.md",
+    "cssVar": "--ds-dialog-width-md",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.width.sm",
+    "cssVar": "--ds-dialog-width-sm",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "dialog.z",
+    "cssVar": "--ds-dialog-z",
+    "tier": "component",
+    "type": "number"
+   },
+   {
+    "name": "field.border.default",
+    "cssVar": "--ds-field-border-default",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.border.disabled",
+    "cssVar": "--ds-field-border-disabled",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.border.focus",
+    "cssVar": "--ds-field-border-focus",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.border.hover",
+    "cssVar": "--ds-field-border-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.border.invalid",
+    "cssVar": "--ds-field-border-invalid",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.description-text",
+    "cssVar": "--ds-field-description-text",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.error-text",
+    "cssVar": "--ds-field-error-text",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.gap",
+    "cssVar": "--ds-field-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "field.height",
+    "cssVar": "--ds-field-height",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "field.label-text",
+    "cssVar": "--ds-field-label-text",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.padding-x",
+    "cssVar": "--ds-field-padding-x",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "field.padding-y",
+    "cssVar": "--ds-field-padding-y",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "field.placeholder",
+    "cssVar": "--ds-field-placeholder",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.radius",
+    "cssVar": "--ds-field-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "field.surface",
+    "cssVar": "--ds-field-surface",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.surface-disabled",
+    "cssVar": "--ds-field-surface-disabled",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.text",
+    "cssVar": "--ds-field-text",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "field.text-disabled",
+    "cssVar": "--ds-field-text-disabled",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tabs.border",
+    "cssVar": "--ds-tabs-border",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tabs.font-weight",
+    "cssVar": "--ds-tabs-font-weight",
+    "tier": "component",
+    "type": "fontWeight"
+   },
+   {
+    "name": "tabs.gap",
+    "cssVar": "--ds-tabs-gap",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tabs.indicator.selected",
+    "cssVar": "--ds-tabs-indicator-selected",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tabs.padding-x",
+    "cssVar": "--ds-tabs-padding-x",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tabs.padding-y",
+    "cssVar": "--ds-tabs-padding-y",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tabs.text.default",
+    "cssVar": "--ds-tabs-text-default",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tabs.text.hover",
+    "cssVar": "--ds-tabs-text-hover",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tabs.text.selected",
+    "cssVar": "--ds-tabs-text-selected",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tooltip.font-size",
+    "cssVar": "--ds-tooltip-font-size",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tooltip.max-width",
+    "cssVar": "--ds-tooltip-max-width",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tooltip.padding-x",
+    "cssVar": "--ds-tooltip-padding-x",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tooltip.padding-y",
+    "cssVar": "--ds-tooltip-padding-y",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tooltip.radius",
+    "cssVar": "--ds-tooltip-radius",
+    "tier": "component",
+    "type": "dimension"
+   },
+   {
+    "name": "tooltip.shadow",
+    "cssVar": "--ds-tooltip-shadow",
+    "tier": "component",
+    "type": "shadow"
+   },
+   {
+    "name": "tooltip.surface",
+    "cssVar": "--ds-tooltip-surface",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tooltip.text",
+    "cssVar": "--ds-tooltip-text",
+    "tier": "component",
+    "type": "color"
+   },
+   {
+    "name": "tooltip.z",
+    "cssVar": "--ds-tooltip-z",
+    "tier": "component",
+    "type": "number"
+   }
+  ]
+ },
+ "components-index": {
+  "components": [
+   {
+    "name": "Alert"
+   },
+   {
+    "name": "Badge"
+   },
+   {
+    "name": "Button"
+   },
+   {
+    "name": "Card"
+   },
+   {
+    "name": "CardBody"
+   },
+   {
+    "name": "CardFooter"
+   },
+   {
+    "name": "CardHeader"
+   },
+   {
+    "name": "Checkbox"
+   },
+   {
+    "name": "Dialog"
+   },
+   {
+    "name": "IconButton"
+   },
+   {
+    "name": "Radio"
+   },
+   {
+    "name": "RadioGroup"
+   },
+   {
+    "name": "Select"
+   },
+   {
+    "name": "Switch"
+   },
+   {
+    "name": "Tab"
+   },
+   {
+    "name": "TabList"
+   },
+   {
+    "name": "TabPanel"
+   },
+   {
+    "name": "Tabs"
+   },
+   {
+    "name": "TextArea"
+   },
+   {
+    "name": "TextField"
+   },
+   {
+    "name": "Tooltip"
+   }
+  ]
+ }
+}

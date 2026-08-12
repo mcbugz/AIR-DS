@@ -1,0 +1,4 @@
+.card {
+  padding: var(--ds-card-padding);
+  border-radius: var(--ds-card-radius);
+}

@@ -1,0 +1,8 @@
+.actions {
+  display: flex;
+  gap: var(--ds-space-gap-md);
+  margin-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: var(--ds-space-gap-xl);
+  color: var(--ds-gray-600);
+}

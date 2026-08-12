@@ -1,0 +1,5 @@
+/* Seeded violation: borrows Alert's hooks inside Badge (G6 / NR-008) */
+.badge {
+  background-color: var(--ds-alert-surface-info);
+  color: var(--ds-alert-text-info);
+}

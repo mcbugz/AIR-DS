@@ -1,0 +1,23 @@
+{
+  "$description": "Benchmark scenarios (ADR-005 nightly benchmark). Each scenario is handed verbatim to a pluggable generator command; the generator writes its output files (tsx + module.css) into an output directory, which is then scored deterministically (token compliance, fabrication count, static gauntlet pass, axe) against the committed baseline in benchmark/baseline/<id>/. No LLM is invoked by tests — generators only run when explicitly configured.",
+  "scenarios": [
+    {
+      "id": "settings-form",
+      "title": "Settings form",
+      "prompt": "Build a user settings form using the AIR-DS design system (@ds/react). It needs: a display-name text field, an email text field, a timezone select with at least three options, a checkbox for product-update emails, and a primary Save button next to a secondary Cancel button. Use only components and tokens that exist in the registries. Lay the form out vertically with system spacing tokens; buttons sit in a horizontal row at the end.",
+      "expects": ["TextField", "Select", "Checkbox", "Button"]
+    },
+    {
+      "id": "confirmation-dialog-flow",
+      "title": "Confirmation dialog flow",
+      "prompt": "Build a destructive-action confirmation flow using the AIR-DS design system (@ds/react): a danger Button labelled 'Delete project' that opens a Dialog titled 'Delete this project?', body copy explaining the action is permanent, and a footer with a secondary Cancel button and a danger Confirm button. Wire the open/close state with the components' own APIs; style any custom wrapper with --ds-* tokens only.",
+      "expects": ["Button", "Dialog"]
+    },
+    {
+      "id": "status-dashboard-card-grid",
+      "title": "Status dashboard card grid",
+      "prompt": "Build a status dashboard section using the AIR-DS design system (@ds/react): a responsive grid of Cards, each showing a service name heading, a Badge with the service status (success/warning/danger), and a short muted description. Include one Alert above the grid summarizing any degraded services. Grid layout is plain CSS grid with system gap tokens — no layout components (they do not exist).",
+      "expects": ["Card", "Badge", "Alert"]
+    }
+  ]
+}

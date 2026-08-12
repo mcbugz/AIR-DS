@@ -1,0 +1,3 @@
+.textfield {
+  block-size: var(--ds-field-height);
+}

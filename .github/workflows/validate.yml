@@ -1,0 +1,52 @@
+# Merge-blocking validation (ADR-005): the deterministic gauntlet + eval
+# regression run + benchmark scorer self-test. No LLM anywhere in this path.
+name: validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gauntlet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4 # version comes from packageManager in package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (tokens -> react -> generate -> context -> mcp)
+        run: pnpm build
+
+      - name: Validation gauntlet (typecheck -> lint -> build -> test -> registry-check)
+        run: pnpm validate
+
+      - name: Eval regression run (critical 1.0, overall >= 0.95)
+        run: pnpm --filter @ds/validate run evals
+
+      - name: Benchmark scorer self-test (dry-run over committed fixtures, no generator)
+        run: pnpm --filter @ds/validate run benchmark -- --dry-run
+
+      - name: Upload gauntlet report on failure
+        if: failure()
+        run: pnpm --filter @ds/validate run gauntlet -- --json > gauntlet-report.json || true
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: gauntlet-report
+          path: gauntlet-report.json
+          if-no-files-found: ignore

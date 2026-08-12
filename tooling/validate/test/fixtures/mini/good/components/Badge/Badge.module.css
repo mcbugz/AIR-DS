@@ -1,0 +1,5 @@
+.badge {
+  background-color: var(--ds-badge-surface-info);
+  color: var(--ds-badge-text-info);
+  border-radius: var(--ds-badge-radius);
+}

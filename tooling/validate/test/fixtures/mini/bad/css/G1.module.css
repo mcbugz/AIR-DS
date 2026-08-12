@@ -1,0 +1,4 @@
+/* Seeded violation: fabricated token (G1) */
+.hero {
+  gap: var(--ds-space-gap-xl);
+}

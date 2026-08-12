@@ -1,0 +1,32 @@
+{
+  "name": "@ds/validate",
+  "version": "0.1.0",
+  "description": "AIR-DS validation gauntlet: fixed deterministic merge gate (typecheck -> lint -> build -> test -> registry-check), custom closed-world rules over token/component registries, eval regression runner, and benchmark harness. No LLM in the merge-blocking path (ADR-005).",
+  "type": "module",
+  "bin": {
+    "ds-validate": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/validate lint: no-op placeholder'",
+    "gauntlet": "node src/cli.ts",
+    "evals": "node src/evals/run-evals.ts",
+    "benchmark": "node src/benchmark/run.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.0.0"
+  }
+}
