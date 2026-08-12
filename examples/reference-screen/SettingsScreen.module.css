@@ -1,0 +1,92 @@
+/*
+ * SettingsScreen layout styles.
+ * Rules followed (skills/use-system):
+ * - Every value is a semantic-tier var(--ds-*) token (no hex/px/rem, no
+ *   utility classes, no component-tier hooks borrowed from ds components).
+ * - Space tokens appear only in margin/padding/gap; the content column's
+ *   max-inline-size is derived from a size token via calc, mirroring how
+ *   the system itself derives dialog widths from the control-height scale.
+ * - No state pseudo-classes: every interactive element here is a registry
+ *   component that styles its own states via RAC data attributes.
+ */
+
+.settingsScreen {
+  background-color: var(--ds-color-surface-default);
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-sans);
+  padding: var(--ds-space-7) var(--ds-space-4);
+}
+
+.column {
+  /* 16x the md control height = the same derivation the system uses for
+     its lg dialog width (640px at the default brand). */
+  max-inline-size: calc(var(--ds-size-control-md) * 16);
+  margin-inline: auto;
+}
+
+.pageTitle {
+  margin: var(--ds-space-0);
+  font-size: var(--ds-text-size-2xl);
+  font-weight: var(--ds-text-weight-semibold);
+  line-height: var(--ds-text-leading-tight);
+  color: var(--ds-color-text-primary);
+}
+
+.pageSubtitle {
+  margin: var(--ds-space-1) var(--ds-space-0) var(--ds-space-0);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  color: var(--ds-color-text-secondary);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-7);
+  margin-block-start: var(--ds-space-7);
+}
+
+.sectionTitle {
+  margin: var(--ds-space-0);
+  font-size: var(--ds-text-size-lg);
+  font-weight: var(--ds-text-weight-semibold);
+  line-height: var(--ds-text-leading-tight);
+  color: var(--ds-color-text-primary);
+}
+
+.fieldStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-4);
+}
+
+.toggleStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-gap-md);
+}
+
+.actionsEnd {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ds-space-gap-md);
+}
+
+.actionsStart {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--ds-space-gap-md);
+}
+
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-4);
+}
+
+.dialogText {
+  margin: var(--ds-space-0);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  color: var(--ds-color-text-primary);
+}
