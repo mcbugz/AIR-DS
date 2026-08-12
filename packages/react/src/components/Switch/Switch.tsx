@@ -59,6 +59,7 @@ export interface SwitchProps
  * and `--ds-*` tokens.
  *
  * @racBase Switch
+ * @tokenPrefix switch
  * @example
  * ```tsx
  * <Switch onChange={setNotifications}>Enable notifications</Switch>

@@ -60,6 +60,7 @@ export interface IconButtonProps
  * so customer overrides of the button family restyle both controls together.
  *
  * @racBase Button
+ * @tokenPrefix button
  * @example
  * ```tsx
  * <IconButton aria-label="Close" onPress={close}>

@@ -107,6 +107,7 @@ export interface SelectProps
  * so all form fields re-theme together.
  *
  * @racBase Select
+ * @tokenPrefix field
  * @example
  * ```tsx
  * <Select

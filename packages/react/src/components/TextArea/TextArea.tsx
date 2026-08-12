@@ -71,6 +71,7 @@ export interface TextAreaProps
  * surface.
  *
  * @racBase TextField
+ * @tokenPrefix field
  * @example
  * ```tsx
  * <TextArea label="Message" placeholder="Tell us more…" />

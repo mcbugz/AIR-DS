@@ -59,6 +59,7 @@ export interface TooltipProps
  * content.
  *
  * @racBase Tooltip
+ * @tokenPrefix tooltip
  * @example
  * ```tsx
  * <Tooltip content="Save your changes">

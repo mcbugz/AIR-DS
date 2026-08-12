@@ -32,6 +32,38 @@ describe('Alert', () => {
     expect(screen.getByRole(role)).toBeInTheDocument();
   });
 
+  // FB-2: isLive decouples the tone styling from the live-region role.
+  // Default (isLive=true) keeps the tone→role mapping above; isLive=false
+  // renders a plain region with NO live-region role at all, for permanent
+  // static contexts (e.g. a danger-zone explainer) that must not be
+  // re-announced on every load.
+  describe('isLive', () => {
+    it.each(['info', 'success', 'warning', 'danger'] as const)(
+      'isLive={false} renders tone=%s with no live-region role',
+      (tone) => {
+        const { container } = render(
+          <Alert tone={tone} isLive={false}>
+            Message
+          </Alert>,
+        );
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+        expect(screen.queryByRole('status')).not.toBeInTheDocument();
+        const alert = container.firstElementChild;
+        expect(alert).not.toHaveAttribute('role');
+        expect(alert).toHaveClass(styles.alert!, styles[tone]!);
+      },
+    );
+
+    it('isLive={true} keeps the default tone→role mapping explicitly', () => {
+      render(
+        <Alert tone="danger" isLive>
+          Message
+        </Alert>,
+      );
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+    });
+  });
+
   it.each(['info', 'success', 'warning', 'danger'] as const)(
     'applies tone=%s class',
     (tone) => {
@@ -114,6 +146,15 @@ describe('Alert', () => {
 
     it('has no axe violations (default, message only)', async () => {
       const { container } = render(<Alert>Message</Alert>);
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it('has no axe violations (static danger zone, isLive={false})', async () => {
+      const { container } = render(
+        <Alert tone="danger" isLive={false} title="Danger zone">
+          Deleting the workspace permanently removes all projects.
+        </Alert>,
+      );
       expect(await axe(container)).toHaveNoViolations();
     });
   });

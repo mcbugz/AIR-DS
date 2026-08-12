@@ -68,6 +68,7 @@ export interface DialogProps
  * `--ds-motion-*` tokens, gated by `prefers-reduced-motion`.
  *
  * @racBase Dialog
+ * @tokenPrefix dialog
  * @example
  * ```tsx
  * <Dialog title="Delete project" trigger={<Button variant="danger">Delete…</Button>}>

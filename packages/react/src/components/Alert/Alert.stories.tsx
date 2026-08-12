@@ -53,6 +53,22 @@ export const WithTitle: Story = {
   },
 };
 
+/**
+ * FB-2: `isLive={false}` keeps the danger styling but drops the live-region
+ * role, for permanent/static contexts (a danger-zone explainer that is part
+ * of the page, not a notification) — assistive technology does not
+ * re-announce it on every load.
+ */
+export const StaticDangerZone: Story = {
+  args: {
+    tone: 'danger',
+    isLive: false,
+    title: 'Danger zone',
+    children:
+      'Deleting this workspace permanently removes all projects and members.',
+  },
+};
+
 export const Dismissible: Story = {
   args: {
     tone: 'info',

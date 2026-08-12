@@ -32,6 +32,7 @@ export interface TabsProps
  * `data-disabled`) and `--ds-*` tokens. Horizontal only in v1.
  *
  * @racBase Tabs
+ * @tokenPrefix tabs
  * @example
  * ```tsx
  * <Tabs defaultSelectedKey="overview">
@@ -68,6 +69,7 @@ export interface TabListProps
  * heading labelling the tab set.
  *
  * @racBase TabList
+ * @tokenPrefix tabs
  * @example
  * ```tsx
  * <TabList aria-label="Account settings">
@@ -100,6 +102,7 @@ export interface TabProps
  * `isDisabled` removes it from selection and keyboard navigation.
  *
  * @racBase Tab
+ * @tokenPrefix tabs
  * @example
  * ```tsx
  * <Tab id="billing">Billing</Tab>
@@ -131,6 +134,7 @@ export interface TabPanelProps
  * contains no focusable content.
  *
  * @racBase TabPanel
+ * @tokenPrefix tabs
  * @example
  * ```tsx
  * <TabPanel id="billing">

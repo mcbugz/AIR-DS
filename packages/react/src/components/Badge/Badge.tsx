@@ -28,6 +28,8 @@ export interface BadgeProps
  * the soft recipe — a `*-surface` background with the matching `*-text`
  * foreground via the `--ds-badge-*` component hooks.
  *
+ * @tokenPrefix badge
+ *
  * @example
  * ```tsx
  * <Badge>Draft</Badge>

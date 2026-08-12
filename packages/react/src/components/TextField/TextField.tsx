@@ -58,6 +58,7 @@ export interface TextFieldProps
  * retunes every form field consistently.
  *
  * @racBase TextField
+ * @tokenPrefix field
  * @example
  * ```tsx
  * <TextField label="Email" type="email" placeholder="you@example.com" />

@@ -46,6 +46,7 @@ export interface ButtonProps
  * `data-pending`) and `--ds-*` tokens.
  *
  * @racBase Button
+ * @tokenPrefix button
  * @example
  * ```tsx
  * <Button onPress={save}>Save</Button>

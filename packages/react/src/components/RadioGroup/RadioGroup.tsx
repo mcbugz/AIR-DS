@@ -63,6 +63,7 @@ export interface RadioGroupProps
  * `value` string.
  *
  * @racBase RadioGroup
+ * @tokenPrefix radio
  * @example
  * ```tsx
  * <RadioGroup label="Notification method" onChange={setMethod}>
@@ -138,6 +139,7 @@ export interface RadioProps
  * `data-focus-visible`, `data-invalid`, `data-disabled`).
  *
  * @racBase Radio
+ * @tokenPrefix radio
  * @example
  * ```tsx
  * <Radio value="email">Email</Radio>

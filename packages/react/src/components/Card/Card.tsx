@@ -56,6 +56,8 @@ export interface CardFooterProps
  * `CardFooter` — there are no other slot components; layout inside a slot
  * is plain HTML with space tokens.
  *
+ * @tokenPrefix card
+ *
  * @example
  * ```tsx
  * <Card>
@@ -94,6 +96,8 @@ export function Card({
  * by a hairline border. Static presentational `<div>`; put your own
  * semantic heading element inside.
  *
+ * @tokenPrefix card
+ *
  * @example
  * ```tsx
  * <Card>
@@ -118,6 +122,8 @@ export function CardHeader({ className, children, ...props }: CardHeaderProps) {
  * Card slot: main content region of a `Card`. Static presentational
  * `<div>` carrying the card's internal padding.
  *
+ * @tokenPrefix card
+ *
  * @example
  * ```tsx
  * <Card>
@@ -139,6 +145,8 @@ export function CardBody({ className, children, ...props }: CardBodyProps) {
  * Card slot: trailing region of a `Card` (typically actions), separated
  * from the content above by a hairline border. Static presentational
  * `<div>`.
+ *
+ * @tokenPrefix card
  *
  * @example
  * ```tsx

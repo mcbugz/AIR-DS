@@ -49,8 +49,13 @@ Directory name = component name = docgen displayName. The generator keys on
   where `<name>` is the lowercased component name (see CSS rules).
 - Component TSDoc block: description, then `@racBase <RACName>` naming the
   react-aria-components base (omit for static components — the registry then
-  records `racBase: null`), then a fenced ```tsx `@example` with 2–3
-  realistic usages. Both tags are compiled into the registry verbatim.
+  records `racBase: null`), then `@tokenPrefix <prefix>` naming the
+  component-tier `--ds-<prefix>-*` hook namespace your CSS consumes (the
+  NR-008 family: e.g. Button AND IconButton say `button`; TextField,
+  TextArea, and Select say `field`; omit only if the component has no
+  component-tier hooks — the registry then records `tokenPrefix: null`),
+  then a fenced ```tsx `@example` with 2–3 realistic usages. All three tags
+  are compiled into the registry verbatim.
 - Named function export (`export function <Name>(...)`), no default exports,
   no `forwardRef` (React 19 refs are props; spreading `...props` onto the
   RAC base forwards the ref — the exemplar's ref test proves it).

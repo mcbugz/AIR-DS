@@ -1,12 +1,16 @@
 {
-  "$description": "GENERATED closed-world component registry for @ds/react. Any component not listed here does not exist. Each entry's `props` lists the component's OWN props; when `racBase` is set, the props of that react-aria-components base component (e.g. onPress, isDisabled, autoFocus) are ALSO legal on the component, with the own props overriding/narrowing them. Regenerate with: pnpm --filter @ds/react generate",
+  "$description": "GENERATED closed-world component registry for @ds/react. Any component not listed here does not exist. Each entry's `props` lists the component's OWN props; when `racBase` is set, the props of that react-aria-components base component are ALSO legal on the component (own props overriding/narrowing them), and `racProps` lists the commonly needed inherited subset — controlled usage (value/onChange, isSelected, selectedKey/onSelectionChange), isDisabled/isInvalid/isRequired, form `name`, placeholder — with exact extracted types (see `racPropsNote`; a prop the component omits from its base never appears). `tokenPrefix` names the component-tier `--ds-<tokenPrefix>-*` token namespace that is the component's customer override surface; components sharing a prefix form one theming family (e.g. Button and IconButton share `button`) and NEVER consume another family's hooks (NR-008); null means the component has no component-tier hooks. `storyFile` is the repo-relative path to the component's Storybook stories — the ground-truth usage examples; sub-components point at their parent's stories. Regenerate with: pnpm --filter @ds/react generate",
   "package": "@ds/react",
   "components": [
     {
       "name": "Alert",
-      "description": "Static status message rendered as a plain `<div>` with a tone-mapped ARIA\nrole: interruptive tones (`danger`, `warning`) use `role=\"alert\"` so\nassistive technology announces them immediately; calm tones (`info`,\n`success`) use the polite `role=\"status\"`. Tones follow the soft recipe —\nstatus surface background, status border, status text — through the\n`--ds-alert-*` component hooks, with a decorative tone icon. An optional\ndismiss control (react-aria-components `Button` internally) appears when\n`onDismiss` is provided; the caller owns removing the alert.",
+      "description": "Static status message rendered as a plain `<div>` with a tone-mapped ARIA\nrole: interruptive tones (`danger`, `warning`) use `role=\"alert\"` so\nassistive technology announces them immediately; calm tones (`info`,\n`success`) use the polite `role=\"status\"`. For permanent, static content\n(a danger-zone explainer, a standing notice) pass `isLive={false}` to keep\nthe tone styling while dropping the live-region role entirely, so the\nmessage is not re-announced on every page load. Tones follow the soft\nrecipe — status surface background, status border, status text — through\nthe `--ds-alert-*` component hooks, with a decorative tone icon. An\noptional dismiss control (react-aria-components `Button` internally)\nappears when `onDismiss` is provided; the caller owns removing the alert.",
       "racBase": null,
-      "example": "<Alert>Your changes were saved as a draft.</Alert>\n<Alert tone=\"success\" title=\"Deployed\">Build 42 is live.</Alert>\n<Alert tone=\"danger\" onDismiss={() => setVisible(false)}>\n  Payment failed — check your card details.\n</Alert>",
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "alert",
+      "storyFile": "packages/react/src/components/Alert/Alert.stories.tsx",
+      "example": "<Alert>Your changes were saved as a draft.</Alert>\n<Alert tone=\"success\" title=\"Deployed\">Build 42 is live.</Alert>\n<Alert tone=\"danger\" onDismiss={() => setVisible(false)}>\n  Payment failed — check your card details.\n</Alert>\n<Alert tone=\"danger\" isLive={false} title=\"Danger zone\">\n  Deleting the workspace permanently removes all projects.\n</Alert>",
       "props": [
         {
           "name": "className",
@@ -14,6 +18,13 @@
           "required": false,
           "defaultValue": null,
           "description": "Additional CSS class appended after the component's own classes.\nPlain string only; inline `style` is intentionally not supported\n(token rule)."
+        },
+        {
+          "name": "isLive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Whether the alert is a live region that assistive technology announces\nwhen it appears. When `true` (default), the tone decides the ARIA role\n(`alert` for `danger`/`warning`, `status` for `info`/`success`). Set to\n`false` for permanent, static content — e.g. a danger-zone explainer\nthat is part of the page rather than a notification — so the message is\nNOT re-announced on every load: the alert then renders as a plain\n`<div>` with the tone styling and no live-region role at all."
         },
         {
           "name": "onDismiss",
@@ -34,7 +45,7 @@
           "type": "\"info\" | \"success\" | \"warning\" | \"danger\"",
           "required": false,
           "defaultValue": "'info'",
-          "description": "Status intent of the alert. Soft recipe: each tone pairs a status\nsurface background with its matching status border and text colors —\nnever a solid fill. The tone also decides the ARIA role: `danger` and\n`warning` are interruptive and render `role=\"alert\"`; `info` and\n`success` render the polite `role=\"status\"`."
+          "description": "Status intent of the alert. Soft recipe: each tone pairs a status\nsurface background with its matching status border and text colors —\nnever a solid fill. While the alert is live (see `isLive`), the tone\nalso decides the ARIA role: `danger` and `warning` are interruptive and\nrender `role=\"alert\"`; `info` and `success` render the polite\n`role=\"status\"`."
         }
       ]
     },
@@ -42,6 +53,10 @@
       "name": "Badge",
       "description": "Static status label rendered as a plain `<span>`. Purely presentational:\nno interaction, no focus, no ARIA role beyond the text itself. Tones use\nthe soft recipe — a `*-surface` background with the matching `*-text`\nforeground via the `--ds-badge-*` component hooks.",
       "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "badge",
+      "storyFile": "packages/react/src/components/Badge/Badge.stories.tsx",
       "example": "<Badge>Draft</Badge>\n<Badge tone=\"success\">Active</Badge>\n<Badge tone=\"danger\">Failed</Badge>",
       "props": [
         {
@@ -64,6 +79,46 @@
       "name": "Button",
       "description": "Accessible push button built on react-aria-components `Button`.\nKeyboard behavior, focus management, and press semantics come from React\nAria; visual states are driven purely by RAC data attributes\n(`data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`,\n`data-pending`) and `--ds-*` tokens.",
       "racBase": "Button",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components ButtonProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the button is disabled."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Submitted as a pair with the button's value as part of the form data."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The value associated with the button's name when it's submitted with the form data."
+        }
+      ],
+      "tokenPrefix": "button",
+      "storyFile": "packages/react/src/components/Button/Button.stories.tsx",
       "example": "<Button onPress={save}>Save</Button>\n<Button variant=\"secondary\" size=\"lg\" onPress={cancel}>Cancel</Button>\n<Button variant=\"danger\" isLoading>Deleting…</Button>",
       "props": [
         {
@@ -100,6 +155,10 @@
       "name": "Card",
       "description": "Static, purely presentational surface container (a plain `<div>`, no\nrole). Groups related content on a token-driven card surface. The ONLY\nsanctioned composition slots are `CardHeader`, `CardBody`, and\n`CardFooter` — there are no other slot components; layout inside a slot\nis plain HTML with space tokens.",
       "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "card",
+      "storyFile": "packages/react/src/components/Card/Card.stories.tsx",
       "example": "<Card>\n  <CardBody>Body-only card</CardBody>\n</Card>\n<Card elevation=\"raised\">\n  <CardHeader>\n    <h3>Plan</h3>\n  </CardHeader>\n  <CardBody>Everything in Starter, plus unlimited seats.</CardBody>\n  <CardFooter>\n    <Button onPress={upgrade}>Upgrade</Button>\n  </CardFooter>\n</Card>",
       "props": [
         {
@@ -122,6 +181,10 @@
       "name": "CardBody",
       "description": "Card slot: main content region of a `Card`. Static presentational\n`<div>` carrying the card's internal padding.",
       "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "card",
+      "storyFile": "packages/react/src/components/Card/Card.stories.tsx",
       "example": "<Card>\n  <CardBody>Usage this month: 4,210 requests.</CardBody>\n</Card>",
       "props": [
         {
@@ -137,6 +200,10 @@
       "name": "CardFooter",
       "description": "Card slot: trailing region of a `Card` (typically actions), separated\nfrom the content above by a hairline border. Static presentational\n`<div>`.",
       "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "card",
+      "storyFile": "packages/react/src/components/Card/Card.stories.tsx",
       "example": "<Card>\n  <CardBody>Delete this project?</CardBody>\n  <CardFooter>\n    <Button variant=\"danger\" onPress={confirm}>Delete</Button>\n  </CardFooter>\n</Card>",
       "props": [
         {
@@ -152,6 +219,10 @@
       "name": "CardHeader",
       "description": "Card slot: leading region of a `Card`, separated from the content below\nby a hairline border. Static presentational `<div>`; put your own\nsemantic heading element inside.",
       "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": "card",
+      "storyFile": "packages/react/src/components/Card/Card.stories.tsx",
       "example": "<Card>\n  <CardHeader>\n    <h3>Team members</h3>\n  </CardHeader>\n  <CardBody>…</CardBody>\n</Card>",
       "props": [
         {
@@ -167,6 +238,46 @@
       "name": "Checkbox",
       "description": "Accessible checkbox built on react-aria-components `Checkbox`. The visible\nbox is CSS-drawn over a visually hidden native input; the check and\nindeterminate marks are inline SVG stroked with `currentColor`. Keyboard\nbehavior (Space toggles), focus management, and ARIA state come from React\nAria; visual states are driven purely by RAC data attributes\n(`data-selected`, `data-indeterminate`, `data-hovered`, `data-pressed`,\n`data-focus-visible`, `data-disabled`, `data-invalid`) and `--ds-*` tokens.",
       "racBase": "Checkbox",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components CheckboxProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "isReadOnly",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input can be selected but not changed by the user."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname)."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The value of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefvalue)."
+        }
+      ],
+      "tokenPrefix": "checkbox",
+      "storyFile": "packages/react/src/components/Checkbox/Checkbox.stories.tsx",
       "example": "<Checkbox onChange={setAccepted}>Accept terms</Checkbox>\n<Checkbox isSelected={allSelected} isIndeterminate={someSelected} onChange={toggleAll}>\n  Select all\n</Checkbox>\n<Checkbox isRequired isInvalid={showError}>I agree to the policy</Checkbox>",
       "props": [
         {
@@ -238,6 +349,10 @@
       "name": "Dialog",
       "description": "Modal dialog built on react-aria-components `DialogTrigger` + `Modal` +\n`Dialog`. Focus trapping, scroll locking, Escape/backdrop dismissal, and\n`aria-labelledby` wiring all come from React Aria; entry/exit states are\ndriven by RAC data attributes (`data-entering`, `data-exiting`) with\n`--ds-motion-*` tokens, gated by `prefers-reduced-motion`.",
       "racBase": "Dialog",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components DialogProps surface is also legal.",
+      "racProps": [],
+      "tokenPrefix": "dialog",
+      "storyFile": "packages/react/src/components/Dialog/Dialog.stories.tsx",
       "example": "<Dialog title=\"Delete project\" trigger={<Button variant=\"danger\">Delete…</Button>}>\n  {({ close }) => (\n    <>\n      <p>This action cannot be undone.</p>\n      <Button variant=\"danger\" onPress={close}>Confirm delete</Button>\n    </>\n  )}\n</Dialog>\n\n<Dialog title=\"Settings\" size=\"lg\" isOpen={isOpen} onOpenChange={setOpen}>\n  <SettingsForm />\n</Dialog>",
       "props": [
         {
@@ -302,6 +417,46 @@
       "name": "IconButton",
       "description": "Icon-only push button built on react-aria-components `Button`. A square\ncontrol (width and height both from the button height scale) whose single\nchild is a decorative icon; `aria-label` is required at the type level\nbecause it is the control's only accessible name. Keyboard behavior, focus\nmanagement, and press semantics come from React Aria; visual states are\ndriven purely by RAC data attributes (`data-hovered`, `data-pressed`,\n`data-focus-visible`, `data-disabled`) and `--ds-*` tokens.\n\nDocumented NR-008 exception (lead decision): IconButton belongs to the\nbutton family and consumes the `--ds-button-*` component-tier hook\nnamespace rather than forking an `--ds-iconbutton-*` namespace of its own,\nso customer overrides of the button family restyle both controls together.",
       "racBase": "Button",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components ButtonProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the button is disabled."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Submitted as a pair with the button's value as part of the form data."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The value associated with the button's name when it's submitted with the form data."
+        }
+      ],
+      "tokenPrefix": "button",
+      "storyFile": "packages/react/src/components/IconButton/IconButton.stories.tsx",
       "example": "<IconButton aria-label=\"Close\" onPress={close}>\n  <CloseIcon />\n</IconButton>\n<IconButton aria-label=\"Add item\" variant=\"primary\" size=\"lg\" onPress={add}>\n  <PlusIcon />\n</IconButton>\n<IconButton aria-label=\"Delete row\" variant=\"danger\" onPress={remove}>\n  <TrashIcon />\n</IconButton>",
       "props": [
         {
@@ -345,6 +500,32 @@
       "name": "Radio",
       "description": "A single option inside a `RadioGroup`, built on react-aria-components\n`Radio`. The circular control is drawn entirely in CSS (no icon assets)\nand reflects selection, hover, focus, invalid, and disabled states via\nRAC data attributes (`data-selected`, `data-hovered`,\n`data-focus-visible`, `data-invalid`, `data-disabled`).",
       "racBase": "Radio",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components RadioProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the radio button is disabled or not.\nShows that a selection exists, but is not available in that circumstance."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        }
+      ],
+      "tokenPrefix": "radio",
+      "storyFile": "packages/react/src/components/RadioGroup/RadioGroup.stories.tsx",
       "example": "<Radio value=\"email\">Email</Radio>\n<Radio value=\"sms\" isDisabled>SMS</Radio>",
       "props": [
         {
@@ -374,6 +555,67 @@
       "name": "RadioGroup",
       "description": "A labeled group of mutually exclusive options built on\nreact-aria-components `RadioGroup`. Roving tabindex, arrow-key navigation,\nand group labelling come from React Aria; visual states are driven purely\nby RAC data attributes (`data-disabled`, `data-invalid`,\n`data-orientation`) and `--ds-*` tokens. Selection is single-value:\n`value`/`defaultValue` plus `onChange` receive the selected `Radio`'s\n`value` string.",
       "racBase": "RadioGroup",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components RadioGroupProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "defaultValue",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The default value (uncontrolled)."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input is disabled."
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input value is invalid."
+        },
+        {
+          "name": "isReadOnly",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input can be selected but not changed by the user."
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether user input is required on the input before form submission."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname)."
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the value changes."
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The current value (controlled)."
+        }
+      ],
+      "tokenPrefix": "radio",
+      "storyFile": "packages/react/src/components/RadioGroup/RadioGroup.stories.tsx",
       "example": "<RadioGroup label=\"Notification method\" onChange={setMethod}>\n  <Radio value=\"email\">Email</Radio>\n  <Radio value=\"sms\">SMS</Radio>\n</RadioGroup>\n<RadioGroup label=\"Density\" orientation=\"horizontal\" defaultValue=\"cozy\">\n  <Radio value=\"compact\">Compact</Radio>\n  <Radio value=\"cozy\">Cozy</Radio>\n</RadioGroup>\n<RadioGroup label=\"Plan\" isInvalid errorMessage=\"Choose a plan to continue.\">\n  <Radio value=\"free\">Free</Radio>\n  <Radio value=\"pro\">Pro</Radio>\n</RadioGroup>",
       "props": [
         {
@@ -424,6 +666,46 @@
       "name": "Select",
       "description": "Accessible single-select built on react-aria-components `Select`,\ncomposing the RAC `Label`, `Button`, `SelectValue`, `Popover`, and\n`ListBox` parts internally behind a data-driven `items` API. Keyboard\nbehavior (arrow keys, typeahead, Enter/Escape), focus management, and\nlabel/description/error wiring come from React Aria; visual states are\ndriven purely by RAC data attributes (`data-open`, `data-invalid`,\n`data-disabled`, `data-focused`, `data-selected`) and `--ds-*` tokens.\n\nThe trigger consumes the SHARED `--ds-field-*` token namespace — one\noverride surface intentionally shared by TextField, TextArea, and Select\nso all form fields re-theme together.",
       "racBase": "Select",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components SelectProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Sets the default open state of the menu."
+        },
+        {
+          "name": "isOpen",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Sets the open state of the menu."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input, used when submitting an HTML form."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(isOpen: boolean) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Method that is called when the open state of the menu changes."
+        }
+      ],
+      "tokenPrefix": "field",
+      "storyFile": "packages/react/src/components/Select/Select.stories.tsx",
       "example": "<Select\n  label=\"Favorite fruit\"\n  placeholder=\"Pick a fruit\"\n  items={[\n    { id: 'apple', label: 'Apple' },\n    { id: 'banana', label: 'Banana' },\n  ]}\n  onSelectionChange={setFruit}\n/>\n<Select label=\"Plan\" items={plans} selectedKey={plan} onSelectionChange={setPlan} isRequired />\n<Select label=\"Region\" items={regions} isInvalid errorMessage=\"Pick a region.\" />",
       "props": [
         {
@@ -516,6 +798,46 @@
       "name": "Switch",
       "description": "Accessible on/off switch built on react-aria-components `Switch`. The\nvisible track and thumb are CSS-drawn over a visually hidden native input\n(`role=\"switch\"`); the thumb slides with motion tokens and settles\ninstantly under `prefers-reduced-motion`. Keyboard behavior (Space\ntoggles), focus management, and ARIA state come from React Aria; visual\nstates are driven purely by RAC data attributes (`data-selected`,\n`data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`)\nand `--ds-*` tokens.",
       "racBase": "Switch",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components SwitchProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "isReadOnly",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input can be selected but not changed by the user."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname)."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The value of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefvalue)."
+        }
+      ],
+      "tokenPrefix": "switch",
+      "storyFile": "packages/react/src/components/Switch/Switch.stories.tsx",
       "example": "<Switch onChange={setNotifications}>Enable notifications</Switch>\n<Switch isSelected={isDark} onChange={setIsDark}>Dark mode</Switch>\n<Switch isDisabled>Beta features</Switch>",
       "props": [
         {
@@ -566,6 +888,25 @@
       "name": "Tab",
       "description": "A single tab trigger inside `TabList`, built on react-aria-components\n`Tab`. The `id` links it to the `TabPanel` with the same `id`. The\nselected tab shows an accent indicator line and emphasized text;\n`isDisabled` removes it from selection and keyboard navigation.",
       "racBase": "Tab",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TabProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the tab is disabled."
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the press is released over the target."
+        }
+      ],
+      "tokenPrefix": "tabs",
+      "storyFile": "packages/react/src/components/Tabs/Tabs.stories.tsx",
       "example": "<Tab id=\"billing\">Billing</Tab>\n<Tab id=\"danger\" isDisabled>Danger zone</Tab>",
       "props": [
         {
@@ -581,6 +922,10 @@
       "name": "TabList",
       "description": "The row of tab triggers inside `Tabs`, built on react-aria-components\n`TabList`. Renders `role=\"tablist\"` and manages roving-tabindex focus for\nits `Tab` children. Give it an `aria-label` when there is no visible\nheading labelling the tab set.",
       "racBase": "TabList",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TabListProps surface is also legal.",
+      "racProps": [],
+      "tokenPrefix": "tabs",
+      "storyFile": "packages/react/src/components/Tabs/Tabs.stories.tsx",
       "example": "<TabList aria-label=\"Account settings\">\n  <Tab id=\"profile\">Profile</Tab>\n  <Tab id=\"security\">Security</Tab>\n</TabList>",
       "props": [
         {
@@ -596,6 +941,10 @@
       "name": "TabPanel",
       "description": "The content region for one tab, built on react-aria-components\n`TabPanel`. The `id` links it to the `Tab` with the same `id`; only the\nselected panel is mounted (pass `shouldForceMount` to keep it in the DOM).\nReact Aria labels the panel from its tab and makes it focusable when it\ncontains no focusable content.",
       "racBase": "TabPanel",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TabPanelProps surface is also legal.",
+      "racProps": [],
+      "tokenPrefix": "tabs",
+      "storyFile": "packages/react/src/components/Tabs/Tabs.stories.tsx",
       "example": "<TabPanel id=\"billing\">\n  <p>Billing details…</p>\n</TabPanel>",
       "props": [
         {
@@ -611,6 +960,39 @@
       "name": "Tabs",
       "description": "Container for a set of tabs, built on react-aria-components `Tabs`.\nCompose `TabList` (holding `Tab` triggers) with one `TabPanel` per tab;\nmatching `id`s wire each trigger to its panel. Selection state, keyboard\nnavigation (arrow keys, Home/End), and ARIA `tablist`/`tab`/`tabpanel`\nwiring all come from React Aria; visual states are driven purely by RAC\ndata attributes (`data-selected`, `data-hovered`, `data-focus-visible`,\n`data-disabled`) and `--ds-*` tokens. Horizontal only in v1.",
       "racBase": "Tabs",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TabsProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "defaultSelectedKey",
+          "type": "Key",
+          "required": false,
+          "defaultValue": null,
+          "description": "The initial selected keys in the collection (uncontrolled)."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the TabList is disabled.\nShows that a selection exists, but is not available in that circumstance."
+        },
+        {
+          "name": "onSelectionChange",
+          "type": "(key: Key) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the selection changes."
+        },
+        {
+          "name": "selectedKey",
+          "type": "Key",
+          "required": false,
+          "defaultValue": null,
+          "description": "The currently selected key in the collection (controlled)."
+        }
+      ],
+      "tokenPrefix": "tabs",
+      "storyFile": "packages/react/src/components/Tabs/Tabs.stories.tsx",
       "example": "<Tabs defaultSelectedKey=\"overview\">\n  <TabList aria-label=\"Project sections\">\n    <Tab id=\"overview\">Overview</Tab>\n    <Tab id=\"settings\">Settings</Tab>\n  </TabList>\n  <TabPanel id=\"overview\">Overview content</TabPanel>\n  <TabPanel id=\"settings\">Settings content</TabPanel>\n</Tabs>",
       "props": [
         {
@@ -626,6 +1008,74 @@
       "name": "TextArea",
       "description": "Accessible multi-line text input built on react-aria-components\n`TextField` with a `TextArea` element. Label, description, and error\nwiring (`aria-describedby`, `aria-invalid`) come from React Aria; visual\nstates are driven purely by RAC data attributes (`data-hovered`,\n`data-focus-visible`, `data-disabled`, `data-invalid`) and `--ds-*`\ntokens. Styling consumes the SHARED `--ds-field-*` hook namespace — by\ndesign, TextField, TextArea, and Select theme together as one field\nsurface.",
       "racBase": "TextField",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TextFieldProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The default value (uncontrolled)."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input is disabled."
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the value is invalid."
+        },
+        {
+          "name": "isReadOnly",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input can be selected but not changed by the user."
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether user input is required on the input before form submission."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname)."
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the value changes."
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The current value (controlled)."
+        }
+      ],
+      "tokenPrefix": "field",
+      "storyFile": "packages/react/src/components/TextArea/TextArea.stories.tsx",
       "example": "<TextArea label=\"Message\" placeholder=\"Tell us more…\" />\n<TextArea label=\"Notes\" description=\"Visible to the whole team.\" rows={5} />\n<TextArea label=\"Feedback\" autoGrow isRequired isInvalid errorMessage=\"Feedback is required.\" />",
       "props": [
         {
@@ -683,6 +1133,74 @@
       "name": "TextField",
       "description": "Accessible single-line text input built on react-aria-components\n`TextField`, composing RAC `Label`, `Input`, `Text` (description), and\n`FieldError` internally — label association, description/error wiring\n(`aria-describedby`), and invalid-state announcement come from React Aria.\nValidation and state flow through the RAC props (`isInvalid`,\n`isRequired`, `isDisabled`, `value`/`defaultValue`/`onChange`, `type`,\n`name`, ...). The forwarded `ref` reaches the underlying `<input>`.\n\nStyling consumes the `--ds-field-*` component-token namespace, which is\nSHARED by TextField, TextArea, and Select by design: one customer override\nretunes every form field consistently.",
       "racBase": "TextField",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TextFieldProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element should receive focus on render."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The default value (uncontrolled)."
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input is disabled."
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the value is invalid."
+        },
+        {
+          "name": "isReadOnly",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the input can be selected but not changed by the user."
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether user input is required on the input before form submission."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "The name of the input element, used when submitting an HTML form. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname)."
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the value changes."
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "required": false,
+          "defaultValue": null,
+          "description": "The current value (controlled)."
+        }
+      ],
+      "tokenPrefix": "field",
+      "storyFile": "packages/react/src/components/TextField/TextField.stories.tsx",
       "example": "<TextField label=\"Email\" type=\"email\" placeholder=\"you@example.com\" />\n<TextField\n  label=\"Display name\"\n  description=\"Shown on your public profile.\"\n/>\n<TextField\n  label=\"Email\"\n  isRequired\n  isInvalid\n  errorMessage=\"Enter a valid email address.\"\n/>",
       "props": [
         {
@@ -726,6 +1244,32 @@
       "name": "Tooltip",
       "description": "Contextual text label shown near a trigger element on hover or keyboard\nfocus, built on react-aria-components `TooltipTrigger` + `Tooltip`.\nOpen/close timing, positioning, flipping, and the `role=\"tooltip\"` /\n`aria-describedby` wiring come from React Aria; visuals are driven purely\nby RAC data attributes (`data-placement`, `data-entering`, `data-exiting`)\nand `--ds-*` tokens (inverse-surface recipe via the `--ds-tooltip-*`\nhooks). Content is plain text only — tooltips never hold interactive\ncontent.",
       "racBase": "Tooltip",
+      "racPropsNote": "Commonly needed props inherited from the react-aria-components base; the full react-aria-components TooltipProps surface is also legal.",
+      "racProps": [
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the overlay is open by default (uncontrolled)."
+        },
+        {
+          "name": "isOpen",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Whether the element is rendered."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(isOpen: boolean) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Handler that is called when the overlay's open state changes."
+        }
+      ],
+      "tokenPrefix": "tooltip",
+      "storyFile": "packages/react/src/components/Tooltip/Tooltip.stories.tsx",
       "example": "<Tooltip content=\"Save your changes\">\n  <Button onPress={save}>Save</Button>\n</Tooltip>\n<Tooltip content=\"Delete project\" placement=\"bottom\" delay={500}>\n  <Button variant=\"ghost\" aria-label=\"Delete\">🗑</Button>\n</Tooltip>",
       "props": [
         {

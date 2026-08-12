@@ -76,6 +76,7 @@ export interface CheckboxProps
  * `data-focus-visible`, `data-disabled`, `data-invalid`) and `--ds-*` tokens.
  *
  * @racBase Checkbox
+ * @tokenPrefix checkbox
  * @example
  * ```tsx
  * <Checkbox onChange={setAccepted}>Accept terms</Checkbox>
