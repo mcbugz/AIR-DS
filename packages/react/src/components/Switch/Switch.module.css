@@ -3,16 +3,18 @@
    currentColor, and layout/keyword values. States come from RAC data
    attributes — never :hover/:active pseudo-classes.
 
-   Token tiers (NR-008): the registry provides NO --ds-switch-* component
-   hooks, so this file consumes semantic-tier tokens only: accent for the
-   on-state fill, on-accent for the on-state thumb, surface tokens for the
-   off state, and the focus-ring canon.
+   Token tiers (NR-008): this file consumes Switch's OWN component-tier hooks
+   (--ds-switch-*) wherever the token registry provides one — track-width,
+   track-height, thumb-size, surface-{off,on,on-hover}, thumb — and
+   semantic-tier tokens otherwise: on-accent for the on-state thumb,
+   sunken-hover for the off-state hover, the focus-ring canon, and the
+   canonical disabled recipe. Never another component's hooks.
 
-   Geometry (NR-006): track and thumb boxes come from the size.icon scale.
-   Track = icon-md tall, 2×icon-md wide; thumb = icon-sm. The thumb inset
-   ((icon-md − icon-sm) / 2) and the slide distance (icon-md exactly, given
-   that inset) are derived with calc() from those size tokens because no
-   dedicated geometry tokens exist. */
+   Geometry (NR-006): the geometry hooks derive from the size.icon scale in
+   the token source (track = icon-md tall, 2×icon-md wide; thumb = icon-sm).
+   The thumb inset ((track-height − thumb-size) / 2) and the slide distance
+   (track-width − track-height, given that inset) can't be single hooks, so
+   they stay calc() expressions over the geometry hooks. */
 
 .switch {
   display: inline-flex;
@@ -38,27 +40,34 @@
   align-items: center;
   flex: none;
   box-sizing: border-box;
-  inline-size: calc(var(--ds-size-icon-md) * 2);
-  block-size: var(--ds-size-icon-md);
-  padding: calc((var(--ds-size-icon-md) - var(--ds-size-icon-sm)) / 2);
+  inline-size: var(--ds-switch-track-width);
+  block-size: var(--ds-switch-track-height);
+  padding: calc((var(--ds-switch-track-height) - var(--ds-switch-thumb-size)) / 2);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-surface-sunken);
+  background-color: var(--ds-switch-surface-off);
   transition: background-color var(--ds-motion-duration-fast)
     var(--ds-motion-easing-standard);
 }
 
 .thumb {
   flex: none;
-  inline-size: var(--ds-size-icon-sm);
-  block-size: var(--ds-size-icon-sm);
+  inline-size: var(--ds-switch-thumb-size);
+  block-size: var(--ds-switch-thumb-size);
   border-radius: var(--ds-radius-full);
-  background-color: var(--ds-color-surface-default);
+  background-color: var(--ds-switch-thumb);
   transition:
     translate var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
     background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* --- interaction states ------------------------------------------------- */
+
+/* Off-state hover/pressed: one ramp step darker than the sunken track.
+   The selected rules below outrank this at equal-or-higher specificity. */
+.switch[data-hovered] .track,
+.switch[data-pressed] .track {
+  background-color: var(--ds-color-surface-sunken-hover);
+}
 
 /* Focus ring canon: outline + focus-ring shadow on the visible track. */
 .switch[data-focus-visible] .track {
@@ -69,20 +78,21 @@
 
 /* --- selected (on) -------------------------------------------------------
    Slide distance: track inner width minus thumb =
-   2·icon-md − 2·((icon-md − icon-sm)/2) − icon-sm = icon-md exactly. */
+   track-width − 2·((track-height − thumb-size)/2) − thumb-size =
+   track-width − track-height exactly. */
 
 .switch[data-selected] .track {
-  background-color: var(--ds-color-accent-default);
+  background-color: var(--ds-switch-surface-on);
 }
 
 .switch[data-selected] .thumb {
-  translate: var(--ds-size-icon-md) 0;
+  translate: calc(var(--ds-switch-track-width) - var(--ds-switch-track-height)) 0;
   background-color: var(--ds-color-text-on-accent);
 }
 
 .switch[data-hovered][data-selected] .track,
 .switch[data-pressed][data-selected] .track {
-  background-color: var(--ds-color-accent-emphasis);
+  background-color: var(--ds-switch-surface-on-hover);
 }
 
 /* --- disabled (canonical recipe, contrast-safe) --------------------------

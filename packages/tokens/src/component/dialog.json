@@ -25,10 +25,30 @@
       "$type": "dimension",
       "$description": "Gap between dialog title, body, and action rows."
     },
+    "width": {
+      "$type": "dimension",
+      "sm": {
+        "$value": "calc({size.control.md} * 8)",
+        "$description": "Maximum inline size of size='sm' dialogs (8x the md control height; 320px at the default brand)."
+      },
+      "md": {
+        "$value": "calc({size.control.md} * 12)",
+        "$description": "Maximum inline size of size='md' dialogs (12x the md control height; 480px at the default brand)."
+      },
+      "lg": {
+        "$value": "calc({size.control.md} * 16)",
+        "$description": "Maximum inline size of size='lg' dialogs (16x the md control height; 640px at the default brand)."
+      }
+    },
     "backdrop": {
       "$value": "{color.surface.overlay}",
       "$type": "color",
-      "$description": "Base color of the modal backdrop behind the Dialog; the component applies its own opacity."
+      "$description": "Base color of the modal backdrop behind the Dialog; the component applies dialog.backdrop-opacity on top of it."
+    },
+    "backdrop-opacity": {
+      "$value": "50%",
+      "$type": "number",
+      "$description": "Percentage opacity applied to dialog.backdrop inside the backdrop color-mix(). The semantic vocabulary has no opacity category yet, so this is a component-tier literal."
     },
     "z": {
       "$value": "{z.overlay}",

@@ -29,7 +29,7 @@
 .input {
   inline-size: 100%;
   margin: 0;
-  padding-block: var(--ds-space-2);
+  padding-block: var(--ds-field-padding-y);
   padding-inline: var(--ds-field-padding-x);
   background-color: var(--ds-field-surface);
   color: var(--ds-field-text);
@@ -66,13 +66,13 @@
   border-color: var(--ds-field-border-invalid);
 }
 
-/* Canonical disabled recipe (F2): muted sunken treatment, AA-checked once
-   per theme. */
+/* Canonical disabled recipe (F2) via the field disabled hooks: muted sunken
+   treatment, AA-checked once per theme. */
 .input[data-disabled] {
   cursor: not-allowed;
-  background-color: var(--ds-color-surface-sunken);
-  color: var(--ds-color-text-muted);
-  border-color: var(--ds-color-border-muted);
+  background-color: var(--ds-field-surface-disabled);
+  color: var(--ds-field-text-disabled);
+  border-color: var(--ds-field-border-disabled);
   resize: none;
 }
 

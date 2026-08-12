@@ -37,7 +37,7 @@ afterAll(() => {
 
 /** Expected semantic vocabulary, transcribed from docs/specs/token-taxonomy.md. */
 const EXPECTED_SEMANTIC: readonly string[] = [
-  ...["default", "raised", "sunken", "overlay", "inverse"].map((c) => `color.surface.${c}`),
+  ...["default", "raised", "sunken", "sunken-hover", "overlay", "inverse"].map((c) => `color.surface.${c}`),
   ...["primary", "secondary", "muted", "inverse", "link", "on-accent"].map((c) => `color.text.${c}`),
   ...["default", "emphasis", "muted"].map((c) => `color.accent.${c}`),
   ...["default", "muted", "strong", "focus"].map((c) => `color.border.${c}`),
@@ -63,7 +63,19 @@ const EXPECTED_SEMANTIC: readonly string[] = [
   ...["sm", "md", "lg"].map((s) => `size.icon.${s}`),
 ];
 
-const REQUIRED_COMPONENTS = ["button", "field", "card", "dialog", "tooltip", "badge", "alert", "tabs"] as const;
+const REQUIRED_COMPONENTS = [
+  "button",
+  "field",
+  "card",
+  "dialog",
+  "tooltip",
+  "badge",
+  "alert",
+  "tabs",
+  "checkbox",
+  "radio",
+  "switch",
+] as const;
 
 interface Registry {
   brand: string;

@@ -3,10 +3,12 @@
    currentColor, and layout/keyword values. States come from RAC data
    attributes — never :hover/:active pseudo-classes.
 
-   Token tiers (NR-008): the registry provides NO --ds-checkbox-* component
-   hooks, so this file consumes semantic-tier tokens only: accent for the
-   checked fill, on-accent for the mark, border tokens for the box, the
-   focus-ring canon, and status-danger for the invalid state. */
+   Token tiers (NR-008): this file consumes Checkbox's OWN component-tier
+   hooks (--ds-checkbox-*) wherever the token registry provides one — size,
+   radius, surface-{default,selected,selected-hover}, border-{default,invalid},
+   mark — and semantic-tier tokens otherwise: the focus-ring canon, the
+   unselected hover/pressed steps, the invalid solid fill, and the canonical
+   disabled recipe. Never another component's hooks. */
 
 .checkbox {
   display: inline-flex;
@@ -32,12 +34,12 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  inline-size: var(--ds-size-icon-md);
-  block-size: var(--ds-size-icon-md);
-  background-color: var(--ds-color-surface-default);
-  border: var(--ds-border-width-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-sm);
-  color: var(--ds-color-text-on-accent);
+  inline-size: var(--ds-checkbox-size);
+  block-size: var(--ds-checkbox-size);
+  background-color: var(--ds-checkbox-surface-default);
+  border: var(--ds-border-width-1) solid var(--ds-checkbox-border-default);
+  border-radius: var(--ds-checkbox-radius);
+  color: var(--ds-checkbox-mark);
   transition:
     background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
     border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
@@ -78,22 +80,22 @@
 
 .checkbox[data-selected] .box,
 .checkbox[data-indeterminate] .box {
-  background-color: var(--ds-color-accent-default);
-  border-color: var(--ds-color-accent-default);
+  background-color: var(--ds-checkbox-surface-selected);
+  border-color: var(--ds-checkbox-surface-selected);
 }
 
 .checkbox[data-hovered][data-selected] .box,
 .checkbox[data-hovered][data-indeterminate] .box,
 .checkbox[data-pressed][data-selected] .box,
 .checkbox[data-pressed][data-indeterminate] .box {
-  background-color: var(--ds-color-accent-emphasis);
-  border-color: var(--ds-color-accent-emphasis);
+  background-color: var(--ds-checkbox-surface-selected-hover);
+  border-color: var(--ds-checkbox-surface-selected-hover);
 }
 
 /* --- invalid ------------------------------------------------------------ */
 
 .checkbox[data-invalid] .box {
-  border-color: var(--ds-color-status-danger-border);
+  border-color: var(--ds-checkbox-border-invalid);
 }
 
 /* Solid status fill takes text-inverse (NR-007); the pair

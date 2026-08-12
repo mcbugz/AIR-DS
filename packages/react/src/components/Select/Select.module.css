@@ -70,11 +70,12 @@
   border-color: var(--ds-field-border-invalid);
 }
 
-/* Canonical disabled recipe (contrast-safe, AA-checked once per theme). */
+/* Canonical disabled recipe via the field disabled hooks (contrast-safe,
+   AA-checked once per theme). */
 .select[data-disabled] .trigger {
-  background-color: var(--ds-color-surface-sunken);
-  color: var(--ds-color-text-muted);
-  border-color: var(--ds-color-border-muted);
+  background-color: var(--ds-field-surface-disabled);
+  color: var(--ds-field-text-disabled);
+  border-color: var(--ds-field-border-disabled);
   cursor: not-allowed;
 }
 
@@ -91,7 +92,7 @@
 }
 
 .select[data-disabled] .value[data-placeholder] {
-  color: var(--ds-color-text-muted);
+  color: var(--ds-field-text-disabled);
 }
 
 /* --- chevron (CSS-only, currentColor) ------------------------------------- */

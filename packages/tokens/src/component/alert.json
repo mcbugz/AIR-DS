@@ -77,6 +77,19 @@
         "$description": "Message color of tone='danger' alerts; AA on the matching surface."
       }
     },
+    "dismiss": {
+      "$type": "color",
+      "surface": {
+        "hover": {
+          "$value": "{color.surface.default}",
+          "$description": "Background of the alert dismiss control on hover."
+        },
+        "pressed": {
+          "$value": "{color.surface.sunken}",
+          "$description": "Background of the alert dismiss control while pressed."
+        }
+      }
+    },
     "icon": {
       "$type": "color",
       "info": {

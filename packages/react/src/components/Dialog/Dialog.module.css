@@ -4,13 +4,9 @@
    attributes — never pseudo-classes.
 
    Token tiers (NR-008): this file consumes Dialog's OWN component-tier hooks
-   (--ds-dialog-*) wherever the token registry provides one — backdrop, gap,
-   padding, radius, shadow, surface, z — and semantic-tier tokens otherwise.
-   Never another component's hooks.
-
-   Reported token gaps (see registry): no --ds-dialog-width-* hooks (size
-   steps derived from --ds-size-control-md with calc) and no backdrop opacity
-   token (literal percentage inside color-mix). */
+   (--ds-dialog-*) wherever the token registry provides one — backdrop,
+   backdrop-opacity, gap, padding, radius, shadow, surface, width-{sm,md,lg},
+   z — and semantic-tier tokens otherwise. Never another component's hooks. */
 
 /* --- backdrop (RAC ModalOverlay) ---------------------------------------- */
 
@@ -22,9 +18,13 @@
   align-items: center;
   justify-content: center;
   padding: var(--ds-space-inset-lg);
-  /* --ds-dialog-backdrop is a base color; the component applies its own
-     opacity (token description). No opacity token exists yet — gap. */
-  background-color: color-mix(in srgb, var(--ds-dialog-backdrop) 50%, transparent);
+  /* --ds-dialog-backdrop is a base color; --ds-dialog-backdrop-opacity is
+     the percentage mixed over transparent. */
+  background-color: color-mix(
+    in srgb,
+    var(--ds-dialog-backdrop) var(--ds-dialog-backdrop-opacity),
+    transparent
+  );
 }
 
 /* --- panel positioner (RAC Modal) --------------------------------------- */
@@ -65,20 +65,19 @@
 }
 
 /* --- sizes ----------------------------------------------------------------
-   No --ds-dialog-width-* hooks exist in the registry (reported gap); the
-   width steps are derived from the control-height size token with calc:
-   8x / 12x / 16x --ds-size-control-md (320 / 480 / 640px at default brand). */
+   Width steps come from the --ds-dialog-width-* hooks, which derive from
+   size.control.md in the token source (320 / 480 / 640px at default brand). */
 
 .sm {
-  max-inline-size: calc(var(--ds-size-control-md) * 8);
+  max-inline-size: var(--ds-dialog-width-sm);
 }
 
 .md {
-  max-inline-size: calc(var(--ds-size-control-md) * 12);
+  max-inline-size: var(--ds-dialog-width-md);
 }
 
 .lg {
-  max-inline-size: calc(var(--ds-size-control-md) * 16);
+  max-inline-size: var(--ds-dialog-width-lg);
 }
 
 /* --- motion ---------------------------------------------------------------

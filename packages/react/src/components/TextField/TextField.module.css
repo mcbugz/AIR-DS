@@ -77,13 +77,13 @@
   border-color: var(--ds-color-status-danger-emphasis);
 }
 
-/* --- disabled (canonical recipe, contrast-safe) -------------------------- */
+/* --- disabled (canonical recipe via the field disabled hooks) ------------ */
 
 .input[data-disabled] {
   cursor: not-allowed;
-  background-color: var(--ds-color-surface-sunken);
-  color: var(--ds-color-text-muted);
-  border-color: var(--ds-color-border-muted);
+  background-color: var(--ds-field-surface-disabled);
+  color: var(--ds-field-text-disabled);
+  border-color: var(--ds-field-border-disabled);
 }
 
 /* --- description / error ------------------------------------------------- */

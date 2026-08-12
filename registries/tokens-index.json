@@ -1,7 +1,7 @@
 {
   "$description": "GENERATED closed-world token contract. Every public design token is enumerated here; a token not in this file is provably fabricated.",
   "brand": "brands/default.json",
-  "count": 196,
+  "count": 229,
   "tokens": [
     {
       "name": "border.width.1",
@@ -274,6 +274,14 @@
       "type": "color",
       "description": "Recessed background for wells, inset panels, code blocks, and zebra stripes that sit visually below the default surface.",
       "value": "#e2e8f0"
+    },
+    {
+      "name": "color.surface.sunken-hover",
+      "cssVar": "--ds-color-surface-sunken-hover",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Hover/pressed step for interactive sunken surfaces, e.g. the Switch off-state track under the pointer. One ramp step darker than color.surface.sunken; not a text background.",
+      "value": "#cbd5e1"
     },
     {
       "name": "color.text.inverse",
@@ -820,6 +828,22 @@
       "value": "#fcd34d"
     },
     {
+      "name": "alert.dismiss.surface.hover",
+      "cssVar": "--ds-alert-dismiss-surface-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the alert dismiss control on hover.",
+      "value": "#f1f5f9"
+    },
+    {
+      "name": "alert.dismiss.surface.pressed",
+      "cssVar": "--ds-alert-dismiss-surface-pressed",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the alert dismiss control while pressed.",
+      "value": "#e2e8f0"
+    },
+    {
       "name": "alert.gap",
       "cssVar": "--ds-alert-gap",
       "tier": "component",
@@ -962,6 +986,14 @@
       "type": "dimension",
       "description": "Horizontal padding inside the badge pill.",
       "value": "8px"
+    },
+    {
+      "name": "badge.padding-y",
+      "cssVar": "--ds-badge-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding inside the badge pill.",
+      "value": "4px"
     },
     {
       "name": "badge.radius",
@@ -1268,12 +1300,84 @@
       "value": "#f8fafc"
     },
     {
+      "name": "checkbox.border.default",
+      "cssVar": "--ds-checkbox-border-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of the unchecked checkbox box at rest.",
+      "value": "#cbd5e1"
+    },
+    {
+      "name": "checkbox.border.invalid",
+      "cssVar": "--ds-checkbox-border-invalid",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of the unchecked checkbox box when validation fails.",
+      "value": "#fca5a5"
+    },
+    {
+      "name": "checkbox.mark",
+      "cssVar": "--ds-checkbox-mark",
+      "tier": "component",
+      "type": "color",
+      "description": "Color of the check and indeterminate marks on the selected fill.",
+      "value": "#f8fafc"
+    },
+    {
+      "name": "checkbox.radius",
+      "cssVar": "--ds-checkbox-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius of the checkbox box.",
+      "value": "4px"
+    },
+    {
+      "name": "checkbox.size",
+      "cssVar": "--ds-checkbox-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Width and height of the checkbox box.",
+      "value": "20px"
+    },
+    {
+      "name": "checkbox.surface.default",
+      "cssVar": "--ds-checkbox-surface-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the unchecked checkbox box at rest.",
+      "value": "#f1f5f9"
+    },
+    {
+      "name": "checkbox.surface.selected",
+      "cssVar": "--ds-checkbox-surface-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of the checked and indeterminate checkbox box; also drawn as its border so fill and edge stay in sync. AA-checked against checkbox.mark via the on-accent pair.",
+      "value": "#2563eb"
+    },
+    {
+      "name": "checkbox.surface.selected-hover",
+      "cssVar": "--ds-checkbox-surface-selected-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of the checked and indeterminate checkbox box on hover and while pressed; AA-checked against checkbox.mark via the on-accent pair.",
+      "value": "#1d4ed8"
+    },
+    {
       "name": "dialog.backdrop",
       "cssVar": "--ds-dialog-backdrop",
       "tier": "component",
       "type": "color",
-      "description": "Base color of the modal backdrop behind the Dialog; the component applies its own opacity.",
+      "description": "Base color of the modal backdrop behind the Dialog; the component applies dialog.backdrop-opacity on top of it.",
       "value": "#0f172a"
+    },
+    {
+      "name": "dialog.backdrop-opacity",
+      "cssVar": "--ds-dialog-backdrop-opacity",
+      "tier": "component",
+      "type": "number",
+      "description": "Percentage opacity applied to dialog.backdrop inside the backdrop color-mix(). The semantic vocabulary has no opacity category yet, so this is a component-tier literal.",
+      "value": "50%"
     },
     {
       "name": "dialog.gap",
@@ -1316,6 +1420,30 @@
       "value": "#f8fafc"
     },
     {
+      "name": "dialog.width.lg",
+      "cssVar": "--ds-dialog-width-lg",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='lg' dialogs (16x the md control height; 640px at the default brand).",
+      "value": "calc(40px * 16)"
+    },
+    {
+      "name": "dialog.width.md",
+      "cssVar": "--ds-dialog-width-md",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='md' dialogs (12x the md control height; 480px at the default brand).",
+      "value": "calc(40px * 12)"
+    },
+    {
+      "name": "dialog.width.sm",
+      "cssVar": "--ds-dialog-width-sm",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='sm' dialogs (8x the md control height; 320px at the default brand).",
+      "value": "calc(40px * 8)"
+    },
+    {
       "name": "dialog.z",
       "cssVar": "--ds-dialog-z",
       "tier": "component",
@@ -1330,6 +1458,14 @@
       "type": "color",
       "description": "Input border at rest.",
       "value": "#cbd5e1"
+    },
+    {
+      "name": "field.border.disabled",
+      "cssVar": "--ds-field-border-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border when the field is disabled (canonical disabled recipe).",
+      "value": "#e2e8f0"
     },
     {
       "name": "field.border.focus",
@@ -1404,6 +1540,14 @@
       "value": "12px"
     },
     {
+      "name": "field.padding-y",
+      "cssVar": "--ds-field-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding inside multi-line field inputs (TextArea). Single-line inputs center content within field.height instead.",
+      "value": "8px"
+    },
+    {
       "name": "field.placeholder",
       "cssVar": "--ds-field-placeholder",
       "tier": "component",
@@ -1428,12 +1572,124 @@
       "value": "#f8fafc"
     },
     {
+      "name": "field.surface-disabled",
+      "cssVar": "--ds-field-surface-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of disabled field inputs (canonical disabled recipe).",
+      "value": "#e2e8f0"
+    },
+    {
       "name": "field.text",
       "cssVar": "--ds-field-text",
       "tier": "component",
       "type": "color",
       "description": "Entered-value text color inside field inputs.",
       "value": "#0f172a"
+    },
+    {
+      "name": "field.text-disabled",
+      "cssVar": "--ds-field-text-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Text color inside disabled field inputs (canonical disabled recipe); AA-checked against field.surface-disabled via the muted-on-sunken pair.",
+      "value": "#475569"
+    },
+    {
+      "name": "radio.dot",
+      "cssVar": "--ds-radio-dot",
+      "tier": "component",
+      "type": "color",
+      "description": "Color of the inset dot ring punched into the selected radio fill.",
+      "value": "#f1f5f9"
+    },
+    {
+      "name": "radio.gap",
+      "cssVar": "--ds-radio-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between the radio control circle and its label.",
+      "value": "4px"
+    },
+    {
+      "name": "radio.size",
+      "cssVar": "--ds-radio-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Diameter of the radio control circle.",
+      "value": "20px"
+    },
+    {
+      "name": "radio.surface.selected",
+      "cssVar": "--ds-radio-surface-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill and border of the selected radio control; the dot is punched into this fill.",
+      "value": "#2563eb"
+    },
+    {
+      "name": "radio.surface.selected-hover",
+      "cssVar": "--ds-radio-surface-selected-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill and border of the selected radio control on hover and while pressed.",
+      "value": "#1d4ed8"
+    },
+    {
+      "name": "switch.surface.off",
+      "cssVar": "--ds-switch-surface-off",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is off; hover uses color.surface.sunken-hover.",
+      "value": "#e2e8f0"
+    },
+    {
+      "name": "switch.surface.on",
+      "cssVar": "--ds-switch-surface-on",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is on.",
+      "value": "#2563eb"
+    },
+    {
+      "name": "switch.surface.on-hover",
+      "cssVar": "--ds-switch-surface-on-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is on and hovered or pressed.",
+      "value": "#1d4ed8"
+    },
+    {
+      "name": "switch.thumb",
+      "cssVar": "--ds-switch-thumb",
+      "tier": "component",
+      "type": "color",
+      "description": "Thumb fill in the off state; the on state switches to color.text.on-accent so the thumb stays visible on the accent track.",
+      "value": "#f1f5f9"
+    },
+    {
+      "name": "switch.thumb-size",
+      "cssVar": "--ds-switch-thumb-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Diameter of the switch thumb.",
+      "value": "16px"
+    },
+    {
+      "name": "switch.track-height",
+      "cssVar": "--ds-switch-track-height",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Block size of the switch track; also sets the thumb inset via calc in CSS.",
+      "value": "20px"
+    },
+    {
+      "name": "switch.track-width",
+      "cssVar": "--ds-switch-track-width",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Inline size of the switch track (2x the md icon size; 40px at the default brand). The thumb slide distance is track-width minus track-height, derived in CSS.",
+      "value": "calc(20px * 2)"
     },
     {
       "name": "tabs.border",
@@ -1514,6 +1770,14 @@
       "type": "dimension",
       "description": "Tooltip text size.",
       "value": "0.8125rem"
+    },
+    {
+      "name": "tooltip.max-width",
+      "cssVar": "--ds-tooltip-max-width",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of the tooltip bubble before the text wraps (6x the md control height; 240px at the default brand).",
+      "value": "calc(40px * 6)"
     },
     {
       "name": "tooltip.padding-x",

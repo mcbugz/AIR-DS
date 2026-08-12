@@ -1,0 +1,30 @@
+{
+  "radio": {
+    "size": {
+      "$value": "{size.icon.md}",
+      "$type": "dimension",
+      "$description": "Diameter of the radio control circle."
+    },
+    "gap": {
+      "$value": "{space.gap.sm}",
+      "$type": "dimension",
+      "$description": "Gap between the radio control circle and its label."
+    },
+    "surface": {
+      "$type": "color",
+      "selected": {
+        "$value": "{color.accent.default}",
+        "$description": "Fill and border of the selected radio control; the dot is punched into this fill."
+      },
+      "selected-hover": {
+        "$value": "{color.accent.emphasis}",
+        "$description": "Fill and border of the selected radio control on hover and while pressed."
+      }
+    },
+    "dot": {
+      "$value": "{color.surface.default}",
+      "$type": "color",
+      "$description": "Color of the inset dot ring punched into the selected radio fill."
+    }
+  }
+}

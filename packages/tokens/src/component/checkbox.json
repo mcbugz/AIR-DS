@@ -1,0 +1,45 @@
+{
+  "checkbox": {
+    "size": {
+      "$value": "{size.icon.md}",
+      "$type": "dimension",
+      "$description": "Width and height of the checkbox box."
+    },
+    "radius": {
+      "$value": "{radius.sm}",
+      "$type": "dimension",
+      "$description": "Corner radius of the checkbox box."
+    },
+    "surface": {
+      "$type": "color",
+      "default": {
+        "$value": "{color.surface.default}",
+        "$description": "Background of the unchecked checkbox box at rest."
+      },
+      "selected": {
+        "$value": "{color.accent.default}",
+        "$description": "Fill of the checked and indeterminate checkbox box; also drawn as its border so fill and edge stay in sync. AA-checked against checkbox.mark via the on-accent pair."
+      },
+      "selected-hover": {
+        "$value": "{color.accent.emphasis}",
+        "$description": "Fill of the checked and indeterminate checkbox box on hover and while pressed; AA-checked against checkbox.mark via the on-accent pair."
+      }
+    },
+    "border": {
+      "$type": "color",
+      "default": {
+        "$value": "{color.border.default}",
+        "$description": "Border of the unchecked checkbox box at rest."
+      },
+      "invalid": {
+        "$value": "{color.status.danger.border}",
+        "$description": "Border of the unchecked checkbox box when validation fails."
+      }
+    },
+    "mark": {
+      "$value": "{color.text.on-accent}",
+      "$type": "color",
+      "$description": "Color of the check and indeterminate marks on the selected fill."
+    }
+  }
+}

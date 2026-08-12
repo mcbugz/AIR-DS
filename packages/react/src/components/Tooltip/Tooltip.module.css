@@ -14,6 +14,7 @@
   z-index: var(--ds-tooltip-z);
   background-color: var(--ds-tooltip-surface);
   color: var(--ds-tooltip-text);
+  max-inline-size: var(--ds-tooltip-max-width);
   padding-block: var(--ds-tooltip-padding-y);
   padding-inline: var(--ds-tooltip-padding-x);
   border-radius: var(--ds-tooltip-radius);

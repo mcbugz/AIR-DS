@@ -20,6 +20,11 @@
       "$type": "dimension",
       "$description": "Horizontal padding inside the badge pill."
     },
+    "padding-y": {
+      "$value": "{space.1}",
+      "$type": "dimension",
+      "$description": "Vertical padding inside the badge pill."
+    },
     "surface": {
       "$type": "color",
       "neutral": {

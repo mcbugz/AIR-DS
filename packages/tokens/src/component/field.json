@@ -21,15 +21,30 @@
       "$type": "dimension",
       "$description": "Horizontal padding inside field inputs."
     },
+    "padding-y": {
+      "$value": "{space.2}",
+      "$type": "dimension",
+      "$description": "Vertical padding inside multi-line field inputs (TextArea). Single-line inputs center content within field.height instead."
+    },
     "surface": {
       "$value": "{color.surface.raised}",
       "$type": "color",
       "$description": "Background of field inputs."
     },
+    "surface-disabled": {
+      "$value": "{color.surface.sunken}",
+      "$type": "color",
+      "$description": "Background of disabled field inputs (canonical disabled recipe)."
+    },
     "text": {
       "$value": "{color.text.primary}",
       "$type": "color",
       "$description": "Entered-value text color inside field inputs."
+    },
+    "text-disabled": {
+      "$value": "{color.text.muted}",
+      "$type": "color",
+      "$description": "Text color inside disabled field inputs (canonical disabled recipe); AA-checked against field.surface-disabled via the muted-on-sunken pair."
     },
     "placeholder": {
       "$value": "{color.text.muted}",
@@ -53,6 +68,10 @@
       "invalid": {
         "$value": "{color.status.danger.border}",
         "$description": "Input border when validation fails."
+      },
+      "disabled": {
+        "$value": "{color.border.muted}",
+        "$description": "Input border when the field is disabled (canonical disabled recipe)."
       }
     },
     "label-text": {

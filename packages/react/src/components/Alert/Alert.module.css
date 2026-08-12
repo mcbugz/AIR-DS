@@ -89,8 +89,8 @@
   color: var(--ds-alert-icon-danger);
 }
 
-/* --- dismiss control (RAC Button; no --ds-alert-* dismiss hooks exist,
-   so semantic-tier tokens only) ------------------------------------------ */
+/* --- dismiss control (RAC Button; hover/pressed fills come from the
+   --ds-alert-dismiss-surface-* hooks, semantic tokens otherwise) ---------- */
 
 .dismiss {
   flex: none;
@@ -117,11 +117,11 @@
 }
 
 .dismiss[data-hovered] {
-  background-color: var(--ds-color-surface-default);
+  background-color: var(--ds-alert-dismiss-surface-hover);
 }
 
 .dismiss[data-pressed] {
-  background-color: var(--ds-color-surface-sunken);
+  background-color: var(--ds-alert-dismiss-surface-pressed);
 }
 
 .dismiss[data-focus-visible] {

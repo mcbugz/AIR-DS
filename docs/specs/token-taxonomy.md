@@ -15,7 +15,7 @@ States use the fixed vocabulary: `default | hover | active | focus | disabled | 
 
 | Category | Concepts (v1) | Notes |
 |---|---|---|
-| `color.surface` | `default`, `raised`, `sunken`, `overlay`, `inverse` | backgrounds |
+| `color.surface` | `default`, `raised`, `sunken`, `sunken-hover`, `overlay`, `inverse` | backgrounds. `sunken-hover` is hyphenated, not state-suffixed — `sunken` is itself a token and DTCG forbids a group also being a token (same precedent as `status.*.default`) |
 | `color.text` | `primary`, `secondary`, `muted`, `inverse`, `link`, `on-accent` | foregrounds |
 | `color.accent` | `default`, `emphasis`, `muted` | brand action color, AA-checked vs `on-accent` |
 | `color.border` | `default`, `muted`, `strong`, `focus` | |
@@ -33,6 +33,10 @@ States use the fixed vocabulary: `default | hover | active | focus | disabled | 
 ## Brand tier shape (`brands/*.json`)
 
 Raw ramps only — no intent: `palette.{neutral,primary,…}.{50…950}`, `typeface.{sans,mono}`, `type-scale` (base + ratio), `radius-scale`, `space-base`, `elevation`, `assets.logo*`. The semantic tier maps intent → ramp positions; a customer file replaces ramps, never mappings (semantic overrides are a separate, allowlisted layer).
+
+## Component-tier notes
+
+Component tokens may carry brand-derived `calc()` expressions over semantic refs (e.g. `dialog.width-*`, `tooltip.max-width`, `switch.track-width`). There is no `opacity` semantic category yet; `dialog.backdrop-opacity` is a component-tier percentage — if more opacity needs appear, promote a semantic `opacity.*` category (build.ts `SEMANTIC_CATEGORIES` must be updated with it).
 
 ## Rules (validator-enforced)
 

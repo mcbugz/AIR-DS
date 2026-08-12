@@ -3,9 +3,11 @@
    currentColor, and layout/keyword values. States come from RAC data
    attributes — never :hover/:active pseudo-classes.
 
-   Token tiers (NR-008): RadioGroup has NO component-tier hooks in the token
-   registry, so this file consumes semantic-tier tokens only. Never another
-   component's hooks (e.g. --ds-field-*). */
+   Token tiers (NR-008): this file consumes the radio item's OWN
+   component-tier hooks (--ds-radio-*) wherever the token registry provides
+   one — size, gap, surface-{selected,selected-hover}, dot — and
+   semantic-tier tokens otherwise. Never another component's hooks
+   (e.g. --ds-field-*). */
 
 .radiogroup {
   display: flex;
@@ -60,7 +62,7 @@
 .radio {
   display: flex;
   align-items: center;
-  gap: var(--ds-space-gap-sm);
+  gap: var(--ds-radio-gap);
   color: var(--ds-color-text-primary);
   font-family: var(--ds-font-family-sans);
   font-size: var(--ds-text-size-md);
@@ -73,8 +75,8 @@
    ring of the surface color punched into the accent fill — no icon assets. */
 .control {
   flex: none;
-  inline-size: var(--ds-size-icon-md);
-  block-size: var(--ds-size-icon-md);
+  inline-size: var(--ds-radio-size);
+  block-size: var(--ds-radio-size);
   border-radius: var(--ds-radius-full);
   border: var(--ds-border-width-1) solid var(--ds-color-border-strong);
   background-color: var(--ds-color-surface-default);
@@ -103,21 +105,21 @@
 /* --- selected: accent fill ---------------------------------------------- */
 
 .radio[data-selected] .control {
-  border-color: var(--ds-color-accent-default);
-  background-color: var(--ds-color-accent-default);
-  box-shadow: inset 0 0 0 var(--ds-border-width-2) var(--ds-color-surface-default);
+  border-color: var(--ds-radio-surface-selected);
+  background-color: var(--ds-radio-surface-selected);
+  box-shadow: inset 0 0 0 var(--ds-border-width-2) var(--ds-radio-dot);
 }
 
 .radio[data-selected][data-hovered] .control,
 .radio[data-selected][data-pressed] .control {
-  border-color: var(--ds-color-accent-emphasis);
-  background-color: var(--ds-color-accent-emphasis);
+  border-color: var(--ds-radio-surface-selected-hover);
+  background-color: var(--ds-radio-surface-selected-hover);
 }
 
 .radio[data-selected][data-focus-visible] .control {
   box-shadow:
     var(--ds-shadow-focus-ring),
-    inset 0 0 0 var(--ds-border-width-2) var(--ds-color-surface-default);
+    inset 0 0 0 var(--ds-border-width-2) var(--ds-radio-dot);
 }
 
 /* --- invalid ------------------------------------------------------------- */

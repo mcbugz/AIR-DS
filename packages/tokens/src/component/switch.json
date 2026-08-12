@@ -1,0 +1,39 @@
+{
+  "switch": {
+    "track-width": {
+      "$value": "calc({size.icon.md} * 2)",
+      "$type": "dimension",
+      "$description": "Inline size of the switch track (2x the md icon size; 40px at the default brand). The thumb slide distance is track-width minus track-height, derived in CSS."
+    },
+    "track-height": {
+      "$value": "{size.icon.md}",
+      "$type": "dimension",
+      "$description": "Block size of the switch track; also sets the thumb inset via calc in CSS."
+    },
+    "thumb-size": {
+      "$value": "{size.icon.sm}",
+      "$type": "dimension",
+      "$description": "Diameter of the switch thumb."
+    },
+    "surface": {
+      "$type": "color",
+      "off": {
+        "$value": "{color.surface.sunken}",
+        "$description": "Track fill when the switch is off; hover uses color.surface.sunken-hover."
+      },
+      "on": {
+        "$value": "{color.accent.default}",
+        "$description": "Track fill when the switch is on."
+      },
+      "on-hover": {
+        "$value": "{color.accent.emphasis}",
+        "$description": "Track fill when the switch is on and hovered or pressed."
+      }
+    },
+    "thumb": {
+      "$value": "{color.surface.default}",
+      "$type": "color",
+      "$description": "Thumb fill in the off state; the on state switches to color.text.on-accent so the thumb stays visible on the accent track."
+    }
+  }
+}

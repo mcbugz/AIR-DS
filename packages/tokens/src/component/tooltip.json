@@ -25,6 +25,11 @@
       "$type": "dimension",
       "$description": "Vertical padding inside the tooltip bubble."
     },
+    "max-width": {
+      "$value": "calc({size.control.md} * 6)",
+      "$type": "dimension",
+      "$description": "Maximum inline size of the tooltip bubble before the text wraps (6x the md control height; 240px at the default brand)."
+    },
     "font-size": {
       "$value": "{text.size.sm}",
       "$type": "dimension",

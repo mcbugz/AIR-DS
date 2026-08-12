@@ -14,6 +14,10 @@
         "$value": "{palette.neutral.200}",
         "$description": "Recessed background for wells, inset panels, code blocks, and zebra stripes that sit visually below the default surface."
       },
+      "sunken-hover": {
+        "$value": "{palette.neutral.300}",
+        "$description": "Hover/pressed step for interactive sunken surfaces, e.g. the Switch off-state track under the pointer. One ramp step darker than color.surface.sunken; not a text background."
+      },
       "overlay": {
         "$value": "{palette.neutral.900}",
         "$description": "Base color for modal backdrops and scrims. Components apply their own opacity on top of this color; it is not a text background."
