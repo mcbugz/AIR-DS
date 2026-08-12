@@ -1,0 +1,199 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:active pseudo-classes.
+
+   Token tiers (NR-008): the trigger consumes the SHARED --ds-field-* hook
+   namespace — the one customer override surface deliberately shared by
+   TextField, TextArea, and Select — and semantic-tier tokens otherwise.
+   Never another component's hooks. */
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-field-gap);
+  font-family: var(--ds-font-family-sans);
+}
+
+/* --- label -------------------------------------------------------------- */
+
+.label {
+  color: var(--ds-field-label-text);
+  font-size: var(--ds-text-size-sm);
+  font-weight: var(--ds-text-weight-medium);
+  line-height: var(--ds-text-leading-normal);
+}
+
+/* --- trigger button ------------------------------------------------------ */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-field-gap);
+  inline-size: 100%;
+  block-size: var(--ds-field-height);
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--ds-field-padding-x);
+  background-color: var(--ds-field-surface);
+  color: var(--ds-field-text);
+  border: var(--ds-border-width-1) solid var(--ds-field-border-default);
+  border-radius: var(--ds-field-radius);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-tight);
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.trigger[data-hovered] {
+  border-color: var(--ds-field-border-hover);
+}
+
+.trigger[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+  border-color: var(--ds-field-border-focus);
+}
+
+.select[data-open] .trigger {
+  border-color: var(--ds-field-border-focus);
+}
+
+.select[data-invalid] .trigger {
+  border-color: var(--ds-field-border-invalid);
+}
+
+/* Canonical disabled recipe (contrast-safe, AA-checked once per theme). */
+.select[data-disabled] .trigger {
+  background-color: var(--ds-color-surface-sunken);
+  color: var(--ds-color-text-muted);
+  border-color: var(--ds-color-border-muted);
+  cursor: not-allowed;
+}
+
+/* --- value + placeholder -------------------------------------------------- */
+
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value[data-placeholder] {
+  color: var(--ds-field-placeholder);
+}
+
+.select[data-disabled] .value[data-placeholder] {
+  color: var(--ds-color-text-muted);
+}
+
+/* --- chevron (CSS-only, currentColor) ------------------------------------- */
+
+.chevron {
+  flex: none;
+  inline-size: calc(var(--ds-size-icon-sm) / 2);
+  block-size: calc(var(--ds-size-icon-sm) / 2);
+  border-inline-end: var(--ds-border-width-2) solid currentColor;
+  border-block-end: var(--ds-border-width-2) solid currentColor;
+  rotate: 45deg;
+  translate: 0 calc(var(--ds-border-width-2) * -1);
+  transition: rotate var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.select[data-open] .chevron {
+  rotate: 225deg;
+  translate: 0 var(--ds-border-width-2);
+}
+
+/* --- description + error -------------------------------------------------- */
+
+.description {
+  color: var(--ds-field-description-text);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+.error {
+  color: var(--ds-field-error-text);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+/* --- popover + listbox ----------------------------------------------------
+   Elevation tokens are for surfaces (overlay ramp), per the contributing
+   canon. `--trigger-width` is a react-aria-components-provided layout
+   variable (popover matches its trigger's width) — not a design token. */
+
+.popover {
+  z-index: var(--ds-z-dropdown);
+  min-inline-size: var(--trigger-width);
+}
+
+.listbox {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-block-size: inherit;
+  padding: var(--ds-space-1);
+  background-color: var(--ds-color-surface-raised);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-muted);
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-overlay);
+  outline: none;
+}
+
+/* --- options --------------------------------------------------------------
+   Selected state uses the accent tokens: accent-default is AA-checked
+   against text-on-accent; accent-emphasis is the hover/active step. */
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding-block: var(--ds-space-2);
+  padding-inline: var(--ds-space-3);
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-primary);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  cursor: pointer;
+  outline: none;
+}
+
+.option[data-focused] {
+  background-color: var(--ds-color-surface-sunken);
+}
+
+.option[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: calc(var(--ds-border-width-1) * -1);
+}
+
+.option[data-selected] {
+  background-color: var(--ds-color-accent-default);
+  color: var(--ds-color-text-on-accent);
+  font-weight: var(--ds-text-weight-medium);
+}
+
+.option[data-selected][data-focused] {
+  background-color: var(--ds-color-accent-emphasis);
+}
+
+.option[data-disabled] {
+  color: var(--ds-color-text-muted);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .chevron {
+    transition: none;
+  }
+}

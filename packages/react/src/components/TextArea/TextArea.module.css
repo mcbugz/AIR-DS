@@ -1,0 +1,105 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:focus pseudo-classes.
+
+   Token tiers (NR-008): this file consumes the SHARED field-namespace hooks
+   (--ds-field-*) — by design, TextField, TextArea, and Select theme together
+   as one field surface — and semantic-tier tokens otherwise. */
+
+.textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ds-field-gap);
+  font-family: var(--ds-font-family-sans);
+}
+
+/* --- label -------------------------------------------------------------- */
+
+.label {
+  color: var(--ds-field-label-text);
+  font-size: var(--ds-text-size-sm);
+  font-weight: var(--ds-text-weight-medium);
+  line-height: var(--ds-text-leading-tight);
+}
+
+/* --- the textarea element ----------------------------------------------- */
+
+.input {
+  inline-size: 100%;
+  margin: 0;
+  padding-block: var(--ds-space-2);
+  padding-inline: var(--ds-field-padding-x);
+  background-color: var(--ds-field-surface);
+  color: var(--ds-field-text);
+  border: var(--ds-border-width-1) solid var(--ds-field-border-default);
+  border-radius: var(--ds-field-radius);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  resize: vertical;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.input::placeholder {
+  color: var(--ds-field-placeholder);
+}
+
+/* --- states (RAC data attributes, exemplar canon) ------------------------ */
+
+.input[data-hovered] {
+  border-color: var(--ds-field-border-hover);
+}
+
+.input[data-focus-visible] {
+  border-color: var(--ds-field-border-focus);
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+.input[data-invalid] {
+  border-color: var(--ds-field-border-invalid);
+}
+
+/* Canonical disabled recipe (F2): muted sunken treatment, AA-checked once
+   per theme. */
+.input[data-disabled] {
+  cursor: not-allowed;
+  background-color: var(--ds-color-surface-sunken);
+  color: var(--ds-color-text-muted);
+  border-color: var(--ds-color-border-muted);
+  resize: none;
+}
+
+.textarea[data-disabled] .label,
+.textarea[data-disabled] .description {
+  color: var(--ds-color-text-muted);
+}
+
+/* --- auto-grow ----------------------------------------------------------- */
+
+/* Pure CSS auto-grow: the field tracks its content height. Browsers without
+   field-sizing support fall back to the fixed rows height with a scrollbar. */
+.autoGrow {
+  field-sizing: content;
+  resize: none;
+}
+
+/* --- help + error text --------------------------------------------------- */
+
+.description {
+  color: var(--ds-field-description-text);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+.error {
+  color: var(--ds-field-error-text);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}

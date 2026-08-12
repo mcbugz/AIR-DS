@@ -1,0 +1,117 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never pseudo-classes.
+
+   Token tiers (NR-008): this file consumes Dialog's OWN component-tier hooks
+   (--ds-dialog-*) wherever the token registry provides one — backdrop, gap,
+   padding, radius, shadow, surface, z — and semantic-tier tokens otherwise.
+   Never another component's hooks.
+
+   Reported token gaps (see registry): no --ds-dialog-width-* hooks (size
+   steps derived from --ds-size-control-md with calc) and no backdrop opacity
+   token (literal percentage inside color-mix). */
+
+/* --- backdrop (RAC ModalOverlay) ---------------------------------------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-dialog-z);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-inset-lg);
+  /* --ds-dialog-backdrop is a base color; the component applies its own
+     opacity (token description). No opacity token exists yet — gap. */
+  background-color: color-mix(in srgb, var(--ds-dialog-backdrop) 50%, transparent);
+}
+
+/* --- panel positioner (RAC Modal) --------------------------------------- */
+
+.modal {
+  inline-size: 100%;
+  max-block-size: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- panel (RAC Dialog) -------------------------------------------------- */
+
+.dialog {
+  inline-size: 100%;
+  max-block-size: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-dialog-gap);
+  padding: var(--ds-dialog-padding);
+  background-color: var(--ds-dialog-surface);
+  border-radius: var(--ds-dialog-radius);
+  box-shadow: var(--ds-dialog-shadow);
+  outline: none;
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  color: var(--ds-color-text-primary);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--ds-text-size-lg);
+  font-weight: var(--ds-text-weight-semibold);
+  line-height: var(--ds-text-leading-tight);
+  color: var(--ds-color-text-primary);
+}
+
+/* --- sizes ----------------------------------------------------------------
+   No --ds-dialog-width-* hooks exist in the registry (reported gap); the
+   width steps are derived from the control-height size token with calc:
+   8x / 12x / 16x --ds-size-control-md (320 / 480 / 640px at default brand). */
+
+.sm {
+  max-inline-size: calc(var(--ds-size-control-md) * 8);
+}
+
+.md {
+  max-inline-size: calc(var(--ds-size-control-md) * 12);
+}
+
+.lg {
+  max-inline-size: calc(var(--ds-size-control-md) * 16);
+}
+
+/* --- motion ---------------------------------------------------------------
+   Entry/exit driven by RAC [data-entering]/[data-exiting]; gated by
+   prefers-reduced-motion. */
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes dialog-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+.backdrop[data-entering],
+.modal[data-entering] {
+  animation: dialog-enter var(--ds-motion-duration-normal) var(--ds-motion-easing-enter);
+}
+
+.backdrop[data-exiting],
+.modal[data-exiting] {
+  animation: dialog-exit var(--ds-motion-duration-fast) var(--ds-motion-easing-exit);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop[data-entering],
+  .modal[data-entering],
+  .backdrop[data-exiting],
+  .modal[data-exiting] {
+    animation: none;
+  }
+}

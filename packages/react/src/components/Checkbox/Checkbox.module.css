@@ -1,0 +1,118 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:active pseudo-classes.
+
+   Token tiers (NR-008): the registry provides NO --ds-checkbox-* component
+   hooks, so this file consumes semantic-tier tokens only: accent for the
+   checked fill, on-accent for the mark, border tokens for the box, the
+   focus-ring canon, and status-danger for the invalid state. */
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-gap-sm);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  color: var(--ds-color-text-primary);
+}
+
+.checkbox[data-disabled] {
+  cursor: not-allowed;
+  color: var(--ds-color-text-muted);
+}
+
+/* --- box (CSS-drawn control over the hidden native input) --------------- */
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+  background-color: var(--ds-color-surface-default);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-on-accent);
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* Marks are always in the DOM (inline SVG, currentColor); state shows them. */
+.mark {
+  display: none;
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+}
+
+.checkbox[data-selected] .mark,
+.checkbox[data-indeterminate] .mark {
+  display: block;
+}
+
+/* --- interaction states ------------------------------------------------- */
+
+.checkbox[data-hovered] .box {
+  border-color: var(--ds-color-border-strong);
+}
+
+.checkbox[data-pressed] .box {
+  border-color: var(--ds-color-border-strong);
+  background-color: var(--ds-color-surface-sunken);
+}
+
+/* Focus ring canon: outline + focus-ring shadow on the visible box. */
+.checkbox[data-focus-visible] .box {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+/* --- selected / indeterminate fill -------------------------------------- */
+
+.checkbox[data-selected] .box,
+.checkbox[data-indeterminate] .box {
+  background-color: var(--ds-color-accent-default);
+  border-color: var(--ds-color-accent-default);
+}
+
+.checkbox[data-hovered][data-selected] .box,
+.checkbox[data-hovered][data-indeterminate] .box,
+.checkbox[data-pressed][data-selected] .box,
+.checkbox[data-pressed][data-indeterminate] .box {
+  background-color: var(--ds-color-accent-emphasis);
+  border-color: var(--ds-color-accent-emphasis);
+}
+
+/* --- invalid ------------------------------------------------------------ */
+
+.checkbox[data-invalid] .box {
+  border-color: var(--ds-color-status-danger-border);
+}
+
+/* Solid status fill takes text-inverse (NR-007); the pair
+   text.inverse / status.danger.default is AA-checked in contrast-report. */
+.checkbox[data-invalid][data-selected] .box,
+.checkbox[data-invalid][data-indeterminate] .box {
+  background-color: var(--ds-color-status-danger-default);
+  border-color: var(--ds-color-status-danger-default);
+  color: var(--ds-color-text-inverse);
+}
+
+/* --- disabled (canonical recipe, contrast-safe) --------------------------
+   Selected/indeterminate variants are repeated so this block outranks the
+   accent and invalid fills above (last-wins at equal specificity). */
+
+.checkbox[data-disabled] .box,
+.checkbox[data-disabled][data-selected] .box,
+.checkbox[data-disabled][data-indeterminate] .box {
+  background-color: var(--ds-color-surface-sunken);
+  border-color: var(--ds-color-border-muted);
+  color: var(--ds-color-text-muted);
+}

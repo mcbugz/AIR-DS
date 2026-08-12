@@ -1,0 +1,110 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:active pseudo-classes.
+
+   Token tiers (NR-008): the registry provides NO --ds-switch-* component
+   hooks, so this file consumes semantic-tier tokens only: accent for the
+   on-state fill, on-accent for the on-state thumb, surface tokens for the
+   off state, and the focus-ring canon.
+
+   Geometry (NR-006): track and thumb boxes come from the size.icon scale.
+   Track = icon-md tall, 2×icon-md wide; thumb = icon-sm. The thumb inset
+   ((icon-md − icon-sm) / 2) and the slide distance (icon-md exactly, given
+   that inset) are derived with calc() from those size tokens because no
+   dedicated geometry tokens exist. */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-gap-sm);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-normal);
+  color: var(--ds-color-text-primary);
+}
+
+.switch[data-disabled] {
+  cursor: not-allowed;
+  color: var(--ds-color-text-muted);
+}
+
+/* --- track (CSS-drawn control over the hidden native input) -------------- */
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: calc(var(--ds-size-icon-md) * 2);
+  block-size: var(--ds-size-icon-md);
+  padding: calc((var(--ds-size-icon-md) - var(--ds-size-icon-sm)) / 2);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-sunken);
+  transition: background-color var(--ds-motion-duration-fast)
+    var(--ds-motion-easing-standard);
+}
+
+.thumb {
+  flex: none;
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-surface-default);
+  transition:
+    translate var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* --- interaction states ------------------------------------------------- */
+
+/* Focus ring canon: outline + focus-ring shadow on the visible track. */
+.switch[data-focus-visible] .track {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+/* --- selected (on) -------------------------------------------------------
+   Slide distance: track inner width minus thumb =
+   2·icon-md − 2·((icon-md − icon-sm)/2) − icon-sm = icon-md exactly. */
+
+.switch[data-selected] .track {
+  background-color: var(--ds-color-accent-default);
+}
+
+.switch[data-selected] .thumb {
+  translate: var(--ds-size-icon-md) 0;
+  background-color: var(--ds-color-text-on-accent);
+}
+
+.switch[data-hovered][data-selected] .track,
+.switch[data-pressed][data-selected] .track {
+  background-color: var(--ds-color-accent-emphasis);
+}
+
+/* --- disabled (canonical recipe, contrast-safe) --------------------------
+   The selected state is repeated so this block outranks the accent fill
+   above (last-wins at equal specificity). Never accent under a disabled
+   control. */
+
+.switch[data-disabled] .track,
+.switch[data-disabled][data-selected] .track {
+  background-color: var(--ds-color-surface-sunken);
+}
+
+.switch[data-disabled] .thumb,
+.switch[data-disabled][data-selected] .thumb {
+  background-color: var(--ds-color-text-muted);
+}
+
+/* --- reduced motion ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .thumb {
+    transition: none;
+  }
+}

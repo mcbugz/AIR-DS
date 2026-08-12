@@ -1,0 +1,49 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values.
+
+   Token tiers (NR-008): this file consumes Card's OWN component-tier hooks
+   (--ds-card-*) wherever the token registry provides one — that is the
+   customer override surface — and semantic-tier tokens otherwise. Never
+   another component's hooks. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-card-gap);
+  background-color: var(--ds-card-surface);
+  border-radius: var(--ds-card-radius);
+}
+
+/* --- elevation ---------------------------------------------------------- */
+
+.flat {
+  border: var(--ds-border-width-1) solid var(--ds-card-border);
+}
+
+/* Raised keeps the card border as a hairline under the shadow (per the
+   card.border token contract). --ds-card-shadow aliases shadow.raised —
+   elevation is a surface treatment, never control-state feedback. */
+.raised {
+  border: var(--ds-border-width-1) solid var(--ds-card-border);
+  box-shadow: var(--ds-card-shadow);
+}
+
+/* --- slots ---------------------------------------------------------------
+   Header/body/footer are the only sanctioned composition. Each slot carries
+   the card's internal padding; header and footer are separated from the
+   content by a hairline border. */
+
+.cardheader,
+.cardbody,
+.cardfooter {
+  padding: var(--ds-card-padding);
+}
+
+.cardheader {
+  border-block-end: var(--ds-border-width-1) solid var(--ds-card-border);
+}
+
+.cardfooter {
+  border-block-start: var(--ds-border-width-1) solid var(--ds-card-border);
+}

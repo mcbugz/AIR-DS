@@ -1,0 +1,151 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:active pseudo-classes.
+
+   Token tiers (NR-008): RadioGroup has NO component-tier hooks in the token
+   registry, so this file consumes semantic-tier tokens only. Never another
+   component's hooks (e.g. --ds-field-*). */
+
+.radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-gap-sm);
+  font-family: var(--ds-font-family-sans);
+}
+
+.label {
+  color: var(--ds-color-text-primary);
+  font-size: var(--ds-text-size-md);
+  font-weight: var(--ds-text-weight-medium);
+  line-height: var(--ds-text-leading-tight);
+}
+
+.description {
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+.error {
+  color: var(--ds-color-status-danger-text);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+.radiogroup[data-disabled] .label,
+.radiogroup[data-disabled] .description {
+  color: var(--ds-color-text-muted);
+}
+
+/* --- orientation (one class per value, class name = the literal) -------- */
+
+.radios {
+  display: flex;
+  gap: var(--ds-space-gap-sm);
+}
+
+.vertical .radios {
+  flex-direction: column;
+}
+
+.horizontal .radios {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--ds-space-gap-lg);
+}
+
+/* --- radio item --------------------------------------------------------- */
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-gap-sm);
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  line-height: var(--ds-text-leading-tight);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* CSS-drawn control: a token-sized circle; the selected "dot" is an inset
+   ring of the surface color punched into the accent fill — no icon assets. */
+.control {
+  flex: none;
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+  border-radius: var(--ds-radius-full);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-strong);
+  background-color: var(--ds-color-surface-default);
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* --- interaction states (RAC data attributes only) ---------------------- */
+
+.radio[data-hovered] .control {
+  border-color: var(--ds-color-accent-default);
+}
+
+.radio[data-pressed] .control {
+  border-color: var(--ds-color-accent-emphasis);
+}
+
+.radio[data-focus-visible] .control {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+/* --- selected: accent fill ---------------------------------------------- */
+
+.radio[data-selected] .control {
+  border-color: var(--ds-color-accent-default);
+  background-color: var(--ds-color-accent-default);
+  box-shadow: inset 0 0 0 var(--ds-border-width-2) var(--ds-color-surface-default);
+}
+
+.radio[data-selected][data-hovered] .control,
+.radio[data-selected][data-pressed] .control {
+  border-color: var(--ds-color-accent-emphasis);
+  background-color: var(--ds-color-accent-emphasis);
+}
+
+.radio[data-selected][data-focus-visible] .control {
+  box-shadow:
+    var(--ds-shadow-focus-ring),
+    inset 0 0 0 var(--ds-border-width-2) var(--ds-color-surface-default);
+}
+
+/* --- invalid ------------------------------------------------------------- */
+
+.radio[data-invalid] .control {
+  border-color: var(--ds-color-status-danger-default);
+}
+
+.radio[data-invalid][data-selected] .control {
+  border-color: var(--ds-color-status-danger-default);
+  background-color: var(--ds-color-status-danger-default);
+}
+
+/* --- disabled (canonical muted recipe, F2) -------------------------------
+   Converges on the sunken/muted treatment; never a lightened accent fill. */
+
+.radio[data-disabled] {
+  color: var(--ds-color-text-muted);
+  cursor: not-allowed;
+}
+
+.radio[data-disabled] .control {
+  border-color: var(--ds-color-border-muted);
+  background-color: var(--ds-color-surface-sunken);
+}
+
+.radio[data-disabled][data-selected] .control {
+  border-color: var(--ds-color-border-muted);
+  background-color: var(--ds-color-text-muted);
+  box-shadow: inset 0 0 0 var(--ds-border-width-2) var(--ds-color-surface-sunken);
+}

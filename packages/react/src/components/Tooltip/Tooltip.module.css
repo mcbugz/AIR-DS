@@ -1,0 +1,76 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never pseudo-classes.
+
+   Token tiers (NR-008): this file consumes Tooltip's OWN component-tier hooks
+   (--ds-tooltip-*) wherever the token registry provides one — that is the
+   customer override surface — and semantic-tier tokens otherwise. Never
+   another component's hooks. The tooltip hooks implement the inverse recipe:
+   --ds-tooltip-surface aliases the inverse surface, --ds-tooltip-text the
+   inverse text color. */
+
+.tooltip {
+  z-index: var(--ds-tooltip-z);
+  background-color: var(--ds-tooltip-surface);
+  color: var(--ds-tooltip-text);
+  padding-block: var(--ds-tooltip-padding-y);
+  padding-inline: var(--ds-tooltip-padding-x);
+  border-radius: var(--ds-tooltip-radius);
+  box-shadow: var(--ds-tooltip-shadow);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-tooltip-font-size);
+  font-weight: var(--ds-text-weight-regular);
+  line-height: var(--ds-text-leading-tight);
+}
+
+/* --- open/close motion (RAC data attributes) ---------------------------- */
+
+.tooltip[data-entering] {
+  animation: tooltip-fade var(--ds-motion-duration-normal)
+    var(--ds-motion-easing-enter);
+}
+
+.tooltip[data-exiting] {
+  animation: tooltip-fade var(--ds-motion-duration-fast)
+    var(--ds-motion-easing-exit) reverse;
+}
+
+@keyframes tooltip-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip[data-entering],
+  .tooltip[data-exiting] {
+    animation: none;
+  }
+}
+
+/* --- overlay arrow ------------------------------------------------------ */
+
+.arrow svg {
+  display: block;
+  fill: var(--ds-tooltip-surface);
+}
+
+/* RAC reports the resolved side on the tooltip element; point the arrow
+   back at the trigger. The default (top) needs no rotation. */
+
+.tooltip[data-placement='bottom'] .arrow svg {
+  rotate: 180deg;
+}
+
+.tooltip[data-placement='right'] .arrow svg {
+  rotate: 90deg;
+}
+
+.tooltip[data-placement='left'] .arrow svg {
+  rotate: -90deg;
+}

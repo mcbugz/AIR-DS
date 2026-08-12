@@ -1,0 +1,50 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values.
+
+   Token tiers (NR-008): this file consumes Badge's OWN component-tier hooks
+   (--ds-badge-*) wherever the token registry provides one — that is the
+   customer override surface — and semantic-tier tokens otherwise. Never
+   another component's hooks.
+
+   Static component: no interaction states, no RAC data attributes. */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-badge-font-size);
+  font-weight: var(--ds-badge-font-weight);
+  line-height: var(--ds-text-leading-tight);
+  padding-block: var(--ds-space-1);
+  padding-inline: var(--ds-badge-padding-x);
+  border-radius: var(--ds-badge-radius);
+}
+
+/* --- tones (soft recipe: status surface + status text, never solid) ----- */
+
+.neutral {
+  background-color: var(--ds-badge-surface-neutral);
+  color: var(--ds-badge-text-neutral);
+}
+
+.info {
+  background-color: var(--ds-badge-surface-info);
+  color: var(--ds-badge-text-info);
+}
+
+.success {
+  background-color: var(--ds-badge-surface-success);
+  color: var(--ds-badge-text-success);
+}
+
+.warning {
+  background-color: var(--ds-badge-surface-warning);
+  color: var(--ds-badge-text-warning);
+}
+
+.danger {
+  background-color: var(--ds-badge-surface-danger);
+  color: var(--ds-badge-text-danger);
+}

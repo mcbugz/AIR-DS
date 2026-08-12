@@ -1,0 +1,76 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:focus-visible pseudo-classes (NR-009).
+
+   Token tiers (NR-008): this file consumes Tabs' OWN component-tier hooks
+   (--ds-tabs-*) wherever the token registry provides one — that is the
+   customer override surface, and all nine registry hooks are consumed here —
+   and semantic-tier tokens otherwise. Never another component's hooks. */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tablist {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ds-tabs-gap);
+  border-block-end: var(--ds-border-width-1) solid var(--ds-tabs-border);
+}
+
+.tab {
+  padding-block: var(--ds-tabs-padding-y);
+  padding-inline: var(--ds-tabs-padding-x);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-md);
+  font-weight: var(--ds-tabs-font-weight);
+  line-height: var(--ds-text-leading-tight);
+  color: var(--ds-tabs-text-default);
+  /* Indicator slot: always reserved (keyword `transparent`) so selecting a
+     tab never shifts layout; the selected state only recolors it. */
+  border-block-end: var(--ds-border-width-2) solid transparent;
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.tab[data-hovered] {
+  color: var(--ds-tabs-text-hover);
+}
+
+/* After the hover rule so the selected treatment wins while hovered. */
+.tab[data-selected] {
+  color: var(--ds-tabs-text-selected);
+  border-block-end-color: var(--ds-tabs-indicator-selected);
+}
+
+.tab[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+/* Canonical disabled recipe for transparent controls: keep the transparent
+   background, take only the muted text color. */
+.tab[data-disabled] {
+  cursor: not-allowed;
+  color: var(--ds-color-text-muted);
+}
+
+.tabpanel {
+  padding-block-start: var(--ds-space-inset-md);
+}
+
+/* RAC makes the selected panel focusable when it holds no focusable content;
+   it participates in the same focus-ring canon as the triggers. */
+.tabpanel[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}

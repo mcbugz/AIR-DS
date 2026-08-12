@@ -1,0 +1,137 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values.
+
+   Token tiers (NR-008): this file consumes Alert's OWN component-tier hooks
+   (--ds-alert-*) wherever the token registry provides one — that is the
+   customer override surface, and a hook this CSS does not consume is a
+   silent no-op — and semantic-tier tokens otherwise. Never another
+   component's hooks.
+
+   Static container: no RAC data attributes on the alert itself. The dismiss
+   control is a react-aria-components Button, so its states use RAC data
+   attributes — never :hover/:active pseudo-classes (NR-009). */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-alert-gap);
+  padding: var(--ds-alert-padding);
+  border-style: solid;
+  border-width: var(--ds-alert-border-width);
+  border-radius: var(--ds-alert-radius);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+
+/* --- anatomy ------------------------------------------------------------ */
+
+.icon {
+  flex: none;
+  display: inline-flex;
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+}
+
+.icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.body {
+  flex: auto;
+}
+
+.title {
+  font-weight: var(--ds-text-weight-semibold);
+}
+
+/* --- tones (soft recipe: status surface + border + text, never solid) ---- */
+
+.info {
+  background-color: var(--ds-alert-surface-info);
+  border-color: var(--ds-alert-border-info);
+  color: var(--ds-alert-text-info);
+}
+
+.info .icon {
+  color: var(--ds-alert-icon-info);
+}
+
+.success {
+  background-color: var(--ds-alert-surface-success);
+  border-color: var(--ds-alert-border-success);
+  color: var(--ds-alert-text-success);
+}
+
+.success .icon {
+  color: var(--ds-alert-icon-success);
+}
+
+.warning {
+  background-color: var(--ds-alert-surface-warning);
+  border-color: var(--ds-alert-border-warning);
+  color: var(--ds-alert-text-warning);
+}
+
+.warning .icon {
+  color: var(--ds-alert-icon-warning);
+}
+
+.danger {
+  background-color: var(--ds-alert-surface-danger);
+  border-color: var(--ds-alert-border-danger);
+  color: var(--ds-alert-text-danger);
+}
+
+.danger .icon {
+  color: var(--ds-alert-icon-danger);
+}
+
+/* --- dismiss control (RAC Button; no --ds-alert-* dismiss hooks exist,
+   so semantic-tier tokens only) ------------------------------------------ */
+
+.dismiss {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: currentColor;
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+  border-radius: var(--ds-radius-sm);
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.dismiss > svg {
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+}
+
+.dismiss[data-hovered] {
+  background-color: var(--ds-color-surface-default);
+}
+
+.dismiss[data-pressed] {
+  background-color: var(--ds-color-surface-sunken);
+}
+
+.dismiss[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dismiss {
+    transition: none;
+  }
+}
