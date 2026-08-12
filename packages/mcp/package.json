@@ -1,0 +1,36 @@
+{
+  "name": "@ds/mcp",
+  "version": "0.1.0",
+  "description": "AIR-DS MCP server: registry-backed design-system contracts and deterministic usage validation over stdio.",
+  "type": "module",
+  "bin": {
+    "ds-mcp": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/mcp lint: no-op placeholder (token-value lint lives in @ds/validate)'"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.10"
+  }
+}
