@@ -1,0 +1,18 @@
+{
+  "name": "air-ds",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=24 || >=25"
+  },
+  "scripts": {
+    "build": "pnpm --filter @ds/tokens build && pnpm --filter @ds/react build && pnpm generate && pnpm --filter @ds/context build && pnpm --filter @ds/mcp build",
+    "generate": "pnpm --filter @ds/react generate",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "validate": "pnpm --filter @ds/validate run gauntlet",
+    "storybook": "pnpm --filter @ds/react storybook"
+  }
+}
