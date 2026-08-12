@@ -1,0 +1,77 @@
+{
+  "space": {
+    "$type": "dimension",
+    "0": {
+      "$value": "{derived.space.0}",
+      "$description": "Zero space; use to state 'no gap' explicitly instead of a raw 0 with units."
+    },
+    "1": {
+      "$value": "{derived.space.1}",
+      "$description": "Space step 1 (1x the brand space base); tightest gap, e.g. icon-to-label."
+    },
+    "2": {
+      "$value": "{derived.space.2}",
+      "$description": "Space step 2 (2x the brand space base); compact padding and small gaps."
+    },
+    "3": {
+      "$value": "{derived.space.3}",
+      "$description": "Space step 3 (3x the brand space base); default control padding."
+    },
+    "4": {
+      "$value": "{derived.space.4}",
+      "$description": "Space step 4 (4x the brand space base); default gap between related elements."
+    },
+    "5": {
+      "$value": "{derived.space.5}",
+      "$description": "Space step 5 (5x the brand space base); padding for medium containers."
+    },
+    "6": {
+      "$value": "{derived.space.6}",
+      "$description": "Space step 6 (6x the brand space base); padding for large containers and section gaps."
+    },
+    "7": {
+      "$value": "{derived.space.7}",
+      "$description": "Space step 7 (8x the brand space base); separation between content groups."
+    },
+    "8": {
+      "$value": "{derived.space.8}",
+      "$description": "Space step 8 (10x the brand space base); separation between major regions."
+    },
+    "9": {
+      "$value": "{derived.space.9}",
+      "$description": "Space step 9 (12x the brand space base); large layout separation."
+    },
+    "10": {
+      "$value": "{derived.space.10}",
+      "$description": "Space step 10 (16x the brand space base); the largest layout separation."
+    },
+    "inset": {
+      "sm": {
+        "$value": "{derived.space.2}",
+        "$description": "Small uniform internal padding for compact containers (2x the brand space base)."
+      },
+      "md": {
+        "$value": "{derived.space.4}",
+        "$description": "Default uniform internal padding for containers (4x the brand space base)."
+      },
+      "lg": {
+        "$value": "{derived.space.6}",
+        "$description": "Generous uniform internal padding for large containers (6x the brand space base)."
+      }
+    },
+    "gap": {
+      "sm": {
+        "$value": "{derived.space.1}",
+        "$description": "Small flex/grid gap for tightly related items (1x the brand space base)."
+      },
+      "md": {
+        "$value": "{derived.space.2}",
+        "$description": "Default flex/grid gap between sibling elements (2x the brand space base)."
+      },
+      "lg": {
+        "$value": "{derived.space.4}",
+        "$description": "Large flex/grid gap between loosely related groups (4x the brand space base)."
+      }
+    }
+  }
+}

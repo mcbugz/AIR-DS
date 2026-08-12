@@ -1,0 +1,28 @@
+{
+  "name": "@ds/tokens",
+  "version": "0.1.0",
+  "description": "Design token source of truth: DTCG semantic + component tiers, compiled against a brand-tier file into CSS custom properties, TypeScript literal-union types, and machine registries.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./css": "./dist/css/tokens.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node src/build/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/tokens lint: no-op placeholder'"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

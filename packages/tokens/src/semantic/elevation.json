@@ -1,0 +1,17 @@
+{
+  "shadow": {
+    "$type": "shadow",
+    "raised": {
+      "$value": "{elevation.1}",
+      "$description": "Low elevation for content raised above the page: cards, menus, popovers. Pair with color.surface.raised."
+    },
+    "overlay": {
+      "$value": "{elevation.3}",
+      "$description": "Highest elevation for dialogs and overlays that block the page."
+    },
+    "focus-ring": {
+      "$value": "0 0 0 3px {palette.primary.200}",
+      "$description": "Focus ring rendered as a box-shadow halo in a light accent tint; combine with color.border.focus on the element edge."
+    }
+  }
+}

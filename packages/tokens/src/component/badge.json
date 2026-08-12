@@ -1,0 +1,70 @@
+{
+  "badge": {
+    "radius": {
+      "$value": "{radius.full}",
+      "$type": "dimension",
+      "$description": "Badge corner radius (pill shape)."
+    },
+    "font-size": {
+      "$value": "{text.size.xs}",
+      "$type": "dimension",
+      "$description": "Badge label size."
+    },
+    "font-weight": {
+      "$value": "{text.weight.medium}",
+      "$type": "fontWeight",
+      "$description": "Badge label weight."
+    },
+    "padding-x": {
+      "$value": "{space.2}",
+      "$type": "dimension",
+      "$description": "Horizontal padding inside the badge pill."
+    },
+    "surface": {
+      "$type": "color",
+      "neutral": {
+        "$value": "{color.surface.sunken}",
+        "$description": "Background of tone='neutral' badges."
+      },
+      "info": {
+        "$value": "{color.status.info.surface}",
+        "$description": "Background of tone='info' badges."
+      },
+      "success": {
+        "$value": "{color.status.success.surface}",
+        "$description": "Background of tone='success' badges."
+      },
+      "warning": {
+        "$value": "{color.status.warning.surface}",
+        "$description": "Background of tone='warning' badges."
+      },
+      "danger": {
+        "$value": "{color.status.danger.surface}",
+        "$description": "Background of tone='danger' badges."
+      }
+    },
+    "text": {
+      "$type": "color",
+      "neutral": {
+        "$value": "{color.text.secondary}",
+        "$description": "Label color of tone='neutral' badges."
+      },
+      "info": {
+        "$value": "{color.status.info.text}",
+        "$description": "Label color of tone='info' badges."
+      },
+      "success": {
+        "$value": "{color.status.success.text}",
+        "$description": "Label color of tone='success' badges."
+      },
+      "warning": {
+        "$value": "{color.status.warning.text}",
+        "$description": "Label color of tone='warning' badges."
+      },
+      "danger": {
+        "$value": "{color.status.danger.text}",
+        "$description": "Label color of tone='danger' badges."
+      }
+    }
+  }
+}

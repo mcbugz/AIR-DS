@@ -1,0 +1,82 @@
+{
+  "font": {
+    "$type": "fontFamily",
+    "family": {
+      "sans": {
+        "$value": "{typeface.sans}",
+        "$description": "Default typeface stack for all UI text and body copy."
+      },
+      "mono": {
+        "$value": "{typeface.mono}",
+        "$description": "Monospace stack for code, tabular numbers, and technical identifiers."
+      }
+    }
+  },
+  "text": {
+    "size": {
+      "$type": "dimension",
+      "xs": {
+        "$value": "{derived.font-size.xs}",
+        "$description": "Smallest legible size for fine print, badges, and dense metadata; step -2 on the brand modular scale."
+      },
+      "sm": {
+        "$value": "{derived.font-size.sm}",
+        "$description": "Secondary text and dense UI such as table cells and helper text; step -1 on the brand modular scale."
+      },
+      "md": {
+        "$value": "{derived.font-size.md}",
+        "$description": "Base body size for paragraphs, labels, and control text; step 0 (the brand type-scale base)."
+      },
+      "lg": {
+        "$value": "{derived.font-size.lg}",
+        "$description": "Emphasized body text and small headings; step +1 on the brand modular scale."
+      },
+      "xl": {
+        "$value": "{derived.font-size.xl}",
+        "$description": "Section headings and dialog titles; step +2 on the brand modular scale."
+      },
+      "2xl": {
+        "$value": "{derived.font-size.2xl}",
+        "$description": "Page headings; step +3 on the brand modular scale."
+      },
+      "3xl": {
+        "$value": "{derived.font-size.3xl}",
+        "$description": "Display and hero headings; step +4 on the brand modular scale."
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": {
+        "$value": 400,
+        "$description": "Default weight for body copy and most UI text."
+      },
+      "medium": {
+        "$value": 500,
+        "$description": "Slight emphasis for control labels, buttons, and selected items."
+      },
+      "semibold": {
+        "$value": 600,
+        "$description": "Headings and strong inline emphasis."
+      },
+      "bold": {
+        "$value": 700,
+        "$description": "Highest emphasis; reserve for display headings and critical highlights."
+      }
+    },
+    "leading": {
+      "$type": "number",
+      "tight": {
+        "$value": 1.25,
+        "$description": "Compact line height for headings and single-line controls."
+      },
+      "normal": {
+        "$value": 1.5,
+        "$description": "Default line height for body copy and multi-line text."
+      },
+      "loose": {
+        "$value": 1.75,
+        "$description": "Airy line height for long-form reading and spacious layouts."
+      }
+    }
+  }
+}

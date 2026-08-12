@@ -1,0 +1,34 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "{derived.radius.2}",
+      "$description": "Small corner radius for compact controls: inputs, checkboxes, tooltips."
+    },
+    "md": {
+      "$value": "{derived.radius.3}",
+      "$description": "Default corner radius for buttons, alerts, and mid-size containers."
+    },
+    "lg": {
+      "$value": "{derived.radius.4}",
+      "$description": "Large corner radius for cards, dialogs, and prominent containers."
+    },
+    "full": {
+      "$value": "{derived.radius.full}",
+      "$description": "Fully rounded corners for pills, badges, and circular controls."
+    }
+  },
+  "border": {
+    "width": {
+      "$type": "dimension",
+      "1": {
+        "$value": "1px",
+        "$description": "Standard border width for inputs, cards, and separators."
+      },
+      "2": {
+        "$value": "2px",
+        "$description": "Emphasized border width for focus indicators and selected states."
+      }
+    }
+  }
+}

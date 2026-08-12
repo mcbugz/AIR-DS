@@ -12,6 +12,7 @@ All agent-facing artifacts are emitted by `@ds/context` (the context compiler) f
 - **Agent skills** — `SKILL.md` router + lazy-loaded reference files (Carbon pattern). Consumer skills: `use-system`, `build-screen`, `migrate`. Builder skills: `contribute-component`, `audit-a11y`. Distributed via `npx skills add` and `/.well-known/skills/`.
 - **Repo agent files** — small vendor-neutral `AGENTS.md` / `CLAUDE.md` routers pointing at indexed references (retrieval over persisted context).
 - **Editor rules** — path-scoped rules for Cursor / Copilot / Claude Code, emitted from the same source as skills.
+- **Auditor agent** — a compiled `ds-auditor` agent definition (source template: `.claude/agents/ds-auditor.md`) emitted per customer with THEIR registries, brand values, and negative-rule catalog baked in, distributed alongside skills. It reviews and repairs; only deterministic gates (`@ds/validate`, MCP `validate_usage`) approve. Shipped enforcement is three surfaces: gauntlet CLI in customer CI, validation tools on the MCP server, auditor agent in the customer repo.
 - **Registries** — `components-index.json`, `tokens-index.json`, `icons-metadata.json`, patterns index.
 
 Target agent surfaces at v1: **Claude Code, Cursor, GitHub Copilot, v0.**

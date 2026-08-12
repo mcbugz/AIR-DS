@@ -29,3 +29,33 @@ Observed and anticipated agent hallucinations, as wrong→right pairs. This file
 
 - **Wrong:** `import Button from '@ds/react/dist/Button'`
 - **Right:** `import { Button } from '@ds/react'` — the only public entry point
+
+## NR-006 Space tokens are not sizes
+
+- **Wrong:** `inline-size: var(--ds-space-4)`, `height: var(--ds-space-6)`
+- **Right:** size tokens for boxes: `var(--ds-size-control-md)`, `var(--ds-size-icon-md)`; space tokens only in margin/padding/gap/inset
+- **Why:** spacing scales pattern-match to sizing in Tailwind-trained output; breaks independently-themable density.
+
+## NR-007 There is no `on-status` text token
+
+- **Wrong:** `var(--ds-color-text-on-danger)`, `var(--ds-color-status-danger-on)`
+- **Right:** `var(--ds-color-text-inverse)` on solid status fills — and only pairs present in registries/contrast-report.json
+- **Why:** `on-accent` exists, so agents extrapolate `on-<anything>`; the extrapolated names are fabricated.
+
+## NR-008 Component-tier tokens belong to their component only
+
+- **Wrong:** `background: var(--ds-alert-surface-info)` inside Badge.module.css
+- **Right:** Badge uses `--ds-badge-*` or semantic-tier tokens
+- **Why:** cross-component borrowing couples theming hooks; overriding Alert would silently restyle Badge.
+
+## NR-009 State selectors are RAC data attributes, not pseudo-classes
+
+- **Wrong:** `.button:hover`, `.tab:focus-visible`, `.field input:disabled`
+- **Right:** `.button[data-hovered]`, `.tab[data-focus-visible]`, `[data-disabled]`
+- **Why:** pseudo-classes fire on touch emulation and on disabled elements; react-aria-components normalizes interaction state.
+
+## NR-010 The base class is the lowercased component name
+
+- **Wrong:** `.root`, `.wrapper`, `.container` as the component's base CSS class
+- **Right:** `.button`, `.card`, `.alert` — composed as `[styles.<name>, styles[variant], styles[size], className]`
+- **Why:** one canon keeps tests and docgen grep-stable across 14 components.

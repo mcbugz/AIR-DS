@@ -1,0 +1,51 @@
+{
+  "tabs": {
+    "gap": {
+      "$value": "{space.1}",
+      "$type": "dimension",
+      "$description": "Gap between adjacent tab triggers in the tab list."
+    },
+    "padding-x": {
+      "$value": "{space.3}",
+      "$type": "dimension",
+      "$description": "Horizontal padding of each tab trigger."
+    },
+    "padding-y": {
+      "$value": "{space.2}",
+      "$type": "dimension",
+      "$description": "Vertical padding of each tab trigger."
+    },
+    "font-weight": {
+      "$value": "{text.weight.medium}",
+      "$type": "fontWeight",
+      "$description": "Tab trigger label weight."
+    },
+    "text": {
+      "$type": "color",
+      "default": {
+        "$value": "{color.text.secondary}",
+        "$description": "Label color of unselected tab triggers."
+      },
+      "hover": {
+        "$value": "{color.text.primary}",
+        "$description": "Label color of hovered tab triggers."
+      },
+      "selected": {
+        "$value": "{color.text.primary}",
+        "$description": "Label color of the selected tab trigger."
+      }
+    },
+    "indicator": {
+      "selected": {
+        "$value": "{color.accent.default}",
+        "$type": "color",
+        "$description": "Color of the selected-tab indicator line."
+      }
+    },
+    "border": {
+      "$value": "{color.border.default}",
+      "$type": "color",
+      "$description": "Divider between the tab list and tab panels."
+    }
+  }
+}

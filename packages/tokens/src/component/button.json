@@ -1,0 +1,114 @@
+{
+  "button": {
+    "radius": {
+      "$value": "{radius.md}",
+      "$type": "dimension",
+      "$description": "Corner radius shared by all Button and IconButton variants."
+    },
+    "gap": {
+      "$value": "{space.2}",
+      "$type": "dimension",
+      "$description": "Gap between a button's icon and label."
+    },
+    "font-weight": {
+      "$value": "{text.weight.medium}",
+      "$type": "fontWeight",
+      "$description": "Label weight shared by all button variants."
+    },
+    "height": {
+      "$type": "dimension",
+      "sm": {
+        "$value": "{size.control.sm}",
+        "$description": "Height of size='sm' buttons."
+      },
+      "md": {
+        "$value": "{size.control.md}",
+        "$description": "Height of size='md' (default) buttons."
+      },
+      "lg": {
+        "$value": "{size.control.lg}",
+        "$description": "Height of size='lg' buttons."
+      }
+    },
+    "padding-x": {
+      "$type": "dimension",
+      "sm": {
+        "$value": "{space.3}",
+        "$description": "Horizontal padding of size='sm' buttons."
+      },
+      "md": {
+        "$value": "{space.4}",
+        "$description": "Horizontal padding of size='md' (default) buttons."
+      },
+      "lg": {
+        "$value": "{space.5}",
+        "$description": "Horizontal padding of size='lg' buttons."
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "primary": {
+        "default": {
+          "$value": "{color.accent.default}",
+          "$description": "Fill of variant='primary' buttons at rest."
+        },
+        "hover": {
+          "$value": "{color.accent.emphasis}",
+          "$description": "Fill of variant='primary' buttons on hover/active."
+        }
+      },
+      "secondary": {
+        "default": {
+          "$value": "{color.surface.raised}",
+          "$description": "Fill of variant='secondary' buttons at rest."
+        },
+        "hover": {
+          "$value": "{color.surface.sunken}",
+          "$description": "Fill of variant='secondary' buttons on hover/active."
+        }
+      },
+      "ghost": {
+        "hover": {
+          "$value": "{color.surface.sunken}",
+          "$description": "Fill of variant='ghost' buttons on hover/active (transparent at rest)."
+        }
+      },
+      "danger": {
+        "default": {
+          "$value": "{color.status.danger.default}",
+          "$description": "Fill of variant='danger' buttons at rest."
+        },
+        "hover": {
+          "$value": "{color.status.danger.emphasis}",
+          "$description": "Fill of variant='danger' buttons on hover/active."
+        }
+      }
+    },
+    "text": {
+      "$type": "color",
+      "primary": {
+        "$value": "{color.text.on-accent}",
+        "$description": "Label color of variant='primary' buttons."
+      },
+      "secondary": {
+        "$value": "{color.text.primary}",
+        "$description": "Label color of variant='secondary' buttons."
+      },
+      "ghost": {
+        "$value": "{color.text.primary}",
+        "$description": "Label color of variant='ghost' buttons."
+      },
+      "danger": {
+        "$value": "{color.text.on-accent}",
+        "$description": "Label color of variant='danger' buttons."
+      }
+    },
+    "border": {
+      "$type": "color",
+      "secondary": {
+        "$value": "{color.border.default}",
+        "$description": "Border color of variant='secondary' buttons."
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "dialog": {
+    "radius": {
+      "$value": "{radius.lg}",
+      "$type": "dimension",
+      "$description": "Corner radius of the Dialog panel."
+    },
+    "surface": {
+      "$value": "{color.surface.raised}",
+      "$type": "color",
+      "$description": "Dialog panel background."
+    },
+    "shadow": {
+      "$value": "{shadow.overlay}",
+      "$type": "shadow",
+      "$description": "Dialog panel shadow."
+    },
+    "padding": {
+      "$value": "{space.6}",
+      "$type": "dimension",
+      "$description": "Internal padding of the Dialog panel."
+    },
+    "gap": {
+      "$value": "{space.4}",
+      "$type": "dimension",
+      "$description": "Gap between dialog title, body, and action rows."
+    },
+    "backdrop": {
+      "$value": "{color.surface.overlay}",
+      "$type": "color",
+      "$description": "Base color of the modal backdrop behind the Dialog; the component applies its own opacity."
+    },
+    "z": {
+      "$value": "{z.overlay}",
+      "$type": "number",
+      "$description": "Stacking layer of the Dialog and its backdrop."
+    }
+  }
+}

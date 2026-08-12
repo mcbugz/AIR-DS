@@ -1,0 +1,42 @@
+{
+  "$description": "GENERATED closed-world component registry for @ds/react. Any component not listed here does not exist. Each entry's `props` lists the component's OWN props; when `racBase` is set, the props of that react-aria-components base component (e.g. onPress, isDisabled, autoFocus) are ALSO legal on the component, with the own props overriding/narrowing them. Regenerate with: pnpm --filter @ds/react generate",
+  "package": "@ds/react",
+  "components": [
+    {
+      "name": "Button",
+      "description": "Accessible push button built on react-aria-components `Button`.\nKeyboard behavior, focus management, and press semantics come from React\nAria; visual states are driven purely by RAC data attributes\n(`data-hovered`, `data-pressed`, `data-focus-visible`, `data-disabled`,\n`data-pending`) and `--ds-*` tokens.",
+      "racBase": "Button",
+      "example": "<Button onPress={save}>Save</Button>\n<Button variant=\"secondary\" size=\"lg\" onPress={cancel}>Cancel</Button>\n<Button variant=\"danger\" isLoading>Deleting…</Button>",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Additional CSS class appended after the component's own classes.\nNarrowed from the react-aria-components render-prop form to a plain\nstring; inline `style` is intentionally not supported (token rule)."
+        },
+        {
+          "name": "isLoading",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Marks the button as busy with an in-progress action: interaction is\ndisabled, the state is announced to assistive technology, and a\nCSS-only spinner is shown before the label. The label stays visible."
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "defaultValue": "'md'",
+          "description": "Control size. Maps to the `--ds-size-control-*` height scale."
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"ghost\" | \"danger\"",
+          "required": false,
+          "defaultValue": "'primary'",
+          "description": "Visual intent of the button. `primary` is the single main action of a\nview, `secondary` a supporting action, `ghost` a low-emphasis inline\naction, `danger` a destructive action."
+        }
+      ]
+    }
+  ]
+}

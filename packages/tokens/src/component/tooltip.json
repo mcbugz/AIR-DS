@@ -1,0 +1,44 @@
+{
+  "tooltip": {
+    "surface": {
+      "$value": "{color.surface.inverse}",
+      "$type": "color",
+      "$description": "Tooltip bubble background."
+    },
+    "text": {
+      "$value": "{color.text.inverse}",
+      "$type": "color",
+      "$description": "Tooltip text color."
+    },
+    "radius": {
+      "$value": "{radius.sm}",
+      "$type": "dimension",
+      "$description": "Tooltip corner radius."
+    },
+    "padding-x": {
+      "$value": "{space.2}",
+      "$type": "dimension",
+      "$description": "Horizontal padding inside the tooltip bubble."
+    },
+    "padding-y": {
+      "$value": "{space.1}",
+      "$type": "dimension",
+      "$description": "Vertical padding inside the tooltip bubble."
+    },
+    "font-size": {
+      "$value": "{text.size.sm}",
+      "$type": "dimension",
+      "$description": "Tooltip text size."
+    },
+    "shadow": {
+      "$value": "{shadow.overlay}",
+      "$type": "shadow",
+      "$description": "Tooltip bubble shadow."
+    },
+    "z": {
+      "$value": "{z.tooltip}",
+      "$type": "number",
+      "$description": "Stacking layer of tooltips (topmost layer)."
+    }
+  }
+}

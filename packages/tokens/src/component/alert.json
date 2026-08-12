@@ -1,0 +1,100 @@
+{
+  "alert": {
+    "radius": {
+      "$value": "{radius.md}",
+      "$type": "dimension",
+      "$description": "Alert container corner radius."
+    },
+    "padding": {
+      "$value": "{space.4}",
+      "$type": "dimension",
+      "$description": "Internal padding of the alert container."
+    },
+    "gap": {
+      "$value": "{space.3}",
+      "$type": "dimension",
+      "$description": "Gap between the alert icon, message, and dismiss control."
+    },
+    "border-width": {
+      "$value": "{border.width.1}",
+      "$type": "dimension",
+      "$description": "Alert border width."
+    },
+    "surface": {
+      "$type": "color",
+      "info": {
+        "$value": "{color.status.info.surface}",
+        "$description": "Background of tone='info' alerts."
+      },
+      "success": {
+        "$value": "{color.status.success.surface}",
+        "$description": "Background of tone='success' alerts."
+      },
+      "warning": {
+        "$value": "{color.status.warning.surface}",
+        "$description": "Background of tone='warning' alerts."
+      },
+      "danger": {
+        "$value": "{color.status.danger.surface}",
+        "$description": "Background of tone='danger' alerts."
+      }
+    },
+    "border": {
+      "$type": "color",
+      "info": {
+        "$value": "{color.status.info.border}",
+        "$description": "Border of tone='info' alerts."
+      },
+      "success": {
+        "$value": "{color.status.success.border}",
+        "$description": "Border of tone='success' alerts."
+      },
+      "warning": {
+        "$value": "{color.status.warning.border}",
+        "$description": "Border of tone='warning' alerts."
+      },
+      "danger": {
+        "$value": "{color.status.danger.border}",
+        "$description": "Border of tone='danger' alerts."
+      }
+    },
+    "text": {
+      "$type": "color",
+      "info": {
+        "$value": "{color.status.info.text}",
+        "$description": "Message color of tone='info' alerts; AA on the matching surface."
+      },
+      "success": {
+        "$value": "{color.status.success.text}",
+        "$description": "Message color of tone='success' alerts; AA on the matching surface."
+      },
+      "warning": {
+        "$value": "{color.status.warning.text}",
+        "$description": "Message color of tone='warning' alerts; AA on the matching surface."
+      },
+      "danger": {
+        "$value": "{color.status.danger.text}",
+        "$description": "Message color of tone='danger' alerts; AA on the matching surface."
+      }
+    },
+    "icon": {
+      "$type": "color",
+      "info": {
+        "$value": "{color.status.info.default}",
+        "$description": "Icon color of tone='info' alerts."
+      },
+      "success": {
+        "$value": "{color.status.success.default}",
+        "$description": "Icon color of tone='success' alerts."
+      },
+      "warning": {
+        "$value": "{color.status.warning.default}",
+        "$description": "Icon color of tone='warning' alerts."
+      },
+      "danger": {
+        "$value": "{color.status.danger.default}",
+        "$description": "Icon color of tone='danger' alerts."
+      }
+    }
+  }
+}

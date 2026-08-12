@@ -1,0 +1,167 @@
+/* Token-only CSS (CLAUDE.md rule 2): every color/font/size/space/radius/
+   shadow/motion value is var(--ds-*). Allowed literals: 0, 100%, auto, none,
+   currentColor, and layout/keyword values. States come from RAC data
+   attributes — never :hover/:active pseudo-classes.
+
+   Token tiers (NR-008): this file consumes Button's OWN component-tier hooks
+   (--ds-button-*) wherever the token registry provides one — that is the
+   customer override surface — and semantic-tier tokens otherwise. Never
+   another component's hooks. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-button-gap);
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: var(--ds-font-family-sans);
+  font-weight: var(--ds-button-font-weight);
+  line-height: var(--ds-text-leading-tight);
+  border-radius: var(--ds-button-radius);
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.button[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-shadow-focus-ring);
+}
+
+.button[data-disabled] {
+  cursor: not-allowed;
+}
+
+.button[data-pending] {
+  cursor: progress;
+}
+
+/* --- sizes ------------------------------------------------------------ */
+
+.sm {
+  block-size: var(--ds-button-height-sm);
+  padding-block: 0;
+  padding-inline: var(--ds-button-padding-x-sm);
+  font-size: var(--ds-text-size-sm);
+}
+
+.md {
+  block-size: var(--ds-button-height-md);
+  padding-block: 0;
+  padding-inline: var(--ds-button-padding-x-md);
+  font-size: var(--ds-text-size-md);
+}
+
+.lg {
+  block-size: var(--ds-button-height-lg);
+  padding-block: 0;
+  padding-inline: var(--ds-button-padding-x-lg);
+  font-size: var(--ds-text-size-lg);
+}
+
+/* --- variants ---------------------------------------------------------- */
+
+.primary {
+  background-color: var(--ds-button-surface-primary-default);
+  color: var(--ds-button-text-primary);
+}
+
+.primary[data-hovered] {
+  background-color: var(--ds-button-surface-primary-hover);
+}
+
+.primary[data-pressed] {
+  background-color: var(--ds-button-surface-primary-hover);
+}
+
+.secondary {
+  background-color: var(--ds-button-surface-secondary-default);
+  color: var(--ds-button-text-secondary);
+  border: var(--ds-border-width-1) solid var(--ds-button-border-secondary);
+}
+
+.secondary[data-hovered] {
+  background-color: var(--ds-button-surface-secondary-hover);
+  border-color: var(--ds-color-border-strong);
+}
+
+.secondary[data-pressed] {
+  background-color: var(--ds-button-surface-secondary-hover);
+  border-color: var(--ds-color-border-strong);
+}
+
+.ghost {
+  background: none;
+  color: var(--ds-button-text-ghost);
+}
+
+.ghost[data-hovered] {
+  background-color: var(--ds-button-surface-ghost-hover);
+}
+
+.ghost[data-pressed] {
+  background-color: var(--ds-button-surface-ghost-hover);
+}
+
+.danger {
+  background-color: var(--ds-button-surface-danger-default);
+  color: var(--ds-button-text-danger);
+}
+
+.danger[data-hovered] {
+  background-color: var(--ds-button-surface-danger-hover);
+}
+
+.danger[data-pressed] {
+  background-color: var(--ds-button-surface-danger-hover);
+}
+
+/* --- disabled (canonical recipe, F2) ------------------------------------
+   All variants converge on the muted sunken treatment so disabled contrast
+   is AA-checkable once, per theme, not per variant. */
+
+.primary[data-disabled],
+.secondary[data-disabled],
+.danger[data-disabled] {
+  background-color: var(--ds-color-surface-sunken);
+  color: var(--ds-color-text-muted);
+}
+
+.secondary[data-disabled] {
+  border-color: var(--ds-color-border-muted);
+}
+
+.ghost[data-disabled] {
+  color: var(--ds-color-text-muted);
+}
+
+/* --- loading spinner (CSS-only) ----------------------------------------- */
+
+.spinner {
+  flex: none;
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+  border-radius: var(--ds-radius-full);
+  border: var(--ds-border-width-2) dotted currentColor;
+  animation: spin var(--ds-motion-duration-slow) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}

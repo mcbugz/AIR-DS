@@ -1,0 +1,74 @@
+{
+  "field": {
+    "$description": "Shared hooks for form fields: TextField, TextArea, Select, and other labeled inputs.",
+    "gap": {
+      "$value": "{space.1}",
+      "$type": "dimension",
+      "$description": "Vertical gap between a field's label, input, and description/error rows."
+    },
+    "radius": {
+      "$value": "{radius.sm}",
+      "$type": "dimension",
+      "$description": "Corner radius of field inputs."
+    },
+    "height": {
+      "$value": "{size.control.md}",
+      "$type": "dimension",
+      "$description": "Height of single-line field inputs (TextField, Select trigger)."
+    },
+    "padding-x": {
+      "$value": "{space.3}",
+      "$type": "dimension",
+      "$description": "Horizontal padding inside field inputs."
+    },
+    "surface": {
+      "$value": "{color.surface.raised}",
+      "$type": "color",
+      "$description": "Background of field inputs."
+    },
+    "text": {
+      "$value": "{color.text.primary}",
+      "$type": "color",
+      "$description": "Entered-value text color inside field inputs."
+    },
+    "placeholder": {
+      "$value": "{color.text.muted}",
+      "$type": "color",
+      "$description": "Placeholder text color inside field inputs."
+    },
+    "border": {
+      "$type": "color",
+      "default": {
+        "$value": "{color.border.default}",
+        "$description": "Input border at rest."
+      },
+      "hover": {
+        "$value": "{color.border.strong}",
+        "$description": "Input border on hover."
+      },
+      "focus": {
+        "$value": "{color.border.focus}",
+        "$description": "Input border when focused; combine with shadow.focus-ring."
+      },
+      "invalid": {
+        "$value": "{color.status.danger.border}",
+        "$description": "Input border when validation fails."
+      }
+    },
+    "label-text": {
+      "$value": "{color.text.primary}",
+      "$type": "color",
+      "$description": "Field label color."
+    },
+    "description-text": {
+      "$value": "{color.text.secondary}",
+      "$type": "color",
+      "$description": "Field description/help-text color."
+    },
+    "error-text": {
+      "$value": "{color.status.danger.text}",
+      "$type": "color",
+      "$description": "Field validation error message color."
+    }
+  }
+}

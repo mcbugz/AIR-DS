@@ -1,0 +1,34 @@
+{
+  "card": {
+    "radius": {
+      "$value": "{radius.lg}",
+      "$type": "dimension",
+      "$description": "Corner radius of Card containers."
+    },
+    "surface": {
+      "$value": "{color.surface.raised}",
+      "$type": "color",
+      "$description": "Card background."
+    },
+    "border": {
+      "$value": "{color.border.muted}",
+      "$type": "color",
+      "$description": "Card outline; used by elevation='flat' cards and as a hairline under shadows."
+    },
+    "padding": {
+      "$value": "{space.6}",
+      "$type": "dimension",
+      "$description": "Internal padding of card header, body, and footer slots."
+    },
+    "gap": {
+      "$value": "{space.4}",
+      "$type": "dimension",
+      "$description": "Gap between stacked card slots (header/body/footer)."
+    },
+    "shadow": {
+      "$value": "{shadow.raised}",
+      "$type": "shadow",
+      "$description": "Shadow of elevation='raised' cards."
+    }
+  }
+}

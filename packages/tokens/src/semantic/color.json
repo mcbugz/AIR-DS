@@ -1,0 +1,175 @@
+{
+  "color": {
+    "$type": "color",
+    "surface": {
+      "default": {
+        "$value": "{palette.neutral.100}",
+        "$description": "Default page and application background; the base layer every view starts from."
+      },
+      "raised": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Background for content lifted above the page — cards, menus, popovers, dialogs. Pair with shadow.raised or shadow.overlay."
+      },
+      "sunken": {
+        "$value": "{palette.neutral.200}",
+        "$description": "Recessed background for wells, inset panels, code blocks, and zebra stripes that sit visually below the default surface."
+      },
+      "overlay": {
+        "$value": "{palette.neutral.900}",
+        "$description": "Base color for modal backdrops and scrims. Components apply their own opacity on top of this color; it is not a text background."
+      },
+      "inverse": {
+        "$value": "{palette.neutral.900}",
+        "$description": "High-contrast dark surface for inverted regions such as tooltips and dark banners. Pair text with color.text.inverse."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{palette.neutral.900}",
+        "$description": "Primary reading color for body copy and headings on default, raised, and sunken surfaces."
+      },
+      "secondary": {
+        "$value": "{palette.neutral.700}",
+        "$description": "Supporting text — descriptions, captions, secondary labels. Lower emphasis than primary while staying AA on all light surfaces."
+      },
+      "muted": {
+        "$value": "{palette.neutral.600}",
+        "$description": "De-emphasized text for placeholders, hints, and metadata. The lightest text color that remains AA on all light surfaces."
+      },
+      "inverse": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Text used on color.surface.inverse and other dark regions such as tooltips."
+      },
+      "link": {
+        "$value": "{palette.primary.700}",
+        "$description": "Inline hyperlink color; AA-checked on default, raised, and sunken surfaces."
+      },
+      "on-accent": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Text and icon color for accent-filled controls; AA-checked against color.accent.default and color.accent.emphasis."
+      }
+    },
+    "accent": {
+      "default": {
+        "$value": "{palette.primary.600}",
+        "$description": "Primary brand action color for filled controls, selection indicators, and key highlights; AA-checked against color.text.on-accent."
+      },
+      "emphasis": {
+        "$value": "{palette.primary.700}",
+        "$description": "Stronger accent for hover and active states of accent-filled controls; AA-checked against color.text.on-accent."
+      },
+      "muted": {
+        "$value": "{palette.primary.100}",
+        "$description": "Soft accent tint for selected-item backgrounds and subtle highlights. Never a text color."
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{palette.neutral.300}",
+        "$description": "Standard border for inputs, cards, and separators on light surfaces."
+      },
+      "muted": {
+        "$value": "{palette.neutral.200}",
+        "$description": "Hairline border for subtle separation — table rows, quiet card outlines."
+      },
+      "strong": {
+        "$value": "{palette.neutral.400}",
+        "$description": "Higher-contrast border for hovered inputs and emphasized boundaries."
+      },
+      "focus": {
+        "$value": "{palette.primary.600}",
+        "$description": "Focus-indicator border and outline color; used together with shadow.focus-ring."
+      }
+    },
+    "status": {
+      "info": {
+        "default": {
+          "$value": "{palette.info.600}",
+          "$description": "Informational status hue for icons and solid fills; AA-checked against color.text.inverse."
+        },
+        "emphasis": {
+          "$value": "{palette.info.700}",
+          "$description": "Stronger informational hue for hover/active states of solid info fills; AA-checked against color.text.inverse."
+        },
+        "surface": {
+          "$value": "{palette.info.50}",
+          "$description": "Tinted background for informational alerts and badges."
+        },
+        "border": {
+          "$value": "{palette.info.300}",
+          "$description": "Border for informational alerts and badges."
+        },
+        "text": {
+          "$value": "{palette.info.800}",
+          "$description": "Text on color.status.info.surface; the pair is AA-checked at build time."
+        }
+      },
+      "success": {
+        "default": {
+          "$value": "{palette.success.600}",
+          "$description": "Success status hue for icons and solid fills; AA-checked against color.text.inverse."
+        },
+        "emphasis": {
+          "$value": "{palette.success.700}",
+          "$description": "Stronger success hue for hover/active states of solid success fills; AA-checked against color.text.inverse."
+        },
+        "surface": {
+          "$value": "{palette.success.50}",
+          "$description": "Tinted background for success alerts and badges."
+        },
+        "border": {
+          "$value": "{palette.success.300}",
+          "$description": "Border for success alerts and badges."
+        },
+        "text": {
+          "$value": "{palette.success.800}",
+          "$description": "Text on color.status.success.surface; the pair is AA-checked at build time."
+        }
+      },
+      "warning": {
+        "default": {
+          "$value": "{palette.warning.600}",
+          "$description": "Warning status hue for icons and solid fills; AA-checked against color.text.inverse."
+        },
+        "emphasis": {
+          "$value": "{palette.warning.700}",
+          "$description": "Stronger warning hue for hover/active states of solid warning fills; AA-checked against color.text.inverse."
+        },
+        "surface": {
+          "$value": "{palette.warning.50}",
+          "$description": "Tinted background for warning alerts and badges."
+        },
+        "border": {
+          "$value": "{palette.warning.300}",
+          "$description": "Border for warning alerts and badges."
+        },
+        "text": {
+          "$value": "{palette.warning.800}",
+          "$description": "Text on color.status.warning.surface; the pair is AA-checked at build time."
+        }
+      },
+      "danger": {
+        "default": {
+          "$value": "{palette.danger.600}",
+          "$description": "Danger/destructive status hue for icons, solid fills, and destructive controls; AA-checked against color.text.inverse."
+        },
+        "emphasis": {
+          "$value": "{palette.danger.700}",
+          "$description": "Stronger danger hue for hover/active states of solid danger fills (e.g. danger Button hover); AA-checked against color.text.inverse."
+        },
+        "surface": {
+          "$value": "{palette.danger.50}",
+          "$description": "Tinted background for danger alerts and badges."
+        },
+        "border": {
+          "$value": "{palette.danger.300}",
+          "$description": "Border for danger alerts, badges, and invalid form fields."
+        },
+        "text": {
+          "$value": "{palette.danger.800}",
+          "$description": "Text on color.status.danger.surface and for inline error messages; the pair is AA-checked at build time."
+        }
+      }
+    }
+  }
+}

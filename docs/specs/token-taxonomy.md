@@ -19,7 +19,7 @@ States use the fixed vocabulary: `default | hover | active | focus | disabled | 
 | `color.text` | `primary`, `secondary`, `muted`, `inverse`, `link`, `on-accent` | foregrounds |
 | `color.accent` | `default`, `emphasis`, `muted` | brand action color, AA-checked vs `on-accent` |
 | `color.border` | `default`, `muted`, `strong`, `focus` | |
-| `color.status` | `info`, `success`, `warning`, `danger` (+ `-surface`, `-border`, `-text` sub-concepts) | each triple AA-checked |
+| `color.status` | `{info,success,warning,danger}.{default,emphasis,surface,border,text}` — nested; the strong hue is `.default` (DTCG forbids a group also being a token), `.emphasis` is the hover step for solid fills | surface/text triples AA-checked; `text.inverse` on `.default`/`.emphasis` AA-checked (solid-fill recipe) |
 | `font` | `family-sans`, `family-mono` | |
 | `text` | `size-{xs…3xl}`, `weight-{regular,medium,semibold,bold}`, `leading-{tight,normal,loose}` | modular scale from brand ramp |
 | `space` | `0`–`10` scale + `inset-{sm,md,lg}`, `gap-{sm,md,lg}` | 4px-base scale in brand tier |
@@ -28,7 +28,7 @@ States use the fixed vocabulary: `default | hover | active | focus | disabled | 
 | `shadow` | `raised`, `overlay`, `focus-ring` | elevation ramp from brand tier |
 | `motion` | `duration-{fast,normal,slow}`, `easing-{standard,enter,exit}` | |
 | `z` | `dropdown`, `sticky`, `overlay`, `toast`, `tooltip` | fixed ordering |
-| `size` | `control-{sm,md,lg}` | control heights |
+| `size` | `control-{sm,md,lg}`, `icon-{sm,md,lg}` | control heights; icon/indicator boxes. Space tokens are never sizes (NR-006) |
 
 ## Brand tier shape (`brands/*.json`)
 

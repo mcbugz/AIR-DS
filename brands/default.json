@@ -1,0 +1,123 @@
+{
+  "$description": "AIR-DS neutral core brand. Raw ramps only — no intent. The semantic tier in packages/tokens/src/semantic maps intent onto these ramp positions. A customer brand file replaces the values in this shape; it never changes semantic mappings.",
+  "palette": {
+    "$type": "color",
+    "neutral": {
+      "50": { "$value": "#f8fafc" },
+      "100": { "$value": "#f1f5f9" },
+      "200": { "$value": "#e2e8f0" },
+      "300": { "$value": "#cbd5e1" },
+      "400": { "$value": "#94a3b8" },
+      "500": { "$value": "#64748b" },
+      "600": { "$value": "#475569" },
+      "700": { "$value": "#334155" },
+      "800": { "$value": "#1e293b" },
+      "900": { "$value": "#0f172a" },
+      "950": { "$value": "#020617" }
+    },
+    "primary": {
+      "50": { "$value": "#eff6ff" },
+      "100": { "$value": "#dbeafe" },
+      "200": { "$value": "#bfdbfe" },
+      "300": { "$value": "#93c5fd" },
+      "400": { "$value": "#60a5fa" },
+      "500": { "$value": "#3b82f6" },
+      "600": { "$value": "#2563eb" },
+      "700": { "$value": "#1d4ed8" },
+      "800": { "$value": "#1e40af" },
+      "900": { "$value": "#1e3a8a" },
+      "950": { "$value": "#172554" }
+    },
+    "info": {
+      "50": { "$value": "#f0f9ff" },
+      "100": { "$value": "#e0f2fe" },
+      "200": { "$value": "#bae6fd" },
+      "300": { "$value": "#7dd3fc" },
+      "400": { "$value": "#38bdf8" },
+      "500": { "$value": "#0ea5e9" },
+      "600": { "$value": "#0273a8" },
+      "700": { "$value": "#0369a1" },
+      "800": { "$value": "#075985" },
+      "900": { "$value": "#0c4a6e" },
+      "950": { "$value": "#082f49" }
+    },
+    "success": {
+      "50": { "$value": "#f0fdf4" },
+      "100": { "$value": "#dcfce7" },
+      "200": { "$value": "#bbf7d0" },
+      "300": { "$value": "#86efac" },
+      "400": { "$value": "#4ade80" },
+      "500": { "$value": "#22c55e" },
+      "600": { "$value": "#0e8038" },
+      "700": { "$value": "#0d7034" },
+      "800": { "$value": "#166534" },
+      "900": { "$value": "#14532d" },
+      "950": { "$value": "#052e16" }
+    },
+    "warning": {
+      "50": { "$value": "#fffbeb" },
+      "100": { "$value": "#fef3c7" },
+      "200": { "$value": "#fde68a" },
+      "300": { "$value": "#fcd34d" },
+      "400": { "$value": "#fbbf24" },
+      "500": { "$value": "#f59e0b" },
+      "600": { "$value": "#b25607" },
+      "700": { "$value": "#a04d06" },
+      "800": { "$value": "#92400e" },
+      "900": { "$value": "#78350f" },
+      "950": { "$value": "#451a03" }
+    },
+    "danger": {
+      "50": { "$value": "#fef2f2" },
+      "100": { "$value": "#fee2e2" },
+      "200": { "$value": "#fecaca" },
+      "300": { "$value": "#fca5a5" },
+      "400": { "$value": "#f87171" },
+      "500": { "$value": "#ef4444" },
+      "600": { "$value": "#dc2626" },
+      "700": { "$value": "#b91c1c" },
+      "800": { "$value": "#991b1b" },
+      "900": { "$value": "#7f1d1d" },
+      "950": { "$value": "#450a0a" }
+    }
+  },
+  "typeface": {
+    "$type": "fontFamily",
+    "sans": { "$value": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" },
+    "mono": { "$value": "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" }
+  },
+  "type-scale": {
+    "$type": "number",
+    "base": { "$value": 16 },
+    "ratio": { "$value": 1.25 }
+  },
+  "radius-scale": {
+    "$type": "number",
+    "1": { "$value": 2 },
+    "2": { "$value": 4 },
+    "3": { "$value": 8 },
+    "4": { "$value": 12 },
+    "full": { "$value": 9999 }
+  },
+  "space-base": { "$value": 4, "$type": "number" },
+  "elevation": {
+    "$type": "shadow",
+    "1": { "$value": "0 1px 2px 0 rgb(2 6 23 / 0.06), 0 1px 3px 0 rgb(2 6 23 / 0.1)" },
+    "2": { "$value": "0 4px 6px -1px rgb(2 6 23 / 0.1), 0 2px 4px -2px rgb(2 6 23 / 0.1)" },
+    "3": { "$value": "0 10px 15px -3px rgb(2 6 23 / 0.1), 0 4px 6px -4px rgb(2 6 23 / 0.05)" }
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "fast": { "$value": "120ms" },
+      "normal": { "$value": "200ms" },
+      "slow": { "$value": "320ms" }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)" },
+      "enter": { "$value": "cubic-bezier(0, 0, 0.2, 1)" },
+      "exit": { "$value": "cubic-bezier(0.4, 0, 1, 1)" }
+    }
+  }
+}

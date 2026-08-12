@@ -1,0 +1,25 @@
+{
+  "z": {
+    "$type": "number",
+    "dropdown": {
+      "$value": 1000,
+      "$description": "Stacking layer for dropdown and select popovers. Fixed ordering: dropdown < sticky < overlay < toast < tooltip."
+    },
+    "sticky": {
+      "$value": 1100,
+      "$description": "Stacking layer for sticky headers and pinned UI. Fixed ordering: dropdown < sticky < overlay < toast < tooltip."
+    },
+    "overlay": {
+      "$value": 1200,
+      "$description": "Stacking layer for modal dialogs and their backdrops. Fixed ordering: dropdown < sticky < overlay < toast < tooltip."
+    },
+    "toast": {
+      "$value": 1300,
+      "$description": "Stacking layer for toasts and transient notifications. Fixed ordering: dropdown < sticky < overlay < toast < tooltip."
+    },
+    "tooltip": {
+      "$value": 1400,
+      "$description": "Topmost stacking layer, for tooltips. Fixed ordering: dropdown < sticky < overlay < toast < tooltip."
+    }
+  }
+}

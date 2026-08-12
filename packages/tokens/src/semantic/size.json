@@ -1,0 +1,33 @@
+{
+  "size": {
+    "$type": "dimension",
+    "control": {
+      "sm": {
+        "$value": "{derived.space.7}",
+        "$description": "Height of small interactive controls: compact buttons, inputs, and selects (8x the brand space base)."
+      },
+      "md": {
+        "$value": "{derived.space.8}",
+        "$description": "Default height of interactive controls: buttons, inputs, and selects (10x the brand space base)."
+      },
+      "lg": {
+        "$value": "{derived.space.9}",
+        "$description": "Height of large interactive controls for prominent actions (12x the brand space base)."
+      }
+    },
+    "icon": {
+      "sm": {
+        "$value": "{derived.space.4}",
+        "$description": "Icon and spinner size inside compact controls and dense UI (4x the brand space base). Use this — never a space token — to size an element."
+      },
+      "md": {
+        "$value": "{derived.space.5}",
+        "$description": "Default icon and spinner size alongside body text and inside md controls (5x the brand space base). Use this — never a space token — to size an element."
+      },
+      "lg": {
+        "$value": "{derived.space.6}",
+        "$description": "Icon and spinner size for prominent controls, empty states, and alerts (6x the brand space base). Use this — never a space token — to size an element."
+      }
+    }
+  }
+}

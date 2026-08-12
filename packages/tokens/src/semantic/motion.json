@@ -1,0 +1,34 @@
+{
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "fast": {
+        "$value": "{motion.duration.fast}",
+        "$description": "Micro-interactions: hovers, toggles, small fades."
+      },
+      "normal": {
+        "$value": "{motion.duration.normal}",
+        "$description": "Default duration for most transitions: dropdowns, tooltips, tab switches."
+      },
+      "slow": {
+        "$value": "{motion.duration.slow}",
+        "$description": "Large-surface transitions: dialogs, drawers, page-level changes."
+      }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "standard": {
+        "$value": "{motion.easing.standard}",
+        "$description": "Default easing for on-screen state changes; starts and ends gently."
+      },
+      "enter": {
+        "$value": "{motion.easing.enter}",
+        "$description": "Decelerating easing for elements entering the screen."
+      },
+      "exit": {
+        "$value": "{motion.easing.exit}",
+        "$description": "Accelerating easing for elements leaving the screen."
+      }
+    }
+  }
+}
