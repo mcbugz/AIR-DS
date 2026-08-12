@@ -1,0 +1,36 @@
+{
+  "$schema": "ds-ingest/intake.v1",
+  "name": "acme",
+  "displayName": "Acme Industrial Systems",
+  "palette": {
+    "neutral": "#78716c",
+    "primary": "#1a6b47",
+    "warning": "#d97706"
+  },
+  "typefaces": {
+    "sans": "'Archivo', 'Helvetica Neue', Arial, sans-serif",
+    "mono": "'IBM Plex Mono', ui-monospace, Menlo, monospace"
+  },
+  "typeScale": {
+    "base": 15,
+    "ratio": 1.2
+  },
+  "radiusScale": {
+    "1": 2,
+    "2": 6,
+    "3": 10,
+    "4": 16,
+    "full": 9999
+  },
+  "spaceBase": 4,
+  "elevation": "subtle",
+  "assets": {
+    "logoLight": "assets/acme/logo-light.svg",
+    "logoDark": "assets/acme/logo-dark.svg",
+    "favicon": "assets/acme/favicon.svg"
+  },
+  "distribution": {
+    "publicDocs": false,
+    "npmScope": "@acme-ds"
+  }
+}

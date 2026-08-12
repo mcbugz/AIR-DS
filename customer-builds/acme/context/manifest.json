@@ -1,0 +1,400 @@
+{
+  "$description": "GENERATED manifest for the @ds/context agent-context bundle — every emitted file with its sha256, plus the source inputs it was compiled from. Do not edit.",
+  "brand": "acme",
+  "generatedAt": "2026-08-12T21:59:05.111Z",
+  "compiler": "@ds/context@0.1.0",
+  "sourceHash": "sha256:fcc3ffed04bcf2e3521a211a0d716c34f70c2ddaddf96580669e7d661ba4a05f",
+  "budgets": {
+    "indexMaxTokens": 2000,
+    "sliceMaxTokens": 25000
+  },
+  "inputs": [
+    {
+      "path": ".claude/agents/ds-auditor.md",
+      "sha256": "4c1ce43a584eac4132ac73b3f311f89627bcabe0e780bf04766e434980ddc0eb"
+    },
+    {
+      "path": "brands/acme.json",
+      "sha256": "70cae01e8d2b3b8c62c9d421e4f1709067ed880aef015643abc89f0a9ebbf3f5"
+    },
+    {
+      "path": "docs/specs/negative-rules.md",
+      "sha256": "45331e86bf9e7a4d4d11e9f45e88a334db7642f1128bad9395f78ff521e441fa"
+    },
+    {
+      "path": "packages/react/CONTRIBUTING-COMPONENT.md",
+      "sha256": "2e6a06aaeb8bf9e1ad1914e56519f531735f6c5ebe7210d885103a09fa79b1be"
+    },
+    {
+      "path": "packages/react/src/components/Alert/Alert.stories.tsx",
+      "sha256": "9d98a788c5a2054a33cf73f02da31dddcc1514cdb567f3507a395fac68425d81"
+    },
+    {
+      "path": "packages/react/src/components/Badge/Badge.stories.tsx",
+      "sha256": "afdaccddb1deae46ecb074640e937546034f914e731ba2fb3f7c099a35bd1c52"
+    },
+    {
+      "path": "packages/react/src/components/Button/Button.stories.tsx",
+      "sha256": "7bd98510ebfe5f369563f8d1727fbe4e6e3e51358ce0292587f314c121f09c21"
+    },
+    {
+      "path": "packages/react/src/components/Card/Card.stories.tsx",
+      "sha256": "99111a013000ef9bcb1ec485bed4042b42319ff5a3d0079305331489b7fac9d5"
+    },
+    {
+      "path": "packages/react/src/components/Checkbox/Checkbox.stories.tsx",
+      "sha256": "1b9471623b3f6aba4fa0c8e7c66f00b1aa88c467b1c0bc976acc53ad583c9f07"
+    },
+    {
+      "path": "packages/react/src/components/Dialog/Dialog.stories.tsx",
+      "sha256": "c275a1fc731c563ec41f20d197f5324abc60c5bd78f4549afe1cbe34da224bf9"
+    },
+    {
+      "path": "packages/react/src/components/IconButton/IconButton.stories.tsx",
+      "sha256": "6186bc36b05cb88e52fdc67aff9975d6929082578b1e43e9e435a8d66a50b79c"
+    },
+    {
+      "path": "packages/react/src/components/RadioGroup/RadioGroup.stories.tsx",
+      "sha256": "cc803e37ccc1a712d36a12eb4b0472ea942d3353dfaabc8a16c3538941a51d6b"
+    },
+    {
+      "path": "packages/react/src/components/Select/Select.stories.tsx",
+      "sha256": "5427617577c6424f9748460d5856d3bcbc5f87641b1f11aa856b22fb41bc30d9"
+    },
+    {
+      "path": "packages/react/src/components/Switch/Switch.stories.tsx",
+      "sha256": "b5b125561d88a6ac88a11b3c99d13751128fcc23875ba8bdd35a8588a5a7f64e"
+    },
+    {
+      "path": "packages/react/src/components/Tabs/Tabs.stories.tsx",
+      "sha256": "e258c43473c8f78025880ebfefae640e60295c5c9656854701f101e1a5235e88"
+    },
+    {
+      "path": "packages/react/src/components/TextArea/TextArea.stories.tsx",
+      "sha256": "ff6b0d4eed36b63a43a9c831e471147d0ad4f5a43f34d02807189c6dbd5afa00"
+    },
+    {
+      "path": "packages/react/src/components/TextField/TextField.stories.tsx",
+      "sha256": "bd960b1324304e6633a777045d3b0c4d27a4c2b63f90d4106e230a39d09765df"
+    },
+    {
+      "path": "packages/react/src/components/Tooltip/Tooltip.stories.tsx",
+      "sha256": "fa7b6adff6eb143ef7b542121f1ad56a2c83b03e0b73abd5de81daebd62c6375"
+    },
+    {
+      "path": "registries/components-index.json",
+      "sha256": "b08626f5af7a2990c2ffe88c7315bb78b55422b40fbf6adf88011f77e63fd77c"
+    },
+    {
+      "path": "registries/contrast-report.json",
+      "sha256": "5931a2832e8fc5a77f8cf48a55179f3e290eba5f06d3038705037beb85acccf2"
+    },
+    {
+      "path": "registries/tokens-index.json",
+      "sha256": "05e7eeb7356b3e8bb664ad0e8d3dca8e884a63a95bb64784a6f7580c424d068a"
+    }
+  ],
+  "files": [
+    {
+      "path": ".well-known/skills/index.json",
+      "sha256": "0579a4c5fc12cb74eae408ee9e9df75f6f745f6aff54b5e8be3d52d8257a9269",
+      "bytes": 1571,
+      "estTokens": 392
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "4fa3481b1df36a757d9e9477fb8a7e11c38c07392a56d56d512ac92c69a4bdf2",
+      "bytes": 1706,
+      "estTokens": 425
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "4fa3481b1df36a757d9e9477fb8a7e11c38c07392a56d56d512ac92c69a4bdf2",
+      "bytes": 1706,
+      "estTokens": 425
+    },
+    {
+      "path": "agents/ds-auditor.md",
+      "sha256": "d65e523c6998bb29aa519bf8b6b54e50c0af322f53c20f4ff01c308d172fbded",
+      "bytes": 6218,
+      "estTokens": 1547
+    },
+    {
+      "path": "docs/Alert.md",
+      "sha256": "80e56a6b0ec3b3aec0d3e1b7d0f23561b3830e5b0ba8fedf1780e1230d07b69f",
+      "bytes": 2723,
+      "estTokens": 675
+    },
+    {
+      "path": "docs/Badge.md",
+      "sha256": "212b2cbca96c9690cec68737dafca571b132dd878f58c2545772ba56dd9d1350",
+      "bytes": 1822,
+      "estTokens": 453
+    },
+    {
+      "path": "docs/Button.md",
+      "sha256": "d4e7caddae07fd6c1dcd970655ae95c032258c5cd1862a7f198b9db80963ffae",
+      "bytes": 2760,
+      "estTokens": 687
+    },
+    {
+      "path": "docs/Card.md",
+      "sha256": "707f197542b918df9ce1550b95ab6f41bb630d98e5be7f87e1f7376162c81f85",
+      "bytes": 1862,
+      "estTokens": 463
+    },
+    {
+      "path": "docs/CardBody.md",
+      "sha256": "4e41fc0a396d88e6c1092e371b51bd60f05224a633b2bcd7b800a6492a4bfe4c",
+      "bytes": 1242,
+      "estTokens": 309
+    },
+    {
+      "path": "docs/CardFooter.md",
+      "sha256": "b1a29d2e2485be20a01245b766c9be6daba4f35ace1e1955053517b337c29e7f",
+      "bytes": 1361,
+      "estTokens": 339
+    },
+    {
+      "path": "docs/CardHeader.md",
+      "sha256": "8d4698d9a63129d3eabbaacb9234b5a6de66825aab6bf4f10830c3eb406a61d2",
+      "bytes": 1332,
+      "estTokens": 331
+    },
+    {
+      "path": "docs/Checkbox.md",
+      "sha256": "e17f5442d67c9668ae911ddcb4ab3f1a7ec5d166e1b0bad3a24ca3ae23d51f3a",
+      "bytes": 3451,
+      "estTokens": 857
+    },
+    {
+      "path": "docs/Dialog.md",
+      "sha256": "f0e5d09a9562dc3c025ed4d83564ae629b2a78f4ad73f3f25ac0e9fb84cfd664",
+      "bytes": 3506,
+      "estTokens": 871
+    },
+    {
+      "path": "docs/IconButton.md",
+      "sha256": "93de374417656d86d5d7e42bf77921ada8a5114869b15ac491408369a450e12b",
+      "bytes": 3536,
+      "estTokens": 880
+    },
+    {
+      "path": "docs/Radio.md",
+      "sha256": "4ed1d443851a4fd9db1debf018b10eb28d087a818122df34b6708de965f6bf4f",
+      "bytes": 2304,
+      "estTokens": 573
+    },
+    {
+      "path": "docs/RadioGroup.md",
+      "sha256": "17f17887932f105e0117811fc75bbad657ec904dc6d64af20b3ff4ecfbf72da0",
+      "bytes": 3363,
+      "estTokens": 837
+    },
+    {
+      "path": "docs/Select.md",
+      "sha256": "fd2540a30b8c0840df86c61eec7034d943f7d73eee85f64505639f593b720c2e",
+      "bytes": 4274,
+      "estTokens": 1062
+    },
+    {
+      "path": "docs/Switch.md",
+      "sha256": "4836362a761b1182e20c2df6a317c0f1bd39b7e813868b375423dbd8519db870",
+      "bytes": 2844,
+      "estTokens": 706
+    },
+    {
+      "path": "docs/Tab.md",
+      "sha256": "23a8d249300a9ebc4e429551150fe38fff971cde65089a3ccf6b6a00354d58e3",
+      "bytes": 1869,
+      "estTokens": 465
+    },
+    {
+      "path": "docs/TabList.md",
+      "sha256": "089fbbdb98e9366c8fa611b036c55e737b1fee80f45ab1cfe0538c468c7e1b82",
+      "bytes": 1910,
+      "estTokens": 475
+    },
+    {
+      "path": "docs/TabPanel.md",
+      "sha256": "ec4a9442491d3005902ccc3b8cbb22d7e0e71000060a85d73eb7dfbb24acac78",
+      "bytes": 1927,
+      "estTokens": 479
+    },
+    {
+      "path": "docs/Tabs.md",
+      "sha256": "47354a04cd4469ad4e417bfc34459f8bb33680442a5832a31458cae3d9b1bc7c",
+      "bytes": 2303,
+      "estTokens": 574
+    },
+    {
+      "path": "docs/TextArea.md",
+      "sha256": "af61a5dbe2b30d4c455858d0677e9a266ffdc5db2249547d01711b6aed17a353",
+      "bytes": 3385,
+      "estTokens": 841
+    },
+    {
+      "path": "docs/TextField.md",
+      "sha256": "a753399630def46bd7a1fffb661979c46dbdd1e8aa70613cf73b47510849f3f9",
+      "bytes": 3352,
+      "estTokens": 833
+    },
+    {
+      "path": "docs/Tooltip.md",
+      "sha256": "87028fe07dbb37ff1e54f6458aca95d3ffd0eea3d6a654ee993084a67aceea63",
+      "bytes": 3429,
+      "estTokens": 853
+    },
+    {
+      "path": "docs/tokens.md",
+      "sha256": "b2d63bd8cd61cb45c1546800025169f4c120bdb225ce19566b30fb5969cf9424",
+      "bytes": 32153,
+      "estTokens": 8033
+    },
+    {
+      "path": "editor/claude/CLAUDE.md",
+      "sha256": "bf7e7b9a1ba6ab11cc1e1ed0b616ae5640454e34d96f27f4f7ce47134e53d540",
+      "bytes": 4496,
+      "estTokens": 1118
+    },
+    {
+      "path": "editor/copilot/.github/copilot-instructions.md",
+      "sha256": "e20e021f7efea9f15ced2869a13e159cafd1b14fb6ee0113b4b772f613d5f7ae",
+      "bytes": 4491,
+      "estTokens": 1117
+    },
+    {
+      "path": "editor/cursor/.cursor/rules/ds.mdc",
+      "sha256": "9ff48c68203c4d77b3302fb636844472b9f3385b50c9a0a9f032b6a97e4d25d0",
+      "bytes": 4594,
+      "estTokens": 1142
+    },
+    {
+      "path": "llms-components.txt",
+      "sha256": "8dff5d837db53c9c1be682e81cf162a6cbecac302476f35c9609c8d78c88d3c4",
+      "bytes": 39522,
+      "estTokens": 9832
+    },
+    {
+      "path": "llms-full.txt",
+      "sha256": "2571791f0de134df3b7ceddcaa683bb38b99e73c4251e76821286d55fac55963",
+      "bytes": 81449,
+      "estTokens": 20286
+    },
+    {
+      "path": "llms-migration.txt",
+      "sha256": "057cab639c7e83ccccb46c519ac0de63a9ceb5a7e55ee504f9573f85107945f5",
+      "bytes": 5483,
+      "estTokens": 1364
+    },
+    {
+      "path": "llms-theming.txt",
+      "sha256": "af1ba86905030c3badd75099ee52b8e798eb49821485c48d9bb58f41fce73fbf",
+      "bytes": 3373,
+      "estTokens": 832
+    },
+    {
+      "path": "llms-tokens.txt",
+      "sha256": "a56592e24a1d60839844365ef8198bb44c1d208b92a497d0834db4716aaf82e9",
+      "bytes": 32783,
+      "estTokens": 8189
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "a5a1c1da17805d1b8bb5e152caa1ac965152ec5e9885dc837e8e051f14a0f614",
+      "bytes": 2701,
+      "estTokens": 671
+    },
+    {
+      "path": "registries/components-index.json",
+      "sha256": "b08626f5af7a2990c2ffe88c7315bb78b55422b40fbf6adf88011f77e63fd77c",
+      "bytes": 44008,
+      "estTokens": 10992
+    },
+    {
+      "path": "registries/contrast-report.json",
+      "sha256": "5931a2832e8fc5a77f8cf48a55179f3e290eba5f06d3038705037beb85acccf2",
+      "bytes": 6560,
+      "estTokens": 1640
+    },
+    {
+      "path": "registries/tokens-index.json",
+      "sha256": "05e7eeb7356b3e8bb664ad0e8d3dca8e884a63a95bb64784a6f7580c424d068a",
+      "bytes": 58800,
+      "estTokens": 14696
+    },
+    {
+      "path": "skills/audit-a11y/SKILL.md",
+      "sha256": "509a1127ad8e993c04c11ea70de1ab34d6672ebdef345c83e16d0148c677372e",
+      "bytes": 1494,
+      "estTokens": 372
+    },
+    {
+      "path": "skills/audit-a11y/references/contrast-pairs.md",
+      "sha256": "fde5ff4db6c6093cb617cae9b3071e7cc98aac2dbd95ef771b2bb99a94d4f2e9",
+      "bytes": 2233,
+      "estTokens": 558
+    },
+    {
+      "path": "skills/build-screen/SKILL.md",
+      "sha256": "fd39f7decf9fd4b63452c90b854239127f2bddcf9f36c7cfaab65f2d9a21a01c",
+      "bytes": 1781,
+      "estTokens": 441
+    },
+    {
+      "path": "skills/build-screen/references/checklist.md",
+      "sha256": "b20dc22b9e5e2d7f2bde71b4cde1428259374bb4fa2cd3b26caf96f195ffba99",
+      "bytes": 912,
+      "estTokens": 227
+    },
+    {
+      "path": "skills/contribute-component/SKILL.md",
+      "sha256": "8f1f59e71ee81fd9474330b42fd9cf47b37c92e47d2e4e1af6f0721ebeccacff",
+      "bytes": 1600,
+      "estTokens": 399
+    },
+    {
+      "path": "skills/contribute-component/references/contributing.md",
+      "sha256": "aefd7b1ee0acf50c590e5942d0fe801f457031394338254654440ccec7f8d998",
+      "bytes": 7871,
+      "estTokens": 1958
+    },
+    {
+      "path": "skills/migrate/SKILL.md",
+      "sha256": "e14b25a2d25885079d910df1b65e25239284e7ced2df8ad0e4d5ccdf86d5bd35",
+      "bytes": 1163,
+      "estTokens": 288
+    },
+    {
+      "path": "skills/migrate/references/migration-map.md",
+      "sha256": "4a47fe8b9e0920bf2fc0abde066e4925bfac6c3d43ee472b57314875237df9fe",
+      "bytes": 3972,
+      "estTokens": 991
+    },
+    {
+      "path": "skills/use-system/SKILL.md",
+      "sha256": "f575e5650d85742ef039598b08edc9b2caa0a4ec6b6c76909fb3e7eaee716345",
+      "bytes": 5076,
+      "estTokens": 1263
+    },
+    {
+      "path": "skills/use-system/references/components.md",
+      "sha256": "e8af08e831f653e108d1e1b9460a28297491b912ed8322ee6c886bf6fbd8ee4a",
+      "bytes": 3366,
+      "estTokens": 830
+    },
+    {
+      "path": "skills/use-system/references/negative-rules.md",
+      "sha256": "d180f6be4ff3735c0ea173059386f9d2c74645f004865328d27fc16a312c8bae",
+      "bytes": 3220,
+      "estTokens": 802
+    },
+    {
+      "path": "skills/use-system/references/tokens.md",
+      "sha256": "cf3d760ce6ce98fe67c89f448e793ad538e84b77efc9a7b9a8c2c0aded293e2a",
+      "bytes": 2231,
+      "estTokens": 543
+    }
+  ],
+  "warnings": []
+}

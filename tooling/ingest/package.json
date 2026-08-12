@@ -1,0 +1,29 @@
+{
+  "name": "@ds/ingest",
+  "version": "0.1.0",
+  "description": "Brand ingest pipeline: customer intake -> validated brand-tier file (deterministic OKLCH ramps, WCAG AA pre-checked) -> isolated tokens/context builds -> customer-builds/<name>/ publish bundle.",
+  "type": "module",
+  "bin": {
+    "ds-ingest": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/ingest lint: no-op placeholder'"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

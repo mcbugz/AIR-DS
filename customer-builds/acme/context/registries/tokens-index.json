@@ -1,0 +1,1839 @@
+{
+  "$description": "GENERATED closed-world token contract. Every public design token is enumerated here; a token not in this file is provably fabricated.",
+  "brand": "brands/acme.json",
+  "count": 229,
+  "tokens": [
+    {
+      "name": "border.width.1",
+      "cssVar": "--ds-border-width-1",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Standard border width for inputs, cards, and separators.",
+      "value": "1px"
+    },
+    {
+      "name": "border.width.2",
+      "cssVar": "--ds-border-width-2",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Emphasized border width for focus indicators and selected states.",
+      "value": "2px"
+    },
+    {
+      "name": "color.accent.default",
+      "cssVar": "--ds-color-accent-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Primary brand action color for filled controls, selection indicators, and key highlights; AA-checked against color.text.on-accent.",
+      "value": "#28825a"
+    },
+    {
+      "name": "color.accent.emphasis",
+      "cssVar": "--ds-color-accent-emphasis",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Stronger accent for hover and active states of accent-filled controls; AA-checked against color.text.on-accent.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "color.accent.muted",
+      "cssVar": "--ds-color-accent-muted",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Soft accent tint for selected-item backgrounds and subtle highlights. Never a text color.",
+      "value": "#e7f9ee"
+    },
+    {
+      "name": "color.border.default",
+      "cssVar": "--ds-color-border-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Standard border for inputs, cards, and separators on light surfaces.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "color.border.focus",
+      "cssVar": "--ds-color-border-focus",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Focus-indicator border and outline color; used together with shadow.focus-ring.",
+      "value": "#28825a"
+    },
+    {
+      "name": "color.border.muted",
+      "cssVar": "--ds-color-border-muted",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Hairline border for subtle separation — table rows, quiet card outlines.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "color.border.strong",
+      "cssVar": "--ds-color-border-strong",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Higher-contrast border for hovered inputs and emphasized boundaries.",
+      "value": "#a8a09b"
+    },
+    {
+      "name": "color.status.danger.border",
+      "cssVar": "--ds-color-status-danger-border",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Border for danger alerts, badges, and invalid form fields.",
+      "value": "#fca5a5"
+    },
+    {
+      "name": "color.status.danger.default",
+      "cssVar": "--ds-color-status-danger-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Danger/destructive status hue for icons, solid fills, and destructive controls; AA-checked against color.text.inverse.",
+      "value": "#dc2626"
+    },
+    {
+      "name": "color.status.danger.emphasis",
+      "cssVar": "--ds-color-status-danger-emphasis",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Stronger danger hue for hover/active states of solid danger fills (e.g. danger Button hover); AA-checked against color.text.inverse.",
+      "value": "#b91c1c"
+    },
+    {
+      "name": "color.status.danger.surface",
+      "cssVar": "--ds-color-status-danger-surface",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Tinted background for danger alerts and badges.",
+      "value": "#fef2f2"
+    },
+    {
+      "name": "color.status.danger.text",
+      "cssVar": "--ds-color-status-danger-text",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text on color.status.danger.surface and for inline error messages; the pair is AA-checked at build time.",
+      "value": "#991b1b"
+    },
+    {
+      "name": "color.status.info.border",
+      "cssVar": "--ds-color-status-info-border",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Border for informational alerts and badges.",
+      "value": "#7dd3fc"
+    },
+    {
+      "name": "color.status.info.default",
+      "cssVar": "--ds-color-status-info-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Informational status hue for icons and solid fills; AA-checked against color.text.inverse.",
+      "value": "#0273a8"
+    },
+    {
+      "name": "color.status.info.emphasis",
+      "cssVar": "--ds-color-status-info-emphasis",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Stronger informational hue for hover/active states of solid info fills; AA-checked against color.text.inverse.",
+      "value": "#0369a1"
+    },
+    {
+      "name": "color.status.info.surface",
+      "cssVar": "--ds-color-status-info-surface",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Tinted background for informational alerts and badges.",
+      "value": "#f0f9ff"
+    },
+    {
+      "name": "color.status.info.text",
+      "cssVar": "--ds-color-status-info-text",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text on color.status.info.surface; the pair is AA-checked at build time.",
+      "value": "#075985"
+    },
+    {
+      "name": "color.status.success.border",
+      "cssVar": "--ds-color-status-success-border",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Border for success alerts and badges.",
+      "value": "#86efac"
+    },
+    {
+      "name": "color.status.success.default",
+      "cssVar": "--ds-color-status-success-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Success status hue for icons and solid fills; AA-checked against color.text.inverse.",
+      "value": "#0e8038"
+    },
+    {
+      "name": "color.status.success.emphasis",
+      "cssVar": "--ds-color-status-success-emphasis",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Stronger success hue for hover/active states of solid success fills; AA-checked against color.text.inverse.",
+      "value": "#0d7034"
+    },
+    {
+      "name": "color.status.success.surface",
+      "cssVar": "--ds-color-status-success-surface",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Tinted background for success alerts and badges.",
+      "value": "#f0fdf4"
+    },
+    {
+      "name": "color.status.success.text",
+      "cssVar": "--ds-color-status-success-text",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text on color.status.success.surface; the pair is AA-checked at build time.",
+      "value": "#166534"
+    },
+    {
+      "name": "color.status.warning.border",
+      "cssVar": "--ds-color-status-warning-border",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Border for warning alerts and badges.",
+      "value": "#ffc79d"
+    },
+    {
+      "name": "color.status.warning.default",
+      "cssVar": "--ds-color-status-warning-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Warning status hue for icons and solid fills; AA-checked against color.text.inverse.",
+      "value": "#a85a00"
+    },
+    {
+      "name": "color.status.warning.emphasis",
+      "cssVar": "--ds-color-status-warning-emphasis",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Stronger warning hue for hover/active states of solid warning fills; AA-checked against color.text.inverse.",
+      "value": "#8c4a00"
+    },
+    {
+      "name": "color.status.warning.surface",
+      "cssVar": "--ds-color-status-warning-surface",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Tinted background for warning alerts and badges.",
+      "value": "#fff9f4"
+    },
+    {
+      "name": "color.status.warning.text",
+      "cssVar": "--ds-color-status-warning-text",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text on color.status.warning.surface; the pair is AA-checked at build time.",
+      "value": "#703a00"
+    },
+    {
+      "name": "color.surface.default",
+      "cssVar": "--ds-color-surface-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Default page and application background; the base layer every view starts from.",
+      "value": "#f9f3ef"
+    },
+    {
+      "name": "color.surface.inverse",
+      "cssVar": "--ds-color-surface-inverse",
+      "tier": "semantic",
+      "type": "color",
+      "description": "High-contrast dark surface for inverted regions such as tooltips and dark banners. Pair text with color.text.inverse.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "color.surface.overlay",
+      "cssVar": "--ds-color-surface-overlay",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Base color for modal backdrops and scrims. Components apply their own opacity on top of this color; it is not a text background.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "color.surface.raised",
+      "cssVar": "--ds-color-surface-raised",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Background for content lifted above the page — cards, menus, popovers, dialogs. Pair with shadow.raised or shadow.overlay.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "color.surface.sunken",
+      "cssVar": "--ds-color-surface-sunken",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Recessed background for wells, inset panels, code blocks, and zebra stripes that sit visually below the default surface.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "color.surface.sunken-hover",
+      "cssVar": "--ds-color-surface-sunken-hover",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Hover/pressed step for interactive sunken surfaces, e.g. the Switch off-state track under the pointer. One ramp step darker than color.surface.sunken; not a text background.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "color.text.inverse",
+      "cssVar": "--ds-color-text-inverse",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text used on color.surface.inverse and other dark regions such as tooltips.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "color.text.link",
+      "cssVar": "--ds-color-text-link",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Inline hyperlink color; AA-checked on default, raised, and sunken surfaces.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "color.text.muted",
+      "cssVar": "--ds-color-text-muted",
+      "tier": "semantic",
+      "type": "color",
+      "description": "De-emphasized text for placeholders, hints, and metadata. The lightest text color that remains AA on all light surfaces.",
+      "value": "#59534e"
+    },
+    {
+      "name": "color.text.on-accent",
+      "cssVar": "--ds-color-text-on-accent",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Text and icon color for accent-filled controls; AA-checked against color.accent.default and color.accent.emphasis.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "color.text.primary",
+      "cssVar": "--ds-color-text-primary",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Primary reading color for body copy and headings on default, raised, and sunken surfaces.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "color.text.secondary",
+      "cssVar": "--ds-color-text-secondary",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Supporting text — descriptions, captions, secondary labels. Lower emphasis than primary while staying AA on all light surfaces.",
+      "value": "#453f3a"
+    },
+    {
+      "name": "font.family.mono",
+      "cssVar": "--ds-font-family-mono",
+      "tier": "semantic",
+      "type": "fontFamily",
+      "description": "Monospace stack for code, tabular numbers, and technical identifiers.",
+      "value": "'IBM Plex Mono', ui-monospace, Menlo, monospace"
+    },
+    {
+      "name": "font.family.sans",
+      "cssVar": "--ds-font-family-sans",
+      "tier": "semantic",
+      "type": "fontFamily",
+      "description": "Default typeface stack for all UI text and body copy.",
+      "value": "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    },
+    {
+      "name": "motion.duration.fast",
+      "cssVar": "--ds-motion-duration-fast",
+      "tier": "semantic",
+      "type": "duration",
+      "description": "Micro-interactions: hovers, toggles, small fades.",
+      "value": "120ms"
+    },
+    {
+      "name": "motion.duration.normal",
+      "cssVar": "--ds-motion-duration-normal",
+      "tier": "semantic",
+      "type": "duration",
+      "description": "Default duration for most transitions: dropdowns, tooltips, tab switches.",
+      "value": "200ms"
+    },
+    {
+      "name": "motion.duration.slow",
+      "cssVar": "--ds-motion-duration-slow",
+      "tier": "semantic",
+      "type": "duration",
+      "description": "Large-surface transitions: dialogs, drawers, page-level changes.",
+      "value": "320ms"
+    },
+    {
+      "name": "motion.easing.enter",
+      "cssVar": "--ds-motion-easing-enter",
+      "tier": "semantic",
+      "type": "cubicBezier",
+      "description": "Decelerating easing for elements entering the screen.",
+      "value": "cubic-bezier(0, 0, 0.2, 1)"
+    },
+    {
+      "name": "motion.easing.exit",
+      "cssVar": "--ds-motion-easing-exit",
+      "tier": "semantic",
+      "type": "cubicBezier",
+      "description": "Accelerating easing for elements leaving the screen.",
+      "value": "cubic-bezier(0.4, 0, 1, 1)"
+    },
+    {
+      "name": "motion.easing.standard",
+      "cssVar": "--ds-motion-easing-standard",
+      "tier": "semantic",
+      "type": "cubicBezier",
+      "description": "Default easing for on-screen state changes; starts and ends gently.",
+      "value": "cubic-bezier(0.2, 0, 0, 1)"
+    },
+    {
+      "name": "radius.full",
+      "cssVar": "--ds-radius-full",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Fully rounded corners for pills, badges, and circular controls.",
+      "value": "9999px"
+    },
+    {
+      "name": "radius.lg",
+      "cssVar": "--ds-radius-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Large corner radius for cards, dialogs, and prominent containers.",
+      "value": "16px"
+    },
+    {
+      "name": "radius.md",
+      "cssVar": "--ds-radius-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Default corner radius for buttons, alerts, and mid-size containers.",
+      "value": "10px"
+    },
+    {
+      "name": "radius.sm",
+      "cssVar": "--ds-radius-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Small corner radius for compact controls: inputs, checkboxes, tooltips.",
+      "value": "6px"
+    },
+    {
+      "name": "shadow.focus-ring",
+      "cssVar": "--ds-shadow-focus-ring",
+      "tier": "semantic",
+      "type": "shadow",
+      "description": "Focus ring rendered as a box-shadow halo in a light accent tint; combine with color.border.focus on the element edge.",
+      "value": "0 0 0 3px #cff0dc"
+    },
+    {
+      "name": "shadow.overlay",
+      "cssVar": "--ds-shadow-overlay",
+      "tier": "semantic",
+      "type": "shadow",
+      "description": "Highest elevation for dialogs and overlays that block the page.",
+      "value": "0 6px 10px -2px rgb(10 6 4 / 0.08), 0 3px 5px -3px rgb(10 6 4 / 0.05)"
+    },
+    {
+      "name": "shadow.raised",
+      "cssVar": "--ds-shadow-raised",
+      "tier": "semantic",
+      "type": "shadow",
+      "description": "Low elevation for content raised above the page: cards, menus, popovers. Pair with color.surface.raised.",
+      "value": "0 1px 2px 0 rgb(10 6 4 / 0.05)"
+    },
+    {
+      "name": "size.control.lg",
+      "cssVar": "--ds-size-control-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Height of large interactive controls for prominent actions (12x the brand space base).",
+      "value": "48px"
+    },
+    {
+      "name": "size.control.md",
+      "cssVar": "--ds-size-control-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Default height of interactive controls: buttons, inputs, and selects (10x the brand space base).",
+      "value": "40px"
+    },
+    {
+      "name": "size.control.sm",
+      "cssVar": "--ds-size-control-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Height of small interactive controls: compact buttons, inputs, and selects (8x the brand space base).",
+      "value": "32px"
+    },
+    {
+      "name": "size.icon.lg",
+      "cssVar": "--ds-size-icon-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Icon and spinner size for prominent controls, empty states, and alerts (6x the brand space base). Use this — never a space token — to size an element.",
+      "value": "24px"
+    },
+    {
+      "name": "size.icon.md",
+      "cssVar": "--ds-size-icon-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Default icon and spinner size alongside body text and inside md controls (5x the brand space base). Use this — never a space token — to size an element.",
+      "value": "20px"
+    },
+    {
+      "name": "size.icon.sm",
+      "cssVar": "--ds-size-icon-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Icon and spinner size inside compact controls and dense UI (4x the brand space base). Use this — never a space token — to size an element.",
+      "value": "16px"
+    },
+    {
+      "name": "space.0",
+      "cssVar": "--ds-space-0",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Zero space; use to state 'no gap' explicitly instead of a raw 0 with units.",
+      "value": "0px"
+    },
+    {
+      "name": "space.1",
+      "cssVar": "--ds-space-1",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 1 (1x the brand space base); tightest gap, e.g. icon-to-label.",
+      "value": "4px"
+    },
+    {
+      "name": "space.10",
+      "cssVar": "--ds-space-10",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 10 (16x the brand space base); the largest layout separation.",
+      "value": "64px"
+    },
+    {
+      "name": "space.2",
+      "cssVar": "--ds-space-2",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 2 (2x the brand space base); compact padding and small gaps.",
+      "value": "8px"
+    },
+    {
+      "name": "space.3",
+      "cssVar": "--ds-space-3",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 3 (3x the brand space base); default control padding.",
+      "value": "12px"
+    },
+    {
+      "name": "space.4",
+      "cssVar": "--ds-space-4",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 4 (4x the brand space base); default gap between related elements.",
+      "value": "16px"
+    },
+    {
+      "name": "space.5",
+      "cssVar": "--ds-space-5",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 5 (5x the brand space base); padding for medium containers.",
+      "value": "20px"
+    },
+    {
+      "name": "space.6",
+      "cssVar": "--ds-space-6",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 6 (6x the brand space base); padding for large containers and section gaps.",
+      "value": "24px"
+    },
+    {
+      "name": "space.7",
+      "cssVar": "--ds-space-7",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 7 (8x the brand space base); separation between content groups.",
+      "value": "32px"
+    },
+    {
+      "name": "space.8",
+      "cssVar": "--ds-space-8",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 8 (10x the brand space base); separation between major regions.",
+      "value": "40px"
+    },
+    {
+      "name": "space.9",
+      "cssVar": "--ds-space-9",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Space step 9 (12x the brand space base); large layout separation.",
+      "value": "48px"
+    },
+    {
+      "name": "space.gap.lg",
+      "cssVar": "--ds-space-gap-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Large flex/grid gap between loosely related groups (4x the brand space base).",
+      "value": "16px"
+    },
+    {
+      "name": "space.gap.md",
+      "cssVar": "--ds-space-gap-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Default flex/grid gap between sibling elements (2x the brand space base).",
+      "value": "8px"
+    },
+    {
+      "name": "space.gap.sm",
+      "cssVar": "--ds-space-gap-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Small flex/grid gap for tightly related items (1x the brand space base).",
+      "value": "4px"
+    },
+    {
+      "name": "space.inset.lg",
+      "cssVar": "--ds-space-inset-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Generous uniform internal padding for large containers (6x the brand space base).",
+      "value": "24px"
+    },
+    {
+      "name": "space.inset.md",
+      "cssVar": "--ds-space-inset-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Default uniform internal padding for containers (4x the brand space base).",
+      "value": "16px"
+    },
+    {
+      "name": "space.inset.sm",
+      "cssVar": "--ds-space-inset-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Small uniform internal padding for compact containers (2x the brand space base).",
+      "value": "8px"
+    },
+    {
+      "name": "text.leading.loose",
+      "cssVar": "--ds-text-leading-loose",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Airy line height for long-form reading and spacious layouts.",
+      "value": 1.75
+    },
+    {
+      "name": "text.leading.normal",
+      "cssVar": "--ds-text-leading-normal",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Default line height for body copy and multi-line text.",
+      "value": 1.5
+    },
+    {
+      "name": "text.leading.tight",
+      "cssVar": "--ds-text-leading-tight",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Compact line height for headings and single-line controls.",
+      "value": 1.25
+    },
+    {
+      "name": "text.size.2xl",
+      "cssVar": "--ds-text-size-2xl",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Page headings; step +3 on the brand modular scale.",
+      "value": "1.625rem"
+    },
+    {
+      "name": "text.size.3xl",
+      "cssVar": "--ds-text-size-3xl",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Display and hero headings; step +4 on the brand modular scale.",
+      "value": "1.9375rem"
+    },
+    {
+      "name": "text.size.lg",
+      "cssVar": "--ds-text-size-lg",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Emphasized body text and small headings; step +1 on the brand modular scale.",
+      "value": "1.125rem"
+    },
+    {
+      "name": "text.size.md",
+      "cssVar": "--ds-text-size-md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Base body size for paragraphs, labels, and control text; step 0 (the brand type-scale base).",
+      "value": "0.9375rem"
+    },
+    {
+      "name": "text.size.sm",
+      "cssVar": "--ds-text-size-sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Secondary text and dense UI such as table cells and helper text; step -1 on the brand modular scale.",
+      "value": "0.8125rem"
+    },
+    {
+      "name": "text.size.xl",
+      "cssVar": "--ds-text-size-xl",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Section headings and dialog titles; step +2 on the brand modular scale.",
+      "value": "1.375rem"
+    },
+    {
+      "name": "text.size.xs",
+      "cssVar": "--ds-text-size-xs",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Smallest legible size for fine print, badges, and dense metadata; step -2 on the brand modular scale.",
+      "value": "0.625rem"
+    },
+    {
+      "name": "text.weight.bold",
+      "cssVar": "--ds-text-weight-bold",
+      "tier": "semantic",
+      "type": "fontWeight",
+      "description": "Highest emphasis; reserve for display headings and critical highlights.",
+      "value": 700
+    },
+    {
+      "name": "text.weight.medium",
+      "cssVar": "--ds-text-weight-medium",
+      "tier": "semantic",
+      "type": "fontWeight",
+      "description": "Slight emphasis for control labels, buttons, and selected items.",
+      "value": 500
+    },
+    {
+      "name": "text.weight.regular",
+      "cssVar": "--ds-text-weight-regular",
+      "tier": "semantic",
+      "type": "fontWeight",
+      "description": "Default weight for body copy and most UI text.",
+      "value": 400
+    },
+    {
+      "name": "text.weight.semibold",
+      "cssVar": "--ds-text-weight-semibold",
+      "tier": "semantic",
+      "type": "fontWeight",
+      "description": "Headings and strong inline emphasis.",
+      "value": 600
+    },
+    {
+      "name": "z.dropdown",
+      "cssVar": "--ds-z-dropdown",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Stacking layer for dropdown and select popovers. Fixed ordering: dropdown < sticky < overlay < toast < tooltip.",
+      "value": 1000
+    },
+    {
+      "name": "z.overlay",
+      "cssVar": "--ds-z-overlay",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Stacking layer for modal dialogs and their backdrops. Fixed ordering: dropdown < sticky < overlay < toast < tooltip.",
+      "value": 1200
+    },
+    {
+      "name": "z.sticky",
+      "cssVar": "--ds-z-sticky",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Stacking layer for sticky headers and pinned UI. Fixed ordering: dropdown < sticky < overlay < toast < tooltip.",
+      "value": 1100
+    },
+    {
+      "name": "z.toast",
+      "cssVar": "--ds-z-toast",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Stacking layer for toasts and transient notifications. Fixed ordering: dropdown < sticky < overlay < toast < tooltip.",
+      "value": 1300
+    },
+    {
+      "name": "z.tooltip",
+      "cssVar": "--ds-z-tooltip",
+      "tier": "semantic",
+      "type": "number",
+      "description": "Topmost stacking layer, for tooltips. Fixed ordering: dropdown < sticky < overlay < toast < tooltip.",
+      "value": 1400
+    },
+    {
+      "name": "alert.border-width",
+      "cssVar": "--ds-alert-border-width",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Alert border width.",
+      "value": "1px"
+    },
+    {
+      "name": "alert.border.danger",
+      "cssVar": "--ds-alert-border-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of tone='danger' alerts.",
+      "value": "#fca5a5"
+    },
+    {
+      "name": "alert.border.info",
+      "cssVar": "--ds-alert-border-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of tone='info' alerts.",
+      "value": "#7dd3fc"
+    },
+    {
+      "name": "alert.border.success",
+      "cssVar": "--ds-alert-border-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of tone='success' alerts.",
+      "value": "#86efac"
+    },
+    {
+      "name": "alert.border.warning",
+      "cssVar": "--ds-alert-border-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of tone='warning' alerts.",
+      "value": "#ffc79d"
+    },
+    {
+      "name": "alert.dismiss.surface.hover",
+      "cssVar": "--ds-alert-dismiss-surface-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the alert dismiss control on hover.",
+      "value": "#f9f3ef"
+    },
+    {
+      "name": "alert.dismiss.surface.pressed",
+      "cssVar": "--ds-alert-dismiss-surface-pressed",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the alert dismiss control while pressed.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "alert.gap",
+      "cssVar": "--ds-alert-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between the alert icon, message, and dismiss control.",
+      "value": "12px"
+    },
+    {
+      "name": "alert.icon.danger",
+      "cssVar": "--ds-alert-icon-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Icon color of tone='danger' alerts.",
+      "value": "#dc2626"
+    },
+    {
+      "name": "alert.icon.info",
+      "cssVar": "--ds-alert-icon-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Icon color of tone='info' alerts.",
+      "value": "#0273a8"
+    },
+    {
+      "name": "alert.icon.success",
+      "cssVar": "--ds-alert-icon-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Icon color of tone='success' alerts.",
+      "value": "#0e8038"
+    },
+    {
+      "name": "alert.icon.warning",
+      "cssVar": "--ds-alert-icon-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Icon color of tone='warning' alerts.",
+      "value": "#a85a00"
+    },
+    {
+      "name": "alert.padding",
+      "cssVar": "--ds-alert-padding",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Internal padding of the alert container.",
+      "value": "16px"
+    },
+    {
+      "name": "alert.radius",
+      "cssVar": "--ds-alert-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Alert container corner radius.",
+      "value": "10px"
+    },
+    {
+      "name": "alert.surface.danger",
+      "cssVar": "--ds-alert-surface-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='danger' alerts.",
+      "value": "#fef2f2"
+    },
+    {
+      "name": "alert.surface.info",
+      "cssVar": "--ds-alert-surface-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='info' alerts.",
+      "value": "#f0f9ff"
+    },
+    {
+      "name": "alert.surface.success",
+      "cssVar": "--ds-alert-surface-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='success' alerts.",
+      "value": "#f0fdf4"
+    },
+    {
+      "name": "alert.surface.warning",
+      "cssVar": "--ds-alert-surface-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='warning' alerts.",
+      "value": "#fff9f4"
+    },
+    {
+      "name": "alert.text.danger",
+      "cssVar": "--ds-alert-text-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Message color of tone='danger' alerts; AA on the matching surface.",
+      "value": "#991b1b"
+    },
+    {
+      "name": "alert.text.info",
+      "cssVar": "--ds-alert-text-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Message color of tone='info' alerts; AA on the matching surface.",
+      "value": "#075985"
+    },
+    {
+      "name": "alert.text.success",
+      "cssVar": "--ds-alert-text-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Message color of tone='success' alerts; AA on the matching surface.",
+      "value": "#166534"
+    },
+    {
+      "name": "alert.text.warning",
+      "cssVar": "--ds-alert-text-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Message color of tone='warning' alerts; AA on the matching surface.",
+      "value": "#703a00"
+    },
+    {
+      "name": "badge.font-size",
+      "cssVar": "--ds-badge-font-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Badge label size.",
+      "value": "0.625rem"
+    },
+    {
+      "name": "badge.font-weight",
+      "cssVar": "--ds-badge-font-weight",
+      "tier": "component",
+      "type": "fontWeight",
+      "description": "Badge label weight.",
+      "value": 500
+    },
+    {
+      "name": "badge.padding-x",
+      "cssVar": "--ds-badge-padding-x",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding inside the badge pill.",
+      "value": "8px"
+    },
+    {
+      "name": "badge.padding-y",
+      "cssVar": "--ds-badge-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding inside the badge pill.",
+      "value": "4px"
+    },
+    {
+      "name": "badge.radius",
+      "cssVar": "--ds-badge-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Badge corner radius (pill shape).",
+      "value": "9999px"
+    },
+    {
+      "name": "badge.surface.danger",
+      "cssVar": "--ds-badge-surface-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='danger' badges.",
+      "value": "#fef2f2"
+    },
+    {
+      "name": "badge.surface.info",
+      "cssVar": "--ds-badge-surface-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='info' badges.",
+      "value": "#f0f9ff"
+    },
+    {
+      "name": "badge.surface.neutral",
+      "cssVar": "--ds-badge-surface-neutral",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='neutral' badges.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "badge.surface.success",
+      "cssVar": "--ds-badge-surface-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='success' badges.",
+      "value": "#f0fdf4"
+    },
+    {
+      "name": "badge.surface.warning",
+      "cssVar": "--ds-badge-surface-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of tone='warning' badges.",
+      "value": "#fff9f4"
+    },
+    {
+      "name": "badge.text.danger",
+      "cssVar": "--ds-badge-text-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of tone='danger' badges.",
+      "value": "#991b1b"
+    },
+    {
+      "name": "badge.text.info",
+      "cssVar": "--ds-badge-text-info",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of tone='info' badges.",
+      "value": "#075985"
+    },
+    {
+      "name": "badge.text.neutral",
+      "cssVar": "--ds-badge-text-neutral",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of tone='neutral' badges.",
+      "value": "#453f3a"
+    },
+    {
+      "name": "badge.text.success",
+      "cssVar": "--ds-badge-text-success",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of tone='success' badges.",
+      "value": "#166534"
+    },
+    {
+      "name": "badge.text.warning",
+      "cssVar": "--ds-badge-text-warning",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of tone='warning' badges.",
+      "value": "#703a00"
+    },
+    {
+      "name": "button.border.secondary",
+      "cssVar": "--ds-button-border-secondary",
+      "tier": "component",
+      "type": "color",
+      "description": "Border color of variant='secondary' buttons.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "button.font-weight",
+      "cssVar": "--ds-button-font-weight",
+      "tier": "component",
+      "type": "fontWeight",
+      "description": "Label weight shared by all button variants.",
+      "value": 500
+    },
+    {
+      "name": "button.gap",
+      "cssVar": "--ds-button-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between a button's icon and label.",
+      "value": "8px"
+    },
+    {
+      "name": "button.height.lg",
+      "cssVar": "--ds-button-height-lg",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Height of size='lg' buttons.",
+      "value": "48px"
+    },
+    {
+      "name": "button.height.md",
+      "cssVar": "--ds-button-height-md",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Height of size='md' (default) buttons.",
+      "value": "40px"
+    },
+    {
+      "name": "button.height.sm",
+      "cssVar": "--ds-button-height-sm",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Height of size='sm' buttons.",
+      "value": "32px"
+    },
+    {
+      "name": "button.padding-x.lg",
+      "cssVar": "--ds-button-padding-x-lg",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding of size='lg' buttons.",
+      "value": "20px"
+    },
+    {
+      "name": "button.padding-x.md",
+      "cssVar": "--ds-button-padding-x-md",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding of size='md' (default) buttons.",
+      "value": "16px"
+    },
+    {
+      "name": "button.padding-x.sm",
+      "cssVar": "--ds-button-padding-x-sm",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding of size='sm' buttons.",
+      "value": "12px"
+    },
+    {
+      "name": "button.radius",
+      "cssVar": "--ds-button-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius shared by all Button and IconButton variants.",
+      "value": "10px"
+    },
+    {
+      "name": "button.surface.danger.default",
+      "cssVar": "--ds-button-surface-danger-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='danger' buttons at rest.",
+      "value": "#dc2626"
+    },
+    {
+      "name": "button.surface.danger.hover",
+      "cssVar": "--ds-button-surface-danger-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='danger' buttons on hover/active.",
+      "value": "#b91c1c"
+    },
+    {
+      "name": "button.surface.ghost.hover",
+      "cssVar": "--ds-button-surface-ghost-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='ghost' buttons on hover/active (transparent at rest).",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "button.surface.primary.default",
+      "cssVar": "--ds-button-surface-primary-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='primary' buttons at rest.",
+      "value": "#28825a"
+    },
+    {
+      "name": "button.surface.primary.hover",
+      "cssVar": "--ds-button-surface-primary-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='primary' buttons on hover/active.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "button.surface.secondary.default",
+      "cssVar": "--ds-button-surface-secondary-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='secondary' buttons at rest.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "button.surface.secondary.hover",
+      "cssVar": "--ds-button-surface-secondary-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of variant='secondary' buttons on hover/active.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "button.text.danger",
+      "cssVar": "--ds-button-text-danger",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of variant='danger' buttons.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "button.text.ghost",
+      "cssVar": "--ds-button-text-ghost",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of variant='ghost' buttons.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "button.text.primary",
+      "cssVar": "--ds-button-text-primary",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of variant='primary' buttons.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "button.text.secondary",
+      "cssVar": "--ds-button-text-secondary",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of variant='secondary' buttons.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "card.border",
+      "cssVar": "--ds-card-border",
+      "tier": "component",
+      "type": "color",
+      "description": "Card outline; used by elevation='flat' cards and as a hairline under shadows.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "card.gap",
+      "cssVar": "--ds-card-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between stacked card slots (header/body/footer).",
+      "value": "16px"
+    },
+    {
+      "name": "card.padding",
+      "cssVar": "--ds-card-padding",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Internal padding of card header, body, and footer slots.",
+      "value": "24px"
+    },
+    {
+      "name": "card.radius",
+      "cssVar": "--ds-card-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius of Card containers.",
+      "value": "16px"
+    },
+    {
+      "name": "card.shadow",
+      "cssVar": "--ds-card-shadow",
+      "tier": "component",
+      "type": "shadow",
+      "description": "Shadow of elevation='raised' cards.",
+      "value": "0 1px 2px 0 rgb(10 6 4 / 0.05)"
+    },
+    {
+      "name": "card.surface",
+      "cssVar": "--ds-card-surface",
+      "tier": "component",
+      "type": "color",
+      "description": "Card background.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "checkbox.border.default",
+      "cssVar": "--ds-checkbox-border-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of the unchecked checkbox box at rest.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "checkbox.border.invalid",
+      "cssVar": "--ds-checkbox-border-invalid",
+      "tier": "component",
+      "type": "color",
+      "description": "Border of the unchecked checkbox box when validation fails.",
+      "value": "#fca5a5"
+    },
+    {
+      "name": "checkbox.mark",
+      "cssVar": "--ds-checkbox-mark",
+      "tier": "component",
+      "type": "color",
+      "description": "Color of the check and indeterminate marks on the selected fill.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "checkbox.radius",
+      "cssVar": "--ds-checkbox-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius of the checkbox box.",
+      "value": "6px"
+    },
+    {
+      "name": "checkbox.size",
+      "cssVar": "--ds-checkbox-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Width and height of the checkbox box.",
+      "value": "20px"
+    },
+    {
+      "name": "checkbox.surface.default",
+      "cssVar": "--ds-checkbox-surface-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of the unchecked checkbox box at rest.",
+      "value": "#f9f3ef"
+    },
+    {
+      "name": "checkbox.surface.selected",
+      "cssVar": "--ds-checkbox-surface-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of the checked and indeterminate checkbox box; also drawn as its border so fill and edge stay in sync. AA-checked against checkbox.mark via the on-accent pair.",
+      "value": "#28825a"
+    },
+    {
+      "name": "checkbox.surface.selected-hover",
+      "cssVar": "--ds-checkbox-surface-selected-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill of the checked and indeterminate checkbox box on hover and while pressed; AA-checked against checkbox.mark via the on-accent pair.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "dialog.backdrop",
+      "cssVar": "--ds-dialog-backdrop",
+      "tier": "component",
+      "type": "color",
+      "description": "Base color of the modal backdrop behind the Dialog; the component applies dialog.backdrop-opacity on top of it.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "dialog.backdrop-opacity",
+      "cssVar": "--ds-dialog-backdrop-opacity",
+      "tier": "component",
+      "type": "number",
+      "description": "Percentage opacity applied to dialog.backdrop inside the backdrop color-mix(). The semantic vocabulary has no opacity category yet, so this is a component-tier literal.",
+      "value": "50%"
+    },
+    {
+      "name": "dialog.gap",
+      "cssVar": "--ds-dialog-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between dialog title, body, and action rows.",
+      "value": "16px"
+    },
+    {
+      "name": "dialog.padding",
+      "cssVar": "--ds-dialog-padding",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Internal padding of the Dialog panel.",
+      "value": "24px"
+    },
+    {
+      "name": "dialog.radius",
+      "cssVar": "--ds-dialog-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius of the Dialog panel.",
+      "value": "16px"
+    },
+    {
+      "name": "dialog.shadow",
+      "cssVar": "--ds-dialog-shadow",
+      "tier": "component",
+      "type": "shadow",
+      "description": "Dialog panel shadow.",
+      "value": "0 6px 10px -2px rgb(10 6 4 / 0.08), 0 3px 5px -3px rgb(10 6 4 / 0.05)"
+    },
+    {
+      "name": "dialog.surface",
+      "cssVar": "--ds-dialog-surface",
+      "tier": "component",
+      "type": "color",
+      "description": "Dialog panel background.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "dialog.width.lg",
+      "cssVar": "--ds-dialog-width-lg",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='lg' dialogs (16x the md control height; 640px at the default brand).",
+      "value": "calc(40px * 16)"
+    },
+    {
+      "name": "dialog.width.md",
+      "cssVar": "--ds-dialog-width-md",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='md' dialogs (12x the md control height; 480px at the default brand).",
+      "value": "calc(40px * 12)"
+    },
+    {
+      "name": "dialog.width.sm",
+      "cssVar": "--ds-dialog-width-sm",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of size='sm' dialogs (8x the md control height; 320px at the default brand).",
+      "value": "calc(40px * 8)"
+    },
+    {
+      "name": "dialog.z",
+      "cssVar": "--ds-dialog-z",
+      "tier": "component",
+      "type": "number",
+      "description": "Stacking layer of the Dialog and its backdrop.",
+      "value": 1200
+    },
+    {
+      "name": "field.border.default",
+      "cssVar": "--ds-field-border-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border at rest.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "field.border.disabled",
+      "cssVar": "--ds-field-border-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border when the field is disabled (canonical disabled recipe).",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "field.border.focus",
+      "cssVar": "--ds-field-border-focus",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border when focused; combine with shadow.focus-ring.",
+      "value": "#28825a"
+    },
+    {
+      "name": "field.border.hover",
+      "cssVar": "--ds-field-border-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border on hover.",
+      "value": "#a8a09b"
+    },
+    {
+      "name": "field.border.invalid",
+      "cssVar": "--ds-field-border-invalid",
+      "tier": "component",
+      "type": "color",
+      "description": "Input border when validation fails.",
+      "value": "#fca5a5"
+    },
+    {
+      "name": "field.description-text",
+      "cssVar": "--ds-field-description-text",
+      "tier": "component",
+      "type": "color",
+      "description": "Field description/help-text color.",
+      "value": "#453f3a"
+    },
+    {
+      "name": "field.error-text",
+      "cssVar": "--ds-field-error-text",
+      "tier": "component",
+      "type": "color",
+      "description": "Field validation error message color.",
+      "value": "#991b1b"
+    },
+    {
+      "name": "field.gap",
+      "cssVar": "--ds-field-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical gap between a field's label, input, and description/error rows.",
+      "value": "4px"
+    },
+    {
+      "name": "field.height",
+      "cssVar": "--ds-field-height",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Height of single-line field inputs (TextField, Select trigger).",
+      "value": "40px"
+    },
+    {
+      "name": "field.label-text",
+      "cssVar": "--ds-field-label-text",
+      "tier": "component",
+      "type": "color",
+      "description": "Field label color.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "field.padding-x",
+      "cssVar": "--ds-field-padding-x",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding inside field inputs.",
+      "value": "12px"
+    },
+    {
+      "name": "field.padding-y",
+      "cssVar": "--ds-field-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding inside multi-line field inputs (TextArea). Single-line inputs center content within field.height instead.",
+      "value": "8px"
+    },
+    {
+      "name": "field.placeholder",
+      "cssVar": "--ds-field-placeholder",
+      "tier": "component",
+      "type": "color",
+      "description": "Placeholder text color inside field inputs.",
+      "value": "#59534e"
+    },
+    {
+      "name": "field.radius",
+      "cssVar": "--ds-field-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Corner radius of field inputs.",
+      "value": "6px"
+    },
+    {
+      "name": "field.surface",
+      "cssVar": "--ds-field-surface",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of field inputs.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "field.surface-disabled",
+      "cssVar": "--ds-field-surface-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Background of disabled field inputs (canonical disabled recipe).",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "field.text",
+      "cssVar": "--ds-field-text",
+      "tier": "component",
+      "type": "color",
+      "description": "Entered-value text color inside field inputs.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "field.text-disabled",
+      "cssVar": "--ds-field-text-disabled",
+      "tier": "component",
+      "type": "color",
+      "description": "Text color inside disabled field inputs (canonical disabled recipe); AA-checked against field.surface-disabled via the muted-on-sunken pair.",
+      "value": "#59534e"
+    },
+    {
+      "name": "radio.dot",
+      "cssVar": "--ds-radio-dot",
+      "tier": "component",
+      "type": "color",
+      "description": "Color of the inset dot ring punched into the selected radio fill.",
+      "value": "#f9f3ef"
+    },
+    {
+      "name": "radio.gap",
+      "cssVar": "--ds-radio-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between the radio control circle and its label.",
+      "value": "4px"
+    },
+    {
+      "name": "radio.size",
+      "cssVar": "--ds-radio-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Diameter of the radio control circle.",
+      "value": "20px"
+    },
+    {
+      "name": "radio.surface.selected",
+      "cssVar": "--ds-radio-surface-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill and border of the selected radio control; the dot is punched into this fill.",
+      "value": "#28825a"
+    },
+    {
+      "name": "radio.surface.selected-hover",
+      "cssVar": "--ds-radio-surface-selected-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Fill and border of the selected radio control on hover and while pressed.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "switch.surface.off",
+      "cssVar": "--ds-switch-surface-off",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is off; hover uses color.surface.sunken-hover.",
+      "value": "#ede6e1"
+    },
+    {
+      "name": "switch.surface.on",
+      "cssVar": "--ds-switch-surface-on",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is on.",
+      "value": "#28825a"
+    },
+    {
+      "name": "switch.surface.on-hover",
+      "cssVar": "--ds-switch-surface-on-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Track fill when the switch is on and hovered or pressed.",
+      "value": "#1e6e4a"
+    },
+    {
+      "name": "switch.thumb",
+      "cssVar": "--ds-switch-thumb",
+      "tier": "component",
+      "type": "color",
+      "description": "Thumb fill in the off state; the on state switches to color.text.on-accent so the thumb stays visible on the accent track.",
+      "value": "#f9f3ef"
+    },
+    {
+      "name": "switch.thumb-size",
+      "cssVar": "--ds-switch-thumb-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Diameter of the switch thumb.",
+      "value": "16px"
+    },
+    {
+      "name": "switch.track-height",
+      "cssVar": "--ds-switch-track-height",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Block size of the switch track; also sets the thumb inset via calc in CSS.",
+      "value": "20px"
+    },
+    {
+      "name": "switch.track-width",
+      "cssVar": "--ds-switch-track-width",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Inline size of the switch track (2x the md icon size; 40px at the default brand). The thumb slide distance is track-width minus track-height, derived in CSS.",
+      "value": "calc(20px * 2)"
+    },
+    {
+      "name": "tabs.border",
+      "cssVar": "--ds-tabs-border",
+      "tier": "component",
+      "type": "color",
+      "description": "Divider between the tab list and tab panels.",
+      "value": "#dad2cd"
+    },
+    {
+      "name": "tabs.font-weight",
+      "cssVar": "--ds-tabs-font-weight",
+      "tier": "component",
+      "type": "fontWeight",
+      "description": "Tab trigger label weight.",
+      "value": 500
+    },
+    {
+      "name": "tabs.gap",
+      "cssVar": "--ds-tabs-gap",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Gap between adjacent tab triggers in the tab list.",
+      "value": "4px"
+    },
+    {
+      "name": "tabs.indicator.selected",
+      "cssVar": "--ds-tabs-indicator-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Color of the selected-tab indicator line.",
+      "value": "#28825a"
+    },
+    {
+      "name": "tabs.padding-x",
+      "cssVar": "--ds-tabs-padding-x",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding of each tab trigger.",
+      "value": "12px"
+    },
+    {
+      "name": "tabs.padding-y",
+      "cssVar": "--ds-tabs-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding of each tab trigger.",
+      "value": "8px"
+    },
+    {
+      "name": "tabs.text.default",
+      "cssVar": "--ds-tabs-text-default",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of unselected tab triggers.",
+      "value": "#453f3a"
+    },
+    {
+      "name": "tabs.text.hover",
+      "cssVar": "--ds-tabs-text-hover",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of hovered tab triggers.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "tabs.text.selected",
+      "cssVar": "--ds-tabs-text-selected",
+      "tier": "component",
+      "type": "color",
+      "description": "Label color of the selected tab trigger.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "tooltip.font-size",
+      "cssVar": "--ds-tooltip-font-size",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Tooltip text size.",
+      "value": "0.8125rem"
+    },
+    {
+      "name": "tooltip.max-width",
+      "cssVar": "--ds-tooltip-max-width",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Maximum inline size of the tooltip bubble before the text wraps (6x the md control height; 240px at the default brand).",
+      "value": "calc(40px * 6)"
+    },
+    {
+      "name": "tooltip.padding-x",
+      "cssVar": "--ds-tooltip-padding-x",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Horizontal padding inside the tooltip bubble.",
+      "value": "8px"
+    },
+    {
+      "name": "tooltip.padding-y",
+      "cssVar": "--ds-tooltip-padding-y",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Vertical padding inside the tooltip bubble.",
+      "value": "4px"
+    },
+    {
+      "name": "tooltip.radius",
+      "cssVar": "--ds-tooltip-radius",
+      "tier": "component",
+      "type": "dimension",
+      "description": "Tooltip corner radius.",
+      "value": "6px"
+    },
+    {
+      "name": "tooltip.shadow",
+      "cssVar": "--ds-tooltip-shadow",
+      "tier": "component",
+      "type": "shadow",
+      "description": "Tooltip bubble shadow.",
+      "value": "0 6px 10px -2px rgb(10 6 4 / 0.08), 0 3px 5px -3px rgb(10 6 4 / 0.05)"
+    },
+    {
+      "name": "tooltip.surface",
+      "cssVar": "--ds-tooltip-surface",
+      "tier": "component",
+      "type": "color",
+      "description": "Tooltip bubble background.",
+      "value": "#1c1713"
+    },
+    {
+      "name": "tooltip.text",
+      "cssVar": "--ds-tooltip-text",
+      "tier": "component",
+      "type": "color",
+      "description": "Tooltip text color.",
+      "value": "#fef9f6"
+    },
+    {
+      "name": "tooltip.z",
+      "cssVar": "--ds-tooltip-z",
+      "tier": "component",
+      "type": "number",
+      "description": "Stacking layer of tooltips (topmost layer).",
+      "value": 1400
+    }
+  ]
+}
