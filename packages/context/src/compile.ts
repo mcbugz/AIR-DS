@@ -12,6 +12,7 @@ import { emitSkills } from './emit/skills.ts';
 import { emitAgentFiles } from './emit/agents.ts';
 import { emitEditorRules } from './emit/editor.ts';
 import { emitAuditor } from './emit/auditor.ts';
+import { emitExtensionPoints } from './emit/extension-points.ts';
 
 export interface CompileOptions {
   brand?: string;
@@ -19,6 +20,13 @@ export interface CompileOptions {
   now?: string;
   repoRoot?: string;
   outDir?: string;
+  /**
+   * Directory containing the registry JSON files (native brand-input support
+   * for the ingest pipeline — no swap/restore). Default: <repoRoot>/registries.
+   */
+  registriesDir?: string;
+  /** Path to the brand file hashed as an input. Default: <repoRoot>/brands/<brand>.json. */
+  brandPath?: string;
 }
 
 export interface CompileReport {
@@ -44,7 +52,10 @@ export function compile(options: CompileOptions = {}): CompileReport {
   const repoRoot = options.repoRoot ?? DEFAULT_REPO_ROOT;
   const outDir = options.outDir ?? join(repoRoot, 'packages/context/dist', brand);
 
-  const inputs = loadInputs(repoRoot, brand);
+  const inputs = loadInputs(repoRoot, brand, {
+    ...(options.registriesDir !== undefined ? { registriesDir: options.registriesDir } : {}),
+    ...(options.brandPath !== undefined ? { brandPath: options.brandPath } : {}),
+  });
   const sourceHash = combinedHash(inputs.rawInputs);
   const now = options.now ?? new Date().toISOString();
   if (Number.isNaN(Date.parse(now))) {
@@ -66,15 +77,20 @@ export function compile(options: CompileOptions = {}): CompileReport {
   add(emitAgentFiles(ctx));
   add(emitEditorRules(ctx));
   add(emitAuditor(ctx));
+  add(emitExtensionPoints(ctx));
 
   // Ship the closed-world contracts inside the bundle (byte-copies of the
-  // registries) so the auditor + skills reference paths that exist.
+  // registries) so the auditor + skills reference paths that exist. The
+  // optional registries (icons/patterns) are copied only when present.
   for (const reg of [
     'registries/tokens-index.json',
     'registries/components-index.json',
     'registries/contrast-report.json',
+    'registries/icons-metadata.json',
+    'registries/patterns-index.json',
   ]) {
-    rendered.set(reg, inputs.rawInputs.get(reg) as Buffer);
+    const buf = inputs.rawInputs.get(reg);
+    if (buf !== undefined) rendered.set(reg, buf);
   }
 
   // ---- enforce token budgets (build failure, not a warning) ----
@@ -111,8 +127,10 @@ export function compile(options: CompileOptions = {}): CompileReport {
     compiler: `${COMPILER_PKG}@${COMPILER_VERSION}`,
     sourceHash: `sha256:${sourceHash}`,
     budgets: { indexMaxTokens: BUDGETS.index, sliceMaxTokens: BUDGETS.slice },
+    // Manifest input paths are the ACTUAL read locations (repo-relative when
+    // inside the repo, absolute when --registries-dir/--brand-path point out).
     inputs: [...inputs.rawInputs.keys()].sort().map((path) => ({
-      path,
+      path: inputs.inputPaths.get(path) ?? path,
       sha256: sha256(inputs.rawInputs.get(path) as Buffer),
     })),
     files,

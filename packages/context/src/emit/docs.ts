@@ -1,12 +1,15 @@
 import { CSS_PREFIX, REACT_PKG, SYSTEM_TITLE } from '../config.ts';
 import {
   componentTokenGroups,
+  dialogTitleNote,
   fenced,
   generatedLineMd,
   propsTable,
   racBaseNote,
+  racPropsLine,
   semanticCategories,
   sortedComponents,
+  tokenPrefixLine,
   tokensTable,
 } from '../render.ts';
 import type { RenderCtx } from '../render.ts';
@@ -44,6 +47,9 @@ function a11yNotes(ctx: RenderCtx, comp: ComponentEntry): string[] {
 
 function componentDoc(ctx: RenderCtx, comp: ComponentEntry): string {
   const stories = ctx.inputs.storyFilesByExport.get(comp.name) ?? [];
+  const inherited = racPropsLine(comp);
+  const hooks = tokenPrefixLine(comp);
+  const dialogNote = dialogTitleNote(comp);
   return [
     generatedLineMd(ctx.sourceHash),
     '',
@@ -54,10 +60,13 @@ function componentDoc(ctx: RenderCtx, comp: ComponentEntry): string {
     `Import: \`import { ${comp.name} } from '${REACT_PKG}';\` — the only public entry point.`,
     '',
     racBaseNote(comp),
+    ...(dialogNote !== null ? ['', dialogNote] : []),
     '',
     '## Props',
     '',
     propsTable(comp),
+    ...(inherited !== null ? ['', inherited] : []),
+    ...(hooks !== null ? ['', hooks] : []),
     '',
     '## Accessibility',
     '',

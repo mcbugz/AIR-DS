@@ -1,25 +1,53 @@
-import { CSS_PREFIX, REACT_PKG, SYSTEM_TITLE } from '../config.ts';
+import { BUDGETS, CSS_PREFIX, REACT_PKG, SYSTEM_TITLE, estimateTokens } from '../config.ts';
 import {
   CLOSED_WORLD,
+  GAP_VS_SPACE,
   componentTokenGroups,
+  dialogTitleNote,
   fenced,
   generatedLineTxt,
   propsTable,
   racBaseNote,
+  racPropsLine,
   rulesBlock,
   semanticCategories,
   sortedComponents,
+  tokenPrefixLine,
   tokensTable,
 } from '../render.ts';
 import type { RenderCtx } from '../render.ts';
 
 export function emitLlms(ctx: RenderCtx): Map<string, string> {
   const files = new Map<string, string>();
-  const components = renderComponentsSlice(ctx);
+  const iconsBlock = renderIconsBlock(ctx);
+  let components = renderComponentsSlice(ctx);
+
+  // Icons ride inside llms-components.txt while the slice budget allows;
+  // when the combined slice would blow the hard budget, they split out into
+  // their own llms-icons.txt slice (which the budget gate checks like any slice).
+  let iconsSlice: string | null = null;
+  if (iconsBlock !== null) {
+    const combined = `${components}\n${iconsBlock}\n`;
+    if (estimateTokens(combined) <= BUDGETS.slice) {
+      components = combined;
+    } else {
+      iconsSlice = [
+        `# ${SYSTEM_TITLE} — icons (brand: ${ctx.inputs.brand})`,
+        generatedLineTxt(ctx.sourceHash),
+        '',
+        CLOSED_WORLD,
+        '',
+        iconsBlock,
+        '',
+      ].join('\n');
+      files.set('llms-icons.txt', iconsSlice);
+    }
+  }
+
   const tokens = renderTokensSlice(ctx);
   const theming = renderThemingSlice(ctx);
   const migration = renderMigrationSlice(ctx);
-  files.set('llms.txt', renderIndex(ctx));
+  files.set('llms.txt', renderIndex(ctx, iconsSlice !== null));
   files.set('llms-components.txt', components);
   files.set('llms-tokens.txt', tokens);
   files.set('llms-theming.txt', theming);
@@ -33,6 +61,7 @@ export function emitLlms(ctx: RenderCtx): Map<string, string> {
       'Concatenation of every concern slice. Prefer the individual slices when your context window is constrained.',
       '',
       components,
+      ...(iconsSlice !== null ? ['', iconsSlice] : []),
       '',
       tokens,
       '',
@@ -44,9 +73,36 @@ export function emitLlms(ctx: RenderCtx): Map<string, string> {
   return files;
 }
 
-function renderIndex(ctx: RenderCtx): string {
+/** Icons section (from OPTIONAL registries/icons-metadata.json); null when absent. */
+function renderIconsBlock(ctx: RenderCtx): string | null {
+  const icons = ctx.inputs.iconsMetadata;
+  if (icons === null || icons.icons.length === 0) return null;
+  const hasExports = icons.icons.some((i) => i.export !== undefined);
+  const out: string[] = [
+    `## Icons (${icons.icons.length})`,
+    '',
+    `Every legal icon is enumerated in registries/icons-metadata.json — an icon name not listed there is fabricated; never inline ad-hoc SVG for system iconography.` +
+      (hasExports
+        ? ` Icons are named exports (\`export\` below) from the icon entry point declared in registries/icons-metadata.json.`
+        : ''),
+    '',
+  ];
+  for (const icon of icons.icons) {
+    const meta: string[] = [];
+    if (icon.export !== undefined) meta.push(`export \`${icon.export}\``);
+    if (icon.category !== undefined) meta.push(icon.category);
+    if (icon.keywords !== undefined && icon.keywords.length > 0) meta.push(`keywords: ${icon.keywords.join(', ')}`);
+    const suffix = meta.length > 0 ? ` (${meta.join('; ')})` : '';
+    out.push(`- \`${icon.name}\`${icon.description !== undefined ? ` — ${icon.description}` : ''}${suffix}`);
+  }
+  return out.join('\n');
+}
+
+function renderIndex(ctx: RenderCtx, hasIconsSlice: boolean): string {
   const { inputs } = ctx;
   const compCount = inputs.componentsIndex.components.length;
+  const icons = inputs.iconsMetadata;
+  const patterns = inputs.patternsIndex;
   return [
     `# ${SYSTEM_TITLE} (brand: ${inputs.brand})`,
     generatedLineTxt(ctx.sourceHash),
@@ -59,7 +115,9 @@ function renderIndex(ctx: RenderCtx): string {
     '',
     '## Context slices (fetch on demand)',
     '',
-    '- [llms-components.txt](llms-components.txt): every component — description, exact props, base-component note, example',
+    '- [llms-components.txt](llms-components.txt): every component — description, exact props, base-component note, example' +
+      (icons !== null && !hasIconsSlice ? '; includes the icons index' : ''),
+    ...(hasIconsSlice ? ['- [llms-icons.txt](llms-icons.txt): every legal icon with metadata'] : []),
     '- [llms-tokens.txt](llms-tokens.txt): every token by category — name, CSS variable, description, brand-resolved value',
     '- [llms-theming.txt](llms-theming.txt): three-tier token model, brand-file mechanics, allowlisted extension points',
     '- [llms-migration.txt](llms-migration.txt): migrating from raw HTML / Tailwind / other design systems (negative-rule catalog)',
@@ -67,13 +125,31 @@ function renderIndex(ctx: RenderCtx): string {
     '',
     '## Other machine surfaces in this bundle',
     '',
-    '- `registries/`: components-index.json, tokens-index.json, contrast-report.json — the closed-world contracts',
+    '- `registries/`: components-index.json, tokens-index.json, contrast-report.json' +
+      `${icons !== null ? ', icons-metadata.json' : ''}${patterns !== null ? ', patterns-index.json' : ''} — the closed-world contracts`,
+    '- `extension-points.json`: the machine contract for allowlisted customization (ADR-006) — everything not listed is closed',
     '- `docs/`: one markdown twin per component + tokens.md',
     '- `skills/` + `.well-known/skills/index.json`: use-system, build-screen, migrate, contribute-component, audit-a11y',
     '- `AGENTS.md` / `CLAUDE.md`: drop-in repo router files',
-    '- `editor/`: Cursor / Copilot / Claude Code rules (same rule source as the skills)',
+    '- `editor/`: Cursor / Copilot / Claude Code / v0 rules (same rule source as the skills)',
     '- `agents/ds-auditor.md`: reviewer agent for consumer repos (reviews only; deterministic gates approve)',
     '',
+    ...(icons !== null
+      ? [
+          '## Icons',
+          '',
+          `${icons.icons.length} legal icons, enumerated in registries/icons-metadata.json (closed-world: an icon not listed does not exist). Index: ${hasIconsSlice ? 'llms-icons.txt' : 'llms-components.txt § Icons'}.`,
+          '',
+        ]
+      : []),
+    ...(patterns !== null
+      ? [
+          '## Patterns',
+          '',
+          `${patterns.patterns.length} approved composition patterns, enumerated in registries/patterns-index.json. Summaries: skills/build-screen/references/patterns.md; machine list: extension-points.json § composition.patterns.`,
+          '',
+        ]
+      : []),
     '## Ground rules (compact)',
     '',
     `1. Import only from \`${REACT_PKG}\`; components not in the registry do not exist (no Box/Stack/Container/Heading/Text).`,
@@ -97,6 +173,9 @@ function renderComponentsSlice(ctx: RenderCtx): string {
   ];
   for (const comp of sortedComponents(ctx)) {
     const stories = ctx.inputs.storyFilesByExport.get(comp.name) ?? [];
+    const inherited = racPropsLine(comp);
+    const hooks = tokenPrefixLine(comp);
+    const dialogNote = dialogTitleNote(comp);
     out.push(
       `## ${comp.name}`,
       '',
@@ -105,8 +184,11 @@ function renderComponentsSlice(ctx: RenderCtx): string {
       comp.description.replace(/\s*\n\s*/g, ' ').trim(),
       '',
       racBaseNote(comp),
+      ...(dialogNote !== null ? ['', dialogNote] : []),
       '',
       propsTable(comp),
+      ...(inherited !== null ? ['', inherited] : []),
+      ...(hooks !== null ? ['', hooks] : []),
       '',
       '@example',
       fenced(comp.example, 'tsx'),
@@ -160,11 +242,15 @@ function renderThemingSlice(ctx: RenderCtx): string {
     `2. **Semantic tier** (\`${CSS_PREFIX}-{category}-{concept}[-{variant}][-{state}]\`) — intent-named mappings onto brand ramp positions (\`${CSS_PREFIX}-color-surface-raised\`, never \`${CSS_PREFIX}-blue-500\`). Usage sites reference this tier. Customers do not edit mappings; semantic overrides are a separate, allowlisted layer.`,
     `3. **Component tier** (\`${CSS_PREFIX}-<component>-*\`) — per-component hooks consumed by that component's CSS. The per-component customer override surface.`,
     '',
+    GAP_VS_SPACE,
+    '',
     '## Brand-file mechanics',
     '',
     `A customer engagement produces one \`brands/<customer>.json\` in the same shape as the neutral core (\`brands/default.json\`): raw ramps, no intent. The pipeline then rebuilds everything: tokens-build resolves semantic + component tiers against the brand file, validates EVERY color mapping for WCAG 2.2 AA contrast (current brand: ${contrastReport.failures} failures across ${contrastReport.pairs.length} audited pairs), regenerates the registries, and re-runs this context compiler with \`--brand <customer>\` so llms.txt, docs, skills, editor rules, and the auditor agent all reflect the customer's resolved values. Zero component code changes for standard engagements.`,
     '',
     '## Allowlisted extension points (everything else is closed)',
+    '',
+    'Machine contract: `extension-points.json` in this bundle (ADR-006) — the authoritative allowlist.',
     '',
     '1. **Brand-tier token file** — replace raw ramp values wholesale.',
     '2. **Semantic overrides** — a separate, explicitly-allowlisted override layer applied at intake (contrast-validated like everything else).',
@@ -201,7 +287,7 @@ function renderMigrationSlice(ctx: RenderCtx): string {
     '',
     '## From Chakra / MUI / Ant / shadcn',
     '',
-    `- Layout primitives (\`Box\`, \`Stack\`, \`Container\`, \`Flex\`, \`Grid\`, \`Spacer\`) and typography components (\`Heading\`, \`Text\`) do not exist here — intentionally. Use plain semantic HTML plus CSS with tokens.`,
+    `- Layout primitives (\`Box\`, \`Stack\`, \`Container\`, \`Flex\`, \`Grid\`, \`Spacer\`) and typography components (\`Heading\`, \`Text\`) do not exist here — intentionally. Use plain semantic HTML plus CSS with tokens. (Exception to hand-rolled headings: Dialog renders its own title from its required \`title\` prop — never add a heading element to name a dialog.)`,
     `- Theme-object styling (\`sx\`, \`css\` props, styled()) does not exist; components accept \`className\` only, and inline \`style\` is intentionally unsupported.`,
     `- Import from the single entry point \`${REACT_PKG}\`; deep dist paths are not public API.`,
     '',

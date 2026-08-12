@@ -6,6 +6,8 @@ const { values } = parseArgs({
     brand: { type: 'string', default: 'default' },
     now: { type: 'string' },
     out: { type: 'string' },
+    'registries-dir': { type: 'string' },
+    'brand-path': { type: 'string' },
     help: { type: 'boolean', default: false },
   },
 });
@@ -14,11 +16,19 @@ if (values.help) {
   console.log(
     [
       'Usage: node src/cli.ts [--brand <name>] [--now <ISO timestamp>] [--out <dir>]',
+      '                       [--registries-dir <dir>] [--brand-path <file>]',
       '',
-      '  --brand  brand file to compile for (brands/<name>.json); default: default',
-      '  --now    ISO timestamp recorded in manifest.json; default: build time.',
-      '           Pass a fixed value for byte-identical builds.',
-      '  --out    output directory; default: packages/context/dist/<brand>',
+      '  --brand           brand file to compile for (brands/<name>.json); default: default',
+      '  --now             ISO timestamp recorded in manifest.json; default: build time.',
+      '                    Pass a fixed value for byte-identical builds.',
+      '  --out             output directory; default: packages/context/dist/<brand>',
+      '  --registries-dir  directory containing the registry JSON files',
+      '                    (tokens-index.json, components-index.json, contrast-report.json,',
+      '                    plus optional icons-metadata.json / patterns-index.json);',
+      '                    default: <repo>/registries. Lets the ingest pipeline point at',
+      '                    customer-built registries without swap/restore.',
+      '  --brand-path      path to the brand file hashed as an input;',
+      '                    default: <repo>/brands/<brand>.json',
     ].join('\n'),
   );
   process.exit(0);
@@ -29,6 +39,8 @@ try {
     brand: values.brand,
     ...(values.now !== undefined ? { now: values.now } : {}),
     ...(values.out !== undefined ? { outDir: values.out } : {}),
+    ...(values['registries-dir'] !== undefined ? { registriesDir: values['registries-dir'] } : {}),
+    ...(values['brand-path'] !== undefined ? { brandPath: values['brand-path'] } : {}),
   });
   const totalBytes = report.files.reduce((n, f) => n + f.bytes, 0);
   console.log(`@ds/context: compiled brand "${report.brand}" -> ${report.outDir}`);

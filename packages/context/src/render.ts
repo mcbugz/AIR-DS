@@ -1,5 +1,5 @@
 import { COMPILER_PKG, CSS_PREFIX, REACT_PKG, estimateTokens } from './config.ts';
-import type { ComponentEntry, CompilerInputs, NegativeRule, TokenEntry } from './types.ts';
+import type { ComponentEntry, CompilerInputs, NegativeRule, RacPropEntry, TokenEntry } from './types.ts';
 
 /** Context shared by every emitter. */
 export interface RenderCtx {
@@ -59,6 +59,44 @@ export function racBaseNote(comp: ComponentEntry): string {
     : `Built on react-aria-components \`${comp.racBase}\`; keyboard behavior, ARIA, and focus management ship inside. ` +
         `All \`${comp.racBase}\` base props (e.g. event handlers, \`isDisabled\`, \`autoFocus\`) are also legal here, ` +
         `with the props listed below overriding or narrowing them.`;
+}
+
+/** Normalize the OPTIONAL registry `racProps` enrichment (names or {name,type} objects). */
+export function racProps(comp: ComponentEntry): RacPropEntry[] {
+  return (comp.racProps ?? [])
+    .map((p) =>
+      typeof p === 'string' ? { name: p, type: null } : { name: p.name, type: p.type ?? null },
+    )
+    .filter((p) => typeof p.name === 'string' && p.name.length > 0)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** One-line inherited-props enumeration; null when the registry lacks racProps. */
+export function racPropsLine(comp: ComponentEntry): string | null {
+  const props = racProps(comp);
+  if (props.length === 0) return null;
+  const list = props.map((p) => (p.type === null ? `\`${p.name}\`` : `\`${p.name}: ${cell(p.type)}\``)).join(', ');
+  const note = comp.racPropsNote !== undefined ? ` ${comp.racPropsNote.replace(/\s*\n\s*/g, ' ').trim()}` : '';
+  return `Inherited-but-legal \`${comp.racBase ?? 'base'}\` props (from the registry \`racProps\` enumeration): ${list}.${note}`;
+}
+
+/** Component-tier theming-hook pointer; null when the registry lacks tokenPrefix (or it is null). */
+export function tokenPrefixLine(comp: ComponentEntry): string | null {
+  if (comp.tokenPrefix === undefined || comp.tokenPrefix === null) return null;
+  return `Theming hooks: \`${CSS_PREFIX}-${comp.tokenPrefix}-*\` component-tier tokens (see registries/tokens-index.json); they belong to this component ONLY (NR-008).`;
+}
+
+/**
+ * FB-7: Dialog renders and styles its own title from the required `title`
+ * prop — heading guidance must not tempt agents into adding their own <h2>.
+ */
+export function dialogTitleNote(comp: ComponentEntry): string | null {
+  if (comp.name !== 'Dialog') return null;
+  return (
+    `Dialog OWNS its title: the required \`title\` prop renders the dialog's accessible heading with the ` +
+    `system's own typography — never add your own heading element (\`<h2>\`, etc.) to name the dialog. ` +
+    `Headings inside the dialog body are for content sections only.`
+  );
 }
 
 /* --------------------------------------------------------------- grouping */
@@ -135,6 +173,15 @@ export function coreRuleBody(ctx: RenderCtx): string {
     rulesBlock(ruleCatalog.rules),
   ].join('\n');
 }
+
+/**
+ * FB-6: gap-trio vs plain space steps — the one-line preference, shared by
+ * the theming slice and the use-system token reference (single source).
+ */
+export const GAP_VS_SPACE =
+  `Gap vs space steps: the \`${CSS_PREFIX}-space-gap-{sm,md,lg}\` trio (tops out at \`gap-lg\`) is for intra-component rhythm ` +
+  `(icon-to-label, control clusters, sibling gaps); larger section- and region-level separation uses the plain space steps ` +
+  `(\`${CSS_PREFIX}-space-5\` and up).`;
 
 /* ----------------------------------------------------------------- misc */
 

@@ -43,11 +43,12 @@ describe('emitted content contracts', () => {
     }
   });
 
-  it('all three editor-rule channels carry the same rule set as the skills (single source)', () => {
+  it('all four editor-rule channels carry the same rule set as the skills (single source)', () => {
     const channels = [
       'editor/cursor/.cursor/rules/ds.mdc',
       'editor/copilot/.github/copilot-instructions.md',
       'editor/claude/CLAUDE.md',
+      'editor/v0/instructions.md',
     ];
     for (const rel of channels) {
       const text = readOut(bundle.outDir, rel);
@@ -74,6 +75,33 @@ describe('emitted content contracts', () => {
       expect(text).toContain('skills/use-system/SKILL.md');
       expect(text).toContain('.well-known/skills/index.json');
     }
+  });
+
+  it('the v0 channel is a project-instructions markdown with the closed-world registry pointer', () => {
+    const v0 = readOut(bundle.outDir, 'editor/v0/instructions.md');
+    expect(v0).toContain('v0 project instructions');
+    expect(v0).toContain('Project Settings > Instructions');
+    expect(v0).toContain('registries/components-index.json');
+    expect(v0).toContain('registries/tokens-index.json');
+    expect(v0).toContain('brand: default');
+  });
+
+  it('FB-6: gap-vs-space guidance appears in llms-theming and the use-system token reference', () => {
+    for (const rel of ['llms-theming.txt', 'skills/use-system/references/tokens.md']) {
+      const text = readOut(bundle.outDir, rel);
+      expect(text, rel).toContain('intra-component rhythm');
+      expect(text, rel).toContain('space-gap-{sm,md,lg}');
+    }
+  });
+
+  it('FB-7: the Dialog twin and heading guidance state that Dialog owns its title', () => {
+    const twin = readOut(bundle.outDir, 'docs/Dialog.md');
+    expect(twin).toContain('Dialog OWNS its title');
+    expect(readOut(bundle.outDir, 'llms-components.txt')).toContain('Dialog OWNS its title');
+    expect(readOut(bundle.outDir, 'skills/migrate/references/migration-map.md')).toContain(
+      'Dialog owns its title',
+    );
+    expect(readOut(bundle.outDir, 'llms-migration.txt')).toContain('never add a heading element to name a dialog');
   });
 
   it('contribute-component is compiled from CONTRIBUTING-COMPONENT.md', () => {

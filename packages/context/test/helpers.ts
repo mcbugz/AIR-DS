@@ -2,7 +2,7 @@ import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { compile } from '../src/compile.ts';
-import type { CompileReport } from '../src/compile.ts';
+import type { CompileOptions, CompileReport } from '../src/compile.ts';
 
 export const FIXED_NOW = '2026-01-01T00:00:00.000Z';
 
@@ -12,9 +12,9 @@ export interface BuiltBundle {
   cleanup: () => void;
 }
 
-export function buildBundle(brand = 'default'): BuiltBundle {
+export function buildBundle(brand = 'default', extra: Partial<CompileOptions> = {}): BuiltBundle {
   const outDir = mkdtempSync(join(tmpdir(), 'ds-context-test-'));
-  const report = compile({ brand, now: FIXED_NOW, outDir });
+  const report = compile({ brand, now: FIXED_NOW, outDir, ...extra });
   return { report, outDir, cleanup: () => rmSync(outDir, { recursive: true, force: true }) };
 }
 

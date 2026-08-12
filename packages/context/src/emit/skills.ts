@@ -1,6 +1,7 @@
 import { COMPILER_PKG, CSS_PREFIX, REACT_PKG, SYSTEM_TITLE } from '../config.ts';
 import {
   CLOSED_WORLD,
+  GAP_VS_SPACE,
   componentTokenGroups,
   coreRuleBody,
   generatedLineMd,
@@ -63,6 +64,9 @@ export function emitSkills(ctx: RenderCtx): Map<string, string> {
   files.set('skills/use-system/references/tokens.md', tokensRef(ctx));
   files.set('skills/build-screen/SKILL.md', buildScreenSkill(ctx));
   files.set('skills/build-screen/references/checklist.md', buildScreenChecklist(ctx));
+  if (ctx.inputs.patternsIndex !== null) {
+    files.set('skills/build-screen/references/patterns.md', buildScreenPatternsRef(ctx));
+  }
   files.set('skills/migrate/SKILL.md', migrateSkill(ctx));
   files.set('skills/migrate/references/migration-map.md', migrationMapRef(ctx));
   files.set('skills/contribute-component/SKILL.md', contributeSkill(ctx));
@@ -165,6 +169,7 @@ function tokensRef(ctx: RenderCtx): string {
     '',
     `- Pick by intent: surfaces from \`${CSS_PREFIX}-color-surface-*\`, text from \`${CSS_PREFIX}-color-text-*\`, actions from \`${CSS_PREFIX}-color-accent-*\`, status from \`${CSS_PREFIX}-color-status-*\`.`,
     `- Space tokens ONLY in margin/padding/gap/inset. Box dimensions use \`${CSS_PREFIX}-size-control-*\` / \`${CSS_PREFIX}-size-icon-*\`.`,
+    `- ${GAP_VS_SPACE}`,
     `- Text on solid status fills is \`var(${CSS_PREFIX}-color-text-inverse)\` — there is no \`text-on-danger\` style token.`,
     `- Only foreground/background pairs present in registries/contrast-report.json are legal color combinations.`,
     '',
@@ -189,8 +194,40 @@ function buildScreenSkill(ctx: RenderCtx): string {
     `4. **Validate deterministically.** Run \`pnpm validate\` (typecheck → lint → build → test/a11y → registry check) — or the MCP \`validate_usage\` tool — and fix until green. The gauntlet approves; you do not.`,
     '',
     'Full checklist: [references/checklist.md](references/checklist.md). Rules and known hallucinations: `../use-system/SKILL.md`.',
+    ...(ctx.inputs.patternsIndex !== null
+      ? [
+          '',
+          `Approved composition patterns (${ctx.inputs.patternsIndex.patterns.length}): [references/patterns.md](references/patterns.md) — check for an existing pattern before composing a screen from scratch.`,
+        ]
+      : []),
     '',
   ].join('\n');
+}
+
+/** Pattern summaries (from OPTIONAL registries/patterns-index.json). */
+function buildScreenPatternsRef(ctx: RenderCtx): string {
+  const patterns = ctx.inputs.patternsIndex?.patterns ?? [];
+  const out = [
+    generatedLineMd(ctx.sourceHash),
+    '',
+    '# Approved composition patterns',
+    '',
+    `${patterns.length} patterns enumerated in registries/patterns-index.json. A pattern names an approved composition of registry components — prefer reusing one over inventing an equivalent layout.`,
+    '',
+  ];
+  for (const p of patterns) {
+    const parts: string[] = [`- **${p.title ?? p.name}** (\`${p.name}\`)`];
+    if (p.description !== undefined) parts.push(`— ${p.description}`);
+    if (p.components !== undefined && p.components.length > 0) {
+      parts.push(`— components: ${[...p.components].sort().map((c) => `\`${c}\``).join(', ')}`);
+    }
+    if (p.docFile !== undefined) parts.push(`— full doc: \`${p.docFile}\``);
+    if (p.storyFile !== undefined) parts.push(`— ground truth: \`${p.storyFile}\``);
+    if (p.keywords !== undefined && p.keywords.length > 0) parts.push(`— keywords: ${p.keywords.join(', ')}`);
+    out.push(parts.join(' '));
+  }
+  out.push('');
+  return out.join('\n');
 }
 
 function buildScreenChecklist(ctx: RenderCtx): string {
@@ -243,7 +280,7 @@ function migrationMapRef(ctx: RenderCtx): string {
     `| Tailwind | \`className="p-4 rounded-lg text-gray-600"\` | CSS Module: \`padding: var(${CSS_PREFIX}-space-4); border-radius: var(${CSS_PREFIX}-radius-lg); color: var(${CSS_PREFIX}-color-text-muted);\` |`,
     `| Tailwind | \`w-64\`, \`h-10\` via space scale | \`${CSS_PREFIX}-size-control-*\` / \`${CSS_PREFIX}-size-icon-*\` for box dimensions |`,
     `| Chakra/MUI/Ant | \`<Box>\`, \`<Stack>\`, \`<Flex>\`, \`<Grid>\`, \`<Container>\` | plain elements + \`display:flex; gap: var(${CSS_PREFIX}-space-gap-md)\` |`,
-    `| Chakra/MUI | \`<Heading level={2}>\`, \`<Text size="sm">\` | \`<h2>\`, \`<p>\` + \`var(${CSS_PREFIX}-text-size-*)\` / \`var(${CSS_PREFIX}-text-weight-*)\` |`,
+    `| Chakra/MUI | \`<Heading level={2}>\`, \`<Text size="sm">\` | \`<h2>\`, \`<p>\` + \`var(${CSS_PREFIX}-text-size-*)\` / \`var(${CSS_PREFIX}-text-weight-*)\` — but Dialog owns its title: pass the required \`title\` prop, never add a heading to name a dialog |`,
     `| MUI/Emotion | \`sx\`/\`css\` props, \`styled()\` | CSS Modules consuming \`${CSS_PREFIX}-*\` tokens; components accept \`className\` only |`,
     `| Any DS | deep imports (\`${REACT_PKG}/dist/Button\`) | \`import { Button } from '${REACT_PKG}'\` |`,
     `| Raw CSS | hex/rgb literals, \`:hover\`/\`:disabled\` pseudo-classes | intent tokens; \`[data-hovered]\` / \`[data-disabled]\` data attributes |`,
