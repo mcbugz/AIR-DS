@@ -1,0 +1,318 @@
+{
+  "$description": "GENERATED machine contract for allowlisted customization of Design System (ADR-006 §4) — compiled by @ds/context from the registries, do not edit. Anything not allowlisted here is closed. Source hash sha256:40eab412d89cd909.",
+  "brand": "acme",
+  "tokenOverrides": {
+    "brandTier": "full",
+    "semanticTier": "by-engagement",
+    "componentHooks": [
+      "--ds-alert-border-danger",
+      "--ds-alert-border-info",
+      "--ds-alert-border-success",
+      "--ds-alert-border-warning",
+      "--ds-alert-border-width",
+      "--ds-alert-dismiss-surface-hover",
+      "--ds-alert-dismiss-surface-pressed",
+      "--ds-alert-gap",
+      "--ds-alert-icon-danger",
+      "--ds-alert-icon-info",
+      "--ds-alert-icon-success",
+      "--ds-alert-icon-warning",
+      "--ds-alert-padding",
+      "--ds-alert-radius",
+      "--ds-alert-surface-danger",
+      "--ds-alert-surface-info",
+      "--ds-alert-surface-success",
+      "--ds-alert-surface-warning",
+      "--ds-alert-text-danger",
+      "--ds-alert-text-info",
+      "--ds-alert-text-success",
+      "--ds-alert-text-warning",
+      "--ds-badge-font-size",
+      "--ds-badge-font-weight",
+      "--ds-badge-padding-x",
+      "--ds-badge-padding-y",
+      "--ds-badge-radius",
+      "--ds-badge-surface-danger",
+      "--ds-badge-surface-info",
+      "--ds-badge-surface-neutral",
+      "--ds-badge-surface-success",
+      "--ds-badge-surface-warning",
+      "--ds-badge-text-danger",
+      "--ds-badge-text-info",
+      "--ds-badge-text-neutral",
+      "--ds-badge-text-success",
+      "--ds-badge-text-warning",
+      "--ds-button-border-secondary",
+      "--ds-button-font-weight",
+      "--ds-button-gap",
+      "--ds-button-height-lg",
+      "--ds-button-height-md",
+      "--ds-button-height-sm",
+      "--ds-button-padding-x-lg",
+      "--ds-button-padding-x-md",
+      "--ds-button-padding-x-sm",
+      "--ds-button-radius",
+      "--ds-button-surface-danger-default",
+      "--ds-button-surface-danger-hover",
+      "--ds-button-surface-ghost-hover",
+      "--ds-button-surface-primary-default",
+      "--ds-button-surface-primary-hover",
+      "--ds-button-surface-secondary-default",
+      "--ds-button-surface-secondary-hover",
+      "--ds-button-text-danger",
+      "--ds-button-text-ghost",
+      "--ds-button-text-primary",
+      "--ds-button-text-secondary",
+      "--ds-card-border",
+      "--ds-card-gap",
+      "--ds-card-padding",
+      "--ds-card-radius",
+      "--ds-card-shadow",
+      "--ds-card-surface",
+      "--ds-checkbox-border-default",
+      "--ds-checkbox-border-invalid",
+      "--ds-checkbox-mark",
+      "--ds-checkbox-radius",
+      "--ds-checkbox-size",
+      "--ds-checkbox-surface-default",
+      "--ds-checkbox-surface-selected",
+      "--ds-checkbox-surface-selected-hover",
+      "--ds-dialog-backdrop",
+      "--ds-dialog-backdrop-opacity",
+      "--ds-dialog-gap",
+      "--ds-dialog-padding",
+      "--ds-dialog-radius",
+      "--ds-dialog-shadow",
+      "--ds-dialog-surface",
+      "--ds-dialog-width-lg",
+      "--ds-dialog-width-md",
+      "--ds-dialog-width-sm",
+      "--ds-dialog-z",
+      "--ds-field-border-default",
+      "--ds-field-border-disabled",
+      "--ds-field-border-focus",
+      "--ds-field-border-hover",
+      "--ds-field-border-invalid",
+      "--ds-field-description-text",
+      "--ds-field-error-text",
+      "--ds-field-gap",
+      "--ds-field-height",
+      "--ds-field-label-text",
+      "--ds-field-padding-x",
+      "--ds-field-padding-y",
+      "--ds-field-placeholder",
+      "--ds-field-radius",
+      "--ds-field-surface",
+      "--ds-field-surface-disabled",
+      "--ds-field-text",
+      "--ds-field-text-disabled",
+      "--ds-radio-dot",
+      "--ds-radio-gap",
+      "--ds-radio-size",
+      "--ds-radio-surface-selected",
+      "--ds-radio-surface-selected-hover",
+      "--ds-switch-surface-off",
+      "--ds-switch-surface-on",
+      "--ds-switch-surface-on-hover",
+      "--ds-switch-thumb",
+      "--ds-switch-thumb-size",
+      "--ds-switch-track-height",
+      "--ds-switch-track-width",
+      "--ds-tabs-border",
+      "--ds-tabs-font-weight",
+      "--ds-tabs-gap",
+      "--ds-tabs-indicator-selected",
+      "--ds-tabs-padding-x",
+      "--ds-tabs-padding-y",
+      "--ds-tabs-text-default",
+      "--ds-tabs-text-hover",
+      "--ds-tabs-text-selected",
+      "--ds-tooltip-font-size",
+      "--ds-tooltip-max-width",
+      "--ds-tooltip-padding-x",
+      "--ds-tooltip-padding-y",
+      "--ds-tooltip-radius",
+      "--ds-tooltip-shadow",
+      "--ds-tooltip-surface",
+      "--ds-tooltip-text",
+      "--ds-tooltip-z"
+    ]
+  },
+  "composition": {
+    "slots": [
+      {
+        "component": "Alert",
+        "kind": "dismiss-hook",
+        "prop": "onDismiss"
+      },
+      {
+        "component": "Card",
+        "kind": "children-slots",
+        "parts": [
+          "CardBody",
+          "CardFooter",
+          "CardHeader"
+        ]
+      },
+      {
+        "component": "Checkbox",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactNode"
+      },
+      {
+        "component": "Dialog",
+        "kind": "render-prop",
+        "prop": "trigger",
+        "type": "ReactElement"
+      },
+      {
+        "component": "IconButton",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactNode"
+      },
+      {
+        "component": "Radio",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactNode"
+      },
+      {
+        "component": "RadioGroup",
+        "kind": "children-slots",
+        "parts": [
+          "Radio"
+        ]
+      },
+      {
+        "component": "RadioGroup",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactNode"
+      },
+      {
+        "component": "Switch",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactNode"
+      },
+      {
+        "component": "TabList",
+        "kind": "children-slots",
+        "parts": [
+          "Tab"
+        ]
+      },
+      {
+        "component": "Tabs",
+        "kind": "children-slots",
+        "parts": [
+          "Tab",
+          "TabList",
+          "TabPanel"
+        ]
+      },
+      {
+        "component": "Tooltip",
+        "kind": "render-prop",
+        "prop": "children",
+        "type": "ReactElement"
+      }
+    ],
+    "patterns": [
+      {
+        "name": "choice-group",
+        "title": "Choice group",
+        "components": [
+          "Radio",
+          "RadioGroup"
+        ],
+        "docFile": "docs/patterns/choice-group.md"
+      },
+      {
+        "name": "destructive-confirmation",
+        "title": "Destructive confirmation",
+        "components": [
+          "Alert",
+          "Button",
+          "Dialog"
+        ],
+        "docFile": "docs/patterns/destructive-confirmation.md"
+      },
+      {
+        "name": "form-section",
+        "title": "Form section",
+        "components": [
+          "Button",
+          "Card",
+          "CardBody",
+          "CardFooter",
+          "CardHeader",
+          "TextArea",
+          "TextField"
+        ],
+        "docFile": "docs/patterns/form-section.md"
+      },
+      {
+        "name": "inline-validation",
+        "title": "Inline validation",
+        "components": [
+          "Button",
+          "TextField"
+        ],
+        "docFile": "docs/patterns/inline-validation.md"
+      },
+      {
+        "name": "settings-toggle-group",
+        "title": "Settings toggle group",
+        "components": [
+          "Card",
+          "CardBody",
+          "CardHeader",
+          "Switch"
+        ],
+        "docFile": "docs/patterns/settings-toggle-group.md"
+      },
+      {
+        "name": "status-banner",
+        "title": "Status banner",
+        "components": [
+          "Alert"
+        ],
+        "docFile": "docs/patterns/status-banner.md"
+      }
+    ]
+  },
+  "forbidden": [
+    {
+      "surface": "component-internals",
+      "detail": "Component source and component CSS are never forked, patched, or restyled; internals (including anything reached via non-public paths) are not an override surface.",
+      "rules": [
+        "NR-005",
+        "NR-009"
+      ]
+    },
+    {
+      "surface": "base-classes",
+      "detail": "Component base classes (the lowercased component name) are internal styling contracts, not customization hooks — never target them from consumer CSS.",
+      "rules": [
+        "NR-010"
+      ]
+    },
+    {
+      "surface": "deep-imports",
+      "detail": "Import only from `@ds/react`; deep dist paths are not public API.",
+      "rules": [
+        "NR-005"
+      ]
+    },
+    {
+      "surface": "cross-component-hooks",
+      "detail": "A component's `--ds-<component>-*` hooks style that component ONLY — overriding one component must never restyle another.",
+      "rules": [
+        "NR-008"
+      ]
+    }
+  ]
+}

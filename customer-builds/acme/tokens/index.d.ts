@@ -121,6 +121,9 @@ export type DsZToken =
 
 /** Semantic "size" tokens (literal union). */
 export type DsSizeToken =
+  | "size.container.lg"
+  | "size.container.md"
+  | "size.container.sm"
   | "size.control.lg"
   | "size.control.md"
   | "size.control.sm"

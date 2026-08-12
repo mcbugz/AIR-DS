@@ -34,7 +34,7 @@ Checked **27 mandated pairs** at threshold **4.5:1** (WCAG 2.2 AA, normal text) 
 
 ## Tokens build (isolated)
 
-- Semantic tokens: 98
+- Semantic tokens: 101
 - Component tokens: 131
 - Gate contrast pairs: 27 checked, 0 failures
 - Context artifacts: built with --brand into context/ (registry swap + byte-for-byte restore around the compile)
@@ -45,9 +45,11 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 
 | File | SHA-256 before | SHA-256 after | Unchanged |
 |---|---|---|---|
-| components-index.json | `b08626f5af7a2990…` | `b08626f5af7a2990…` | yes |
-| contrast-report.json | `a864dacfc19f008a…` | `a864dacfc19f008a…` | yes |
-| tokens-index.json | `dca771eb453c27c2…` | `dca771eb453c27c2…` | yes |
+| components-index.json | `a4bd113fb511ee27…` | `a4bd113fb511ee27…` | yes |
+| contrast-report.json | `f460b6a031161baf…` | `f460b6a031161baf…` | yes |
+| icons-metadata.json | `5058d7c226438a40…` | `5058d7c226438a40…` | yes |
+| patterns-index.json | `9281b75007b43d7f…` | `9281b75007b43d7f…` | yes |
+| tokens-index.json | `55a8e4451abac094…` | `55a8e4451abac094…` | yes |
 
 ## Emitted files
 
@@ -81,6 +83,8 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 - `context/editor/claude/CLAUDE.md`
 - `context/editor/copilot/.github/copilot-instructions.md`
 - `context/editor/cursor/.cursor/rules/ds.mdc`
+- `context/editor/v0/instructions.md`
+- `context/extension-points.json`
 - `context/llms-components.txt`
 - `context/llms-full.txt`
 - `context/llms-migration.txt`
@@ -90,11 +94,14 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 - `context/manifest.json`
 - `context/registries/components-index.json`
 - `context/registries/contrast-report.json`
+- `context/registries/icons-metadata.json`
+- `context/registries/patterns-index.json`
 - `context/registries/tokens-index.json`
 - `context/skills/audit-a11y/SKILL.md`
 - `context/skills/audit-a11y/references/contrast-pairs.md`
 - `context/skills/build-screen/SKILL.md`
 - `context/skills/build-screen/references/checklist.md`
+- `context/skills/build-screen/references/patterns.md`
 - `context/skills/contribute-component/SKILL.md`
 - `context/skills/contribute-component/references/contributing.md`
 - `context/skills/migrate/SKILL.md`
@@ -116,10 +123,10 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 
 - validate: 1 ms
 - generate-brand: 2 ms
-- tokens-build: 120 ms
-- context-build: 134 ms
-- bundle: 2 ms
-- total: 260 ms
+- tokens-build: 109 ms
+- context-build: 149 ms
+- bundle: 3 ms
+- total: 264 ms
 
 ## Gaps / follow-ups
 

@@ -11,6 +11,11 @@
 
 import { resolve } from 'node:path';
 import { runGauntlet, STEP_ORDER } from './gauntlet.ts';
+import {
+  appendMetricsLine,
+  buildMetricsLine,
+  gauntletMetricsFromReport,
+} from './metrics/record.ts';
 import { findRepoRoot } from './registry.ts';
 import { validateFiles } from './validate.ts';
 import type { GauntletReport, Violation } from './types.ts';
@@ -23,6 +28,10 @@ interface Args {
   only: string[];
   files: string[];
   mode: 'gauntlet' | 'files';
+  /** Skip the metrics/history.jsonl append for this run. */
+  noMetrics: boolean;
+  /** Pin the metrics timestamp (default: HEAD commit time). */
+  now: string | null;
 }
 
 function parseArgs(argv: string[]): Args {
@@ -36,6 +45,8 @@ function parseArgs(argv: string[]): Args {
     only: [],
     files: [],
     mode: 'gauntlet',
+    noMetrics: false,
+    now: null,
   };
   let i = 0;
   if (argv[0] === 'files') {
@@ -49,10 +60,12 @@ function parseArgs(argv: string[]): Args {
     else if (a === '--root') args.root = resolve(argv[++i] ?? '.');
     else if (a === '--skip') args.skip = (argv[++i] ?? '').split(',').filter(Boolean);
     else if (a === '--only') args.only = (argv[++i] ?? '').split(',').filter(Boolean);
+    else if (a === '--no-metrics') args.noMetrics = true;
+    else if (a === '--now') args.now = argv[++i] ?? null;
     else if (a === '--help' || a === '-h') {
       console.log(
         `ds-validate — AIR-DS validation gauntlet\n\n` +
-          `  ds-validate [--json] [--root <dir>] [--skip s1,s2] [--only s1,s2] [--verbose]\n` +
+          `  ds-validate [--json] [--root <dir>] [--skip s1,s2] [--only s1,s2] [--verbose] [--no-metrics] [--now <iso>]\n` +
           `  ds-validate files <path...> [--json] [--root <dir>]\n\n` +
           `Steps (fixed order, fail-fast): ${STEP_ORDER.join(' -> ')}`,
       );
@@ -116,5 +129,24 @@ if (args.mode === 'files') {
   });
   if (args.json) console.log(JSON.stringify(report, null, 2));
   else printReport(report);
+
+  // Metrics per release (brief §8): append one structured line per CLI run.
+  // Best-effort — a metrics write failure never masks the gauntlet verdict.
+  if (!args.noMetrics) {
+    try {
+      const { gauntlet, fabrications } = gauntletMetricsFromReport(report);
+      const line = buildMetricsLine({
+        root: args.root,
+        source: 'gauntlet',
+        gauntlet,
+        fabrications,
+        ...(args.now ? { now: args.now } : {}),
+      });
+      const target = appendMetricsLine(args.root, line);
+      if (!args.json) console.log(`metrics: appended gauntlet line to ${target}`);
+    } catch (error) {
+      console.error(`metrics: append failed (non-fatal): ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
   process.exit(report.ok ? 0 : 1);
 }

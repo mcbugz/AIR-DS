@@ -1,0 +1,148 @@
+{
+  "$description": "GENERATED closed-world pattern registry for @ds/react, compiled from docs/patterns/*.md frontmatter (docs are source, this JSON is output). Any composition pattern not listed here is not a sanctioned pattern. `components` name @ds/react registry components (components-index.json); `tokensUsed` are the --ds-* custom properties the pattern's own CSS consumes (tokens-index.json); `docFile` holds when-to-use, the composition rule, a complete example, and the anti-pattern note. Regenerate with: pnpm --filter @ds/react exec tsx scripts/generate-icons.ts",
+  "count": 6,
+  "patterns": [
+    {
+      "id": "choice-group",
+      "title": "Choice group",
+      "components": [
+        "Radio",
+        "RadioGroup"
+      ],
+      "tokensUsed": [],
+      "docFile": "docs/patterns/choice-group.md",
+      "keywords": [
+        "exclusive",
+        "horizontal",
+        "options",
+        "orientation",
+        "radio",
+        "single-select"
+      ]
+    },
+    {
+      "id": "destructive-confirmation",
+      "title": "Destructive confirmation",
+      "components": [
+        "Alert",
+        "Button",
+        "Dialog"
+      ],
+      "tokensUsed": [
+        "--ds-space-4",
+        "--ds-space-gap-md",
+        "--ds-text-size-md",
+        "--ds-text-leading-normal",
+        "--ds-color-text-primary"
+      ],
+      "docFile": "docs/patterns/destructive-confirmation.md",
+      "keywords": [
+        "confirm",
+        "danger",
+        "delete",
+        "destructive",
+        "dialog",
+        "irreversible",
+        "modal"
+      ]
+    },
+    {
+      "id": "form-section",
+      "title": "Form section",
+      "components": [
+        "Button",
+        "Card",
+        "CardBody",
+        "CardFooter",
+        "CardHeader",
+        "TextArea",
+        "TextField"
+      ],
+      "tokensUsed": [
+        "--ds-space-4",
+        "--ds-space-gap-md",
+        "--ds-text-size-lg",
+        "--ds-text-weight-semibold",
+        "--ds-text-leading-tight",
+        "--ds-color-text-primary"
+      ],
+      "docFile": "docs/patterns/form-section.md",
+      "keywords": [
+        "actions",
+        "card",
+        "fields",
+        "footer",
+        "form",
+        "profile",
+        "save",
+        "section"
+      ]
+    },
+    {
+      "id": "inline-validation",
+      "title": "Inline validation",
+      "components": [
+        "Button",
+        "TextField"
+      ],
+      "tokensUsed": [
+        "--ds-space-4"
+      ],
+      "docFile": "docs/patterns/inline-validation.md",
+      "keywords": [
+        "error",
+        "field",
+        "form",
+        "invalid",
+        "message",
+        "required",
+        "validation"
+      ]
+    },
+    {
+      "id": "settings-toggle-group",
+      "title": "Settings toggle group",
+      "components": [
+        "Card",
+        "CardBody",
+        "CardHeader",
+        "Switch"
+      ],
+      "tokensUsed": [
+        "--ds-space-gap-md",
+        "--ds-text-size-lg",
+        "--ds-text-weight-semibold",
+        "--ds-text-leading-tight",
+        "--ds-color-text-primary"
+      ],
+      "docFile": "docs/patterns/settings-toggle-group.md",
+      "keywords": [
+        "notifications",
+        "on-off",
+        "preferences",
+        "settings",
+        "switches",
+        "toggles"
+      ]
+    },
+    {
+      "id": "status-banner",
+      "title": "Status banner",
+      "components": [
+        "Alert"
+      ],
+      "tokensUsed": [],
+      "docFile": "docs/patterns/status-banner.md",
+      "keywords": [
+        "alert",
+        "announce",
+        "banner",
+        "danger",
+        "info",
+        "status",
+        "success",
+        "warning"
+      ]
+    }
+  ]
+}

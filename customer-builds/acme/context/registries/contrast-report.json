@@ -1,251 +1,927 @@
 {
+  "$description": "GENERATED WCAG audit for the active brand. `pairs` are the mandated semantic foreground/background checks; each pair's `resolvesTo` lists every component-tier cssVar whose value chain resolves to that same color. `aliasIndex` maps each component-tier color cssVar to the audited pair ids it inherits (e.g. text on --ds-card-surface is verified by the color.surface.raised pairs). Component color tokens under `unaudited` inherit no pair; each entry states why. A foreground/background combination in no pair and no alias entry is unverified.",
   "standard": "WCAG 2.2 AA (normal text)",
   "threshold": 4.5,
   "brand": "brands/acme.json",
   "failures": 0,
   "pairs": [
     {
+      "id": "color.text.primary|color.surface.default",
       "foreground": "color.text.primary",
       "background": "color.surface.default",
       "foregroundValue": "#1c1713",
       "backgroundValue": "#f9f3ef",
       "ratio": 16.16,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-button-text-ghost",
+          "--ds-button-text-secondary",
+          "--ds-field-label-text",
+          "--ds-field-text",
+          "--ds-tabs-text-hover",
+          "--ds-tabs-text-selected"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-hover",
+          "--ds-checkbox-surface-default",
+          "--ds-radio-dot",
+          "--ds-switch-thumb"
+        ]
+      }
     },
     {
+      "id": "color.text.primary|color.surface.raised",
       "foreground": "color.text.primary",
       "background": "color.surface.raised",
       "foregroundValue": "#1c1713",
       "backgroundValue": "#fef9f6",
       "ratio": 17.01,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-button-text-ghost",
+          "--ds-button-text-secondary",
+          "--ds-field-label-text",
+          "--ds-field-text",
+          "--ds-tabs-text-hover",
+          "--ds-tabs-text-selected"
+        ],
+        "background": [
+          "--ds-button-surface-secondary-default",
+          "--ds-card-surface",
+          "--ds-dialog-surface",
+          "--ds-field-surface"
+        ]
+      }
     },
     {
+      "id": "color.text.primary|color.surface.sunken",
       "foreground": "color.text.primary",
       "background": "color.surface.sunken",
       "foregroundValue": "#1c1713",
       "backgroundValue": "#ede6e1",
       "ratio": 14.4,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-button-text-ghost",
+          "--ds-button-text-secondary",
+          "--ds-field-label-text",
+          "--ds-field-text",
+          "--ds-tabs-text-hover",
+          "--ds-tabs-text-selected"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-pressed",
+          "--ds-badge-surface-neutral",
+          "--ds-button-surface-ghost-hover",
+          "--ds-button-surface-secondary-hover",
+          "--ds-field-surface-disabled",
+          "--ds-switch-surface-off"
+        ]
+      }
     },
     {
+      "id": "color.text.secondary|color.surface.default",
       "foreground": "color.text.secondary",
       "background": "color.surface.default",
       "foregroundValue": "#453f3a",
       "backgroundValue": "#f9f3ef",
       "ratio": 9.43,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-badge-text-neutral",
+          "--ds-field-description-text",
+          "--ds-tabs-text-default"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-hover",
+          "--ds-checkbox-surface-default",
+          "--ds-radio-dot",
+          "--ds-switch-thumb"
+        ]
+      }
     },
     {
+      "id": "color.text.secondary|color.surface.raised",
       "foreground": "color.text.secondary",
       "background": "color.surface.raised",
       "foregroundValue": "#453f3a",
       "backgroundValue": "#fef9f6",
       "ratio": 9.92,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-badge-text-neutral",
+          "--ds-field-description-text",
+          "--ds-tabs-text-default"
+        ],
+        "background": [
+          "--ds-button-surface-secondary-default",
+          "--ds-card-surface",
+          "--ds-dialog-surface",
+          "--ds-field-surface"
+        ]
+      }
     },
     {
+      "id": "color.text.secondary|color.surface.sunken",
       "foreground": "color.text.secondary",
       "background": "color.surface.sunken",
       "foregroundValue": "#453f3a",
       "backgroundValue": "#ede6e1",
       "ratio": 8.4,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-badge-text-neutral",
+          "--ds-field-description-text",
+          "--ds-tabs-text-default"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-pressed",
+          "--ds-badge-surface-neutral",
+          "--ds-button-surface-ghost-hover",
+          "--ds-button-surface-secondary-hover",
+          "--ds-field-surface-disabled",
+          "--ds-switch-surface-off"
+        ]
+      }
     },
     {
+      "id": "color.text.muted|color.surface.default",
       "foreground": "color.text.muted",
       "background": "color.surface.default",
       "foregroundValue": "#59534e",
       "backgroundValue": "#f9f3ef",
       "ratio": 6.89,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-field-placeholder",
+          "--ds-field-text-disabled"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-hover",
+          "--ds-checkbox-surface-default",
+          "--ds-radio-dot",
+          "--ds-switch-thumb"
+        ]
+      }
     },
     {
+      "id": "color.text.muted|color.surface.raised",
       "foreground": "color.text.muted",
       "background": "color.surface.raised",
       "foregroundValue": "#59534e",
       "backgroundValue": "#fef9f6",
       "ratio": 7.25,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-field-placeholder",
+          "--ds-field-text-disabled"
+        ],
+        "background": [
+          "--ds-button-surface-secondary-default",
+          "--ds-card-surface",
+          "--ds-dialog-surface",
+          "--ds-field-surface"
+        ]
+      }
     },
     {
+      "id": "color.text.muted|color.surface.sunken",
       "foreground": "color.text.muted",
       "background": "color.surface.sunken",
       "foregroundValue": "#59534e",
       "backgroundValue": "#ede6e1",
       "ratio": 6.14,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-field-placeholder",
+          "--ds-field-text-disabled"
+        ],
+        "background": [
+          "--ds-alert-dismiss-surface-pressed",
+          "--ds-badge-surface-neutral",
+          "--ds-button-surface-ghost-hover",
+          "--ds-button-surface-secondary-hover",
+          "--ds-field-surface-disabled",
+          "--ds-switch-surface-off"
+        ]
+      }
     },
     {
+      "id": "color.text.link|color.surface.default",
       "foreground": "color.text.link",
       "background": "color.surface.default",
       "foregroundValue": "#1e6e4a",
       "backgroundValue": "#f9f3ef",
       "ratio": 5.64,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": [
+          "--ds-alert-dismiss-surface-hover",
+          "--ds-checkbox-surface-default",
+          "--ds-radio-dot",
+          "--ds-switch-thumb"
+        ]
+      }
     },
     {
+      "id": "color.text.link|color.surface.raised",
       "foreground": "color.text.link",
       "background": "color.surface.raised",
       "foregroundValue": "#1e6e4a",
       "backgroundValue": "#fef9f6",
       "ratio": 5.94,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": [
+          "--ds-button-surface-secondary-default",
+          "--ds-card-surface",
+          "--ds-dialog-surface",
+          "--ds-field-surface"
+        ]
+      }
     },
     {
+      "id": "color.text.link|color.surface.sunken",
       "foreground": "color.text.link",
       "background": "color.surface.sunken",
       "foregroundValue": "#1e6e4a",
       "backgroundValue": "#ede6e1",
       "ratio": 5.02,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": [
+          "--ds-alert-dismiss-surface-pressed",
+          "--ds-badge-surface-neutral",
+          "--ds-button-surface-ghost-hover",
+          "--ds-button-surface-secondary-hover",
+          "--ds-field-surface-disabled",
+          "--ds-switch-surface-off"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.surface.inverse",
       "foreground": "color.text.inverse",
       "background": "color.surface.inverse",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#1c1713",
       "ratio": 17.01,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-tooltip-surface"
+        ]
+      }
     },
     {
+      "id": "color.text.on-accent|color.accent.default",
       "foreground": "color.text.on-accent",
       "background": "color.accent.default",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#28825a",
       "ratio": 4.54,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-button-text-danger",
+          "--ds-button-text-primary",
+          "--ds-checkbox-mark"
+        ],
+        "background": [
+          "--ds-button-surface-primary-default",
+          "--ds-checkbox-surface-selected",
+          "--ds-radio-surface-selected",
+          "--ds-switch-surface-on",
+          "--ds-tabs-indicator-selected"
+        ]
+      }
     },
     {
+      "id": "color.text.on-accent|color.accent.emphasis",
       "foreground": "color.text.on-accent",
       "background": "color.accent.emphasis",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#1e6e4a",
       "ratio": 5.94,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-button-text-danger",
+          "--ds-button-text-primary",
+          "--ds-checkbox-mark"
+        ],
+        "background": [
+          "--ds-button-surface-primary-hover",
+          "--ds-checkbox-surface-selected-hover",
+          "--ds-radio-surface-selected-hover",
+          "--ds-switch-surface-on-hover"
+        ]
+      }
     },
     {
+      "id": "color.status.info.text|color.status.info.surface",
       "foreground": "color.status.info.text",
       "background": "color.status.info.surface",
       "foregroundValue": "#075985",
       "backgroundValue": "#f0f9ff",
       "ratio": 7.09,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-alert-text-info",
+          "--ds-badge-text-info"
+        ],
+        "background": [
+          "--ds-alert-surface-info",
+          "--ds-badge-surface-info"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.info.default",
       "foreground": "color.text.inverse",
       "background": "color.status.info.default",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#0273a8",
       "ratio": 5,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-alert-icon-info"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.info.emphasis",
       "foreground": "color.text.inverse",
       "background": "color.status.info.emphasis",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#0369a1",
       "ratio": 5.68,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": []
+      }
     },
     {
+      "id": "color.status.success.text|color.status.success.surface",
       "foreground": "color.status.success.text",
       "background": "color.status.success.surface",
       "foregroundValue": "#166534",
       "backgroundValue": "#f0fdf4",
       "ratio": 6.81,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-alert-text-success",
+          "--ds-badge-text-success"
+        ],
+        "background": [
+          "--ds-alert-surface-success",
+          "--ds-badge-surface-success"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.success.default",
       "foreground": "color.text.inverse",
       "background": "color.status.success.default",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#0e8038",
       "ratio": 4.83,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-alert-icon-success"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.success.emphasis",
       "foreground": "color.text.inverse",
       "background": "color.status.success.emphasis",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#0d7034",
       "ratio": 5.94,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": []
+      }
     },
     {
+      "id": "color.status.warning.text|color.status.warning.surface",
       "foreground": "color.status.warning.text",
       "background": "color.status.warning.surface",
       "foregroundValue": "#703a00",
       "backgroundValue": "#fff9f4",
       "ratio": 8.77,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-alert-text-warning",
+          "--ds-badge-text-warning"
+        ],
+        "background": [
+          "--ds-alert-surface-warning",
+          "--ds-badge-surface-warning"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.warning.default",
       "foreground": "color.text.inverse",
       "background": "color.status.warning.default",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#a85a00",
       "ratio": 4.87,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-alert-icon-warning"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.warning.emphasis",
       "foreground": "color.text.inverse",
       "background": "color.status.warning.emphasis",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#8c4a00",
       "ratio": 6.49,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": []
+      }
     },
     {
+      "id": "color.status.danger.text|color.status.danger.surface",
       "foreground": "color.status.danger.text",
       "background": "color.status.danger.surface",
       "foregroundValue": "#991b1b",
       "backgroundValue": "#fef2f2",
       "ratio": 7.6,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-alert-text-danger",
+          "--ds-badge-text-danger",
+          "--ds-field-error-text"
+        ],
+        "background": [
+          "--ds-alert-surface-danger",
+          "--ds-badge-surface-danger"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.danger.default",
       "foreground": "color.text.inverse",
       "background": "color.status.danger.default",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#dc2626",
       "ratio": 4.62,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-alert-icon-danger",
+          "--ds-button-surface-danger-default"
+        ]
+      }
     },
     {
+      "id": "color.text.inverse|color.status.danger.emphasis",
       "foreground": "color.text.inverse",
       "background": "color.status.danger.emphasis",
       "foregroundValue": "#fef9f6",
       "backgroundValue": "#b91c1c",
       "ratio": 6.19,
       "required": 4.5,
-      "pass": true
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [
+          "--ds-tooltip-text"
+        ],
+        "background": [
+          "--ds-button-surface-danger-hover"
+        ]
+      }
+    }
+  ],
+  "aliasIndex": {
+    "--ds-alert-dismiss-surface-hover": [
+      "color.text.primary|color.surface.default",
+      "color.text.secondary|color.surface.default",
+      "color.text.muted|color.surface.default",
+      "color.text.link|color.surface.default"
+    ],
+    "--ds-alert-dismiss-surface-pressed": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-alert-icon-danger": [
+      "color.text.inverse|color.status.danger.default"
+    ],
+    "--ds-alert-icon-info": [
+      "color.text.inverse|color.status.info.default"
+    ],
+    "--ds-alert-icon-success": [
+      "color.text.inverse|color.status.success.default"
+    ],
+    "--ds-alert-icon-warning": [
+      "color.text.inverse|color.status.warning.default"
+    ],
+    "--ds-alert-surface-danger": [
+      "color.status.danger.text|color.status.danger.surface"
+    ],
+    "--ds-alert-surface-info": [
+      "color.status.info.text|color.status.info.surface"
+    ],
+    "--ds-alert-surface-success": [
+      "color.status.success.text|color.status.success.surface"
+    ],
+    "--ds-alert-surface-warning": [
+      "color.status.warning.text|color.status.warning.surface"
+    ],
+    "--ds-alert-text-danger": [
+      "color.status.danger.text|color.status.danger.surface"
+    ],
+    "--ds-alert-text-info": [
+      "color.status.info.text|color.status.info.surface"
+    ],
+    "--ds-alert-text-success": [
+      "color.status.success.text|color.status.success.surface"
+    ],
+    "--ds-alert-text-warning": [
+      "color.status.warning.text|color.status.warning.surface"
+    ],
+    "--ds-badge-surface-danger": [
+      "color.status.danger.text|color.status.danger.surface"
+    ],
+    "--ds-badge-surface-info": [
+      "color.status.info.text|color.status.info.surface"
+    ],
+    "--ds-badge-surface-neutral": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-badge-surface-success": [
+      "color.status.success.text|color.status.success.surface"
+    ],
+    "--ds-badge-surface-warning": [
+      "color.status.warning.text|color.status.warning.surface"
+    ],
+    "--ds-badge-text-danger": [
+      "color.status.danger.text|color.status.danger.surface"
+    ],
+    "--ds-badge-text-info": [
+      "color.status.info.text|color.status.info.surface"
+    ],
+    "--ds-badge-text-neutral": [
+      "color.text.secondary|color.surface.default",
+      "color.text.secondary|color.surface.raised",
+      "color.text.secondary|color.surface.sunken"
+    ],
+    "--ds-badge-text-success": [
+      "color.status.success.text|color.status.success.surface"
+    ],
+    "--ds-badge-text-warning": [
+      "color.status.warning.text|color.status.warning.surface"
+    ],
+    "--ds-button-surface-danger-default": [
+      "color.text.inverse|color.status.danger.default"
+    ],
+    "--ds-button-surface-danger-hover": [
+      "color.text.inverse|color.status.danger.emphasis"
+    ],
+    "--ds-button-surface-ghost-hover": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-button-surface-primary-default": [
+      "color.text.on-accent|color.accent.default"
+    ],
+    "--ds-button-surface-primary-hover": [
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-button-surface-secondary-default": [
+      "color.text.primary|color.surface.raised",
+      "color.text.secondary|color.surface.raised",
+      "color.text.muted|color.surface.raised",
+      "color.text.link|color.surface.raised"
+    ],
+    "--ds-button-surface-secondary-hover": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-button-text-danger": [
+      "color.text.on-accent|color.accent.default",
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-button-text-ghost": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-button-text-primary": [
+      "color.text.on-accent|color.accent.default",
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-button-text-secondary": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-card-surface": [
+      "color.text.primary|color.surface.raised",
+      "color.text.secondary|color.surface.raised",
+      "color.text.muted|color.surface.raised",
+      "color.text.link|color.surface.raised"
+    ],
+    "--ds-checkbox-mark": [
+      "color.text.on-accent|color.accent.default",
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-checkbox-surface-default": [
+      "color.text.primary|color.surface.default",
+      "color.text.secondary|color.surface.default",
+      "color.text.muted|color.surface.default",
+      "color.text.link|color.surface.default"
+    ],
+    "--ds-checkbox-surface-selected": [
+      "color.text.on-accent|color.accent.default"
+    ],
+    "--ds-checkbox-surface-selected-hover": [
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-dialog-surface": [
+      "color.text.primary|color.surface.raised",
+      "color.text.secondary|color.surface.raised",
+      "color.text.muted|color.surface.raised",
+      "color.text.link|color.surface.raised"
+    ],
+    "--ds-field-description-text": [
+      "color.text.secondary|color.surface.default",
+      "color.text.secondary|color.surface.raised",
+      "color.text.secondary|color.surface.sunken"
+    ],
+    "--ds-field-error-text": [
+      "color.status.danger.text|color.status.danger.surface"
+    ],
+    "--ds-field-label-text": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-field-placeholder": [
+      "color.text.muted|color.surface.default",
+      "color.text.muted|color.surface.raised",
+      "color.text.muted|color.surface.sunken"
+    ],
+    "--ds-field-surface": [
+      "color.text.primary|color.surface.raised",
+      "color.text.secondary|color.surface.raised",
+      "color.text.muted|color.surface.raised",
+      "color.text.link|color.surface.raised"
+    ],
+    "--ds-field-surface-disabled": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-field-text": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-field-text-disabled": [
+      "color.text.muted|color.surface.default",
+      "color.text.muted|color.surface.raised",
+      "color.text.muted|color.surface.sunken"
+    ],
+    "--ds-radio-dot": [
+      "color.text.primary|color.surface.default",
+      "color.text.secondary|color.surface.default",
+      "color.text.muted|color.surface.default",
+      "color.text.link|color.surface.default"
+    ],
+    "--ds-radio-surface-selected": [
+      "color.text.on-accent|color.accent.default"
+    ],
+    "--ds-radio-surface-selected-hover": [
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-switch-surface-off": [
+      "color.text.primary|color.surface.sunken",
+      "color.text.secondary|color.surface.sunken",
+      "color.text.muted|color.surface.sunken",
+      "color.text.link|color.surface.sunken"
+    ],
+    "--ds-switch-surface-on": [
+      "color.text.on-accent|color.accent.default"
+    ],
+    "--ds-switch-surface-on-hover": [
+      "color.text.on-accent|color.accent.emphasis"
+    ],
+    "--ds-switch-thumb": [
+      "color.text.primary|color.surface.default",
+      "color.text.secondary|color.surface.default",
+      "color.text.muted|color.surface.default",
+      "color.text.link|color.surface.default"
+    ],
+    "--ds-tabs-indicator-selected": [
+      "color.text.on-accent|color.accent.default"
+    ],
+    "--ds-tabs-text-default": [
+      "color.text.secondary|color.surface.default",
+      "color.text.secondary|color.surface.raised",
+      "color.text.secondary|color.surface.sunken"
+    ],
+    "--ds-tabs-text-hover": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-tabs-text-selected": [
+      "color.text.primary|color.surface.default",
+      "color.text.primary|color.surface.raised",
+      "color.text.primary|color.surface.sunken"
+    ],
+    "--ds-tooltip-surface": [
+      "color.text.inverse|color.surface.inverse"
+    ],
+    "--ds-tooltip-text": [
+      "color.text.inverse|color.surface.inverse",
+      "color.text.inverse|color.status.info.default",
+      "color.text.inverse|color.status.info.emphasis",
+      "color.text.inverse|color.status.success.default",
+      "color.text.inverse|color.status.success.emphasis",
+      "color.text.inverse|color.status.warning.default",
+      "color.text.inverse|color.status.warning.emphasis",
+      "color.text.inverse|color.status.danger.default",
+      "color.text.inverse|color.status.danger.emphasis"
+    ]
+  },
+  "unaudited": [
+    {
+      "name": "alert.border.danger",
+      "cssVar": "--ds-alert-border-danger",
+      "aliasOf": "color.status.danger.border",
+      "reason": "Aliases color.status.danger.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "alert.border.info",
+      "cssVar": "--ds-alert-border-info",
+      "aliasOf": "color.status.info.border",
+      "reason": "Aliases color.status.info.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "alert.border.success",
+      "cssVar": "--ds-alert-border-success",
+      "aliasOf": "color.status.success.border",
+      "reason": "Aliases color.status.success.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "alert.border.warning",
+      "cssVar": "--ds-alert-border-warning",
+      "aliasOf": "color.status.warning.border",
+      "reason": "Aliases color.status.warning.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "button.border.secondary",
+      "cssVar": "--ds-button-border-secondary",
+      "aliasOf": "color.border.default",
+      "reason": "Aliases color.border.default, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "card.border",
+      "cssVar": "--ds-card-border",
+      "aliasOf": "color.border.muted",
+      "reason": "Aliases color.border.muted, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "checkbox.border.default",
+      "cssVar": "--ds-checkbox-border-default",
+      "aliasOf": "color.border.default",
+      "reason": "Aliases color.border.default, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "checkbox.border.invalid",
+      "cssVar": "--ds-checkbox-border-invalid",
+      "aliasOf": "color.status.danger.border",
+      "reason": "Aliases color.status.danger.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "dialog.backdrop",
+      "cssVar": "--ds-dialog-backdrop",
+      "aliasOf": "color.surface.overlay",
+      "reason": "Aliases color.surface.overlay, a scrim that is never a text background — outside the normal-text gate by design."
+    },
+    {
+      "name": "field.border.default",
+      "cssVar": "--ds-field-border-default",
+      "aliasOf": "color.border.default",
+      "reason": "Aliases color.border.default, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "field.border.disabled",
+      "cssVar": "--ds-field-border-disabled",
+      "aliasOf": "color.border.muted",
+      "reason": "Aliases color.border.muted, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "field.border.focus",
+      "cssVar": "--ds-field-border-focus",
+      "aliasOf": "color.border.focus",
+      "reason": "Aliases color.border.focus, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "field.border.hover",
+      "cssVar": "--ds-field-border-hover",
+      "aliasOf": "color.border.strong",
+      "reason": "Aliases color.border.strong, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "field.border.invalid",
+      "cssVar": "--ds-field-border-invalid",
+      "aliasOf": "color.status.danger.border",
+      "reason": "Aliases color.status.danger.border, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
+    },
+    {
+      "name": "tabs.border",
+      "cssVar": "--ds-tabs-border",
+      "aliasOf": "color.border.default",
+      "reason": "Aliases color.border.default, a border color — a non-text edge outside the WCAG 2.2 AA normal-text gate (1.4.11 non-text contrast is not yet audited)."
     }
   ]
 }

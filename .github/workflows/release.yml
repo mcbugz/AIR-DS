@@ -1,0 +1,79 @@
+# Release pipeline — credential-free by default (repo policy: nothing requires
+# API keys, network services, or accounts; clients bring their own credentials).
+#
+# What this workflow DOES out of the box (no secrets needed):
+#   1. run the full deterministic quality bar (gauntlet + evals)
+#   2. `pnpm pack` every publishable package into tarballs
+#   3. stage a version-stamped registry bundle (machine contracts + context)
+#   4. upload everything as build artifacts — proving releasability
+#
+# What it deliberately does NOT do: `npm publish`. That step is documented
+# below but DISABLED; it only makes sense once the CLIENT provides an
+# `NPM_TOKEN` repository secret for THEIR registry/scope (see
+# customer-builds/<name>/publish-plan.json for the per-customer scope policy).
+#
+# Version bumps + changelog are local and reviewed, never automated here:
+#   node scripts/release-version.mjs <major|minor|patch>
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Quality bar — gauntlet + evals (no LLM, no credentials)
+        run: |
+          pnpm build
+          pnpm validate
+          pnpm --filter @ds/validate run evals
+
+      - name: Pack release artifacts (tarballs + version-stamped registry bundle)
+        run: bash scripts/release-pack.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: release-artifacts/
+          if-no-files-found: error
+
+      # ------------------------------------------------------------------
+      # npm publish — DISABLED BY DEFAULT (credential-free repo policy).
+      #
+      # To enable, the CLIENT:
+      #   1. creates the target scope on their registry (e.g. @acme-ds,
+      #      access: restricted — see customer-builds/<name>/publish-plan.json)
+      #   2. adds an NPM_TOKEN repository secret (granular publish token)
+      #   3. uncomments the step below
+      #
+      # The step publishes the exact tarballs proven above — nothing is
+      # rebuilt between pack and publish.
+      # ------------------------------------------------------------------
+      # - name: Publish to npm (CLIENT credentials required)
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: |
+      #     if [ -z "$NODE_AUTH_TOKEN" ]; then
+      #       echo "NPM_TOKEN secret not set — refusing to publish (this repo is credential-free by default)."
+      #       exit 1
+      #     fi
+      #     echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
+      #     for tarball in release-artifacts/*.tgz; do
+      #       npm publish "$tarball" --access restricted --provenance
+      #     done

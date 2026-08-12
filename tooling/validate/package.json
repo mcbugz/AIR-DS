@@ -22,10 +22,17 @@
     "lint": "echo '@ds/validate lint: no-op placeholder'",
     "gauntlet": "node src/cli.ts",
     "evals": "node src/evals/run-evals.ts",
-    "benchmark": "node src/benchmark/run.ts"
+    "benchmark": "node src/benchmark/run.ts",
+    "metrics:report": "node src/metrics/report.ts",
+    "release:pack": "bash ../../scripts/release-pack.sh"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "axe-core": "^4.10.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.55.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "typescript": "~5.9.3",
     "vitest": "^3.0.0"
   }

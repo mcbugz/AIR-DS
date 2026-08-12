@@ -1,0 +1,27 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+  padding: var(--ds-space-inset-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--ds-size-control-lg) * 6), 1fr));
+  gap: var(--ds-space-gap-lg);
+}
+
+.serviceName {
+  margin: 0;
+  font-size: var(--ds-text-size-lg);
+  font-weight: var(--ds-text-weight-semibold);
+  color: var(--ds-color-text-primary);
+}
+
+.description {
+  margin: 0;
+  margin-block-start: var(--ds-space-2);
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}

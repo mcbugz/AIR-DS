@@ -37,6 +37,14 @@ const TYPOGRAPHY_FABRICATIONS = new Set([
   'Caption',
 ]);
 
+/**
+ * Public subpath exports declared in the packages' `exports` maps (NR-005
+ * exemptions). Kept as an explicit list so the rule engine stays pure/hermetic
+ * (evals never read package.json); update it when a package declares a new
+ * public subpath.
+ */
+const PUBLIC_SUBPATHS = new Set(['@ds/tokens/css', '@ds/react/icons']);
+
 const TW_PATTERNS: RegExp[] = [
   /^-?(p|px|py|pt|pb|pr|pl|m|mx|my|mt|mb|mr|ml|gap|gap-x|gap-y|space-x|space-y|w|h|max-w|min-w|max-h|min-h)-(\d+(\.\d+)?|px|full|screen|auto|fit|min|max)$/,
   /^(text|bg|border|ring|from|to|via|fill|stroke|divide)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|white|black)(-\d{2,3})?(\/\d{1,3})?$/,
@@ -75,12 +83,12 @@ export function checkCodeFile(
 ): Violation[] {
   const violations: Violation[] = [];
 
-  // NR-005: deep imports — '@ds/react' root is the only public entry point.
+  // NR-005: deep imports — only declared public entry points are importable.
   const deepImport = /from\s*['"](@ds\/(?:react|tokens)\/[^'"]+)['"]/g;
   let dm: RegExpExecArray | null;
   while ((dm = deepImport.exec(content)) !== null) {
     const path = dm[1] as string;
-    if (path === '@ds/tokens/css') continue; // documented public subpath export
+    if (PUBLIC_SUBPATHS.has(path)) continue; // documented public subpath exports
     violations.push({
       rule: 'NR-005',
       nr: 'NR-005',

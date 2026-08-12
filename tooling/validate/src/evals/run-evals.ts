@@ -16,6 +16,7 @@
 
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { appendMetricsLine, buildMetricsLine } from '../metrics/record.ts';
 import { buildRegistryContext, findRepoRoot } from '../registry.ts';
 import { validateSources } from '../validate.ts';
 import type { SourceFile, Violation } from '../types.ts';
@@ -115,6 +116,9 @@ export function runEvals(root?: string): EvalRunResult {
 const isMain = process.argv[1] && resolve(process.argv[1]).includes('run-evals');
 if (isMain) {
   const json = process.argv.includes('--json');
+  const noMetrics = process.argv.includes('--no-metrics');
+  const nowFlag = process.argv.indexOf('--now');
+  const now = nowFlag !== -1 ? process.argv[nowFlag + 1] : undefined;
   const rootFlag = process.argv.indexOf('--root');
   const root = rootFlag !== -1 ? resolve(process.argv[rootFlag + 1] ?? '.') : undefined;
   const result = runEvals(root);
@@ -138,6 +142,29 @@ if (isMain) {
         `critical ${result.criticalPassed}/${result.criticalTotal} (${(result.criticalRate * 100).toFixed(1)}%)`,
     );
     console.log(result.ok ? 'EVALS PASSED (critical 1.0, overall >= 0.95)\n' : 'EVALS FAILED\n');
+  }
+
+  // Metrics per release (brief §8): append one structured line per CLI run.
+  if (!noMetrics) {
+    try {
+      const repoRoot = root ?? findRepoRoot(process.cwd());
+      const line = buildMetricsLine({
+        root: repoRoot,
+        source: 'evals',
+        evals: {
+          overall: result.overallRate,
+          critical: result.criticalRate,
+          passed: result.passed,
+          total: result.total,
+        },
+        fabrications: 0,
+        ...(now ? { now } : {}),
+      });
+      const target = appendMetricsLine(repoRoot, line);
+      if (!json) console.log(`metrics: appended evals line to ${target}`);
+    } catch (error) {
+      console.error(`metrics: append failed (non-fatal): ${error instanceof Error ? error.message : String(error)}`);
+    }
   }
   process.exit(result.ok ? 0 : 1);
 }

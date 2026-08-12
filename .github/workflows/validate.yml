@@ -38,11 +38,25 @@ jobs:
         run: pnpm --filter @ds/validate run evals
 
       - name: Benchmark scorer self-test (dry-run over committed fixtures, no generator)
-        run: pnpm --filter @ds/validate run benchmark -- --dry-run
+        run: pnpm --filter @ds/validate run benchmark -- --dry-run --no-axe
+
+      # Metrics per release (brief §8): the gauntlet + eval runners above each
+      # appended a structured line to metrics/history.jsonl. Render the trend
+      # report and ship metrics/ as a build artifact. Deliberately NOT pushed
+      # back as a commit from CI — a human (or a reviewed bot PR) lands the
+      # updated history; CI only proves and preserves it.
+      - name: Render metrics report
+        run: pnpm --filter @ds/validate run metrics:report
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: metrics
+          path: metrics/
+          if-no-files-found: warn
 
       - name: Upload gauntlet report on failure
         if: failure()
-        run: pnpm --filter @ds/validate run gauntlet -- --json > gauntlet-report.json || true
+        run: pnpm --filter @ds/validate run gauntlet -- --json --no-metrics > gauntlet-report.json || true
 
       - uses: actions/upload-artifact@v4
         if: failure()

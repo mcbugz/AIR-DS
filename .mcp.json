@@ -1,0 +1,9 @@
+{
+  "$comment": "Project-scoped MCP wiring: anyone opening this repo in Claude Code gets the AIR-DS design-system server with zero setup beyond `pnpm install && pnpm build`. The server is stdio-only, reads the committed registries/ from disk, and needs no credentials or network.",
+  "mcpServers": {
+    "ds-mcp": {
+      "command": "node",
+      "args": ["packages/mcp/dist/cli.js"]
+    }
+  }
+}

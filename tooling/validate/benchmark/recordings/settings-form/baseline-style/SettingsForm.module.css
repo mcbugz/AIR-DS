@@ -1,0 +1,28 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-md);
+  padding: var(--ds-spacing-lg);
+  background: var(--ds-gray-50);
+  border-radius: 8px;
+  max-width: 480px;
+}
+
+.input {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.primary {
+  background: var(--ds-blue-600);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.secondary {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 16px;
+}

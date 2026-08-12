@@ -6,6 +6,25 @@
 
 export { runGauntlet, STEP_ORDER } from './gauntlet.ts';
 export { validateFiles, validateSources } from './validate.ts';
+export {
+  appendMetricsLine,
+  buildMetricsLine,
+  countFabrications,
+  gauntletMetricsFromReport,
+  gitCommitTs,
+  gitSha,
+  historyPath,
+  readHistory,
+  registryCounts,
+} from './metrics/record.ts';
+export { groupBySha, renderReport } from './metrics/report.ts';
+export type {
+  BenchmarkMetrics,
+  EvalMetrics,
+  GauntletMetrics,
+  MetricsLine,
+  RegistryCounts,
+} from './metrics/record.ts';
 export { buildRegistryContext, findRepoRoot, loadRegistryContext } from './registry.ts';
 export { checkCssFile } from './rules/css-rules.ts';
 export { checkCodeFile } from './rules/code-rules.ts';

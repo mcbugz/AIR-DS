@@ -1,8 +1,9 @@
 # Nightly benchmark (ADR-005): agent-generated screens scored deterministically
 # vs the committed raw-Tailwind baseline. Report-only — losses are logged, not
-# merge-blocking. The generator command is pluggable; until one is wired via
-# repo settings, this runs the harness in dry-run mode so the scoreboard and
-# scorer stay exercised nightly.
+# merge-blocking. Default mode is FIXTURE REPLAY: the committed recorded
+# generations in tooling/validate/benchmark/recordings/ produce a full
+# scoreboard offline, with zero credentials. The generator command stays
+# pluggable for clients who wire their own agent CLI + keys.
 name: nightly-benchmark
 
 on:
@@ -30,14 +31,31 @@ jobs:
       - name: Build registries
         run: pnpm build
 
-      - name: Run benchmark harness (report-only)
-        # To benchmark a real generator, replace --dry-run with:
+      - name: Install chromium for the axe column (optional, auto-skips if absent)
+        run: pnpm --filter @ds/validate exec playwright install chromium
+        continue-on-error: true
+
+      - name: Run benchmark harness (fixture replay, report-only)
+        # Fixture replay is the credential-free default. To benchmark a real
+        # generator, append:
         #   --generator '{"name":"claude","cmd":"claude -p \"$SCENARIO_PROMPT ... write files to $SCENARIO_OUT\""}'
-        # Generators are NEVER invoked from tests or merge-blocking CI.
-        run: pnpm --filter @ds/validate run benchmark -- --dry-run --report-only
+        # Generators are NEVER invoked from tests or merge-blocking CI, and the
+        # client provides any credentials their CLI needs.
+        run: pnpm --filter @ds/validate run benchmark -- --report-only
+
+      # The benchmark run appended a metrics line; render and preserve the trend.
+      # Deliberately NOT pushed back as a commit from CI (see validate.yml).
+      - name: Render metrics report
+        run: pnpm --filter @ds/validate run metrics:report
 
       - uses: actions/upload-artifact@v4
         with:
           name: benchmark-results
           path: tooling/validate/benchmark-results/
+          if-no-files-found: warn
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: metrics
+          path: metrics/
           if-no-files-found: warn
