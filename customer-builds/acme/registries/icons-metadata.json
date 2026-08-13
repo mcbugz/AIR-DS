@@ -1,0 +1,426 @@
+{
+  "$description": "GENERATED closed-world icon registry for @ds/react/icons. Any icon not listed here does not exist. `export` is the named export from '@ds/react/icons'; every icon is a 24×24 outline SVG (stroke currentColor), decorative by default (`aria-hidden`), with optional `title` (accessible name) and `size` mapping to the `--ds-size-icon-*` scale. Regenerate with: pnpm --filter @ds/react exec tsx scripts/generate-icons.ts",
+  "count": 25,
+  "icons": [
+    {
+      "name": "arrow-down",
+      "export": "ArrowDownIcon",
+      "keywords": [
+        "decrease",
+        "descending",
+        "down",
+        "sort",
+        "south"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "arrow-left",
+      "export": "ArrowLeftIcon",
+      "keywords": [
+        "back",
+        "left",
+        "previous",
+        "return",
+        "west"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "arrow-right",
+      "export": "ArrowRightIcon",
+      "keywords": [
+        "continue",
+        "east",
+        "forward",
+        "next",
+        "right"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "arrow-up",
+      "export": "ArrowUpIcon",
+      "keywords": [
+        "ascending",
+        "increase",
+        "north",
+        "sort",
+        "up"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "calendar",
+      "export": "CalendarIcon",
+      "keywords": [
+        "date",
+        "day",
+        "event",
+        "month",
+        "schedule"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "check",
+      "export": "CheckIcon",
+      "keywords": [
+        "complete",
+        "confirm",
+        "done",
+        "selected",
+        "tick"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "chevron-down",
+      "export": "ChevronDownIcon",
+      "keywords": [
+        "caret",
+        "down",
+        "dropdown",
+        "expand",
+        "select"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "chevron-left",
+      "export": "ChevronLeftIcon",
+      "keywords": [
+        "back",
+        "caret",
+        "left",
+        "previous"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "chevron-right",
+      "export": "ChevronRightIcon",
+      "keywords": [
+        "caret",
+        "drill-in",
+        "forward",
+        "next",
+        "right"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "chevron-up",
+      "export": "ChevronUpIcon",
+      "keywords": [
+        "caret",
+        "collapse",
+        "expand-less",
+        "up"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "close",
+      "export": "CloseIcon",
+      "keywords": [
+        "cancel",
+        "clear",
+        "dismiss",
+        "remove",
+        "x"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "danger",
+      "export": "DangerIcon",
+      "keywords": [
+        "alert-circle",
+        "critical",
+        "error",
+        "exclamation",
+        "failed"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "edit",
+      "export": "EditIcon",
+      "keywords": [
+        "compose",
+        "modify",
+        "pencil",
+        "rename",
+        "write"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "external-link",
+      "export": "ExternalLinkIcon",
+      "keywords": [
+        "href",
+        "new-tab",
+        "open",
+        "outbound",
+        "outgoing"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "eye",
+      "export": "EyeIcon",
+      "keywords": [
+        "preview",
+        "reveal",
+        "show",
+        "view",
+        "visibility"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "info",
+      "export": "InfoIcon",
+      "keywords": [
+        "about",
+        "help",
+        "hint",
+        "information",
+        "note"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "menu",
+      "export": "MenuIcon",
+      "keywords": [
+        "drawer",
+        "hamburger",
+        "list",
+        "nav",
+        "navigation"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "minus",
+      "export": "MinusIcon",
+      "keywords": [
+        "decrease",
+        "indeterminate",
+        "remove",
+        "subtract"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "plus",
+      "export": "PlusIcon",
+      "keywords": [
+        "add",
+        "create",
+        "increase",
+        "new"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "search",
+      "export": "SearchIcon",
+      "keywords": [
+        "filter",
+        "find",
+        "lookup",
+        "magnifier",
+        "query"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "settings",
+      "export": "SettingsIcon",
+      "keywords": [
+        "cog",
+        "configure",
+        "gear",
+        "options",
+        "preferences"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "success",
+      "export": "SuccessIcon",
+      "keywords": [
+        "circle-check",
+        "complete",
+        "done",
+        "ok",
+        "passed"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "trash",
+      "export": "TrashIcon",
+      "keywords": [
+        "bin",
+        "delete",
+        "destroy",
+        "discard",
+        "remove"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "user",
+      "export": "UserIcon",
+      "keywords": [
+        "account",
+        "avatar",
+        "member",
+        "person",
+        "profile"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    },
+    {
+      "name": "warning",
+      "export": "WarningIcon",
+      "keywords": [
+        "alert-triangle",
+        "attention",
+        "caution",
+        "triangle"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "since": "0.1.0"
+    }
+  ]
+}

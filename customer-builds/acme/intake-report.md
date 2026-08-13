@@ -104,6 +104,10 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 - `context/skills/build-screen/references/patterns.md`
 - `context/skills/contribute-component/SKILL.md`
 - `context/skills/contribute-component/references/contributing.md`
+- `context/skills/design-to-code/SKILL.md`
+- `context/skills/design-to-code/references/brief-template.md`
+- `context/skills/design-to-code/references/extraction-checklist.md`
+- `context/skills/design-to-code/references/figma-adapter.md`
 - `context/skills/migrate/SKILL.md`
 - `context/skills/migrate/references/migration-map.md`
 - `context/skills/use-system/SKILL.md`
@@ -113,7 +117,10 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 - `intake-report.md`
 - `intake-report.md`
 - `publish-plan.json`
+- `registries/components-index.json`
 - `registries/contrast-report.json`
+- `registries/icons-metadata.json`
+- `registries/patterns-index.json`
 - `registries/tokens-index.json`
 - `tokens/css/tokens.css`
 - `tokens/index.d.ts`
@@ -121,12 +128,12 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 
 ## Timings
 
-- validate: 1 ms
+- validate: 0 ms
 - generate-brand: 2 ms
-- tokens-build: 109 ms
-- context-build: 149 ms
-- bundle: 3 ms
-- total: 264 ms
+- tokens-build: 114 ms
+- context-build: 153 ms
+- bundle: 2 ms
+- total: 273 ms
 
 ## Gaps / follow-ups
 

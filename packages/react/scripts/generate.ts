@@ -100,6 +100,12 @@ const RAC_COMMON_PROP_NAMES = new Set([
   'autoFocus',
   // primary press event (Button family)
   'onPress',
+  // bounded-value surface (ProgressBar/Slider family) — the registry's own
+  // examples use these; omitting them made the closed world contradict itself
+  // (contribution-flow acceptance finding A5)
+  'minValue',
+  'maxValue',
+  'isIndeterminate',
 ]);
 
 /**

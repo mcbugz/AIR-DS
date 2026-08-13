@@ -28,6 +28,11 @@ const SKILLS: SkillDef[] = [
       'Workflow for composing a full screen: enumerate the registry, compose components with token-based layout CSS, then pass the deterministic validation gauntlet.',
   },
   {
+    name: 'design-to-code',
+    description:
+      'Turn ANY design input (screenshot, written spec, redline — Figma optional via a documented client adapter, never a dependency) into a completed design brief before code: extract only registry components/tokens/patterns, HALT on anything not enumerated, then build via build-screen and pass the gauntlet.',
+  },
+  {
     name: 'migrate',
     description:
       'Migrating existing UI (raw HTML/CSS, Tailwind, Chakra/MUI/Ant/shadcn) onto this design system, driven by the wrong→right negative-rule catalog.',
@@ -43,6 +48,12 @@ const SKILLS: SkillDef[] = [
       'Accessibility audit checklist beyond automated axe runs: focus order, focus-visible rings, keyboard paths, ARIA labeling, contrast pairs from the audited report.',
   },
 ];
+
+function skillDef(name: string): SkillDef {
+  const def = SKILLS.find((s) => s.name === name);
+  if (def === undefined) throw new Error(`unknown skill: ${name}`);
+  return def;
+}
 
 function skillHeader(ctx: RenderCtx, def: SkillDef): string {
   return [
@@ -67,6 +78,10 @@ export function emitSkills(ctx: RenderCtx): Map<string, string> {
   if (ctx.inputs.patternsIndex !== null) {
     files.set('skills/build-screen/references/patterns.md', buildScreenPatternsRef(ctx));
   }
+  files.set('skills/design-to-code/SKILL.md', designToCodeSkill(ctx));
+  files.set('skills/design-to-code/references/brief-template.md', briefTemplateRef(ctx));
+  files.set('skills/design-to-code/references/extraction-checklist.md', extractionChecklistRef(ctx));
+  files.set('skills/design-to-code/references/figma-adapter.md', figmaAdapterRef(ctx));
   files.set('skills/migrate/SKILL.md', migrateSkill(ctx));
   files.set('skills/migrate/references/migration-map.md', migrationMapRef(ctx));
   files.set('skills/contribute-component/SKILL.md', contributeSkill(ctx));
@@ -93,7 +108,7 @@ function skillsIndex(ctx: RenderCtx): string {
 /* ------------------------------------------------------------ use-system */
 
 function useSystemSkill(ctx: RenderCtx): string {
-  const def = SKILLS[0] as SkillDef;
+  const def = skillDef('use-system');
   return [
     skillHeader(ctx, def),
     `# Use ${SYSTEM_TITLE} (brand: ${ctx.inputs.brand})`,
@@ -179,7 +194,7 @@ function tokensRef(ctx: RenderCtx): string {
 /* ----------------------------------------------------------- build-screen */
 
 function buildScreenSkill(ctx: RenderCtx): string {
-  const def = SKILLS[1] as SkillDef;
+  const def = skillDef('build-screen');
   return [
     skillHeader(ctx, def),
     `# Build a screen with ${SYSTEM_TITLE}`,
@@ -194,6 +209,8 @@ function buildScreenSkill(ctx: RenderCtx): string {
     `4. **Validate deterministically.** Run \`pnpm validate\` (typecheck → lint → build → test/a11y → registry check) — or the MCP \`validate_usage\` tool — and fix until green. The gauntlet approves; you do not.`,
     '',
     'Full checklist: [references/checklist.md](references/checklist.md). Rules and known hallucinations: `../use-system/SKILL.md`.',
+    '',
+    'Building FROM A DESIGN (screenshot, written spec, redline, Figma frame)? Do not start here — extract a completed design brief first with `../design-to-code/SKILL.md`, then return to step 2 with the brief as your input.',
     ...(ctx.inputs.patternsIndex !== null
       ? [
           '',
@@ -249,10 +266,205 @@ function buildScreenChecklist(ctx: RenderCtx): string {
   ].join('\n');
 }
 
+/* --------------------------------------------------------- design-to-code */
+
+/**
+ * Practice #10 (design→brief.md before code). The agent-teams case study found
+ * ~70% of output quality is determined in the understand/extract phase, so this
+ * router front-loads extraction and encodes the study's human gate: HALT on
+ * degraded input instead of improvising. Credential-free by design — any design
+ * input works; Figma is a documented client adapter, never a dependency.
+ */
+function designToCodeSkill(ctx: RenderCtx): string {
+  const def = skillDef('design-to-code');
+  const { componentsIndex, tokensIndex, patternsIndex } = ctx.inputs;
+  const patternsNote =
+    patternsIndex !== null
+      ? `, plus \`registries/patterns-index.json\` (${patternsIndex.patterns.length} approved compositions)`
+      : '';
+  return [
+    skillHeader(ctx, def),
+    `# Design → code with ${SYSTEM_TITLE} (brand: ${ctx.inputs.brand})`,
+    '',
+    `> ${ctx.inputs.ruleCatalog.preamble}`,
+    '',
+    'Works from ANY design input — screenshot, written spec, redline, or a Figma frame via the optional client adapter ([references/figma-adapter.md](references/figma-adapter.md)). No credentials required for any step below. ~70% of output quality is determined before the first line of code: the extract phase is the work; the code is the receipt.',
+    '',
+    '## Workflow',
+    '',
+    `1. **EXTRACT.** Fill EVERY section of [references/brief-template.md](references/brief-template.md) from the design input, following [references/extraction-checklist.md](references/extraction-checklist.md). Enumerate ONLY what exists in \`registries/components-index.json\` (${componentsIndex.components.length} exports) and \`registries/tokens-index.json\` (${tokensIndex.count} tokens)${patternsNote}. Measure the design; map measurements to registry entries — never the reverse.`,
+    '2. **HALT on degraded input.** If the design shows a component or pattern with no registry match, a value with no token match, or an ambiguous/missing state — STOP and ask a human. Record it in the brief\'s Open questions and do not proceed past it. Never improvise, approximate, or substitute: an unresolved question in the brief is correct output; invented UI is not.',
+    '3. **BUILD.** Hand the completed brief to `../build-screen/SKILL.md` and follow its workflow — the brief is the input to composition, and only a completed brief (every section filled, no unresolved HALTs) is buildable.',
+    `4. **VALIDATE.** Run \`pnpm validate\` (typecheck → lint → build → test/a11y → registry check) — or the MCP \`validate_usage\` tool — until green, then compare the rendered result against the design input. The gauntlet approves; you do not.`,
+    '',
+    '## References (load on demand)',
+    '',
+    '- [references/brief-template.md](references/brief-template.md): the design→brief contract — fill it completely before any code',
+    '- [references/extraction-checklist.md](references/extraction-checklist.md): the understand/extract phase distilled, with the failure story that motivates it',
+    '- [references/figma-adapter.md](references/figma-adapter.md): OPTIONAL client plug-point for Figma as the design input source (requires client credentials; nothing else here does)',
+    '',
+  ].join('\n');
+}
+
+function briefTemplateRef(ctx: RenderCtx): string {
+  const { componentsIndex, tokensIndex, patternsIndex } = ctx.inputs;
+  return [
+    generatedLineMd(ctx.sourceHash),
+    '',
+    '# Design brief template (design → brief.md, before code)',
+    '',
+    CLOSED_WORLD,
+    '',
+    'Copy this template to `brief.md` and fill EVERY section from the design input. A row you cannot fill from the registries is a HALT: record it in Open questions and stop — do not build past it.',
+    '',
+    '## 1. Screen',
+    '',
+    '- **Name:** <!-- short identifier, e.g. account-settings -->',
+    '- **Purpose:** <!-- one sentence: who uses this screen and what it accomplishes -->',
+    '- **Design input:** <!-- screenshot path / spec doc / redline / Figma frame reference -->',
+    '',
+    '## 2. Layout regions',
+    '',
+    `Regions are plain elements + CSS (flex/grid) with space tokens — there are no layout components (NR-001). Container styling values must be \`var(${CSS_PREFIX}-*)\` tokens.`,
+    '',
+    '| Region | Contents (summary) | Container styling (tokens only) | Space rules (gap/padding tokens) |',
+    '| --- | --- | --- | --- |',
+    '| <!-- e.g. header --> | | | |',
+    '',
+    `- ${GAP_VS_SPACE}`,
+    '',
+    '## 3. Component inventory',
+    '',
+    `Every design element maps to one of the ${componentsIndex.components.length} exports in \`registries/components-index.json\`${patternsIndex !== null ? `, an approved pattern in \`registries/patterns-index.json\` (${patternsIndex.patterns.length})` : ''}, or plain semantic HTML. An element with NO registry match is a HALT — add it to Open questions; never invent a component or hand-roll an interactive equivalent.`,
+    '',
+    '| Design element | Registry component (or plain HTML) | Variant / props | States shown in design |',
+    '| --- | --- | --- | --- |',
+    '| <!-- e.g. primary CTA --> | | | |',
+    '',
+    '## 4. Token mapping',
+    '',
+    `Every measured design value maps to a semantic token from \`registries/tokens-index.json\` (${tokensIndex.count} tokens). **A value with no token match is a HALT, not an approximation** — never emit a literal, never pick the "closest" token silently; record the mismatch in Open questions.`,
+    '',
+    '| Design value (measured) | Property | Semantic token | Exact match? (no → Open questions) |',
+    '| --- | --- | --- | --- |',
+    '| <!-- e.g. #2563eb fill --> | | | |',
+    '',
+    '## 5. Interaction inventory',
+    '',
+    '| Trigger (element + event) | Handler intent | Notes (optimistic? confirm? async state?) |',
+    '| --- | --- | --- |',
+    '| <!-- e.g. Save button press --> | | |',
+    '',
+    '## 6. Accessibility notes',
+    '',
+    '- **Heading outline:** <!-- h1..hN in reading order -->',
+    '- **Labels:** <!-- every control\'s accessible name; icon-only controls need aria-label -->',
+    '- **Roles / landmarks:** <!-- main, nav, form, dialog, … -->',
+    '- **Focus order:** <!-- expected tab sequence; any focus traps (modal only) -->',
+    '',
+    '## 7. Open questions (MANDATORY)',
+    '',
+    'Every HALT from the sections above lands here, plus anything the design leaves ambiguous. **Leaving this section empty is a positive claim that the design contains zero ambiguity — an extraction with no open questions is suspect, not finished.** Each entry blocks the build until a human answers it.',
+    '',
+    '- <!-- e.g. "Card uses 18px padding; nearest tokens are space-4 (16px) / space-5 (24px) — which is intended?" -->',
+    '',
+  ].join('\n');
+}
+
+function extractionChecklistRef(ctx: RenderCtx): string {
+  const { tokensIndex } = ctx.inputs;
+  return [
+    generatedLineMd(ctx.sourceHash),
+    '',
+    '# Extraction checklist (the understand/extract phase, distilled)',
+    '',
+    '> **Why this exists:** the worst observed failure in agent design-to-code work was an agent that eyeballed a design, invented **27 fabricated tokens**, and produced a component that was unstyled at runtime yet passed every visual-diff-free check — plausible names, real-looking CSS, zero resolved values. Registry-grounded extraction plus the HALT rule eliminated that failure class permanently. Roughly 70% of output quality is determined in this phase.',
+    '',
+    '## Measure before mapping',
+    '',
+    '- [ ] Take actual measurements from the design (px values, colors, font sizes/weights, spacing) BEFORE opening the token registry — mapping from memory is how fabrication starts.',
+    '- [ ] Map each measurement to a registry entry second. Never work backwards from a token name you expect to exist.',
+    '',
+    '## Count states, not just the happy frame',
+    '',
+    '- [ ] For every interactive element, account for: hover, focus-visible, disabled, invalid, empty, and loading — not only the state the frame happens to show.',
+    '- [ ] A state the design does not show is an Open question (does it exist? which recipe?), not a license to invent one.',
+    '- [ ] States you DO map are styled via react-aria data attributes (`[data-hovered]`, `[data-focus-visible]`, `[data-disabled]`), never pseudo-classes (NR-009).',
+    '',
+    '## Typography → text tokens by role',
+    '',
+    `- [ ] Classify each text run by ROLE (page title, section heading, body, caption, label) and map the role to \`${CSS_PREFIX}-text-*\` tokens — do not size-match "16px looks like md".`,
+    '- [ ] Two runs with the same px size but different roles may map to different tokens; the role wins.',
+    '',
+    '## Color → intent tokens, never hex-matching',
+    '',
+    `- [ ] Identify each color's INTENT (surface, text, border, accent action, status) and map to the intent token (\`${CSS_PREFIX}-color-surface-*\`, \`-text-*\`, \`-accent-*\`, \`-status-*\`).`,
+    '- [ ] Never hex-match against resolved values and never reach for raw palette scales — they are not public tokens (NR-003). The same hex may resolve from several tokens; only intent disambiguates, and a re-brand changes every resolved value anyway.',
+    '- [ ] Text/background combinations must be pairs audited in `registries/contrast-report.json`.',
+    '',
+    '## Spacing → scale snapping, with a tolerance rule',
+    '',
+    `- [ ] Snap measured spacing to the \`${CSS_PREFIX}-space-*\` scale only when the measurement is within 1px of a step (design-tool rounding). Anything further off is a HALT → Open questions, not a silent snap.`,
+    '- [ ] Space tokens map margin/padding/gap/inset ONLY; measured widths/heights map to `size-control-*` / `size-icon-*` tokens (NR-006).',
+    '',
+    '## Before handing the brief to build-screen',
+    '',
+    `- [ ] Every token named in the brief exists verbatim in \`registries/tokens-index.json\` (${tokensIndex.count} tokens) — grep, do not trust memory.`,
+    '- [ ] Every component named in the brief exists verbatim in `registries/components-index.json`.',
+    '- [ ] Every unresolved mismatch and ambiguity is in Open questions, and a human has answered them all.',
+    '',
+  ].join('\n');
+}
+
+/**
+ * The Figma plug-point is DOCUMENTED, not implemented: the skill must stay
+ * credential-free end to end, so Figma wiring lives client-side and only ever
+ * feeds the same brief template that screenshots and written specs feed.
+ */
+function figmaAdapterRef(ctx: RenderCtx): string {
+  return [
+    generatedLineMd(ctx.sourceHash),
+    '',
+    '# Figma adapter (optional client plug-point — documented, not implemented)',
+    '',
+    '> **Requires client Figma credentials; everything else in this skill works without them.** The design-to-code workflow is input-agnostic: screenshots, written specs, and redlines need zero credentials and zero setup. Figma is one more way to fill the same brief template — never a dependency.',
+    '',
+    'Wiring Figma changes ONLY step 1 (EXTRACT): it replaces eyeballing a screenshot with reading structured node data. The output is still a completed `references/brief-template.md`, the HALT rules are identical, and the deterministic gauntlet still approves.',
+    '',
+    '## Option A — Figma REST API',
+    '',
+    '- Authenticate with a client-supplied personal access token or OAuth app (client credentials; never ship them in this bundle).',
+    '- `GET /v1/files/:key/nodes?ids=<frame>` returns the node tree for the target frame.',
+    '- Traversal → template fields: top-level frames/auto-layout groups → **Layout regions** (auto-layout `itemSpacing`/`padding*` are the measured spacing values); component instances (`type: INSTANCE`, `componentId` → published component name) → **Component inventory**; `fills`/`strokes`/`style` refs and text `style` blocks → measured values for **Token mapping**; prototype `interactions` → **Interaction inventory**.',
+    '- Variant properties on instances map to the variant/props column — verify each against the exact prop unions in `registries/components-index.json`.',
+    '',
+    '## Option B — Figma MCP server (Dev Mode)',
+    '',
+    '- If the client runs the official Figma Dev Mode MCP server, its selection/variable tools return the same structured data conversationally — use its node output to fill the template fields exactly as in Option A.',
+    '- Treat MCP-returned generated code as measurement data only: extract values and structure from it, never paste it — generated code is not registry-grounded.',
+    '',
+    '## Variables → token mapping',
+    '',
+    '- When the client\'s Figma library uses variables, map each bound variable to its entry in `registries/tokens-index.json` (match on token name/CSS variable, maintained as an explicit variable→token table on the client side).',
+    '- A bound variable with no tokens-index match — or a raw (unbound) fill/spacing value — is the SAME HALT as any unmapped design value: Open questions, never approximation.',
+    '',
+    '## Code Connect (when the client adopts it)',
+    '',
+    '- Publishing Code Connect mappings for the client\'s Figma library pins each Figma component to its registry export and props, making the Component inventory table near-mechanical.',
+    '- Until then, instance/component names + the registry are sufficient — Code Connect sharpens extraction; its absence never blocks it.',
+    '',
+    '## What never changes, regardless of adapter',
+    '',
+    '- The brief template and its HALT rules are the contract; the adapter only changes how measurements arrive.',
+    '- Nothing in this bundle stores, requires, or assumes Figma credentials.',
+    '',
+  ].join('\n');
+}
+
 /* ---------------------------------------------------------------- migrate */
 
 function migrateSkill(ctx: RenderCtx): string {
-  const def = SKILLS[2] as SkillDef;
+  const def = skillDef('migrate');
   return [
     skillHeader(ctx, def),
     `# Migrate existing UI to ${SYSTEM_TITLE}`,
@@ -295,7 +507,7 @@ function migrationMapRef(ctx: RenderCtx): string {
 /* --------------------------------------------------- contribute-component */
 
 function contributeSkill(ctx: RenderCtx): string {
-  const def = SKILLS[3] as SkillDef;
+  const def = skillDef('contribute-component');
   return [
     skillHeader(ctx, def),
     `# Contribute a component to ${SYSTEM_TITLE}`,
@@ -338,7 +550,7 @@ function contributingRef(ctx: RenderCtx): string {
 /* -------------------------------------------------------------- audit-a11y */
 
 function auditA11ySkill(ctx: RenderCtx): string {
-  const def = SKILLS[4] as SkillDef;
+  const def = skillDef('audit-a11y');
   const report = ctx.inputs.contrastReport;
   return [
     skillHeader(ctx, def),

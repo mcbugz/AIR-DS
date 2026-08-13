@@ -1,0 +1,35 @@
+{
+  "generatedFrom": "scripts/bundle-report.mjs",
+  "entries": {
+    "@ds/tokens dist": {
+      "path": "packages/tokens/dist",
+      "bytes": 68792,
+      "files": 3
+    },
+    "@ds/react dist": {
+      "path": "packages/react/dist",
+      "bytes": 236431,
+      "files": 118
+    },
+    "@ds/mcp dist": {
+      "path": "packages/mcp/dist",
+      "bytes": 98412,
+      "files": 36
+    },
+    "@ds/context compiler src (runs via node type-stripping, no dist)": {
+      "path": "packages/context/src",
+      "bytes": 103534,
+      "files": 15
+    },
+    "context artifacts (default brand)": {
+      "path": "packages/context/dist/default",
+      "bytes": 559243,
+      "files": 60
+    },
+    "registries/": {
+      "path": "registries",
+      "bytes": 168220,
+      "files": 5
+    }
+  }
+}

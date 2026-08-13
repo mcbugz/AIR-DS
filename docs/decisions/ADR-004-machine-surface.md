@@ -7,7 +7,7 @@
 All agent-facing artifacts are emitted by `@ds/context` (the context compiler) from three inputs: token build output, react-docgen extraction of `@ds/react`, and Storybook story metadata. Emitted per release and per customer brand:
 
 - **llms.txt family** — compact `llms.txt` index, `llms-full.txt`, concern-based slices (`llms-components.txt`, `llms-tokens.txt`, `llms-theming.txt`, `llms-migration.txt`), token-budget aware (Chakra/HeroUI/Nord pattern).
-- **Markdown twins** — every generated docs page also emitted as `.md` under `docs/generated/`.
+- **Markdown twins** — every generated docs page also emitted as `.md` under `packages/context/dist/<brand>/docs/` (per-brand; nothing generated lands in the human-authored `docs/` tree).
 - **MCP server metadata** — `@ds/mcp` reads the registries at runtime; the compiler emits its search index.
 - **Agent skills** — `SKILL.md` router + lazy-loaded reference files (Carbon pattern). Consumer skills: `use-system`, `build-screen`, `migrate`. Builder skills: `contribute-component`, `audit-a11y`. Distributed via `npx skills add` and `/.well-known/skills/`.
 - **Repo agent files** — small vendor-neutral `AGENTS.md` / `CLAUDE.md` routers pointing at indexed references (retrieval over persisted context).

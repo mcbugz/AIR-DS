@@ -34,13 +34,100 @@ describe('emitted content contracts', () => {
     }
   });
 
-  it('the skills discovery manifest lists all five skills with valid paths', () => {
+  it('the skills discovery manifest lists all six skills with valid paths', () => {
     const index = JSON.parse(readOut(bundle.outDir, '.well-known/skills/index.json'));
     const names = index.skills.map((s: { name: string }) => s.name).sort();
-    expect(names).toEqual(['audit-a11y', 'build-screen', 'contribute-component', 'migrate', 'use-system']);
+    expect(names).toEqual([
+      'audit-a11y',
+      'build-screen',
+      'contribute-component',
+      'design-to-code',
+      'migrate',
+      'use-system',
+    ]);
     for (const skill of index.skills) {
       expect(existsSync(join(bundle.outDir, skill.path)), skill.path).toBe(true);
     }
+  });
+
+  it('the design-to-code router is small, halts on degraded input, and routes to build-screen + the gauntlet', () => {
+    const skill = readOut(bundle.outDir, 'skills/design-to-code/SKILL.md');
+    expect(skill.length, 'design-to-code SKILL.md must stay a small router').toBeLessThan(4000);
+    expect(skill).toContain(catalog.preamble); // stale-training-data preamble
+    expect(skill).toContain('**EXTRACT.**');
+    expect(skill).toContain('**HALT on degraded input.**');
+    expect(skill).toContain('**BUILD.**');
+    expect(skill).toContain('**VALIDATE.**');
+    expect(skill).toContain('../build-screen/SKILL.md');
+    expect(skill).toContain('pnpm validate');
+    expect(skill).toContain('validate_usage');
+    // credential-free: any design input works; Figma is optional
+    expect(skill).toContain('screenshot, written spec, redline');
+    expect(skill).toContain('No credentials required');
+    // router links every lazy-loaded reference
+    for (const ref of ['brief-template.md', 'extraction-checklist.md', 'figma-adapter.md']) {
+      expect(skill, ref).toContain(`references/${ref}`);
+      expect(
+        existsSync(join(bundle.outDir, `skills/design-to-code/references/${ref}`)),
+        ref,
+      ).toBe(true);
+    }
+  });
+
+  it('the brief template carries every contract section, registry grounding, and the HALT-not-approximation rule', () => {
+    const template = readOut(bundle.outDir, 'skills/design-to-code/references/brief-template.md');
+    for (const section of [
+      '## 1. Screen',
+      '## 2. Layout regions',
+      '## 3. Component inventory',
+      '## 4. Token mapping',
+      '## 5. Interaction inventory',
+      '## 6. Accessibility notes',
+      '## 7. Open questions (MANDATORY)',
+    ]) {
+      expect(template, section).toContain(section);
+    }
+    // closed-world grounding with real registry counts
+    expect(template).toContain('registries/components-index.json');
+    expect(template).toContain('registries/tokens-index.json');
+    expect(template).toContain(`${registry.components.length} exports`);
+    // a value with no token match is a HALT, never an approximation
+    expect(template).toContain('**A value with no token match is a HALT, not an approximation**');
+    // empty open-questions = a positive zero-ambiguity claim
+    expect(template).toContain('zero ambiguity');
+  });
+
+  it('the extraction checklist encodes the fabricated-tokens failure story and the mapping disciplines', () => {
+    const checklist = readOut(bundle.outDir, 'skills/design-to-code/references/extraction-checklist.md');
+    expect(checklist).toContain('27 fabricated tokens'); // the cautionary preamble
+    expect(checklist).toContain('Measure before mapping');
+    expect(checklist).toContain('hover, focus-visible, disabled, invalid, empty, and loading');
+    expect(checklist).toContain('NR-003'); // color → intent, never hex-matching
+    expect(checklist).toContain('NR-006'); // space tokens are not sizes
+    expect(checklist).toContain('NR-009'); // states via data attributes
+    expect(checklist).toContain('within 1px'); // spacing tolerance rule
+  });
+
+  it('the Figma adapter is a documented client plug-point and never a credential dependency', () => {
+    const adapter = readOut(bundle.outDir, 'skills/design-to-code/references/figma-adapter.md');
+    expect(adapter).toContain('documented, not implemented');
+    expect(adapter).toContain(
+      'Requires client Figma credentials; everything else in this skill works without them.',
+    );
+    expect(adapter).toContain('Figma REST API');
+    expect(adapter).toContain('MCP');
+    expect(adapter).toContain('registries/tokens-index.json'); // variables → token mapping
+    expect(adapter).toContain('Code Connect');
+  });
+
+  it('build-screen and the repo routers cross-reference design-to-code', () => {
+    expect(readOut(bundle.outDir, 'skills/build-screen/SKILL.md')).toContain(
+      '../design-to-code/SKILL.md',
+    );
+    for (const rel of ['AGENTS.md', 'CLAUDE.md']) {
+      expect(readOut(bundle.outDir, rel), rel).toContain('skills/design-to-code/SKILL.md');
+    }
+    expect(readOut(bundle.outDir, 'llms.txt')).toContain('design-to-code');
   });
 
   it('all four editor-rule channels carry the same rule set as the skills (single source)', () => {

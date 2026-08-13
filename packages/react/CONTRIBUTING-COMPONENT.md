@@ -116,6 +116,10 @@ Directory name = component name = docgen displayName. The generator keys on
   `.danger[data-disabled]` exists, a story must render it. At least one
   `play`-function interaction test asserting the primary event fires — plus
   one asserting the blocked state (disabled/loading) does NOT fire it.
+- OUTPUT-ONLY components (no events, no disabled state — e.g. a progress
+  indicator): the two interaction play tests are replaced by ONE play test
+  asserting the ARIA semantics (role, accessible name, and value/state
+  attributes). NEVER fabricate an event prop to satisfy this checklist.
 - Story-level layout wrappers may use inline `style` with `var(--ds-*)`
   values (stories are docs, not component CSS). No `<Stack>`/`<Box>` — they
   do not exist (NR-001).
@@ -133,9 +137,19 @@ Directory name = component name = docgen displayName. The generator keys on
   ARIA (`toBeDisabled()` / `aria-disabled`) — run the disabled assertions
   `it.each` across ALL variants, since disabled CSS can differ per variant;
   `expect(await axe(container)).toHaveNoViolations()` for at least default +
-  one stateful render.
+  one stateful render. Output-only components substitute the
+  interaction/disabled items with ARIA value/state assertions (see the
+  story-canon carve-out above).
 - Do not import the barrel (`src/index.ts`) or `@ds/tokens` in tests —
   import from `./<Name>` so tests never depend on the tokens build.
+
+## De-facto conventions (codified from the shipped 14)
+
+- Focus recipe includes the offset: `outline: var(--ds-border-width-2) solid var(--ds-color-border-focus); outline-offset: var(--ds-border-width-1); box-shadow: var(--ds-shadow-focus-ring);` (negative offset only for tightly-packed options, see Select).
+- COMPOUND components (Card+slots, Tabs family, RadioGroup/Radio) are the sanctioned exception to "one export": all parts live in `<Name>.tsx`, all are exported from `index.ts` (one line per export), each part gets its own lowercased base class (`.cardheader`), TSDoc, and registry entry.
+- CSS-module lookups under `noUncheckedIndexedAccess` use the non-null assertion (`styles.error!`) ONLY where the class is unconditionally defined in the sibling .module.css — which the dead-class lint verifies (NR-011).
+- RAC-positioned overlays (Popover, Tooltip): z-index goes through an inline `style={{ zIndex: 'var(--ds-z-*)' }}` on the RAC element, never a class rule (NR-012 — RAC's inline 100000 beats classes). Inline `style` on internal elements is otherwise reserved for runtime-computed geometry from data (e.g. a progress fill's `inlineSize: \`${pct}%\``) — never for design values (the lint scans TSX literals).
+- Motion canon (NR-013): gate `@keyframes` and transform/translate/rotate/scale transitions behind `prefers-reduced-motion: reduce`; color/border/shadow transitions are exempt.
 
 ## Before you are done (all must pass)
 
@@ -143,6 +157,7 @@ Directory name = component name = docgen displayName. The generator keys on
 pnpm --filter @ds/react generate    # regenerates src/index.ts + registries/components-index.json
 pnpm --filter @ds/react typecheck
 pnpm --filter @ds/react test
+pnpm validate                       # the full gauntlet — the merge gate; your CSS token lint runs here
 ```
 
 Then verify your component appears in `registries/components-index.json` with

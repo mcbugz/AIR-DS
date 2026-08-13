@@ -1,5 +1,5 @@
 {
-  "$description": "GENERATED skills discovery manifest for Design System — compiled by @ds/context, do not edit. Source hash sha256:40eab412d89cd909.",
+  "$description": "GENERATED skills discovery manifest for Design System — compiled by @ds/context, do not edit. Source hash sha256:11e1c7e4a92a0624.",
   "brand": "acme",
   "skills": [
     {
@@ -11,6 +11,11 @@
       "name": "build-screen",
       "description": "Workflow for composing a full screen: enumerate the registry, compose components with token-based layout CSS, then pass the deterministic validation gauntlet.",
       "path": "skills/build-screen/SKILL.md"
+    },
+    {
+      "name": "design-to-code",
+      "description": "Turn ANY design input (screenshot, written spec, redline — Figma optional via a documented client adapter, never a dependency) into a completed design brief before code: extract only registry components/tokens/patterns, HALT on anything not enumerated, then build via build-screen and pass the gauntlet.",
+      "path": "skills/design-to-code/SKILL.md"
     },
     {
       "name": "migrate",

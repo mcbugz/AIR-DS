@@ -30,6 +30,7 @@ function routerBody(ctx: RenderCtx): string {
     '| --- | --- |',
     '| Build UI with the system (rules + known hallucinations) | `skills/use-system/SKILL.md` |',
     '| Compose a full screen | `skills/build-screen/SKILL.md` |',
+    '| Turn a design (screenshot / spec / redline / Figma) into a brief, then a screen | `skills/design-to-code/SKILL.md` |',
     '| Port legacy UI (Tailwind/Chakra/raw CSS) | `skills/migrate/SKILL.md` |',
     '| Add a component to the system itself | `skills/contribute-component/SKILL.md` |',
     '| Accessibility audit | `skills/audit-a11y/SKILL.md` |',

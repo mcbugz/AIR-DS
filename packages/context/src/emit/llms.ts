@@ -129,7 +129,7 @@ function renderIndex(ctx: RenderCtx, hasIconsSlice: boolean): string {
       `${icons !== null ? ', icons-metadata.json' : ''}${patterns !== null ? ', patterns-index.json' : ''} — the closed-world contracts`,
     '- `extension-points.json`: the machine contract for allowlisted customization (ADR-006) — everything not listed is closed',
     '- `docs/`: one markdown twin per component + tokens.md',
-    '- `skills/` + `.well-known/skills/index.json`: use-system, build-screen, migrate, contribute-component, audit-a11y',
+    '- `skills/` + `.well-known/skills/index.json`: use-system, build-screen, design-to-code, migrate, contribute-component, audit-a11y',
     '- `AGENTS.md` / `CLAUDE.md`: drop-in repo router files',
     '- `editor/`: Cursor / Copilot / Claude Code / v0 rules (same rule source as the skills)',
     '- `agents/ds-auditor.md`: reviewer agent for consumer repos (reviews only; deterministic gates approve)',

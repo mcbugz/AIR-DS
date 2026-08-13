@@ -7,7 +7,7 @@
 
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { formatErrors, validateIntake, type Intake } from "./intake.js";
@@ -209,6 +209,14 @@ export function runPipeline(intakePath: string, options: PipelineOptions = {}): 
   t = Date.now();
   const tokensBuild = runTokensBuildIsolated(repoRoot, brandPath, outDir);
   timingsMs["tokens-build"] = Date.now() - t;
+
+  /* 3b. The bundle's registries/ must be self-sufficient for `ds-mcp
+     --registry-dir` (MCP acceptance finding): the tokens build wrote the two
+     brand-specific files; copy the brand-independent registries alongside. */
+  for (const file of ["components-index.json", "icons-metadata.json", "patterns-index.json"]) {
+    const src = join(repoRoot, "registries", file);
+    if (existsSync(src)) copyFileSync(src, join(outDir, "registries", file));
+  }
 
   /* 4. Context build per brand, when the package exists (registry swap + restore). */
   t = Date.now();

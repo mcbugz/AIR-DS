@@ -39,7 +39,7 @@ packages/context    @ds/context   — compiler emitting llms.txt family, skills,
 tooling/validate    @ds/validate  — the validation gauntlet CLI + custom lint rules
 brands/             customer brand-tier token files (default.json is the neutral core)
 registries/         GENERATED machine contracts (tokens-index.json, components-index.json, …)
-docs/               brief, ADRs, specs (human-authored); generated docs land in docs/generated/
+docs/               brief, ADRs, specs (human-authored); generated docs land in packages/context/dist/<brand>/
 ```
 
 ## Working method

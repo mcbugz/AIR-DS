@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "storybook",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@ds/react", "storybook"],
+      "port": 6006
+    },
+    {
+      "name": "brand-demo",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "http-server", "examples/brand-demo/dist", "-p", "8321", "-c-1"],
+      "port": 8321
+    }
+  ]
+}

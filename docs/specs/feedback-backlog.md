@@ -18,3 +18,15 @@ Also queued (from build-stream reports):
 - RAC deprecations: `Switch` → SwitchField/SwitchButton, `Radio` → RadioField/RadioButton (upgrade path decision before next RAC major)
 - Benchmark axe column needs a rendering harness (currently n/a)
 - Brand asset pipeline (logo copy/optimization); semantic-override layer (ADR-006 §4)
+
+## Round 2 (closing audit + contribution-flow + live MCP acceptance, 2026-08-12)
+
+| # | Finding | Proposed fix | Owner area |
+|---|---|---|---|
+| FB-8 | No thin-dimension vocabulary — a 4–8px progress track / divider / slider rail is inexpressible (contribution test A1); NR-006 correctly blocks the workarounds but no right answer exists | Add `size.rail-{sm,md,lg}` (or border-ramp extension) in v1.1 alongside `progressbar.*` hooks | tokens |
+| FB-9 | Play functions are never machine-executed (contribution test B3) — stories are "contract artifacts" but a wrong play test ships green; stories-axe covers a11y only | Storybook test-runner or portable-stories vitest bridge as an optional `--browser` gauntlet extension | validate |
+| FB-10 | `@ds/context` native-inputs parity test is non-hermetic (reads live `registries/`), flaked twice during the contribution run and implicates the contributor | Fixture-copy the registries in that test | context |
+| FB-11 | Extension-points contract never says HOW a customer legally expresses a hook override (`--ds-alert-gap: 12px` in consumer CSS is flagged as a raw value — correct, but the sanctioned route is undocumented) | One paragraph in the theming guide + extension-points.json `howToOverride` field | context |
+| FB-12 | Newcomer components cannot be granted component-tier hooks through the contribution flow (hooks are born in @ds/tokens, out of contributor scope, no request procedure) | Document the hook-request step in CONTRIBUTING; consider a `tokens/src/component/_proposals/` convention | tokens + docs |
+| FB-13 | Icons have no Storybook gallery story (visual QA gap; stories-axe can't see them) | Icons.stories.tsx gallery, one story all-icons + sizes | react |
+| FB-14 | v1 API inventory procedure for post-freeze components is undefined (contribution test A4: the API spec "comes from nowhere") | v1.1 inventory RFC template in docs/specs | docs |

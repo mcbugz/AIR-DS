@@ -1,5 +1,5 @@
 {
-  "$description": "GENERATED machine contract for allowlisted customization of Design System (ADR-006 §4) — compiled by @ds/context from the registries, do not edit. Anything not allowlisted here is closed. Source hash sha256:40eab412d89cd909.",
+  "$description": "GENERATED machine contract for allowlisted customization of Design System (ADR-006 §4) — compiled by @ds/context from the registries, do not edit. Anything not allowlisted here is closed. Source hash sha256:11e1c7e4a92a0624.",
   "brand": "acme",
   "tokenOverrides": {
     "brandTier": "full",
