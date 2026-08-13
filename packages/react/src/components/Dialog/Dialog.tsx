@@ -1,4 +1,5 @@
 import type { ReactElement, RefAttributes } from 'react';
+import { mergeProps, useFocusRing } from 'react-aria';
 import {
   Dialog as RACDialog,
   type DialogProps as RACDialogProps,
@@ -10,7 +11,7 @@ import {
 import styles from './Dialog.module.css';
 
 export interface DialogProps
-  extends Omit<RACDialogProps, 'className' | 'style'>,
+  extends Omit<RACDialogProps, 'className' | 'style' | 'render'>,
     RefAttributes<HTMLElement> {
   /**
    * Dialog title. Rendered as the react-aria-components `Heading` with
@@ -101,6 +102,16 @@ export function Dialog({
     .filter(Boolean)
     .join(' ');
 
+  // Panel focus ring (F10): when the dialog holds no focusable children,
+  // React Aria focuses the panel itself — which must then show the canonical
+  // focus ring. RAC's Dialog does not emit data-focus-visible natively
+  // (verified in react-aria-components 1.20.0), and focus handlers passed as
+  // props are filtered out, so the supported route is react-aria's
+  // useFocusRing attached through the documented `render` escape hatch below.
+  // NR-009 still holds: the CSS keys off [data-focus-visible], set here by
+  // React Aria's modality tracking, never a pseudo-class.
+  const { focusProps, isFocusVisible } = useFocusRing();
+
   // Open state goes to the DialogTrigger when a trigger is provided,
   // otherwise directly to the ModalOverlay. Built conditionally so
   // `exactOptionalPropertyTypes` never sees an explicit `undefined`.
@@ -121,7 +132,16 @@ export function Dialog({
       {...(trigger ? {} : openState)}
     >
       <RACModal className={styles.modal!}>
-        <RACDialog {...props} className={ownClassName}>
+        <RACDialog
+          {...props}
+          className={ownClassName}
+          render={(sectionProps) => (
+            <section
+              {...mergeProps(sectionProps, focusProps)}
+              data-focus-visible={isFocusVisible || undefined}
+            />
+          )}
+        >
           {(renderProps) => (
             <>
               <RACHeading slot="title" className={styles.title!}>

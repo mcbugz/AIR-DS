@@ -56,6 +56,17 @@
   color: var(--ds-color-text-primary);
 }
 
+/* Panel focus ring (F10): when the dialog has no focusable children the
+   panel itself receives focus, so it needs the canonical focus-visible
+   recipe. data-focus-visible is set in Dialog.tsx via react-aria's
+   useFocusRing (RAC Dialog does not emit it natively). The elevation shadow
+   is preserved by composing the two shadow tokens. */
+.dialog[data-focus-visible] {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-border-width-1);
+  box-shadow: var(--ds-dialog-shadow), var(--ds-shadow-focus-ring);
+}
+
 .title {
   margin: 0;
   font-size: var(--ds-text-size-lg);

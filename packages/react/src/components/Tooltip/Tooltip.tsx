@@ -93,11 +93,19 @@ export function Tooltip({
       {...(onOpenChange !== undefined ? { onOpenChange } : null)}
     >
       {children}
+      {/* react-aria positions the tooltip with an inline zIndex (100000 from
+          useOverlayPosition), so a class z-index can never reach the rendered
+          overlay. RAC spreads the user style AFTER its position style
+          (verified in react-aria-components 1.20.0 Tooltip), making this
+          inline token reference the supported way to put the tooltip on the
+          z scale. Internal only — the public API still rejects `style`
+          (token rule). */}
       <RACTooltip
         offset={8}
         {...props}
         placement={placement}
         className={ownClassName}
+        style={{ zIndex: 'var(--ds-tooltip-z)' }}
       >
         <OverlayArrow className={[styles.arrow].filter(Boolean).join(' ')}>
           <svg width={8} height={8} viewBox="0 0 8 8" aria-hidden="true">

@@ -32,6 +32,37 @@ describe('Dialog', () => {
     expect(dialog).toHaveAttribute('aria-labelledby', heading.getAttribute('id'));
   });
 
+  // F10: with no focusable children, React Aria focuses the panel itself on
+  // mount — keyboard users must then get the canonical focus ring, keyed off
+  // the data-focus-visible attribute (NR-009), set via useFocusRing in
+  // Dialog.tsx because RAC's Dialog does not emit it natively.
+  it('shows the focus-visible styling hook when the panel itself is focused (no focusable children)', async () => {
+    render(
+      <Dialog title="Notice" defaultOpen>
+        Plain text only — nothing focusable inside.
+      </Dialog>,
+    );
+    const dialog = screen.getByRole('dialog');
+    await waitFor(() => expect(dialog).toHaveFocus());
+    expect(dialog).toHaveAttribute('data-focus-visible');
+    expect(dialog).toHaveClass(styles.dialog!);
+  });
+
+  it('drops the panel focus-visible hook when focus moves to a child control', async () => {
+    const user = userEvent.setup();
+    render(
+      <Dialog title="Confirm" defaultOpen>
+        <RACButton>OK</RACButton>
+      </Dialog>,
+    );
+    const dialog = screen.getByRole('dialog');
+    // React Aria focuses the panel itself on mount (no child is focused yet).
+    await waitFor(() => expect(dialog).toHaveFocus());
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'OK' })).toHaveFocus();
+    expect(dialog).not.toHaveAttribute('data-focus-visible');
+  });
+
   it('defaults to size="md"', () => {
     render(
       <Dialog title="Settings" defaultOpen>

@@ -26,6 +26,7 @@ export default defineConfig({
       external: [
         /^react($|\/)/,
         /^react-dom($|\/)/,
+        /^react-aria($|\/)/,
         /^react-aria-components($|\/)/,
         /^@ds\/tokens($|\/)/,
       ],

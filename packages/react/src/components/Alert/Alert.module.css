@@ -47,6 +47,13 @@
   font-weight: var(--ds-text-weight-semibold);
 }
 
+/* The message block below the (optional) title. Inherits the tone's text
+   color from the root; declared so the TSX class reference is never dead
+   (NR-011) and message-specific tuning has a home. */
+.message {
+  line-height: var(--ds-text-leading-normal);
+}
+
 /* --- tones (soft recipe: status surface + border + text, never solid) ---- */
 
 .info {

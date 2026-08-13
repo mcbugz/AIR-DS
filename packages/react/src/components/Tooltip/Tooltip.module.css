@@ -10,8 +10,10 @@
    --ds-tooltip-surface aliases the inverse surface, --ds-tooltip-text the
    inverse text color. */
 
+/* No z-index here: react-aria applies an inline zIndex to the positioned
+   tooltip, which outranks any class declaration. The --ds-tooltip-z token
+   is passed as an inline style in Tooltip.tsx instead. */
 .tooltip {
-  z-index: var(--ds-tooltip-z);
   background-color: var(--ds-tooltip-surface);
   color: var(--ds-tooltip-text);
   max-inline-size: var(--ds-tooltip-max-width);

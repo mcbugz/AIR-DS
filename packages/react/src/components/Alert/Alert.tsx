@@ -1,5 +1,12 @@
 import type { HTMLAttributes, ReactNode, RefAttributes } from 'react';
 import { Button as RACButton } from 'react-aria-components';
+import {
+  CloseIcon,
+  DangerIcon,
+  InfoIcon,
+  SuccessIcon,
+  WarningIcon,
+} from '../../icons';
 import styles from './Alert.module.css';
 
 export interface AlertProps
@@ -48,74 +55,16 @@ export interface AlertProps
   className?: string;
 }
 
-/* Tone icons: inline, decorative (aria-hidden), stroke = currentColor so the
-   per-tone icon class controls the color via --ds-alert-icon-*. */
-const toneIcons: Record<
-  NonNullable<AlertProps['tone']>,
-  ReactNode
-> = {
-  info: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M10 9v5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10 6v.01"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  ),
-  success: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="m6.5 10.5 2.5 2.5 4.5-5.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
-  warning: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M10 3 18 16.5H2L10 3Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10 8.5v3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10 14v.01"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  ),
-  danger: (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="m7 7 6 6M13 7l-6 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  ),
+/* Tone icons come from the shared icon set (single source of truth — F8):
+   decorative by default (aria-hidden), stroke = currentColor so the per-tone
+   icon class controls the color via --ds-alert-icon-*. Rendered size is the
+   md step of the icon scale, matching the .icon wrapper box. Icons are leaf
+   modules, so this import cannot create a cycle. */
+const toneIcons: Record<NonNullable<AlertProps['tone']>, ReactNode> = {
+  info: <InfoIcon size="md" />,
+  success: <SuccessIcon size="md" />,
+  warning: <WarningIcon size="md" />,
+  danger: <DangerIcon size="md" />,
 };
 
 /**
@@ -176,14 +125,7 @@ export function Alert({
           className={styles.dismiss!}
           onPress={onDismiss}
         >
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path
-              d="m5.5 5.5 9 9M14.5 5.5l-9 9"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
+          <CloseIcon size="sm" />
         </RACButton>
       ) : null}
     </div>

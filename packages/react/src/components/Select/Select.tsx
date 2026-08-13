@@ -146,7 +146,17 @@ export function Select({
         </RACText>
       ) : null}
       <RACFieldError className={styles.error!}>{errorMessage}</RACFieldError>
-      <RACPopover className={styles.popover!}>
+      {/* react-aria positions the popover with an inline zIndex (100000 from
+          useOverlayPosition), so a class z-index can never reach the rendered
+          overlay. RAC spreads the user style AFTER its position style
+          (verified in react-aria-components 1.20.0 Popover), making this
+          inline token reference the supported way to put the popover on the
+          --ds-z-* scale. Internal only — the public API still rejects
+          `style` (token rule). */}
+      <RACPopover
+        className={styles.popover!}
+        style={{ zIndex: 'var(--ds-z-dropdown)' }}
+      >
         <RACListBox items={items} className={styles.listbox!}>
           {(item) => (
             <RACListBoxItem

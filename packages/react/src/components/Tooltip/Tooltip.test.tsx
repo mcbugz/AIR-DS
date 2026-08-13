@@ -87,6 +87,23 @@ describe('Tooltip', () => {
     expect(tooltip).toHaveClass(styles.tooltip!, 'mine');
   });
 
+  // react-aria positions the tooltip with an inline zIndex (100000), which
+  // outranks any class declaration — the z token must travel as an inline
+  // style to reach the rendered overlay. jsdom cannot resolve var() to a
+  // computed value, so the contract asserted here is the style attribute
+  // carrying the token reference.
+  it('layers the open tooltip via the --ds-tooltip-z token (inline style)', async () => {
+    render(
+      <Tooltip content="More info" defaultOpen>
+        <Button>Info</Button>
+      </Tooltip>,
+    );
+    const tooltip = await screen.findByRole('tooltip');
+    expect(tooltip.getAttribute('style') ?? '').toContain(
+      'var(--ds-tooltip-z)',
+    );
+  });
+
   // jsdom has no layout, so the resolved `data-placement` attribute never
   // appears; each placement value must still render an accessible tooltip.
   it.each(['top', 'bottom', 'left', 'right'] as const)(

@@ -104,6 +104,23 @@ describe('Select', () => {
     expect(trigger).toHaveTextContent('Cherry');
   });
 
+  // react-aria positions the popover with an inline zIndex (100000), which
+  // outranks any class declaration — the z token must travel as an inline
+  // style to reach the rendered overlay. jsdom cannot resolve var() to a
+  // computed value, so the contract asserted here is the style attribute
+  // carrying the token reference.
+  it('layers the open popover via the --ds-z-dropdown token (inline style)', async () => {
+    const user = userEvent.setup();
+    renderSelect();
+    await user.click(screen.getByRole('button', { name: /Favorite fruit/ }));
+    const listbox = await screen.findByRole('listbox');
+    const popover = listbox.closest(`.${styles.popover}`);
+    expect(popover).not.toBeNull();
+    expect(popover?.getAttribute('style') ?? '').toContain(
+      'var(--ds-z-dropdown)',
+    );
+  });
+
   it('supports the full keyboard path: open, navigate, select', async () => {
     const onSelectionChange = vi.fn();
     const user = userEvent.setup();

@@ -132,8 +132,10 @@
    canon. `--trigger-width` is a react-aria-components-provided layout
    variable (popover matches its trigger's width) — not a design token. */
 
+/* No z-index here: react-aria applies an inline zIndex to the positioned
+   popover, which outranks any class declaration. The --ds-z-dropdown token
+   is passed as an inline style in Select.tsx instead. */
 .popover {
-  z-index: var(--ds-z-dropdown);
   min-inline-size: var(--trigger-width);
 }
 
