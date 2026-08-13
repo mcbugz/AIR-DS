@@ -1,0 +1,26 @@
+{
+  "v": 5,
+  "entries": {
+    "fixture-button--clean": {
+      "id": "fixture-button--clean",
+      "title": "Fixture/Button",
+      "name": "Clean",
+      "type": "story",
+      "importPath": "./fixture.stories.tsx"
+    },
+    "fixture-button--nameless": {
+      "id": "fixture-button--nameless",
+      "title": "Fixture/Button",
+      "name": "Nameless",
+      "type": "story",
+      "importPath": "./fixture.stories.tsx"
+    },
+    "fixture-button--docs": {
+      "id": "fixture-button--docs",
+      "title": "Fixture/Button",
+      "name": "Docs",
+      "type": "docs",
+      "importPath": "./fixture.stories.tsx"
+    }
+  }
+}

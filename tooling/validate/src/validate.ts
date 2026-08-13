@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { checkCssFile } from './rules/css-rules.ts';
 import { checkCodeFile } from './rules/code-rules.ts';
+import { checkModuleClassRefs } from './rules/module-classes.ts';
 import { findRepoRoot, loadRegistryContext } from './registry.ts';
 import type { RegistryContext, SourceFile, ValidateResult, Violation } from './types.ts';
 
@@ -21,6 +22,8 @@ export function validateSources(files: SourceFile[], ctx: RegistryContext): Vali
       violations.push(...checkCodeFile(f.path, f.content, ctx));
     }
   }
+  // G10 / NR-011 is cross-file (tsx <-> its imported .module.css).
+  violations.push(...checkModuleClassRefs(files));
   return { ok: violations.length === 0, violations, filesChecked: files.length };
 }
 

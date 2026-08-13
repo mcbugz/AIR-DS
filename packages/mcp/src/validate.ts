@@ -9,6 +9,15 @@ import type { Registry } from './registry.js';
 import { nearestNames } from './registry.js';
 import type { NegativeRuleCatalog } from './negativeRules.js';
 import { ruleFix, ruleMessage } from './negativeRules.js';
+// The shared allowed-literal ruleset — a GENERATED verbatim copy of
+// tooling/validate/src/rules/allowlist.ts (single source of truth), synced by
+// scripts/sync-allowlist.mjs and pinned by tests/allowlist-parity.test.ts, so
+// this validator and the gauntlet return identical literal verdicts.
+import {
+  extractJsxStyleObjects,
+  scanCssValueLiterals,
+  scanJsxStyleValue,
+} from './generated/allowlist.js';
 
 export interface Violation {
   rule: string;
@@ -50,20 +59,11 @@ const SIZE_PROPERTIES = new Set([
   'flex-basis',
 ]);
 
-/** CLAUDE.md rule 2 allowlist, plus known-legitimate extras. */
-const ALLOWED_VALUE_KEYWORDS = new Set(['0', '100%', 'auto', 'none', 'currentcolor', 'transparent']);
 /** RAC runtime-provided variable — legal even though it is not a --ds- token. */
 export const KNOWN_RUNTIME_VARS = new Set(['--trigger-width']);
 
-const NAMED_CSS_COLORS = new Set([
-  'white', 'black', 'red', 'blue', 'green', 'gray', 'grey', 'orange',
-  'yellow', 'purple', 'pink', 'teal', 'cyan', 'magenta', 'silver', 'maroon',
-  'navy', 'olive', 'lime', 'aqua', 'fuchsia', 'crimson', 'gold', 'indigo',
-  'ivory', 'khaki', 'lavender', 'salmon', 'tomato', 'turquoise', 'violet',
-  'wheat', 'whitesmoke', 'rebeccapurple',
-]);
-
-const COLOR_PROPERTY = /^(color|fill|stroke|caret-color|accent-color|(background|border|outline|text-decoration|column-rule)(-(top|right|bottom|left|block|inline)(-(start|end))?)?(-color)?)$/;
+/** Class names that RAC positions with inline z-index (NR-012 subjects). */
+const RAC_OVERLAY_CLASS = /\.(popover|tooltip|overlay|dropdown|menu|listbox|modal|dialog)\b/;
 
 /** Unambiguous Tailwind-style utility classes (NR-004). */
 const TAILWIND_CLASS = new RegExp(
@@ -316,34 +316,122 @@ export function validateUsage(
         );
       }
 
-      /* (d) raw literals per CLAUDE.md rule 2 allowlist */
-      const residue = stripVarExpressions(decl.value);
-      if (/#[0-9a-fA-F]{3,8}\b/.test(residue) || /\b(rgba?|hsla?|oklch|oklab|lab|lch|color)\(/.test(residue)) {
-        pushNr(
-          'NR-003',
-          `'${decl.property}: ${decl.value}' hard-codes a color.`,
-          'Raw color literals are not allowed in component CSS.',
-          'intent tokens: var(--ds-color-*)',
-        );
-        continue;
-      }
-      for (const word of residue.split(/[\s,/()]+/).filter(Boolean)) {
-        const lower = word.toLowerCase();
-        if (ALLOWED_VALUE_KEYWORDS.has(lower)) continue;
-        if (/^-?\d*\.?\d+(deg|turn|rad|grad|fr)$/.test(lower)) continue; // angles & grid fractions
-        if (/^-?0+(px|rem|em|pt|s|ms|%)?$/.test(lower)) continue; // zero in any unit
-        if (/^-?\d*\.?\d+(px|rem|em|pt|pc|cm|mm|in|q|vh|vw|vmin|vmax|ch|ex|cap|ic|lh|rlh|s|ms|%)$/.test(lower)) {
-          push(
-            'raw-value',
-            `'${decl.property}: ${decl.value}' hard-codes '${word}'. Every color, font, size, space, radius, shadow, and motion value must be var(--ds-*) (CLAUDE.md rule 2). Allowed literals: 0, 100%, auto, none, currentColor, transparent, angles, and layout keywords.`,
-            `Replace '${word}' with the appropriate --ds-* token (see list_tokens).`,
-          );
-        } else if (COLOR_PROPERTY.test(decl.property) && NAMED_CSS_COLORS.has(lower)) {
+      /* (d) raw literals — the SHARED allowed-literal ruleset (same verdicts
+         as the gauntlet's G2; percentages/angles/unitless numbers allowed,
+         hex / color functions / named colors / non-zero unit literals and
+         bare numbers in font-weight|line-height|z-index flagged). */
+      for (const lv of scanCssValueLiterals(decl.property, decl.value)) {
+        if (lv.isColor) {
           pushNr(
             'NR-003',
-            `'${decl.property}: ${decl.value}' hard-codes the named color '${word}'.`,
+            `'${decl.property}: ${decl.value}' hard-codes a color (${lv.literal}).`,
             'Raw color literals are not allowed in component CSS.',
             'intent tokens: var(--ds-color-*)',
+          );
+        } else {
+          push(
+            'raw-value',
+            `'${decl.property}: ${decl.value}' hard-codes '${lv.literal}'. Every color, font, size, space, radius, shadow, and motion value must be var(--ds-*) (CLAUDE.md rule 2). Allowed literals: 0, percentages, auto, none, currentColor, transparent, angles, and layout keywords.`,
+            `Replace '${lv.literal}' with the appropriate --ds-* token (see list_tokens).`,
+          );
+        }
+      }
+    }
+
+    /* NR-012 — class z-index does not reach RAC-positioned overlays */
+    const blockRe = /([^{}]+)\{([^{}]*)\}/g;
+    let bm: RegExpExecArray | null;
+    while ((bm = blockRe.exec(css)) !== null) {
+      if (RAC_OVERLAY_CLASS.test(bm[1] as string) && /(^|[\s;{])z-index\s*:/.test(bm[2] as string)) {
+        pushNr(
+          'NR-012',
+          `'${(bm[1] as string).trim()}' sets z-index in a class rule; react-aria positions this element with an inline z-index that wins.`,
+          'Class z-index does not reach RAC-positioned overlays.',
+          "pass style={{ zIndex: 'var(--ds-z-*)' }} on the RAC overlay element",
+        );
+      }
+    }
+
+    /* NR-013 — motion must be gated; movement always */
+    if (!/@media[^{]*prefers-reduced-motion\s*:\s*reduce/.test(css)) {
+      const hasKeyframes = /@(-\w+-)?keyframes\b/.test(css);
+      const movesOnTransition = extractDeclarations(css).some(
+        (d) =>
+          /^(transition|transition-property|animation|animation-name)$/.test(d.property) &&
+          /(^|[\s,])(transform|translate|rotate|scale|all)([\s,]|$)/.test(stripVarExpressions(d.value)),
+      );
+      if (hasKeyframes || movesOnTransition) {
+        pushNr(
+          'NR-013',
+          hasKeyframes
+            ? '@keyframes with no reduced-motion gate.'
+            : 'transform/translate/rotate/scale transition with no reduced-motion gate.',
+          'Motion must be gated; movement always.',
+          '@media (prefers-reduced-motion: reduce) { animation: none; transition: none } — color-only transitions are exempt',
+        );
+      }
+    }
+
+    /* NR-011 — CSS-module classes are a closed world too */
+    const definedClasses = new Set<string>();
+    const clsDef = /\.(-?[A-Za-z_][A-Za-z0-9_-]*)/g;
+    let cd: RegExpExecArray | null;
+    while ((cd = clsDef.exec(selectorText)) !== null) definedClasses.add(cd[1] as string);
+    if (definedClasses.size > 0) {
+      const styleRef = /\bstyles\s*(?:\.\s*([A-Za-z_$][\w$]*)|\[\s*(['"])([^'"]+)\2\s*\])/g;
+      let sr: RegExpExecArray | null;
+      const missing = new Set<string>();
+      while ((sr = styleRef.exec(code)) !== null) {
+        const cls = (sr[1] ?? sr[3]) as string | undefined;
+        if (cls && !definedClasses.has(cls)) missing.add(cls);
+      }
+      for (const cls of missing) {
+        pushNr(
+          'NR-011',
+          `styles.${cls} — no class '.${cls}' exists in the provided stylesheet; the className silently vanishes at runtime.`,
+          'CSS-module classes are a closed world too.',
+          'reference only classes that exist in the component’s own .module.css; add the rule before the reference',
+        );
+      }
+    }
+
+    /* NR-010 (kebab form) — kebab-casing a registered CamelCase component name */
+    for (const cls of definedClasses) {
+      if (!cls.includes('-')) continue;
+      const joined = cls.split('-').join('');
+      const pascalMatch = registry.components.components.find(
+        (c) => c.name.toLowerCase() === joined && c.name.toLowerCase() !== cls,
+      );
+      if (pascalMatch) {
+        pushNr(
+          'NR-010',
+          `Base class '.${cls}' kebab-cases ${pascalMatch.name}; the canon is '.${joined}' — the name lowercased literally, no separators.`,
+          'The base class is the lowercased component name.',
+          `.${joined} — the lowercased component name, no separators`,
+        );
+      }
+    }
+  }
+
+  /* B1 — JSX inline-style literal discipline (shared ruleset). String/number
+     literals for COLOR / DIMENSION style props are violations unless
+     var(--ds-*), 0, a percentage, auto/none/currentColor, or a pure runtime
+     expression. Sanctioned runtime-geometry pattern: `${percentage}%`. */
+  for (const obj of extractJsxStyleObjects(code)) {
+    for (const entry of obj.entries) {
+      for (const lv of scanJsxStyleValue(entry.prop, entry.valueText)) {
+        if (lv.isColor) {
+          pushNr(
+            'NR-003',
+            `style={{ ${entry.prop}: … }} hard-codes ${lv.literal}; inline styles follow the same token rule.`,
+            'Raw color literals are not allowed in component CSS.',
+            'intent tokens: var(--ds-color-*)',
+          );
+        } else {
+          push(
+            'raw-value',
+            `style={{ ${entry.prop}: … }} hard-codes '${lv.literal}'. Inline-style dimensions must be var(--ds-*) tokens; runtime-computed geometry interpolates with no literal parts (inlineSize: \`\${percentage}%\` — the sanctioned pattern).`,
+            `Replace '${lv.literal}' with a --ds-* token (see list_tokens) or a pure runtime interpolation.`,
           );
         }
       }

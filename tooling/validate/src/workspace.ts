@@ -1,6 +1,7 @@
+import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import type { RegistryContext, Violation } from './types.ts';
 
 /** Workspace-level checks: G4 dead hooks, G7 generator drift, registry coverage. */
@@ -189,6 +190,45 @@ export function generatedFilePaths(root: string): string[] {
     join(root, 'packages', 'react', 'src', 'index.ts'),
   ];
   return candidates.filter((p) => existsSync(p));
+}
+
+/**
+ * Content hashes of `paths` as committed at HEAD (`git show HEAD:<rel>`),
+ * NOT as they sit in the working tree. This is what makes G7 real: step 3 of
+ * the gauntlet has already rebuilt the generated files by the time
+ * registry-check runs, so a working-tree "before" hash always equals the
+ * "after" hash and a stale or hand-edited COMMITTED registry would pass.
+ * Comparing HEAD against the post-generate disk state catches exactly that.
+ *
+ * Returns null when `root` is not inside a git work tree (or git/HEAD is
+ * unavailable) — callers warn-skip the drift check. Files not tracked at HEAD
+ * are absent from the map and reported in `untracked` for a per-file warn.
+ */
+export function headFileHashes(
+  root: string,
+  paths: string[],
+): { hashes: Map<string, string>; untracked: string[] } | null {
+  const probe = spawnSync('git', ['rev-parse', '--verify', 'HEAD'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  if (probe.error || probe.status !== 0) return null;
+
+  const hashes = new Map<string, string>();
+  const untracked: string[] = [];
+  for (const p of paths) {
+    const rel = relative(root, p).split('\\').join('/');
+    const res = spawnSync('git', ['show', `HEAD:${rel}`], {
+      cwd: root,
+      maxBuffer: 64 * 1024 * 1024,
+    });
+    if (res.error || res.status !== 0 || res.stdout == null) {
+      untracked.push(p);
+      continue;
+    }
+    hashes.set(p, createHash('sha256').update(res.stdout).digest('hex'));
+  }
+  return { hashes, untracked };
 }
 
 export function hashFiles(paths: string[]): Map<string, string> {

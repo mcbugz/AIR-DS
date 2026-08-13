@@ -1,0 +1,4 @@
+{
+  "$doc": "stories-axe gate allowlist (G6). Empty by default — every serious/critical axe violation in any Storybook story fails the run. Each entry needs a reason and should be temporary: { \"story\": \"<story id or *>\", \"rule\": \"<axe rule id>\", \"reason\": \"why + tracking ref\" }.",
+  "allow": []
+}

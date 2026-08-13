@@ -1,4 +1,6 @@
 import { parseCss } from '../css-parser.ts';
+import { maskVarCalls, scanCssValueLiterals } from './allowlist.ts';
+import type { LiteralViolation } from './allowlist.ts';
 import type { NrId, RegistryContext, Violation } from '../types.ts';
 
 /**
@@ -37,8 +39,6 @@ const RADIUS_PROP = /^border(-(top|bottom|start|end)(-(left|right|start|end))?)?
 const MOTION_PROP = /^(transition|animation)/;
 const TRANSFORM_PROP = /^(translate|transform|scale|rotate)$/;
 
-const FLAGGED_UNITS = /(-?\d*\.?\d+)(px|rem|em|pt|cm|mm|in|pc|ch|ex|vw|vh|vmin|vmax|ms|s)\b/gi;
-const UNITLESS_TOKEN_PROPS = new Set(['font-weight', 'line-height', 'z-index']);
 const STRING_OK_PROPS = new Set(['content', 'grid-template-areas', 'grid-template']);
 const FONT_KEYWORDS = new Set(['inherit', 'initial', 'unset', 'revert', 'revert-layer']);
 
@@ -90,28 +90,61 @@ function varRefs(value: string): string[] {
   return out;
 }
 
-/** Mask var(...) expressions (balanced parens) so literal scanning skips token refs. */
-function maskVarCalls(value: string): string {
-  let out = '';
-  let i = 0;
-  while (i < value.length) {
-    if (value.startsWith('var(', i)) {
-      let depth = 0;
-      let j = i + 3;
-      do {
-        const c = value[j];
-        if (c === '(') depth++;
-        else if (c === ')') depth--;
-        j++;
-      } while (j < value.length && depth > 0);
-      out += '§';
-      i = j;
-    } else {
-      out += value[i];
-      i++;
+/** Map a shared-allowlist literal violation to the G2 message vocabulary. */
+function literalMessage(v: LiteralViolation, prop: string): string {
+  switch (v.kind) {
+    case 'hex-color':
+      return `Raw hex color "${v.literal}" in "${prop}" — every color is a var(--ds-color-*) token.`;
+    case 'color-function':
+      return `Color function "${v.literal}...)" in "${prop}" — colors are var(--ds-color-*) tokens (color-mix over tokens is legal).`;
+    case 'named-color':
+      return `Named CSS color "${v.literal}" in "${prop}" — every color is a var(--ds-color-*) token (NR-003); named colors are not tokens.`;
+    case 'unit-literal':
+      return `Literal "${v.literal}" in "${prop}" — dimensions come from var(--ds-*) tokens (allowed literals: 0, percentages, angles, keywords).`;
+    case 'unitless-token-prop':
+      return `Numeric literal "${v.literal}" in "${prop}" — ${prop} values come from tokens (${prop === 'z-index' ? '--ds-z-*' : prop === 'line-height' ? '--ds-text-leading-*' : '--ds-text-weight-*'}).`;
+  }
+}
+
+/**
+ * G11 / NR-013: movement must be gated. A sheet that declares @keyframes, or
+ * transitions/animates transform-like properties (transform, translate,
+ * rotate, scale — or `all`, which includes them), must contain a
+ * `@media (prefers-reduced-motion: reduce)` block. Color/opacity-only
+ * transitions are exempt.
+ */
+const MOTION_TRIGGER_PROPS = /^(transition(-property)?|animation(-name)?)$/;
+const MOVEMENT_WORD = /(^|[\s,])(transform|translate|rotate|scale|all)([\s,]|$)/;
+const REDUCED_MOTION_RE = /@media[^{]*prefers-reduced-motion\s*:\s*reduce/;
+
+function checkReducedMotion(file: string, content: string, violations: Violation[]): void {
+  if (REDUCED_MOTION_RE.test(content)) return;
+  const keyframes = /@(-\w+-)?keyframes\b/.exec(content);
+  let line = 0;
+  let trigger: string | null = null;
+  if (keyframes) {
+    line = content.slice(0, keyframes.index).split('\n').length;
+    trigger = '@keyframes';
+  } else {
+    const sheet = parseCss(content);
+    outer: for (const rule of sheet.rules) {
+      for (const decl of rule.decls) {
+        if (MOTION_TRIGGER_PROPS.test(decl.prop) && MOVEMENT_WORD.test(maskVarCalls(decl.value))) {
+          line = decl.line;
+          trigger = `${decl.prop}: ${decl.value}`;
+          break outer;
+        }
+      }
     }
   }
-  return out;
+  if (trigger === null) return;
+  violations.push({
+    rule: 'G11',
+    nr: 'NR-013',
+    file,
+    line,
+    message: `Ungated motion (${trigger}) — movement animations require an @media (prefers-reduced-motion: reduce) block overriding them with animation: none / transition: none (NR-013; color-only transitions are exempt).`,
+  });
 }
 
 export function checkCssFile(
@@ -146,6 +179,21 @@ export function checkCssFile(
         line: rule.line,
         message: `Selector "${rule.selector}" uses a generic base class — the base class is the lowercased component name (".${componentName.toLowerCase()}"), never .root/.wrapper/.container.`,
       });
+    }
+
+    // NR-010: kebab-casing a CamelCase name (.progress-bar) is not the canon
+    // either — the name is lowercased LITERALLY, no separators.
+    if (componentName) {
+      const kebab = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      if (kebab !== componentName.toLowerCase() && new RegExp(`\\.${kebab}(?![\\w-])`).test(rule.selector)) {
+        violations.push({
+          rule: 'NR-010',
+          nr: 'NR-010',
+          file,
+          line: rule.line,
+          message: `Selector "${rule.selector}" kebab-cases the component name — the base class is the name lowercased literally (".${componentName.toLowerCase()}"), no separators (NR-010).`,
+        });
+      }
     }
 
     for (const decl of rule.decls) {
@@ -208,34 +256,22 @@ export function checkCssFile(
         }
       }
 
-      // G2 literal scanning over the value with var() calls masked out.
-      const masked = maskVarCalls(value);
-
-      const hex = /#[0-9a-fA-F]{3,8}\b/.exec(masked);
-      if (hex) {
+      // G2 literal scanning through the SHARED allowed-literal ruleset
+      // (tooling/validate/src/rules/allowlist.ts) — same verdicts as the MCP
+      // server's validate_usage. Covers hex, color functions, named CSS
+      // colors (B2 -> NR-003), non-zero unit literals, and bare numbers in
+      // font-weight/line-height/z-index.
+      for (const lv of scanCssValueLiterals(prop, value)) {
         violations.push({
           rule: 'G2',
-          nr: 'NR-003',
+          nr: lv.isColor ? 'NR-003' : null,
           file,
           line,
-          message: `Raw hex color "${hex[0]}" in "${prop}" — every color is a var(--ds-color-*) token.`,
+          message: literalMessage(lv, prop),
         });
       }
 
-      FLAGGED_UNITS.lastIndex = 0;
-      let um: RegExpExecArray | null;
-      while ((um = FLAGGED_UNITS.exec(masked)) !== null) {
-        if (parseFloat(um[1] as string) !== 0) {
-          violations.push({
-            rule: 'G2',
-            nr: null,
-            file,
-            line,
-            message: `Literal "${um[0]}" in "${prop}" — dimensions come from var(--ds-*) tokens (allowed literals: 0, percentages, angles, keywords).`,
-          });
-        }
-      }
-
+      const masked = maskVarCalls(value);
       const str = /"[^"]*"|'[^']*'/.exec(masked);
       if (str && !STRING_OK_PROPS.has(prop)) {
         violations.push({
@@ -263,20 +299,11 @@ export function checkCssFile(
         }
       }
 
-      if (UNITLESS_TOKEN_PROPS.has(prop)) {
-        const bare = /(^|[\s(])(-?\d*\.?\d+)(?![\w.%])/.exec(masked);
-        if (bare && parseFloat(bare[2] as string) !== 0) {
-          violations.push({
-            rule: 'G2',
-            nr: null,
-            file,
-            line,
-            message: `Numeric literal "${bare[2]}" in "${prop}" — ${prop} values come from tokens (${prop === 'z-index' ? '--ds-z-*' : prop === 'line-height' ? '--ds-text-leading-*' : '--ds-text-weight-*'}).`,
-          });
-        }
-      }
     }
   }
+
+  // G11 / NR-013: file-scoped reduced-motion gate.
+  checkReducedMotion(file, content, violations);
 
   return violations;
 }

@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { checkAxeAvailability } from './benchmark/axe.ts';
 import { findRepoRoot, loadRegistryContext, registriesPresent } from './registry.ts';
 import { validateFiles } from './validate.ts';
 import {
@@ -9,6 +10,7 @@ import {
   diffHashes,
   generatedFilePaths,
   hashFiles,
+  headFileHashes,
   loadWaivers,
   reactSourceFiles,
 } from './workspace.ts';
@@ -22,6 +24,10 @@ import type { GauntletOptions, GauntletReport, StepResult, Violation } from './t
  *   4. test            pnpm -r test
  *   5. registry-check  G4 dead hooks, G7 generator drift, registry coverage, G1 re-scan
  * No LLM anywhere in this path.
+ *
+ * Optional 6th step (opts.browser / --browser): stories-axe — browser-run
+ * axe-core over every Storybook story (G6). Off by default so the core
+ * gauntlet never needs a browser; warn-skips when chromium is not installed.
  */
 
 const STEP_ORDER = ['typecheck', 'lint', 'build', 'test', 'registry-check'] as const;
@@ -132,23 +138,38 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
     }
 
     const violations: Violation[] = [];
+    const warnings: string[] = [];
 
-    // G7: generator drift (hash-compare survives dirty sibling worktrees).
-    const genPaths = generatedFilePaths(root);
-    const before = hashFiles(genPaths);
+    // G7: generator drift. "Before" hashes come from the COMMIT (git show
+    // HEAD:<path>), never the working tree — step 3 already rebuilt the
+    // generated files on disk, so a working-tree before-hash would always
+    // equal the after-hash and a stale/hand-edited committed registry would
+    // pass. HEAD vs post-generate disk is the real ADR-004 contract:
+    // "CI recompiles and diffs".
+    const head = headFileHashes(root, generatedFilePaths(root));
     const gen = run('pnpm', ['--filter', '@ds/react', 'generate'], root, verbose);
     if (!gen.ok) {
       return { status: 'fail', detail: `@ds/react generate failed during drift check:\n${tail(gen.output)}` };
     }
     const after = hashFiles(generatedFilePaths(root));
-    for (const changed of diffHashes(before, after)) {
-      violations.push({
-        rule: 'G7',
-        nr: null,
-        file: changed,
-        line: 0,
-        message: `Generator drift: "${changed}" did not match generator output — generated files must be committed in sync with their sources.`,
-      });
+    if (head === null) {
+      warnings.push(
+        'G7 drift check skipped: not a git work tree (or git/HEAD unavailable) — cannot compare committed generated files against generator output.',
+      );
+    } else {
+      for (const p of head.untracked) {
+        warnings.push(`G7: "${p}" is not tracked at HEAD — drift check skipped for this file (commit it to arm the check).`);
+      }
+      for (const changed of diffHashes(head.hashes, after)) {
+        if (head.untracked.includes(changed)) continue; // already warned above
+        violations.push({
+          rule: 'G7',
+          nr: null,
+          file: changed,
+          line: 0,
+          message: `Generator drift: committed "${changed}" (HEAD) does not match generator output — regenerate (pnpm --filter @ds/react generate) and commit generated files in sync with their sources (ADR-004: CI recompiles and diffs).`,
+        });
+      }
     }
 
     // Fresh registry context AFTER regeneration.
@@ -165,10 +186,36 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
       );
     }
 
-    return violations.length === 0
-      ? { status: 'pass' }
-      : { status: 'fail', detail: `${violations.length} violation(s)`, violations };
+    if (violations.length > 0) {
+      return {
+        status: 'fail',
+        detail: [`${violations.length} violation(s)`, ...warnings].join('\n'),
+        violations,
+      };
+    }
+    return warnings.length > 0 ? { status: 'warn', detail: warnings.join('\n') } : { status: 'pass' };
   });
+
+  // 6. stories-axe (opt-in, --browser) — browser-run axe over every Storybook
+  // story (G6). Warn-skip when the optional local chromium is absent so the
+  // credential-free rule holds; delegates to the stories-axe CLI otherwise.
+  if (opts.browser) {
+    record('stories-axe', () => {
+      const availability = checkAxeAvailability();
+      if (!availability.available) {
+        return { status: 'warn', detail: `skipped (${availability.reason ?? 'no browser'})` };
+      }
+      const r = run(
+        'pnpm',
+        ['--filter', '@ds/validate', 'run', 'stories-axe', '--', '--no-metrics'],
+        root,
+        verbose,
+      );
+      return r.ok
+        ? { status: 'pass', detail: 'axe clean over all Storybook stories (serious/critical gate)' }
+        : { status: 'fail', detail: tail(r.output) };
+    });
+  }
 
   return {
     ok: !failed,

@@ -19,7 +19,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "build": "node scripts/sync-allowlist.mjs && tsc -p tsconfig.build.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "sync:allowlist": "node scripts/sync-allowlist.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "echo '@ds/mcp lint: no-op placeholder (token-value lint lives in @ds/validate)'"

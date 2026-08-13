@@ -1,0 +1,10 @@
+/* NR-013: @keyframes with no prefers-reduced-motion gate. */
+.spinner {
+  animation: spin var(--ds-motion-duration-slow) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}

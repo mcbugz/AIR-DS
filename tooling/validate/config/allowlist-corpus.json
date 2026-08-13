@@ -1,0 +1,30 @@
+{
+  "$description": "Shared allowed-literal verdict corpus (F5). Both approvers — @ds/validate checkCssFile (gauntlet G2) and @ds/mcp validateUsage (validate_usage) — must return IDENTICAL verdicts over every entry; each package's parity test replays this file through its own engine, and a byte-compare test pins @ds/mcp's generated copy of rules/allowlist.ts to the source of truth. 'flagged' means the literal-discipline rules fire (G2 / raw-value / NR-003); 'allowed' means they stay silent.",
+  "entries": [
+    { "property": "inline-size", "value": "50%", "verdict": "allowed", "note": "percentages are proportions, not brand values" },
+    { "property": "max-inline-size", "value": "100%", "verdict": "allowed" },
+    { "property": "width", "value": "auto", "verdict": "allowed" },
+    { "property": "display", "value": "none", "verdict": "allowed" },
+    { "property": "flex", "value": "1", "verdict": "allowed", "note": "unitless numbers are legal outside font-weight/line-height/z-index" },
+    { "property": "opacity", "value": "0.5", "verdict": "allowed" },
+    { "property": "line-height", "value": "1.5", "verdict": "flagged", "note": "token prop: --ds-text-leading-*" },
+    { "property": "font-weight", "value": "400", "verdict": "flagged", "note": "token prop: --ds-text-weight-*" },
+    { "property": "z-index", "value": "999", "verdict": "flagged", "note": "token prop: --ds-z-*" },
+    { "property": "rotate", "value": "45deg", "verdict": "allowed", "note": "angles are allowed literals" },
+    { "property": "transform", "value": "rotate(1turn)", "verdict": "allowed" },
+    { "property": "grid-template-columns", "value": "1fr 2fr", "verdict": "allowed", "note": "grid fractions are allowed literals" },
+    { "property": "background", "value": "transparent", "verdict": "allowed" },
+    { "property": "color", "value": "currentColor", "verdict": "allowed" },
+    { "property": "margin", "value": "0", "verdict": "allowed" },
+    { "property": "inset", "value": "0px", "verdict": "allowed", "note": "zero in any unit" },
+    { "property": "color", "value": "red", "verdict": "flagged", "note": "B2: named CSS colors violate the token rule (NR-003)" },
+    { "property": "background-color", "value": "tomato", "verdict": "flagged" },
+    { "property": "border-color", "value": "rebeccapurple", "verdict": "flagged" },
+    { "property": "outline-color", "value": "white", "verdict": "flagged" },
+    { "property": "color", "value": "#dc2626", "verdict": "flagged", "note": "hex colors (NR-003)" },
+    { "property": "background-color", "value": "rgb(255 0 0)", "verdict": "flagged", "note": "color functions (NR-003)" },
+    { "property": "padding", "value": "12px", "verdict": "flagged" },
+    { "property": "margin-block", "value": "1.5rem", "verdict": "flagged" },
+    { "property": "transition-duration", "value": "0.2s", "verdict": "flagged", "note": "durations come from --ds-motion-duration-*" }
+  ]
+}

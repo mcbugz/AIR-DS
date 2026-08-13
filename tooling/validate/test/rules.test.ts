@@ -57,6 +57,9 @@ describe('seeded violations are caught (bad fixture -> expected rule)', () => {
     ['bad/code/NR-004.tsx', 'NR-004', 'NR-004'],
     ['bad/code/NR-005.tsx', 'NR-005', 'NR-005'],
     ['bad/code/G1-inline-style.tsx', 'G1', null],
+    ['bad/css/G2-named-color.module.css', 'G2', 'NR-003'],
+    ['bad/css/G11-motion.module.css', 'G11', 'NR-013'],
+    ['bad/code/G9-inline-style.tsx', 'G9', 'NR-003'],
   ];
 
   it.each(cases)('%s -> %s', (fixture, rule, nr) => {
@@ -159,5 +162,98 @@ describe('rule specifics', () => {
   it('@ds/tokens/css subpath import is legal (documented public export)', () => {
     const code = { path: 'src/main.tsx', content: "import '@ds/tokens/css';\nexport {};\n" };
     expect(validateSources([code], ctx).ok).toBe(true);
+  });
+
+  it('G9: the sanctioned runtime-geometry pattern `${percentage}%` passes; literal parts do not', () => {
+    const good = {
+      path: 'src/Meter.tsx',
+      content:
+        'export function Meter({ percentage }: { percentage: number }) {\n' +
+        '  return <div style={{ inlineSize: `${percentage}%`, background: "var(--ds-color-accent-default)" }} />;\n' +
+        '}\n',
+    };
+    expect(validateSources([good], ctx).violations.filter((v) => v.rule === 'G9')).toHaveLength(0);
+
+    const bad = {
+      path: 'src/Meter.tsx',
+      content:
+        'export function Meter({ wide }: { wide: boolean }) {\n' +
+        '  return <div style={{ inlineSize: wide ? "240px" : `13px ${1}`, color: wide ? "#fff" : "var(--ds-color-text-primary)" }} />;\n' +
+        '}\n',
+    };
+    const vio = validateSources([bad], ctx).violations.filter((v) => v.rule === 'G9');
+    expect(vio.length).toBeGreaterThanOrEqual(3); // 240px, 13px (template residue), #fff
+    expect(vio.some((v) => v.nr === 'NR-003')).toBe(true);
+  });
+
+  it('G9 ignores non-color/non-dimension style props (display, alignItems keywords stay legal)', () => {
+    const code = {
+      path: 'src/Row.tsx',
+      content:
+        "export const Row = () => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 'var(--ds-space-gap-md)', margin: 0 }} />;\n",
+    };
+    expect(validateSources([code], ctx).violations.filter((v) => v.rule === 'G9')).toHaveLength(0);
+  });
+
+  it('G10/NR-011: static styles.<x> must exist in the imported .module.css; dynamic lookups skipped', () => {
+    const tsx = {
+      path: 'src/chip/Chip.tsx',
+      content:
+        "import styles from './Chip.module.css';\n" +
+        'export function Chip({ variant }: { variant: string }) {\n' +
+        '  return <span className={[styles.chip, styles[variant], styles.message].join(" ")} />;\n' +
+        '}\n',
+    };
+    const cssOk = {
+      path: 'src/chip/Chip.module.css',
+      content: '.chip { color: var(--ds-color-text-primary); }\n.message { color: var(--ds-color-text-secondary); }\n',
+    };
+    const cssMissing = {
+      path: 'src/chip/Chip.module.css',
+      content: '.chip { color: var(--ds-color-text-primary); }\n',
+    };
+    expect(validateSources([tsx, cssOk], ctx).violations.filter((v) => v.rule === 'G10')).toHaveLength(0);
+    const vio = validateSources([tsx, cssMissing], ctx).violations.filter((v) => v.rule === 'G10');
+    expect(vio).toHaveLength(1);
+    expect(vio[0]!.nr).toBe('NR-011');
+    expect(vio[0]!.message).toContain('message');
+    // stylesheet absent from the batch -> unverifiable, no false positive
+    expect(validateSources([tsx], ctx).violations.filter((v) => v.rule === 'G10')).toHaveLength(0);
+  });
+
+  it('G11/NR-013: movement transitions need the gate; color-only transitions are exempt', () => {
+    const move = {
+      path: 'x/Drawer.module.css',
+      content: '.drawer { transition: transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard); }\n',
+    };
+    expect(validateSources([move], ctx).violations.some((v) => v.rule === 'G11' && v.nr === 'NR-013')).toBe(true);
+
+    const gated = {
+      path: 'x/Drawer.module.css',
+      content:
+        '.drawer { transition: transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard); }\n' +
+        '@media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }\n',
+    };
+    expect(validateSources([gated], ctx).violations.filter((v) => v.rule === 'G11')).toHaveLength(0);
+
+    const colorOnly = {
+      path: 'x/Chip.module.css',
+      content: '.chip { transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard); }\n',
+    };
+    expect(validateSources([colorOnly], ctx).violations.filter((v) => v.rule === 'G11')).toHaveLength(0);
+  });
+
+  it('NR-010 kebab form: .card-body inside Card/ is flagged; .cardbody is the canon', () => {
+    const kebab = {
+      path: 'packages/react/src/components/CardBody/CardBody.module.css',
+      content: '.card-body { padding: var(--ds-space-inset-md); }\n',
+    };
+    const vio = validateSources([kebab], ctx).violations.filter((v) => v.rule === 'NR-010');
+    expect(vio).toHaveLength(1);
+    const canon = {
+      path: 'packages/react/src/components/CardBody/CardBody.module.css',
+      content: '.cardbody { padding: var(--ds-space-inset-md); }\n',
+    };
+    expect(validateSources([canon], ctx).violations.filter((v) => v.rule === 'NR-010')).toHaveLength(0);
   });
 });

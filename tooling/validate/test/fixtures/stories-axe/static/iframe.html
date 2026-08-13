@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>stories-axe test fixture iframe</title>
+  </head>
+  <body>
+    <div id="storybook-root"></div>
+    <script>
+      // Minimal stand-in for Storybook's iframe.html: renders the story named
+      // by ?id=. "clean" is an accessible button; "nameless" seeds a
+      // button-name violation (critical) for the harness tests to catch.
+      var id = new URLSearchParams(location.search).get('id');
+      var root = document.getElementById('storybook-root');
+      if (id === 'fixture-button--clean') {
+        root.innerHTML = '<button type="button">Save changes</button>';
+      } else if (id === 'fixture-button--nameless') {
+        root.innerHTML = '<button type="button"></button>';
+      }
+      // Unknown ids leave the root empty -> the harness reports a render timeout.
+    </script>
+  </body>
+</html>

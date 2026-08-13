@@ -1,3 +1,4 @@
+import { extractJsxStyleObjects, scanJsxStyleValue } from './allowlist.ts';
 import type { NrId, RegistryContext, Violation } from '../types.ts';
 
 /**
@@ -142,6 +143,27 @@ export function checkCodeFile(
         line: lineAt(content, cm.index),
         message: `Tailwind/utility classes are not part of this system (NR-004): ${hits.join(' ')} — use a CSS Module class consuming --ds-* tokens.`,
       });
+    }
+  }
+
+  // G9 (B1): JSX inline-style literal discipline. String/number literals for
+  // COLOR and DIMENSION properties in style={{...}} objects are violations
+  // unless var(--ds-*), 0, a percentage, auto/none/currentColor, or a pure
+  // runtime expression. THE sanctioned pattern for runtime-computed geometry
+  // is template interpolation with no literal parts: `${percentage}%`.
+  for (const obj of extractJsxStyleObjects(content)) {
+    for (const entry of obj.entries) {
+      for (const lv of scanJsxStyleValue(entry.prop, entry.valueText)) {
+        violations.push({
+          rule: 'G9',
+          nr: lv.isColor ? 'NR-003' : null,
+          file,
+          line: lineAt(content, entry.index),
+          message: lv.isColor
+            ? `Inline-style literal ${JSON.stringify(lv.literal)} in "${entry.prop}" — every color is a var(--ds-color-*) token, in inline styles too (NR-003).`
+            : `Inline-style literal ${JSON.stringify(lv.literal)} in "${entry.prop}" — dimensions come from var(--ds-*) tokens; runtime-computed geometry interpolates with no literal parts (inlineSize: \`\${percentage}%\`).`,
+        });
+      }
     }
   }
 

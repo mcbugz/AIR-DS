@@ -20,6 +20,7 @@ interface ShaGroup {
   gauntlet?: MetricsLine['gauntlet'];
   evals?: MetricsLine['evals'];
   benchmark?: MetricsLine['benchmark'];
+  storiesAxe?: MetricsLine['storiesAxe'];
   fabrications: number;
   counts: MetricsLine['registry_counts'];
 }
@@ -40,6 +41,7 @@ export function groupBySha(lines: MetricsLine[]): ShaGroup[] {
     if (line.gauntlet) g.gauntlet = line.gauntlet;
     if (line.evals) g.evals = line.evals;
     if (line.benchmark) g.benchmark = line.benchmark;
+    if (line.storiesAxe) g.storiesAxe = line.storiesAxe;
     g.fabrications = Math.max(g.fabrications, line.fabrications);
   }
   return order.map((sha) => groups.get(sha) as ShaGroup);
@@ -86,6 +88,12 @@ export function renderReport(lines: MetricsLine[]): string {
   if (latest.evals) {
     out.push(
       `- **Evals:** overall ${pct(latest.evals.overall)} (${latest.evals.passed}/${latest.evals.total}), critical ${pct(latest.evals.critical)} — gates: critical 1.0, overall ≥ 0.95`,
+    );
+  }
+  if (latest.storiesAxe) {
+    const sa = latest.storiesAxe;
+    out.push(
+      `- **Stories axe (G6):** ${sa.gatePassed ? 'GATE PASSED' : 'GATE FAILED'} — ${sa.stories} stories, ${sa.violations} violation(s) (${sa.serious} serious, ${sa.critical} critical), ${sa.storiesWithViolations} story(ies) affected`,
     );
   }
   out.push(`- **Fabrications (G1/G5):** ${latest.fabrications} — target 0`);

@@ -9,11 +9,24 @@
  *   G4  dead-hook                 every registered --ds-<component>-* hook is consumed by that component's CSS
  *   G5  component-closed-world    imports from '@ds/react' must exist in registries/components-index.json
  *   G6  cross-hook-borrowing      component CSS may not consume another component's --ds-<component>-* hooks
- *   G7  generator-drift           `pnpm --filter @ds/react generate` must be a no-op against the working tree
+ *   G7  generator-drift           generated files committed at HEAD must match generator output
+ *                                 (before-hashes from `git show HEAD:<path>`, compared against the
+ *                                 post-generate disk state; warn-skip outside git / for untracked files)
  *   G8  state-selector            no :hover/:active/:focus/:focus-visible/:focus-within/:disabled in module.css
+ *   G9  inline-style-literals     JSX style={{...}} color/dimension values must be var(--ds-*), 0,
+ *                                 percentages, auto/none/currentColor, or pure runtime expressions;
+ *                                 sanctioned runtime-geometry pattern: inlineSize: `${percentage}%`
+ *   G10 dead-module-class         every static styles.<x> reference in a .tsx must exist as a class
+ *                                 in the imported .module.css (NR-011)
+ *   G11 reduced-motion            @keyframes or transform/translate/rotate/scale transitions require
+ *                                 a prefers-reduced-motion: reduce block (NR-013)
  *   NR-004 tailwind-classnames    utility-class strings in className are not part of this system
  *   NR-005 deep-import            only '@ds/react' root entry point is public
  *   NR-010 base-class-canon       no .root/.wrapper/.container base classes in component CSS
+ *
+ * The literal allowlist shared with @ds/mcp's validate_usage lives in
+ * rules/allowlist.ts (single source of truth; @ds/mcp consumes a generated
+ * verbatim copy guarded by a parity test).
  *
  * Violations additionally carry an `nr` mapping to the negative-rule catalog
  * (docs/specs/negative-rules.md) when a G-rule detection matches a documented
@@ -29,6 +42,9 @@ export type RuleId =
   | 'G6'
   | 'G7'
   | 'G8'
+  | 'G9'
+  | 'G10'
+  | 'G11'
   | 'NR-004'
   | 'NR-005'
   | 'NR-010';
@@ -43,7 +59,10 @@ export type NrId =
   | 'NR-007'
   | 'NR-008'
   | 'NR-009'
-  | 'NR-010';
+  | 'NR-010'
+  | 'NR-011'
+  | 'NR-012'
+  | 'NR-013';
 
 export interface Violation {
   rule: RuleId;
@@ -125,4 +144,11 @@ export interface GauntletOptions {
   only?: string[];
   /** Stream child-process output to the console. */
   verbose?: boolean;
+  /**
+   * Opt-in browser step (--browser): run stories-axe (browser-run axe over
+   * every Storybook story) after registry-check. Default off — the core
+   * gauntlet stays browser-free (credential-free rule); the step warn-skips
+   * when no local chromium is installed.
+   */
+  browser?: boolean;
 }

@@ -390,6 +390,102 @@
           }
         ]
       }
+    },
+    {
+      "id": "EV-G9-inline-style",
+      "rule": "G9",
+      "critical": true,
+      "prompt": "Agent was asked to build a promo tile with a progress meter: 'Solid accent background, comfortable padding, and a bar whose width tracks the completion percentage.' Inline-style literals for color/dimension props are B1 violations; the sanctioned runtime-geometry pattern is template interpolation with no literal parts.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/promo/PromoTile.tsx",
+            "content": "export function PromoTile({ percentage }: { percentage: number }) {\n  return (\n    <div style={{ backgroundColor: '#ff0000', padding: '13px' }}>\n      <div style={{ inlineSize: '250px', height: '8px' }} />\n    </div>\n  );\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/promo/PromoTile.tsx",
+            "content": "export function PromoTile({ percentage }: { percentage: number }) {\n  return (\n    <div style={{ backgroundColor: 'var(--ds-color-accent-default)', padding: 'var(--ds-space-inset-md)' }}>\n      <div style={{ inlineSize: `${percentage}%`, blockSize: 'var(--ds-space-2)' }} />\n    </div>\n  );\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-B2-named-color",
+      "rule": "NR-003",
+      "critical": true,
+      "prompt": "Agent was asked to style an error banner: 'Red text on a soft red background.' CSS named colors are not tokens (B2): they violate the closed world exactly like hex literals.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/errors/ErrorBanner.module.css",
+            "content": ".banner {\n  color: red;\n  background-color: mistyrose;\n  border: var(--ds-border-width-1) solid crimson;\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/errors/ErrorBanner.module.css",
+            "content": ".banner {\n  color: var(--ds-color-status-danger-text);\n  background-color: var(--ds-color-status-danger-surface);\n  border: var(--ds-border-width-1) solid var(--ds-color-status-danger-border);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-011",
+      "rule": "G10",
+      "critical": true,
+      "prompt": "Agent was asked to add a helper line to a chip component and references a CSS-module class that was never defined — the className silently vanishes at runtime (NR-011: CSS-module classes are a closed world too).",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/chip/Chip.tsx",
+            "content": "import styles from './Chip.module.css';\n\nexport function Chip({ label, helper }: { label: string; helper: string }) {\n  return (\n    <span className={styles.chip}>\n      {label}\n      <span className={styles.message}>{helper}</span>\n    </span>\n  );\n}\n"
+          },
+          {
+            "path": "src/chip/Chip.module.css",
+            "content": ".chip {\n  color: var(--ds-color-text-primary);\n  background-color: var(--ds-color-surface-raised);\n  border-radius: var(--ds-radius-full);\n  padding: var(--ds-space-inset-sm);\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/chip/Chip.tsx",
+            "content": "import styles from './Chip.module.css';\n\nexport function Chip({ label, helper }: { label: string; helper: string }) {\n  return (\n    <span className={styles.chip}>\n      {label}\n      <span className={styles.message}>{helper}</span>\n    </span>\n  );\n}\n"
+          },
+          {
+            "path": "src/chip/Chip.module.css",
+            "content": ".chip {\n  color: var(--ds-color-text-primary);\n  background-color: var(--ds-color-surface-raised);\n  border-radius: var(--ds-radius-full);\n  padding: var(--ds-space-inset-sm);\n}\n\n.message {\n  color: var(--ds-color-text-secondary);\n  font-size: var(--ds-text-size-sm);\n}\n"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EV-NR-013",
+      "rule": "G11",
+      "critical": true,
+      "prompt": "Agent was asked to add an entry animation to a toast: 'Slide it in from the bottom.' Movement must be gated behind prefers-reduced-motion (NR-013); color-only transitions are exempt.",
+      "wrong_output": {
+        "files": [
+          {
+            "path": "src/toast/Toast.module.css",
+            "content": ".toast {\n  animation: toast-enter var(--ds-motion-duration-normal) var(--ds-motion-easing-enter);\n}\n\n@keyframes toast-enter {\n  from {\n    translate: 0 100%;\n    opacity: 0;\n  }\n}\n"
+          }
+        ]
+      },
+      "right_output": {
+        "files": [
+          {
+            "path": "src/toast/Toast.module.css",
+            "content": ".toast {\n  animation: toast-enter var(--ds-motion-duration-normal) var(--ds-motion-easing-enter);\n}\n\n@keyframes toast-enter {\n  from {\n    translate: 0 100%;\n    opacity: 0;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .toast {\n    animation: none;\n  }\n}\n"
+          }
+        ]
+      }
     }
   ]
 }

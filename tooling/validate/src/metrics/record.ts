@@ -45,6 +45,18 @@ export interface BenchmarkMetrics {
   axe: 'ran' | 'skipped';
 }
 
+export interface StoriesAxeMetrics {
+  /** Stories scanned (every entry in storybook-static/index.json). */
+  stories: number;
+  storiesWithViolations: number;
+  /** Total axe violations across all stories (all impacts). */
+  violations: number;
+  serious: number;
+  critical: number;
+  /** Serious/critical gate (after allowlist) passed. */
+  gatePassed: boolean;
+}
+
 export interface RegistryCounts {
   tokens: number;
   components: number;
@@ -53,10 +65,11 @@ export interface RegistryCounts {
 export interface MetricsLine {
   ts: string;
   git_sha: string;
-  source: 'gauntlet' | 'evals' | 'benchmark';
+  source: 'gauntlet' | 'evals' | 'benchmark' | 'stories-axe';
   gauntlet?: GauntletMetrics;
   evals?: EvalMetrics;
   benchmark?: BenchmarkMetrics;
+  storiesAxe?: StoriesAxeMetrics;
   /** Fabricated tokens/components detected in this run (G1 + G5). Target: 0. */
   fabrications: number;
   registry_counts: RegistryCounts;
@@ -121,6 +134,7 @@ export interface BuildMetricsLineOptions {
   gauntlet?: GauntletMetrics;
   evals?: EvalMetrics;
   benchmark?: BenchmarkMetrics;
+  storiesAxe?: StoriesAxeMetrics;
   fabrications?: number;
   /** Pin the timestamp (--now flag); defaults to the HEAD commit time. */
   now?: string;
@@ -141,6 +155,7 @@ export function buildMetricsLine(opts: BuildMetricsLineOptions): MetricsLine {
   if (opts.gauntlet) line.gauntlet = opts.gauntlet;
   if (opts.evals) line.evals = opts.evals;
   if (opts.benchmark) line.benchmark = opts.benchmark;
+  if (opts.storiesAxe) line.storiesAxe = opts.storiesAxe;
   return line;
 }
 

@@ -3,8 +3,11 @@
  * ds-validate — the AIR-DS validation gauntlet CLI.
  *
  * Usage:
- *   ds-validate [--json] [--root <dir>] [--skip step,step] [--only step,step] [--verbose]
+ *   ds-validate [--json] [--root <dir>] [--skip step,step] [--only step,step] [--verbose] [--browser]
  *   ds-validate files <path...> [--json] [--root <dir>]
+ *
+ * --browser appends the opt-in stories-axe step (browser-run axe over every
+ * Storybook story, G6); default off so the core gauntlet stays browser-free.
  *
  * Exit code is non-zero on any failure (merge-blocking, ADR-005).
  */
@@ -28,6 +31,8 @@ interface Args {
   only: string[];
   files: string[];
   mode: 'gauntlet' | 'files';
+  /** Opt-in stories-axe browser step (G6) — default off, core gauntlet stays browser-free. */
+  browser: boolean;
   /** Skip the metrics/history.jsonl append for this run. */
   noMetrics: boolean;
   /** Pin the metrics timestamp (default: HEAD commit time). */
@@ -45,6 +50,7 @@ function parseArgs(argv: string[]): Args {
     only: [],
     files: [],
     mode: 'gauntlet',
+    browser: false,
     noMetrics: false,
     now: null,
   };
@@ -60,14 +66,16 @@ function parseArgs(argv: string[]): Args {
     else if (a === '--root') args.root = resolve(argv[++i] ?? '.');
     else if (a === '--skip') args.skip = (argv[++i] ?? '').split(',').filter(Boolean);
     else if (a === '--only') args.only = (argv[++i] ?? '').split(',').filter(Boolean);
+    else if (a === '--browser') args.browser = true;
     else if (a === '--no-metrics') args.noMetrics = true;
     else if (a === '--now') args.now = argv[++i] ?? null;
     else if (a === '--help' || a === '-h') {
       console.log(
         `ds-validate — AIR-DS validation gauntlet\n\n` +
-          `  ds-validate [--json] [--root <dir>] [--skip s1,s2] [--only s1,s2] [--verbose] [--no-metrics] [--now <iso>]\n` +
+          `  ds-validate [--json] [--root <dir>] [--skip s1,s2] [--only s1,s2] [--verbose] [--no-metrics] [--now <iso>] [--browser]\n` +
           `  ds-validate files <path...> [--json] [--root <dir>]\n\n` +
-          `Steps (fixed order, fail-fast): ${STEP_ORDER.join(' -> ')}`,
+          `Steps (fixed order, fail-fast): ${STEP_ORDER.join(' -> ')}\n` +
+          `--browser adds the opt-in stories-axe step (browser-run axe over every Storybook story; needs a local chromium, warn-skips without one)`,
       );
       process.exit(0);
     } else if (!a.startsWith('--')) args.files.push(a);
@@ -126,6 +134,7 @@ if (args.mode === 'files') {
     skip: args.skip,
     only: args.only,
     verbose: args.verbose && !args.json,
+    browser: args.browser,
   });
   if (args.json) console.log(JSON.stringify(report, null, 2));
   else printReport(report);

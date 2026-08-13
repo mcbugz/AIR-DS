@@ -151,24 +151,40 @@ describe('native brand inputs (--registries-dir / --brand-path)', () => {
     expect(readOut(bundle.outDir, 'docs/Alert.md')).not.toContain('Theming hooks:');
   });
 
-  it('a byte-identical external registry set reproduces the default sourceHash (swap/restore parity)', () => {
-    const plainDir = mkdtempSync(join(tmpdir(), 'ds-context-fixture-plain-'));
+  it('a byte-identical external registry set reproduces the same sourceHash regardless of path (swap/restore parity)', () => {
+    // Hermetic (FB-10): the old version compared a fixture copy against a
+    // second compile reading the LIVE registries/ dir, which flakes whenever
+    // anything touches the live dir between the two reads (observed twice in
+    // gauntlet runs). The feature's contract is that registry files keep
+    // their LOGICAL names for source hashing, so byte-identical sets yield
+    // identical hashes from ANY directory — provable with two independent
+    // snapshot copies, no live read in the comparison.
+    const snapshot = new Map<string, Buffer>();
     for (const f of ['tokens-index.json', 'components-index.json', 'contrast-report.json']) {
-      copyFileSync(join(REPO_ROOT, 'registries', f), join(plainDir, f));
+      snapshot.set(f, readFileSync(join(REPO_ROOT, 'registries', f)));
     }
     for (const f of ['icons-metadata.json', 'patterns-index.json']) {
       if (existsSync(join(REPO_ROOT, 'registries', f))) {
-        copyFileSync(join(REPO_ROOT, 'registries', f), join(plainDir, f));
+        snapshot.set(f, readFileSync(join(REPO_ROOT, 'registries', f)));
       }
     }
-    const native = buildBundle('default', { registriesDir: plainDir });
-    const defaults = buildBundle('default');
+    const dirA = mkdtempSync(join(tmpdir(), 'ds-context-fixture-a-'));
+    const dirB = mkdtempSync(join(tmpdir(), 'ds-context-fixture-b-'));
+    for (const [f, bytes] of snapshot) {
+      writeFileSync(join(dirA, f), bytes);
+      writeFileSync(join(dirB, f), bytes);
+    }
+    const a = buildBundle('default', { registriesDir: dirA });
+    const b = buildBundle('default', { registriesDir: dirB });
     try {
-      expect(native.report.sourceHash).toBe(defaults.report.sourceHash);
+      // The hash equality across two different directories IS the
+      // logical-name contract: paths don't feed the hash, bytes do.
+      expect(a.report.sourceHash).toBe(b.report.sourceHash);
     } finally {
-      native.cleanup();
-      defaults.cleanup();
-      rmSync(plainDir, { recursive: true, force: true });
+      a.cleanup();
+      b.cleanup();
+      rmSync(dirA, { recursive: true, force: true });
+      rmSync(dirB, { recursive: true, force: true });
     }
   });
 });

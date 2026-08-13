@@ -101,16 +101,69 @@ const builders: Record<string, PairBuilder> = {
         .map((s) => css(`${s} { color: var(--ds-color-text-primary); }`)),
   },
   'NR-010': {
+    // The kebab detection is registry-driven (kebab of a REGISTERED
+    // CamelCase component). The catalog's example ProgressBar is not in this
+    // registry build, so kebab wrong-snippets are exercised through a
+    // registered multi-hump component's kebab form instead.
     wrong: (r) =>
       r.wrongSnippets
         .filter((s) => s.startsWith('.'))
+        .map((s) => (s.includes('-') ? kebabOfRegisteredComponent() : s))
         .map((s) => css(`${s} { gap: var(--ds-space-gap-sm); }`)),
     right: (r) =>
       r.rightSnippets
         .filter((s) => s.startsWith('.'))
         .map((s) => css(`${s} { gap: var(--ds-space-gap-sm); }`)),
   },
+  'NR-011': {
+    // Right bullet carries no code spans — inputs are built structurally:
+    // a styles.<x> reference against a stylesheet that does/does not define x.
+    wrong: () => [
+      {
+        code: '<span className={styles.message}>Saved</span>',
+        css: '.chip { color: var(--ds-color-text-primary); }',
+      },
+    ],
+    right: () => [
+      {
+        code: '<span className={styles.message}>Saved</span>',
+        css: '.chip { color: var(--ds-color-text-primary); }\n.message { color: var(--ds-color-text-secondary); }',
+      },
+    ],
+  },
+  'NR-012': {
+    wrong: (r) =>
+      r.wrongSnippets.filter((s) => s.includes('z-index')).map((s) => css(s)),
+    right: (r) =>
+      r.rightSnippets.filter((s) => s.startsWith('style=')).map((s) => code(`<div ${s} />`)),
+  },
+  'NR-013': {
+    // Catalog spans are prose fragments; inputs are built structurally.
+    wrong: () => [
+      css(
+        '.spinner { animation: spin var(--ds-motion-duration-slow) linear infinite; }\n@keyframes spin { to { rotate: 360deg; } }',
+      ),
+      css(
+        '.drawer { transition: transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard); }',
+      ),
+    ],
+    right: () => [
+      css(
+        '.spinner { animation: spin var(--ds-motion-duration-slow) linear infinite; }\n@keyframes spin { to { rotate: 360deg; } }\n@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }',
+      ),
+      css('.chip { transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard); }'),
+    ],
+  },
 };
+
+/** Kebab form of a registered multi-hump component (e.g. IconButton -> .icon-button). */
+function kebabOfRegisteredComponent(): string {
+  const comp = registry.components.components.find((c) =>
+    /[a-z0-9][A-Z]/.test(c.name),
+  );
+  if (!comp) throw new Error('no multi-hump component registered');
+  return `.${comp.name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`;
+}
 
 describe('negative-rule catalog sync', () => {
   it('parses the catalog with wrong→right pairs for every rule', () => {

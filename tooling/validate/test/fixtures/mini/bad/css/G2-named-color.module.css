@@ -1,0 +1,6 @@
+/* B2: named CSS colors are not tokens (NR-003). */
+.banner {
+  color: red;
+  background-color: tomato;
+  border: var(--ds-border-width-1) solid rebeccapurple;
+}
