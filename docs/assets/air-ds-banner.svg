@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="188" role="img" aria-label="AIR-DS — the AI-ready, white-label design system">
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="196" role="img" aria-label="AIR-DS — the AI-ready, white-label design system">
 <rect width="100%" height="100%" rx="10" fill="#0F172A"/>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" xml:space="preserve">
-<text x="28" y="34" xml:space="preserve"><tspan fill="#3B82F6"> █████╗ ██╗██████╗ </tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██████╗ ███████╗</tspan></text>
-<text x="28" y="53" xml:space="preserve"><tspan fill="#3B82F6">██╔══██╗██║██╔══██╗</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██╔══██╗██╔════╝</tspan></text>
-<text x="28" y="72" xml:space="preserve"><tspan fill="#3B82F6">███████║██║██████╔╝</tspan><tspan fill="#93C5FD">███╗</tspan><tspan fill="#34A870">██║  ██║███████╗</tspan></text>
-<text x="28" y="91" xml:space="preserve"><tspan fill="#3B82F6">██╔══██║██║██╔══██╗</tspan><tspan fill="#93C5FD">╚══╝</tspan><tspan fill="#34A870">██║  ██║╚════██║</tspan></text>
-<text x="28" y="110" xml:space="preserve"><tspan fill="#3B82F6">██║  ██║██║██║  ██║</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██████╔╝███████║</tspan></text>
-<text x="28" y="129" xml:space="preserve"><tspan fill="#3B82F6">╚═╝  ╚═╝╚═╝╚═╝  ╚═╝</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">╚═════╝ ╚══════╝</tspan></text>
-<text x="28" y="162" fill="#8CA3C0" font-size="13" xml:space="preserve">the AI-ready · white-label design system  —  “instruction hopes, structure checks”</text>
+<text x="30" y="40" xml:space="preserve"><tspan fill="#3B82F6"> █████╗ ██╗██████╗ </tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██████╗ ███████╗</tspan></text>
+<text x="30" y="59" xml:space="preserve"><tspan fill="#3B82F6">██╔══██╗██║██╔══██╗</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██╔══██╗██╔════╝</tspan></text>
+<text x="30" y="78" xml:space="preserve"><tspan fill="#3B82F6">███████║██║██████╔╝</tspan><tspan fill="#93C5FD">███╗</tspan><tspan fill="#34A870">██║  ██║███████╗</tspan></text>
+<text x="30" y="97" xml:space="preserve"><tspan fill="#3B82F6">██╔══██║██║██╔══██╗</tspan><tspan fill="#93C5FD">╚══╝</tspan><tspan fill="#34A870">██║  ██║╚════██║</tspan></text>
+<text x="30" y="116" xml:space="preserve"><tspan fill="#3B82F6">██║  ██║██║██║  ██║</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">██████╔╝███████║</tspan></text>
+<text x="30" y="135" xml:space="preserve"><tspan fill="#3B82F6">╚═╝  ╚═╝╚═╝╚═╝  ╚═╝</tspan><tspan fill="#93C5FD">    </tspan><tspan fill="#34A870">╚═════╝ ╚══════╝</tspan></text>
+<text x="30" y="172" fill="#8CA3C0" font-size="12.5" xml:space="preserve">the AI-ready · white-label design system</text>
 </g>
 </svg>
