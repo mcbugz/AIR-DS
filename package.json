@@ -7,7 +7,7 @@
     "node": ">=24 || >=25"
   },
   "scripts": {
-    "build": "pnpm --filter @ds/tokens build && pnpm --filter @ds/react build && pnpm generate && pnpm --filter @ds/genui build && pnpm --filter @ds/context build && pnpm --filter @ds/mcp build && pnpm --filter @ds/fleet build",
+    "build": "pnpm --filter @ds/tokens build && pnpm --filter @ds/react build && pnpm generate && pnpm --filter @ds/genui build && pnpm --filter @ds/context build && pnpm --filter @ds/mcp build && pnpm --filter @ds/fleet build && pnpm --filter @ds/validate build && pnpm --filter @ds/assess build && pnpm --filter @ds/retrofit build && pnpm --filter @ds/ingest build && pnpm --filter @ds/wc build",
     "generate": "pnpm --filter @ds/react generate",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
