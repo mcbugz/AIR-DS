@@ -1,3 +1,4 @@
+import { SiteHeader } from './sections/SiteHeader';
 import { Hero } from './sections/Hero';
 import { Stats } from './sections/Stats';
 import { Gallery } from './sections/Gallery';
@@ -15,7 +16,8 @@ import { Footer } from './sections/Footer';
  */
 export function App() {
   return (
-    <div className="site">
+    <div className="site" id="top">
+      <SiteHeader />
       <Hero />
       <main>
         <Stats />

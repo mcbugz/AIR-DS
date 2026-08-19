@@ -89,7 +89,7 @@ export function Gallery() {
   const [plan, setPlan] = useState('team');
 
   return (
-    <section className="section" aria-labelledby="gallery-title">
+    <section id="components" className="section" aria-labelledby="gallery-title">
       <div className="section-inner">
         <p className="eyebrow">Live gallery</p>
         <h2 id="gallery-title" className="section-title">

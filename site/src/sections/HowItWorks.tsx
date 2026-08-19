@@ -30,7 +30,7 @@ const LAYERS: Array<{ n: string; title: string; body: string }> = [
 /** The four layers, one source of truth (docs/architecture.md, condensed). */
 export function HowItWorks() {
   return (
-    <section className="section" aria-labelledby="how-title">
+    <section id="architecture" className="section" aria-labelledby="how-title">
       <div className="section-inner">
         <p className="eyebrow">Architecture</p>
         <h2 id="how-title" className="section-title">

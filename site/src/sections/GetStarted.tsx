@@ -19,7 +19,7 @@ packages/context/dist/default/llms.txt
 /** Getting started — everything below runs offline, zero credentials. */
 export function GetStarted() {
   return (
-    <section className="section section-alt" aria-labelledby="start-title">
+    <section id="get-started" className="section section-alt" aria-labelledby="start-title">
       <div className="section-inner">
         <p className="eyebrow">Get started</p>
         <h2 id="start-title" className="section-title">

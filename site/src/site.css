@@ -428,3 +428,59 @@
   line-height: var(--ds-text-leading-normal);
   font-style: italic;
 }
+
+/* --- Sticky header: anchor nav + GitHub badge --- */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ds-z-sticky);
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-5);
+  padding: var(--ds-space-3) var(--ds-space-5);
+  background-color: var(--ds-color-surface-inverse);
+  color: var(--ds-color-text-inverse);
+  border-block-end: var(--ds-border-width-1) solid var(--ds-color-border-strong);
+}
+.site-header-brand {
+  font-family: var(--ds-font-family-mono);
+  font-weight: var(--ds-text-weight-bold);
+  font-size: var(--ds-text-size-md);
+  color: var(--ds-color-text-inverse);
+  text-decoration: none;
+}
+.site-header-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-4);
+  margin-inline: auto;
+}
+.site-header-links a {
+  color: var(--ds-color-text-inverse);
+  opacity: 0.85;
+  text-decoration: none;
+  font-size: var(--ds-text-size-sm);
+  font-weight: var(--ds-text-weight-medium);
+}
+.gh-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-gap-sm);
+  padding: var(--ds-space-1) var(--ds-space-3);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-strong);
+  border-radius: var(--ds-radius-full);
+  color: var(--ds-color-text-inverse);
+  text-decoration: none;
+  font-size: var(--ds-text-size-sm);
+  font-weight: var(--ds-text-weight-medium);
+}
+/* Anchor targets land below the sticky bar */
+section[id],
+#top {
+  scroll-margin-block-start: calc(var(--ds-size-control-md) + var(--ds-space-4));
+}
+@media (max-width: 760px) {
+  .site-header-links {
+    display: none;
+  }
+}

@@ -48,7 +48,7 @@ const MOVES: Array<{ tag: string; title: string; body: string; proof: string }> 
 /** Mandate v2: the control plane for AI-generated UI (docs/strategy/mandate-v2.md). */
 export function ControlPlane() {
   return (
-    <section className="section" aria-labelledby="cto-title">
+    <section id="leaders" className="section" aria-labelledby="cto-title">
       <div className="section-inner">
         <p className="eyebrow">For engineering leaders</p>
         <h2 id="cto-title" className="section-title">

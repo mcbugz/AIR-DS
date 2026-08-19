@@ -6,7 +6,7 @@ import { SettingsScreen } from '../../../examples/reference-screen/SettingsScree
  */
 export function ReferencePanel() {
   return (
-    <section className="section section-alt" aria-labelledby="reference-title">
+    <section id="reference" className="section section-alt" aria-labelledby="reference-title">
       <div className="section-inner">
         <p className="eyebrow">Proof of consumption</p>
         <h2 id="reference-title" className="section-title">

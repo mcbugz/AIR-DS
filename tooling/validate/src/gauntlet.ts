@@ -107,6 +107,9 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
       // Pinned --now (HEAD commit time, the metrics/record.ts pattern): a
       // gauntlet rebuild of the SAME tree emits a byte-identical context
       // bundle, so evidence-pack artifact hashes are reproducible (M6).
+      // genui before mcp: the MCP server imports @ds/genui/validate, so a
+      // clean checkout must build genui first (CI failure 2026-08-19).
+      { label: '@ds/genui build', dir: 'packages/genui', args: ['--filter', '@ds/genui', 'build'] },
       {
         label: '@ds/context build',
         dir: 'packages/context',
