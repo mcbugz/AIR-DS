@@ -9,7 +9,9 @@ export function Footer() {
         </blockquote>
         <nav className="footer-links" aria-label="Project links">
           <a href={REPO}>GitHub</a>
-          <a href={`${REPO}/blob/main/docs/AIR-DS-overview.pptx`}>Overview deck</a>
+          <a href="./AIR-DS-overview.pptx" download>
+            Overview deck (.pptx)
+          </a>
           <a href={`${REPO}/blob/main/docs/architecture.md`}>Architecture</a>
           <a href={`${REPO}/blob/main/docs/brief.md`}>Original brief</a>
         </nav>
