@@ -1,0 +1,40 @@
+{
+  "$description": "GENERATED platform-emission manifest. Every render target the resolved token graph is compiled to, from the same DTCG source and the same deterministic resolver. Paths are relative to the build's dist directory (packages/tokens/dist for the workspace build). tokens-index.json remains the single closed-world token contract; this file only enumerates emission targets. An emitted platform not listed here does not exist.",
+  "brand": "brands/default.json",
+  "tokenCount": 232,
+  "platforms": [
+    {
+      "platform": "web",
+      "output": "css/tokens.css",
+      "format": "css-custom-properties",
+      "scope": ":root",
+      "lossless": true,
+      "notes": "Canonical web build; also mirrored to dist/index.js + index.d.ts (typed closed-world map)."
+    },
+    {
+      "platform": "web-components",
+      "output": "wc/tokens.css",
+      "format": "css-custom-properties",
+      "scope": ":host, :root",
+      "lossless": true,
+      "notes": "Identical custom-property vocabulary, scoped for Shadow-DOM adoption (adoptedStyleSheets / constructable stylesheet; :root fallback for document-level linking)."
+    },
+    {
+      "platform": "react-native",
+      "output": "react-native/tokens.ts",
+      "format": "typescript-object",
+      "scope": null,
+      "lossless": false,
+      "lossiness": [
+        "rem dimensions convert to dp at the CSS default 16px root (1rem = 16dp); RN has no rem unit.",
+        "CSS font stacks collapse to a single family name: the first concrete family in the stack, or `undefined` (= platform system font) when the stack leads with a generic/system keyword (system-ui, ui-monospace, ...). Fallback chains do not exist in RN.",
+        "box-shadow maps to RN iOS shadow* props from the FIRST layer only (multi-layer shadows collapse); spread has no RN equivalent and is dropped; shadowRadius approximates CSS blur / 2; Android `elevation` is the heuristic round(offset-y). A spread-only halo (focus ring) maps to elevation 0 — render it as a border in RN.",
+        "cubic-bezier easings emit as readonly [x1, y1, x2, y2] tuples for Easing.bezier(...); CSS timing-function strings do not exist in RN.",
+        "text.leading.* stay unitless multipliers; RN lineHeight is absolute dp — multiply by the fontSize you pair it with.",
+        "percentage values do not exist as such in RN: number-typed tokens scale to the 0-1 unit range (50% -> 0.5, matching RN opacity); dimension-typed percentages pass through as strings (RN accepts '50%' only in layout props).",
+        "z.* emit as plain numbers for zIndex; RN stacking contexts differ from the web — relative order is preserved, absolute values are advisory."
+      ],
+      "notes": "Numeric dp values, color strings, RN shadow/elevation conventions; see lossiness."
+    }
+  ]
+}

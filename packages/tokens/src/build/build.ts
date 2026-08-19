@@ -21,6 +21,8 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { buildPlatformsManifest, emitReactNativeTs, emitWcCss } from "./platforms.ts";
+
 export const PKG_ROOT: string = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const REPO_ROOT: string = resolve(PKG_ROOT, "..", "..");
 
@@ -122,6 +124,10 @@ export interface BuildResult {
     indexDts: string;
     tokensIndex: string;
     contrastReport: string;
+    /** M5 platform emitters — same resolved graph, additional render targets. */
+    wcCss: string;
+    reactNativeTs: string;
+    platformsManifest: string;
   };
 }
 
@@ -623,10 +629,19 @@ export function buildTokens(options: BuildOptions = {}): BuildResult {
     indexDts: join(distDir, "index.d.ts"),
     tokensIndex: join(registriesDir, "tokens-index.json"),
     contrastReport: join(registriesDir, "contrast-report.json"),
+    wcCss: join(distDir, "wc", "tokens.css"),
+    reactNativeTs: join(distDir, "react-native", "tokens.ts"),
+    platformsManifest: join(registriesDir, "platforms-manifest.json"),
   };
   writeOut(files.css, css);
   writeOut(files.indexJs, emitIndexJs(all));
   writeOut(files.indexDts, emitIndexDts(all));
+  // M5 platform emitters: same resolved graph, additional render targets.
+  // ADDITIVE by contract — the legacy artifacts above stay byte-identical
+  // (proven by the byte-identity test in test/platforms.test.ts).
+  writeOut(files.wcCss, emitWcCss(all, brandLabel));
+  writeOut(files.reactNativeTs, emitReactNativeTs(all, brandLabel));
+  writeOut(files.platformsManifest, buildPlatformsManifest(brandLabel, all.length));
   writeOut(
     files.tokensIndex,
     `${JSON.stringify(

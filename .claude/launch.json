@@ -12,6 +12,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "http-server", "examples/brand-demo/dist", "-p", "8321", "-c-1"],
       "port": 8321
+    },
+    {
+      "name": "wc-demo",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "http-server", "examples/wc-demo/dist", "-p", "8322", "-c-1"],
+      "port": 8322
     }
   ]
 }

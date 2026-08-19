@@ -38,6 +38,9 @@ try {
       `  ts entry:         ${result.files.indexJs} (+ index.d.ts)`,
       `  registry:         ${result.files.tokensIndex}`,
       `  contrast:         ${result.files.contrastReport} (${result.contrast.pairs.length} pairs, 0 failures)`,
+      `  wc css:           ${result.files.wcCss} (:host-scoped, Shadow-DOM ready)`,
+      `  react-native:     ${result.files.reactNativeTs} (typed dp/color/shadow object)`,
+      `  platforms:        ${result.files.platformsManifest}`,
     ].join("\n"),
   );
 } catch (error) {

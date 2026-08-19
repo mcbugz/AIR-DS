@@ -1,0 +1,32 @@
+{
+  "name": "@ds/wc",
+  "version": "0.1.0",
+  "description": "AIR-DS web components: framework-free custom elements consuming the same compiled --ds-* token graph (dist/wc/tokens.css) inside Shadow DOM, with a generated closed-world registry (registries/wc-index.json).",
+  "type": "module",
+  "sideEffects": [
+    "./src/index.ts",
+    "./dist/index.js"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/generate-registry.ts",
+    "generate": "node scripts/generate-registry.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/wc lint: no-op placeholder (token-value audit lives in test/token-audit.test.ts)'"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "happy-dom": "^20.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
