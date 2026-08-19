@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://air-ds.invalid/schemas/genui-1.0.json",
+  "title": "AIR-DS generative-UI document",
+  "description": "Wire format version 1.0. A JSON document an agent emits at runtime to describe a screen composed ONLY of registry components, closed-vocabulary layout primitives, and role-mapped text. This schema pins the SHAPE of the format; the closed-world semantics (component names, prop surfaces, literal-union values, token vocabularies) are enforced by the deterministic validator in @ds/genui, driven at runtime by registries/components-index.json and registries/tokens-index.json. Documents carry no code: event props are forbidden and interactivity is declared as intent NAMES the host binds to functions.",
+  "type": "object",
+  "required": ["version", "screen"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "1.0",
+      "description": "Wire-format version. This document format is versioned independently of the design system."
+    },
+    "screen": {
+      "type": "object",
+      "required": ["nodes"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 5000,
+          "description": "Optional screen title, rendered as the page-level heading (h1) with --ds-text-* tokens."
+        },
+        "nodes": {
+          "type": "array",
+          "maxItems": 500,
+          "items": { "$ref": "#/$defs/node" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "oneOf": [
+        { "$ref": "#/$defs/componentNode" },
+        { "$ref": "#/$defs/layoutNode" },
+        { "$ref": "#/$defs/textNode" }
+      ]
+    },
+    "child": {
+      "oneOf": [
+        { "$ref": "#/$defs/node" },
+        {
+          "type": "string",
+          "maxLength": 5000,
+          "description": "Plain text child; rendered as escaped text (inert by construction)."
+        }
+      ]
+    },
+    "componentNode": {
+      "type": "object",
+      "required": ["component"],
+      "additionalProperties": false,
+      "properties": {
+        "component": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "A registry component name from components-index.json. Closed world: a name not in the registry does not exist and fails validation with a nearest-name suggestion."
+        },
+        "props": {
+          "type": "object",
+          "description": "Props from the component's registry surface (own props + enumerated racProps), plus the global structural props (id, aria-label, aria-labelledby, aria-describedby) and 'intent'. Event props (on*), className, style, and element-typed props are forbidden — element props are filled via child slots; behavior is declared as an intent name the host binds.",
+          "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9-]*$" }
+        },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/child" }
+        },
+        "slot": { "$ref": "#/$defs/slot" }
+      }
+    },
+    "layoutNode": {
+      "type": "object",
+      "required": ["layout", "children"],
+      "additionalProperties": false,
+      "description": "Layout lives in the CONTRACT, not as fake components (the safe answer to NR-001: <Box>/<Stack>/<Flex> do not exist). The vocabulary is closed and token-named — never free CSS.",
+      "properties": {
+        "layout": { "enum": ["stack", "row", "grid"] },
+        "gap": {
+          "enum": ["none", "sm", "md", "lg"],
+          "description": "Maps to --ds-space-gap-<value>; 'none' is 0. The enum here documents the default brand; at validation time the legal set is DERIVED from the --ds-space-gap-* tokens in tokens-index.json.",
+          "default": "md"
+        },
+        "inset": {
+          "enum": ["none", "sm", "md", "lg"],
+          "description": "Maps to --ds-space-inset-<value>; derived from --ds-space-inset-* tokens at validation time."
+        },
+        "align": { "enum": ["start", "center", "end", "stretch"] },
+        "columns": {
+          "enum": [2, 3, 4],
+          "description": "Grid only.",
+          "default": 2
+        },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/child" }
+        },
+        "slot": { "$ref": "#/$defs/slot" }
+      }
+    },
+    "textNode": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "description": "Typography lives in the contract too (the safe answer to NR-002: <Heading>/<Text> do not exist). Roles map to semantic HTML elements styled with --ds-text-* tokens.",
+      "properties": {
+        "text": { "type": "string", "maxLength": 5000 },
+        "role": {
+          "enum": ["heading2", "heading3", "body", "caption"],
+          "default": "body",
+          "description": "heading2→h2, heading3→h3, body→p, caption→p with --ds-color-text-secondary."
+        },
+        "slot": { "$ref": "#/$defs/slot" }
+      }
+    },
+    "slot": {
+      "type": "string",
+      "description": "Names an element-typed prop of the PARENT component node this child fills (derived from the registry; e.g. \"trigger\" on a Button child of a Dialog). Only component nodes may fill slots."
+    }
+  }
+}

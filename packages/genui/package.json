@@ -1,0 +1,49 @@
+{
+  "name": "@ds/genui",
+  "version": "0.1.0",
+  "description": "AIR-DS generative-UI runtime contract: a versioned JSON document format agents emit at runtime, a deterministic closed-world validator driven by the registries, and a fail-closed renderer that composes only registry components with host-bound intents.",
+  "type": "module",
+  "bin": {
+    "ds-genui": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": "./genui-schema.json"
+  },
+  "files": [
+    "dist",
+    "genui-schema.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/genui lint: no-op placeholder (token-value lint lives in @ds/validate)'"
+  },
+  "dependencies": {
+    "@ds/react": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.4",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "jsdom": "^30.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.10",
+    "vitest-axe": "^0.1.0"
+  }
+}

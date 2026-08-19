@@ -1,0 +1,213 @@
+{
+  "version": "1.0",
+  "screen": {
+    "title": "Workspace settings",
+    "nodes": [
+      {
+        "layout": "stack",
+        "gap": "lg",
+        "inset": "md",
+        "children": [
+          {
+            "text": "Manage your workspace profile, preferences, and danger zone.",
+            "role": "body"
+          },
+          {
+            "component": "Tabs",
+            "props": { "defaultSelectedKey": "general" },
+            "children": [
+              {
+                "component": "TabList",
+                "props": { "aria-label": "Settings sections" },
+                "children": [
+                  { "component": "Tab", "props": { "id": "general" }, "children": ["General"] },
+                  { "component": "Tab", "props": { "id": "danger" }, "children": ["Danger zone"] }
+                ]
+              },
+              {
+                "component": "TabPanel",
+                "props": { "id": "general" },
+                "children": [
+                  {
+                    "layout": "stack",
+                    "gap": "md",
+                    "children": [
+                      {
+                        "component": "Card",
+                        "props": { "elevation": "raised" },
+                        "children": [
+                          {
+                            "component": "CardHeader",
+                            "children": [{ "text": "Profile", "role": "heading2" }]
+                          },
+                          {
+                            "component": "CardBody",
+                            "children": [
+                              {
+                                "layout": "stack",
+                                "gap": "md",
+                                "children": [
+                                  {
+                                    "component": "TextField",
+                                    "props": {
+                                      "label": "Workspace name",
+                                      "defaultValue": "Acme Inc",
+                                      "intent": "update-name"
+                                    }
+                                  },
+                                  {
+                                    "component": "Select",
+                                    "props": {
+                                      "label": "Region",
+                                      "placeholder": "Pick a region",
+                                      "intent": "update-region",
+                                      "items": [
+                                        { "id": "eu", "label": "Europe" },
+                                        { "id": "us", "label": "United States" },
+                                        { "id": "apac", "label": "Asia Pacific" }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "TextArea",
+                                    "props": {
+                                      "label": "Description",
+                                      "rows": 3,
+                                      "placeholder": "What is this workspace for?"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "component": "CardFooter",
+                            "children": [
+                              {
+                                "layout": "row",
+                                "gap": "sm",
+                                "align": "center",
+                                "children": [
+                                  {
+                                    "component": "Button",
+                                    "props": { "intent": "save-profile" },
+                                    "children": ["Save changes"]
+                                  },
+                                  {
+                                    "component": "Badge",
+                                    "props": { "tone": "success" },
+                                    "children": ["Saved"]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "component": "Card",
+                        "children": [
+                          {
+                            "component": "CardHeader",
+                            "children": [{ "text": "Preferences", "role": "heading2" }]
+                          },
+                          {
+                            "component": "CardBody",
+                            "children": [
+                              {
+                                "layout": "stack",
+                                "gap": "md",
+                                "children": [
+                                  {
+                                    "component": "Switch",
+                                    "props": { "defaultSelected": true, "intent": "toggle-notifications" },
+                                    "children": ["Email notifications"]
+                                  },
+                                  {
+                                    "component": "Checkbox",
+                                    "props": { "intent": "toggle-digest" },
+                                    "children": ["Weekly digest"]
+                                  },
+                                  {
+                                    "component": "RadioGroup",
+                                    "props": {
+                                      "label": "Density",
+                                      "defaultValue": "cozy",
+                                      "intent": "set-density"
+                                    },
+                                    "children": [
+                                      { "component": "Radio", "props": { "value": "compact" }, "children": ["Compact"] },
+                                      { "component": "Radio", "props": { "value": "cozy" }, "children": ["Cozy"] }
+                                    ]
+                                  },
+                                  {
+                                    "component": "Tooltip",
+                                    "props": { "content": "Preferences apply to every member of this workspace." },
+                                    "children": [
+                                      {
+                                        "component": "Button",
+                                        "props": { "variant": "ghost" },
+                                        "children": ["Who do these apply to?"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "component": "TabPanel",
+                "props": { "id": "danger" },
+                "children": [
+                  {
+                    "layout": "stack",
+                    "gap": "md",
+                    "children": [
+                      {
+                        "component": "Alert",
+                        "props": { "tone": "danger", "isLive": false, "title": "Danger zone" },
+                        "children": [
+                          "Deleting the workspace permanently removes all projects, members, and history."
+                        ]
+                      },
+                      {
+                        "component": "Dialog",
+                        "props": { "title": "Delete workspace" },
+                        "children": [
+                          {
+                            "component": "Button",
+                            "props": { "variant": "danger" },
+                            "slot": "trigger",
+                            "children": ["Delete workspace…"]
+                          },
+                          { "text": "This action cannot be undone.", "role": "body" },
+                          {
+                            "layout": "row",
+                            "gap": "sm",
+                            "children": [
+                              {
+                                "component": "Button",
+                                "props": { "variant": "danger", "intent": "confirm-delete" },
+                                "children": ["Confirm delete"]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
