@@ -1,0 +1,5 @@
+{
+  "$description": "Comet's team hand-tuned semantic-tier tokens directly — exactly what their fleet policy (semanticTier: forbidden) exists to catch.",
+  "--ds-color-text-link": "#0000ee",
+  "--ds-color-surface-raised": "#f5efe8"
+}

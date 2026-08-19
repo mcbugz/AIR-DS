@@ -1,0 +1,2 @@
+{"ts":"2026-08-15T11:00:00-05:00","git_sha":"l1c5e74","source":"gauntlet","fabrications":0,"registry_counts":{"tokens":118,"components":9},"gauntlet":{"passed":true,"steps":5,"durations":{"typecheck":1500,"lint":9,"build":2600,"test":4100,"registry-check":700}}}
+{"ts":"2026-08-15T11:00:00-05:00","git_sha":"l1c5e74","source":"evals","fabrications":0,"registry_counts":{"tokens":118,"components":9},"evals":{"overall":1,"critical":1,"passed":12,"total":12}}

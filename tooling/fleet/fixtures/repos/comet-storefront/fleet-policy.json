@@ -1,0 +1,9 @@
+{
+  "$schema": "ds-fleet/policy.v1",
+  "tokenOverrides": { "semanticTier": "forbidden" },
+  "minEvalCritical": 1.0,
+  "minFirstPass": 0.8,
+  "requiredGauntletSteps": ["typecheck", "lint", "build", "test", "registry-check"],
+  "browserAxe": "required",
+  "maxFabrications": 0
+}

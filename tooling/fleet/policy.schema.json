@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ds-fleet/policy.v1",
+  "title": "AIR-DS fleet policy (fleet-policy.json)",
+  "description": "Policy-as-code for one repo, committed at <repoRoot>/fleet-policy.json and enforced deterministically by `ds-fleet policy-check` (and, via its API, by the validation gauntlet). Every knob is optional; only declared knobs are checked. Verdicts are computed from the repo's committed metrics/history.jsonl and config — no network, no LLM.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional schema tag, e.g. \"ds-fleet/policy.v1\"."
+    },
+    "tokenOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semanticTier"],
+      "description": "Governs semantic-tier token overrides, discovered from <repoRoot>/brands/*.semantic.json (flattened to canonical dot-form names; \"--ds-color-text-link\" == \"color.text.link\").",
+      "properties": {
+        "semanticTier": {
+          "enum": ["forbidden", "allowlist"],
+          "description": "\"forbidden\": any semantic-tier override breaches. \"allowlist\": overrides outside `allowlist` breach."
+        },
+        "allowlist": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Canonical semantic token names a customer may override when semanticTier is \"allowlist\"."
+        }
+      }
+    },
+    "minEvalCritical": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Latest recorded eval critical pass rate must be >= this (typically 1.0). Breaches when no eval run is recorded."
+    },
+    "minFirstPass": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "First-pass gauntlet rate over the repo's full recorded history (passed runs / total runs) must be >= this. Breaches when no gauntlet run is recorded."
+    },
+    "requiredGauntletSteps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Step names that must all appear in the latest recorded gauntlet run (e.g. [\"typecheck\", \"lint\", \"build\", \"test\", \"registry-check\"])."
+    },
+    "browserAxe": {
+      "enum": ["required", "optional"],
+      "description": "\"required\": the latest stories-axe recording must exist and its serious/critical gate must have passed. \"optional\": not checked."
+    },
+    "maxFabrications": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Latest snapshot fabrication count (G1/G5 closed-world hits) must be <= this. Typically 0. Not checked when omitted."
+    }
+  }
+}

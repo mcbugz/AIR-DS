@@ -1,0 +1,4 @@
+# Local render + verification artifacts (regenerate with pnpm --filter @ds/fleet run render:fixtures / screenshot)
+preview.png
+fleet-data.json
+dist-dashboard/

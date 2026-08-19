@@ -1,0 +1,40 @@
+{
+  "name": "@ds/fleet",
+  "version": "0.1.0",
+  "description": "AIR-DS fleet control plane (Mandate v2 / M3): multi-repo metrics collector over metrics/history.jsonl, static executive dashboard rendered from the design system itself, and policy-as-code (fleet-policy.json) with a deterministic policy-check verdict. Credential-free, filesystem in / filesystem out, no network at runtime, no LLM anywhere.",
+  "type": "module",
+  "bin": {
+    "ds-fleet": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "policy.schema.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/fleet lint: no-op placeholder'",
+    "collect:fixtures": "node src/cli.ts collect --manifest fixtures/fleet-manifest.json -o fleet-data.json",
+    "render:fixtures": "node src/cli.ts collect --manifest fixtures/fleet-manifest.json -o fleet-data.json && node src/cli.ts render --data fleet-data.json -o dist-dashboard",
+    "screenshot": "node screenshot.mjs"
+  },
+  "devDependencies": {
+    "@ds/react": "workspace:*",
+    "@ds/tokens": "workspace:*",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

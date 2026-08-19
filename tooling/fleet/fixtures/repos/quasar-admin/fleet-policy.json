@@ -1,0 +1,8 @@
+{
+  "$schema": "ds-fleet/policy.v1",
+  "tokenOverrides": { "semanticTier": "allowlist", "allowlist": ["color.surface.raised"] },
+  "minEvalCritical": 1.0,
+  "minFirstPass": 0.6,
+  "requiredGauntletSteps": ["typecheck", "lint", "build", "test", "registry-check"],
+  "browserAxe": "optional"
+}

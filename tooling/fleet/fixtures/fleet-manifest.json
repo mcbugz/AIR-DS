@@ -1,0 +1,13 @@
+{
+  "$schema": "ds-fleet/manifest.v1",
+  "$description": "Fixture fleet for the M3 control plane: six synthetic repos of varying health (two exemplary, two drifting, one failing policy, one sparse/new) plus this repo's real metrics as the seventh. Roots resolve relative to this file.",
+  "repos": [
+    { "id": "atlas-checkout", "root": "repos/atlas-checkout" },
+    { "id": "orion-console", "root": "repos/orion-console" },
+    { "id": "nova-billing", "root": "repos/nova-billing" },
+    { "id": "quasar-admin", "root": "repos/quasar-admin" },
+    { "id": "comet-storefront", "root": "repos/comet-storefront" },
+    { "id": "lyra-onboarding", "root": "repos/lyra-onboarding" },
+    { "id": "air-ds", "root": "../../.." }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$description": "Orion's allowlisted semantic-tier overrides — both names appear on the policy allowlist, so policy-check passes.",
+  "color": {
+    "surface": {
+      "raised": { "$value": "#f4f7fb" }
+    },
+    "accent": {
+      "default": { "$value": "#1d4ed8" }
+    }
+  }
+}

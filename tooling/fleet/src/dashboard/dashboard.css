@@ -1,0 +1,258 @@
+/*
+ * Fleet dashboard styles — dogfood discipline (same contract as site/):
+ * every color, size, space, radius, shadow, and type value resolves through
+ * a var(--ds-*) token. Allowed literals only: 0, %, unitless numbers,
+ * auto/none/currentColor/transparent, layout keywords.
+ */
+
+.fleet {
+  font-family: var(--ds-font-family-sans);
+  color: var(--ds-color-text-primary);
+  background-color: var(--ds-color-surface-sunken);
+  line-height: var(--ds-text-leading-normal);
+  min-block-size: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.fleet code {
+  font-family: var(--ds-font-family-mono);
+  font-size: var(--ds-text-size-sm);
+}
+
+/* ---------------------------------------------------------------- header */
+
+.fleet-header {
+  background-color: var(--ds-color-surface-inverse);
+  color: var(--ds-color-text-inverse);
+  padding: var(--ds-space-6) var(--ds-space-4);
+}
+
+.fleet-header-inner {
+  max-inline-size: var(--ds-size-container-lg);
+  margin-inline: auto;
+}
+
+.fleet-header h1 {
+  margin: 0;
+  font-size: var(--ds-text-size-2xl);
+  font-weight: var(--ds-text-weight-bold);
+  letter-spacing: normal;
+}
+
+.fleet-header-sub {
+  margin: var(--ds-space-1) 0 0;
+  font-size: var(--ds-text-size-sm);
+  opacity: 0.85;
+}
+
+/* ------------------------------------------------------------------ main */
+
+.fleet-main {
+  flex: 1;
+  inline-size: 100%;
+  max-inline-size: var(--ds-size-container-lg);
+  margin-inline: auto;
+  padding: var(--ds-space-6) var(--ds-space-4) var(--ds-space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-7);
+  box-sizing: border-box;
+}
+
+.fleet-main h2 {
+  margin: 0 0 var(--ds-space-3);
+  font-size: var(--ds-text-size-lg);
+  font-weight: var(--ds-text-weight-semibold);
+}
+
+/* ------------------------------------------------------------- scorecard */
+
+.fleet-scorecard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--ds-space-4);
+}
+
+.fleet-tile-value {
+  font-size: var(--ds-text-size-3xl);
+  font-weight: var(--ds-text-weight-bold);
+  line-height: var(--ds-text-leading-tight);
+}
+
+.fleet-tile--success .fleet-tile-value { color: var(--ds-color-status-success-text); }
+.fleet-tile--warning .fleet-tile-value { color: var(--ds-color-status-warning-text); }
+.fleet-tile--danger .fleet-tile-value { color: var(--ds-color-status-danger-text); }
+.fleet-tile--neutral .fleet-tile-value { color: var(--ds-color-text-secondary); }
+
+.fleet-tile--success { border-block-start: var(--ds-border-width-2) solid var(--ds-color-status-success-default); }
+.fleet-tile--warning { border-block-start: var(--ds-border-width-2) solid var(--ds-color-status-warning-default); }
+.fleet-tile--danger { border-block-start: var(--ds-border-width-2) solid var(--ds-color-status-danger-default); }
+
+.fleet-tile-label {
+  margin-block-start: var(--ds-space-1);
+  font-size: var(--ds-text-size-md);
+  font-weight: var(--ds-text-weight-semibold);
+}
+
+.fleet-tile-sub {
+  margin-block-start: var(--ds-space-1);
+  font-size: var(--ds-text-size-xs);
+  color: var(--ds-color-text-muted);
+}
+
+/* ----------------------------------------------------------------- table */
+
+.fleet-table-scroll {
+  overflow-x: auto;
+  background-color: var(--ds-color-surface-default);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-muted);
+  border-radius: var(--ds-radius-lg);
+}
+
+.fleet-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--ds-text-size-sm);
+}
+
+.fleet-table th,
+.fleet-table td {
+  text-align: start;
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border-block-end: var(--ds-border-width-1) solid var(--ds-color-border-muted);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.fleet-table thead th {
+  font-size: var(--ds-text-size-xs);
+  font-weight: var(--ds-text-weight-semibold);
+  color: var(--ds-color-text-secondary);
+  text-transform: uppercase;
+  background-color: var(--ds-color-surface-sunken);
+}
+
+.fleet-table tbody tr:last-child th,
+.fleet-table tbody tr:last-child td {
+  border-block-end: none;
+}
+
+.fleet-repo-id {
+  font-family: var(--ds-font-family-mono);
+  font-weight: var(--ds-text-weight-semibold);
+  font-size: var(--ds-text-size-sm);
+}
+
+.fleet-repo-sub {
+  display: block;
+  font-size: var(--ds-text-size-xs);
+  font-weight: var(--ds-text-weight-regular);
+  color: var(--ds-color-text-muted);
+}
+
+.fleet-cell-value {
+  display: inline-block;
+  min-inline-size: var(--ds-space-9);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------- sparklines */
+
+.fleet-spark-wrap {
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline-start: var(--ds-space-2);
+  color: var(--ds-color-accent-default);
+}
+
+.fleet-spark-wrap--warning { color: var(--ds-color-status-warning-default); }
+.fleet-spark-wrap--danger { color: var(--ds-color-status-danger-default); }
+.fleet-spark-wrap--success { color: var(--ds-color-status-success-default); }
+
+.fleet-spark--empty {
+  color: var(--ds-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- panels */
+
+.fleet-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: var(--ds-space-6);
+  align-items: start;
+}
+
+.fleet-policy-card {
+  margin-block-end: var(--ds-space-4);
+  background-color: var(--ds-color-surface-default);
+}
+
+.fleet-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-2);
+  font-size: var(--ds-text-size-sm);
+}
+
+.fleet-check-id {
+  font-family: var(--ds-font-family-mono);
+  font-weight: var(--ds-text-weight-semibold);
+  display: block;
+}
+
+.fleet-check--ok .fleet-check-id { color: var(--ds-color-status-success-text); }
+.fleet-check--fail .fleet-check-id { color: var(--ds-color-status-danger-text); }
+
+.fleet-check-detail {
+  display: block;
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-size-xs);
+}
+
+.fleet-ungoverned {
+  margin-block-start: var(--ds-space-2);
+}
+
+.fleet-adoption-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--ds-space-4);
+}
+
+.fleet-adoption-card {
+  background-color: var(--ds-color-surface-default);
+}
+
+.fleet-adoption-facts {
+  margin: var(--ds-space-2) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-2);
+}
+
+.fleet-adoption-facts dt {
+  font-size: var(--ds-text-size-xs);
+  color: var(--ds-color-text-muted);
+}
+
+.fleet-adoption-facts dd {
+  margin: 0;
+  font-size: var(--ds-text-size-sm);
+  font-weight: var(--ds-text-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------- footer */
+
+.fleet-footer {
+  padding: var(--ds-space-4);
+  text-align: center;
+  font-size: var(--ds-text-size-xs);
+  color: var(--ds-color-text-muted);
+  border-block-start: var(--ds-border-width-1) solid var(--ds-color-border-muted);
+  background-color: var(--ds-color-surface-default);
+}
