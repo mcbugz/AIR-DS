@@ -123,7 +123,11 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
 
   // 4. test
   record('test', () => {
-    const r = run('pnpm', ['-r', 'test'], root, verbose);
+    // Serialized across packages: parallel package tests raced in CI when one
+    // package's tests touched shared workspace state (registries/) while
+    // another read it. Ingest no longer swaps registries, but the merge gate
+    // stays deterministic by construction, not by convention.
+    const r = run('pnpm', ['-r', '--workspace-concurrency=1', 'test'], root, verbose);
     return r.ok ? { status: 'pass' } : { status: 'fail', detail: tail(r.output) };
   });
 

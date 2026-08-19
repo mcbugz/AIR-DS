@@ -1,7 +1,7 @@
 {
   "$description": "GENERATED manifest for the @ds/context agent-context bundle — every emitted file with its sha256, plus the source inputs it was compiled from. Do not edit.",
   "brand": "acme",
-  "generatedAt": "2026-08-19T16:00:01.469Z",
+  "generatedAt": "2026-08-19T16:41:37.162Z",
   "compiler": "@ds/context@0.1.0",
   "sourceHash": "sha256:11e1c7e4a92a0624762dabb45851f5204c955235810185d648814ec1a4108dee",
   "budgets": {
@@ -82,23 +82,23 @@
       "sha256": "fa7b6adff6eb143ef7b542121f1ad56a2c83b03e0b73abd5de81daebd62c6375"
     },
     {
-      "path": "registries/components-index.json",
+      "path": "customer-builds/acme/registries/components-index.json",
       "sha256": "a4bd113fb511ee2781c57120922ebfa0d1ae278d65be74e3e5e4796dae02d8b7"
     },
     {
-      "path": "registries/contrast-report.json",
+      "path": "customer-builds/acme/registries/contrast-report.json",
       "sha256": "ef46675af72765a0d1bdc949bc3408c6534506cda21b04e25495d94eb27231e2"
     },
     {
-      "path": "registries/icons-metadata.json",
+      "path": "customer-builds/acme/registries/icons-metadata.json",
       "sha256": "5058d7c226438a40f9865291d7712cc2eefb54111917df12f576f3bf2f7b2c16"
     },
     {
-      "path": "registries/patterns-index.json",
+      "path": "customer-builds/acme/registries/patterns-index.json",
       "sha256": "9281b75007b43d7fa488999e4cca92882c3c5331e4fd90d04f87315f0f74744f"
     },
     {
-      "path": "registries/tokens-index.json",
+      "path": "customer-builds/acme/registries/tokens-index.json",
       "sha256": "9e945a532c5ca673bb5aa58eea8c40e03fb9c688caad29bf94b8d66cbb7c7733"
     }
   ],

@@ -125,11 +125,11 @@ function runTokensBuildIsolated(repoRoot: string, brandPath: string, outDir: str
 export type ContextStatus = "built" | "skipped-absent" | "skipped-noncanonical-brand-path";
 
 /**
- * Per-brand context build. The @ds/context compiler reads the brand-built
- * registries from <repo>/registries and the brand file from brands/<name>.json,
- * so we swap the customer's isolated registries in, compile to an isolated
- * --out, and restore the workspace's default-brand registries byte-for-byte in
- * a finally block. The pipeline's end-of-run hash check re-verifies the restore.
+ * Per-brand context build. Uses @ds/context's native --registries-dir /
+ * --brand-path inputs so the workspace registries are NEVER touched — the old
+ * swap/restore approach raced concurrent readers (observed in CI: @ds/context
+ * manifest tests read acme-branded registries mid-swap under pnpm -r
+ * parallelism). The pipeline's end-of-run hash check still verifies no drift.
  */
 function runContextBuild(
   repoRoot: string,
@@ -154,30 +154,30 @@ function runContextBuild(
     return "skipped-noncanonical-brand-path";
   }
 
-  /* Swap the two brand-specific registries in; components-index is brand-independent. */
-  const swapped = new Map<string, Buffer>();
+  /* The bundle's registries dir already holds the brand-built tokens-index +
+     contrast-report plus the brand-independent copies (see step 3b) — hand it
+     to the compiler directly; the workspace registries/ stays untouched. */
   for (const file of ["tokens-index.json", "contrast-report.json"]) {
-    const workspaceFile = join(repoRoot, "registries", file);
-    const isolatedFile = join(isolatedRegistriesDir, file);
-    if (!existsSync(workspaceFile) || !existsSync(isolatedFile)) {
-      throw new Error(`Registry swap for context build: missing ${existsSync(workspaceFile) ? isolatedFile : workspaceFile}`);
+    if (!existsSync(join(isolatedRegistriesDir, file))) {
+      throw new Error(`Context build: missing ${join(isolatedRegistriesDir, file)} from the isolated tokens build`);
     }
-    swapped.set(workspaceFile, readFileSync(workspaceFile));
-    writeFileSync(workspaceFile, readFileSync(isolatedFile));
   }
   try {
-    execFileSync(process.execPath, [contextCli, "--brand", name, "--out", join(outDir, "context")], {
-      cwd: repoRoot,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-    });
+    execFileSync(
+      process.execPath,
+      [
+        contextCli,
+        "--brand", name,
+        "--brand-path", canonicalBrandPath,
+        "--registries-dir", isolatedRegistriesDir,
+        "--out", join(outDir, "context"),
+      ],
+      { cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+    );
   } catch (error) {
     const stderr =
       typeof error === "object" && error !== null && "stderr" in error ? String((error as { stderr: unknown }).stderr) : "";
-    throw new Error(`@ds/context build failed for brand "${name}" (workspace registries restored):\n${stderr.trim()}`);
-  } finally {
-    /* Restore the default-brand registries byte-for-byte, whatever happened. */
-    for (const [workspaceFile, original] of swapped) writeFileSync(workspaceFile, original);
+    throw new Error(`@ds/context build failed for brand "${name}" (workspace registries untouched):\n${stderr.trim()}`);
   }
   return "built";
 }

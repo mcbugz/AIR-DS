@@ -130,10 +130,10 @@ The tokens build ran with isolated `distDir`/`registriesDir` options; the worksp
 
 - validate: 0 ms
 - generate-brand: 3 ms
-- tokens-build: 111 ms
-- context-build: 154 ms
-- bundle: 3 ms
-- total: 273 ms
+- tokens-build: 119 ms
+- context-build: 160 ms
+- bundle: 2 ms
+- total: 286 ms
 
 ## Gaps / follow-ups
 
