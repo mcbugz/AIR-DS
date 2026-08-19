@@ -1,0 +1,20 @@
+:root {
+  --acme-blue: #2563eb;
+  --header-height: 64px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+  background: #f9fafb;
+}
+
+.page {
+  max-width: 1200px;
+  padding: 24px;
+}
+
+.page a {
+  color: var(--acme-blue);
+}

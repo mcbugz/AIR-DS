@@ -1,0 +1,32 @@
+{
+  "name": "@ds/assess",
+  "version": "0.1.0",
+  "description": "AI-readiness assessment scanner (Mandate v2 / M1): scores ANY local repo's readiness for AI-generated UI across six pillars mapped to the brief's ten practices. Deterministic probes only — no network, no credentials, no LLM. Emits assessment.json + an executive-readable ASSESSMENT.md with evidence-backed scores, top gaps, and quick wins.",
+  "type": "module",
+  "bin": {
+    "ds-assess": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/assess lint: no-op placeholder'"
+  },
+  "dependencies": {
+    "@ds/validate": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.0.0"
+  }
+}
