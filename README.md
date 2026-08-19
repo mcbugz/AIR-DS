@@ -1,3 +1,14 @@
+```ansi
+  [1;38;5;33m █████╗ ██╗██████╗ [0m[38;5;111m    [0m[1;38;5;35m██████╗ ███████╗[0m
+  [1;38;5;33m██╔══██╗██║██╔══██╗[0m[38;5;111m    [0m[1;38;5;35m██╔══██╗██╔════╝[0m
+  [1;38;5;33m███████║██║██████╔╝[0m[38;5;111m███╗[0m[1;38;5;35m██║  ██║███████╗[0m
+  [1;38;5;33m██╔══██║██║██╔══██╗[0m[38;5;111m╚══╝[0m[1;38;5;35m██║  ██║╚════██║[0m
+  [1;38;5;33m██║  ██║██║██║  ██║[0m[38;5;111m    [0m[1;38;5;35m██████╔╝███████║[0m
+  [1;38;5;33m╚═╝  ╚═╝╚═╝╚═╝  ╚═╝[0m[38;5;111m    [0m[1;38;5;35m╚═════╝ ╚══════╝[0m
+
+  [38;5;245mthe AI-ready · white-label design system — instruction hopes, structure checks[0m
+```
+
 # AIR-DS — an AI-ready, white-label design system
 
 One neutral, token-driven design system, engineered for re-branding, that ships with the complete machine layer AI agents need to build with it correctly: MCP server, llms.txt, agent skills, editor rules, and closed-world registries — all **compiled from one source of truth** and re-emitted per customer.
