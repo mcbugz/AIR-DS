@@ -442,7 +442,7 @@
   color: var(--ds-color-text-inverse);
   border-block-end: var(--ds-border-width-1) solid var(--ds-color-border-strong);
 }
-.site-header-brand {
+.site .site-header-brand {
   font-family: var(--ds-font-family-mono);
   font-weight: var(--ds-text-weight-bold);
   font-size: var(--ds-text-size-md);
@@ -455,14 +455,14 @@
   gap: var(--ds-space-4);
   margin-inline: auto;
 }
-.site-header-links a {
+.site .site-header-links a {
   color: var(--ds-color-text-inverse);
   opacity: 0.85;
   text-decoration: none;
   font-size: var(--ds-text-size-sm);
   font-weight: var(--ds-text-weight-medium);
 }
-.gh-badge {
+.site .gh-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--ds-space-gap-sm);
