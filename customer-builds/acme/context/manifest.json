@@ -1,7 +1,7 @@
 {
   "$description": "GENERATED manifest for the @ds/context agent-context bundle — every emitted file with its sha256, plus the source inputs it was compiled from. Do not edit.",
   "brand": "acme",
-  "generatedAt": "2026-08-13T01:10:22.316Z",
+  "generatedAt": "2026-08-19T16:00:01.469Z",
   "compiler": "@ds/context@0.1.0",
   "sourceHash": "sha256:11e1c7e4a92a0624762dabb45851f5204c955235810185d648814ec1a4108dee",
   "budgets": {

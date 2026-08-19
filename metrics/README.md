@@ -5,11 +5,15 @@ Each gauntlet / eval / benchmark CLI run appends one line to the history; this r
 
 ## Latest snapshot
 
-- **Commit:** `a6d78d8` (2026-08-13T14:52:34-05:00)
-- **Gauntlet:** PASSED — 5 step(s) in 16491ms (typecheck 2654ms, lint 27ms, build 4105ms, test 8558ms, registry-check 1147ms)
+- **Commit:** `946529b` (2026-08-19T10:57:43-05:00)
+- **Gauntlet:** PASSED — 5 step(s) in 21732ms (typecheck 3927ms, lint 30ms, build 4669ms, test 11719ms, registry-check 1387ms)
 - **Evals:** overall 100.0% (21/21), critical 100.0% — gates: critical 1.0, overall ≥ 0.95
 - **Fabrications (G1/G5):** 0 — target 0
 - **Registry counts:** 232 tokens, 21 components
+- **Benchmark (replay, 3 scenario(s)):** token compliance 100.0% vs 0.0% (axe ran)
+  - recorded:system: compliance 100.0%, fabrications 0, gauntlet pass rate 100.0%
+  - recorded:baseline-style: compliance 0.0%, fabrications 12, gauntlet pass rate 0.0%
+  - baseline:raw-tailwind: compliance 0.0%, fabrications 0, gauntlet pass rate 0.0%
 
 ## Trend (per release)
 
@@ -18,3 +22,4 @@ Each gauntlet / eval / benchmark CLI run appends one line to the history; this r
 | 2026-08-12T18:01:05-05:00 | `26587b0` | PASS | 100.0% | 100.0% | 0 | 232 | 21 | 100.0% vs 0.0% (axe ran) |
 | 2026-08-12T18:34:17-05:00 | `34f5240` | — | — | — | 0 | 232 | 21 | — |
 | 2026-08-13T14:52:34-05:00 | `a6d78d8` | PASS | 100.0% | 100.0% | 0 | 232 | 21 | — |
+| 2026-08-19T10:57:43-05:00 | `946529b` | PASS | 100.0% | 100.0% | 0 | 232 | 21 | 100.0% vs 0.0% (axe ran) |
