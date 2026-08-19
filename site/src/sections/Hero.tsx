@@ -16,10 +16,10 @@ export function Hero() {
       <div className="hero-inner">
         <h1 className="hero-wordmark">
           <img
-            src="./air-ds-banner.svg"
+            src="./air-ds-wordmark.svg"
             alt="AIR-DS — the AI-ready, white-label design system"
-            width="640"
-            height="196"
+            width="420"
+            height="164"
           />
         </h1>
         <p className="hero-tagline">A design system agents cannot hallucinate against.</p>

@@ -59,6 +59,7 @@ await build({
 cpSync(join(repo, 'packages/tokens/dist/css/tokens.css'), join(out, 'tokens-default.css'));
 cpSync(join(repo, 'customer-builds/acme/tokens/css/tokens.css'), join(out, 'tokens-acme.css'));
 // The wordmark, reused verbatim from the repo docs.
+cpSync(join(repo, 'docs/assets/air-ds-wordmark.svg'), join(out, 'air-ds-wordmark.svg'));
 cpSync(join(repo, 'docs/assets/air-ds-banner.svg'), join(out, 'air-ds-banner.svg'));
 
 // All references relative so the page works at https://<user>.github.io/AIR-DS/
