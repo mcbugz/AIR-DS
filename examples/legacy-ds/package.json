@@ -1,0 +1,12 @@
+{
+  "name": "@meridian/atlas-ui",
+  "version": "3.11.2",
+  "private": true,
+  "description": "Atlas UI — Meridian internal component library. Fictional legacy enterprise design system used as the @ds/retrofit proof fixture. Deliberately NOT built on AIR-DS packages.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "style": "styles/atlas.css",
+  "scripts": {
+    "note": "echo 'fixture only — no build; consumed by ds-retrofit'"
+  }
+}

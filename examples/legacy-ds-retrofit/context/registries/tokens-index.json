@@ -1,0 +1,632 @@
+{
+  "$description": "GENERATED closed-world token contract synthesized by @ds/retrofit from @meridian/atlas-ui. Every detected design token is enumerated here; a custom property not in this file is provably fabricated. Names are normalized (camel/snake/kebab -> dot path); `cssVar` is the ORIGINAL custom property as shipped (tailwind/DTCG entries carry PROPOSED vars flagged `provenance.proposed`). `tier` is \"semantic\" as a best-effort default — confirm per token (see RETROFIT.md). `provenance` records the source file:line. Regenerate with: ds-retrofit <repo> -o <outdir>",
+  "brand": "examples/legacy-ds-retrofit/brand/meridian-atlas-ui.json",
+  "count": 44,
+  "tokens": [
+    {
+      "name": "atlas.blue",
+      "cssVar": "--atlas-blue",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:11 (declared as `--atlas-blue` in `:root`).",
+      "value": "#1a56db",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 11,
+        "declaredAs": "--atlas-blue"
+      }
+    },
+    {
+      "name": "atlas.blue.dark",
+      "cssVar": "--atlas-blue-dark",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:12 (declared as `--atlas-blue-dark` in `:root`).",
+      "value": "#1e429f",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 12,
+        "declaredAs": "--atlas-blue-dark"
+      }
+    },
+    {
+      "name": "atlas.gray.100",
+      "cssVar": "--atlasGray100",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:14 (declared as `--atlasGray100` in `:root`).",
+      "value": "#f3f4f6",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 14,
+        "declaredAs": "--atlasGray100"
+      }
+    },
+    {
+      "name": "atlas.gray.300",
+      "cssVar": "--atlasGray300",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:15 (declared as `--atlasGray300` in `:root`).",
+      "value": "#d1d5db",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 15,
+        "declaredAs": "--atlasGray300"
+      }
+    },
+    {
+      "name": "atlas.gray.50",
+      "cssVar": "--atlasGray50",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:13 (declared as `--atlasGray50` in `:root`).",
+      "value": "#f9fafb",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 13,
+        "declaredAs": "--atlasGray50"
+      }
+    },
+    {
+      "name": "atlas.gray.700",
+      "cssVar": "--atlasGray700",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:16 (declared as `--atlasGray700` in `:root`).",
+      "value": "#374151",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 16,
+        "declaredAs": "--atlasGray700"
+      }
+    },
+    {
+      "name": "atlas.gray.900",
+      "cssVar": "--atlasGray900",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:17 (declared as `--atlasGray900` in `:root`).",
+      "value": "#111827",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 17,
+        "declaredAs": "--atlasGray900"
+      }
+    },
+    {
+      "name": "brand.danger",
+      "cssVar": "--brand-danger",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:30 (declared as `--brand-danger` in `:root`).",
+      "value": "#b91c1c",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 30,
+        "declaredAs": "--brand-danger"
+      }
+    },
+    {
+      "name": "brand.danger.bg",
+      "cssVar": "--brand-danger-bg",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:31 (declared as `--brand-danger-bg` in `:root`).",
+      "value": "#fef2f2",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 31,
+        "declaredAs": "--brand-danger-bg"
+      }
+    },
+    {
+      "name": "brand.success",
+      "cssVar": "--brand-success",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:34 (declared as `--brand-success` in `:root`).",
+      "value": "#047857",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 34,
+        "declaredAs": "--brand-success"
+      }
+    },
+    {
+      "name": "brand.success.bg",
+      "cssVar": "--brand-success-bg",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:35 (declared as `--brand-success-bg` in `:root`).",
+      "value": "#ecfdf5",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 35,
+        "declaredAs": "--brand-success-bg"
+      }
+    },
+    {
+      "name": "brand.warning",
+      "cssVar": "--brand-warning",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:32 (declared as `--brand-warning` in `:root`).",
+      "value": "#92400e",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 32,
+        "declaredAs": "--brand-warning"
+      }
+    },
+    {
+      "name": "brand.warning.bg",
+      "cssVar": "--brand-warning-bg",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:33 (declared as `--brand-warning-bg` in `:root`).",
+      "value": "#fffbeb",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 33,
+        "declaredAs": "--brand-warning-bg"
+      }
+    },
+    {
+      "name": "btn.primary.bg",
+      "cssVar": "--btn_primary_bg",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:61 (declared as `--btn_primary_bg` in `:root`).",
+      "value": "#1a56db",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 61,
+        "declaredAs": "--btn_primary_bg"
+      }
+    },
+    {
+      "name": "btn.primary.bg.hover",
+      "cssVar": "--btn_primary_bg_hover",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:62 (declared as `--btn_primary_bg_hover` in `:root`).",
+      "value": "#1e429f",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 62,
+        "declaredAs": "--btn_primary_bg_hover"
+      }
+    },
+    {
+      "name": "color.text.inverse",
+      "cssVar": "--color_text_inverse",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:22 (declared as `--color_text_inverse` in `:root`).",
+      "value": "#ffffff",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 22,
+        "declaredAs": "--color_text_inverse"
+      }
+    },
+    {
+      "name": "color.text.main",
+      "cssVar": "--color_text_main",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:20 (declared as `--color_text_main` in `:root`). Re-declared in 1 scoped rule(s) (theme/media overrides) — base-scope value shown.",
+      "value": "#111827",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 20,
+        "declaredAs": "--color_text_main",
+        "redeclarations": 1
+      }
+    },
+    {
+      "name": "color.text.subtle",
+      "cssVar": "--color_text_subtle",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:21 (declared as `--color_text_subtle` in `:root`).",
+      "value": "#6b7280",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 21,
+        "declaredAs": "--color_text_subtle"
+      }
+    },
+    {
+      "name": "font.body",
+      "cssVar": "--font-body",
+      "tier": "semantic",
+      "type": "fontFamily",
+      "description": "Retrofit-synthesized from styles/atlas.css:51 (declared as `--font-body` in `:root`).",
+      "value": "\"Helvetica Neue\", Arial, sans-serif",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 51,
+        "declaredAs": "--font-body"
+      }
+    },
+    {
+      "name": "font.size.base",
+      "cssVar": "--fontSizeBase",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:52 (declared as `--fontSizeBase` in `:root`).",
+      "value": "14px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 52,
+        "declaredAs": "--fontSizeBase"
+      }
+    },
+    {
+      "name": "font.size.small",
+      "cssVar": "--fontSizeSmall",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:53 (declared as `--fontSizeSmall` in `:root`).",
+      "value": "12px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 53,
+        "declaredAs": "--fontSizeSmall"
+      }
+    },
+    {
+      "name": "fw.bold",
+      "cssVar": "--fw-bold",
+      "tier": "semantic",
+      "type": "fontWeight",
+      "description": "Retrofit-synthesized from styles/atlas.css:54 (declared as `--fw-bold` in `:root`).",
+      "value": 600,
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 54,
+        "declaredAs": "--fw-bold"
+      }
+    },
+    {
+      "name": "input.border",
+      "cssVar": "--input-border",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:63 (declared as `--input-border` in `:root`).",
+      "value": "#d1d5db",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 63,
+        "declaredAs": "--input-border"
+      }
+    },
+    {
+      "name": "link.color",
+      "cssVar": "--link-color",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:36 (declared as `--link-color` in `:root`).",
+      "value": "#1a56db",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 36,
+        "declaredAs": "--link-color"
+      }
+    },
+    {
+      "name": "radius.md",
+      "cssVar": "--radius_md",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:47 (declared as `--radius_md` in `:root`).",
+      "value": "6px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 47,
+        "declaredAs": "--radius_md"
+      }
+    },
+    {
+      "name": "radius.pill",
+      "cssVar": "--radius_pill",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:48 (declared as `--radius_pill` in `:root`).",
+      "value": "999px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 48,
+        "declaredAs": "--radius_pill"
+      }
+    },
+    {
+      "name": "radius.sm",
+      "cssVar": "--radius_sm",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:46 (declared as `--radius_sm` in `:root`).",
+      "value": "3px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 46,
+        "declaredAs": "--radius_sm"
+      }
+    },
+    {
+      "name": "shadow.card",
+      "cssVar": "--shadow-card",
+      "tier": "semantic",
+      "type": "shadow",
+      "description": "Retrofit-synthesized from styles/atlas.css:57 (declared as `--shadow-card` in `:root`).",
+      "value": "0 1px 3px rgba(17, 24, 39, 0.12)",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 57,
+        "declaredAs": "--shadow-card"
+      }
+    },
+    {
+      "name": "sp.1",
+      "cssVar": "--sp-1",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:39 (declared as `--sp-1` in `:root`).",
+      "value": "4px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 39,
+        "declaredAs": "--sp-1"
+      }
+    },
+    {
+      "name": "sp.2",
+      "cssVar": "--sp-2",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:40 (declared as `--sp-2` in `:root`).",
+      "value": "8px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 40,
+        "declaredAs": "--sp-2"
+      }
+    },
+    {
+      "name": "sp.3",
+      "cssVar": "--sp-3",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:41 (declared as `--sp-3` in `:root`).",
+      "value": "12px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 41,
+        "declaredAs": "--sp-3"
+      }
+    },
+    {
+      "name": "sp.4",
+      "cssVar": "--sp-4",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:42 (declared as `--sp-4` in `:root`).",
+      "value": "16px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 42,
+        "declaredAs": "--sp-4"
+      }
+    },
+    {
+      "name": "sp.6",
+      "cssVar": "--sp-6",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from styles/atlas.css:43 (declared as `--sp-6` in `:root`).",
+      "value": "24px",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 43,
+        "declaredAs": "--sp-6"
+      }
+    },
+    {
+      "name": "surface.card",
+      "cssVar": "--surface-card",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:27 (declared as `--surface-card` in `:root`).",
+      "value": "#ffffff",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 27,
+        "declaredAs": "--surface-card"
+      }
+    },
+    {
+      "name": "surface.default",
+      "cssVar": "--surface-default",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:25 (declared as `--surface-default` in `:root`). Re-declared in 1 scoped rule(s) (theme/media overrides) — base-scope value shown.",
+      "value": "#ffffff",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 25,
+        "declaredAs": "--surface-default",
+        "redeclarations": 1
+      }
+    },
+    {
+      "name": "surface.sunken",
+      "cssVar": "--surface-sunken",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from styles/atlas.css:26 (declared as `--surface-sunken` in `:root`).",
+      "value": "#f3f4f6",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 26,
+        "declaredAs": "--surface-sunken"
+      }
+    },
+    {
+      "name": "transition.fast",
+      "cssVar": "--transition-fast",
+      "tier": "semantic",
+      "type": "duration",
+      "description": "Retrofit-synthesized from styles/atlas.css:58 (declared as `--transition-fast` in `:root`).",
+      "value": "150ms",
+      "provenance": {
+        "adapter": "css-custom-properties",
+        "source": "styles/atlas.css",
+        "line": 58,
+        "declaredAs": "--transition-fast"
+      }
+    },
+    {
+      "name": "tw.color.accent",
+      "cssVar": "--tw-color-accent",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from tailwind.config.js:16 (theme.extend.colors.accent). PROPOSED custom property — adopt `--tw-color-accent` in shipped CSS to activate it.",
+      "value": "#7c3aed",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 16,
+        "declaredAs": "theme.extend.colors.accent",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.color.brand",
+      "cssVar": "--tw-color-brand",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from tailwind.config.js:12 (theme.extend.colors.brand.DEFAULT). PROPOSED custom property — adopt `--tw-color-brand` in shipped CSS to activate it.",
+      "value": "#1a56db",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 12,
+        "declaredAs": "theme.extend.colors.brand.DEFAULT",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.color.brand.600",
+      "cssVar": "--tw-color-brand-600",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from tailwind.config.js:13 (theme.extend.colors.brand.600). PROPOSED custom property — adopt `--tw-color-brand-600` in shipped CSS to activate it.",
+      "value": "#1a56db",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 13,
+        "declaredAs": "theme.extend.colors.brand.600",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.color.brand.700",
+      "cssVar": "--tw-color-brand-700",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from tailwind.config.js:14 (theme.extend.colors.brand.700). PROPOSED custom property — adopt `--tw-color-brand-700` in shipped CSS to activate it.",
+      "value": "#1e429f",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 14,
+        "declaredAs": "theme.extend.colors.brand.700",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.color.danger",
+      "cssVar": "--tw-color-danger",
+      "tier": "semantic",
+      "type": "color",
+      "description": "Retrofit-synthesized from tailwind.config.js:17 (theme.extend.colors.danger). PROPOSED custom property — adopt `--tw-color-danger` in shipped CSS to activate it.",
+      "value": "#b91c1c",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 17,
+        "declaredAs": "theme.extend.colors.danger",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.radius.card",
+      "cssVar": "--tw-radius-card",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from tailwind.config.js:23 (theme.extend.borderRadius.card). PROPOSED custom property — adopt `--tw-radius-card` in shipped CSS to activate it.",
+      "value": "6px",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 23,
+        "declaredAs": "theme.extend.borderRadius.card",
+        "proposed": true
+      }
+    },
+    {
+      "name": "tw.spacing.18",
+      "cssVar": "--tw-spacing-18",
+      "tier": "semantic",
+      "type": "dimension",
+      "description": "Retrofit-synthesized from tailwind.config.js:20 (theme.extend.spacing.18). PROPOSED custom property — adopt `--tw-spacing-18` in shipped CSS to activate it.",
+      "value": "4.5rem",
+      "provenance": {
+        "adapter": "tailwind",
+        "source": "tailwind.config.js",
+        "line": 20,
+        "declaredAs": "theme.extend.spacing.18",
+        "proposed": true
+      }
+    }
+  ]
+}

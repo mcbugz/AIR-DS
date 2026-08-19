@@ -1,0 +1,47 @@
+{
+  "$description": "Proposed Tailwind theme -> custom-property mapping table synthesized by @ds/retrofit. `matchesExistingVar` names an already-shipped custom property with the same resolved value (adopt it instead of minting a new var).",
+  "mappings": [
+    {
+      "themePath": "theme.extend.borderRadius.card",
+      "proposedVar": "--tw-radius-card",
+      "value": "6px",
+      "matchesExistingVar": "--radius_md"
+    },
+    {
+      "themePath": "theme.extend.colors.accent",
+      "proposedVar": "--tw-color-accent",
+      "value": "#7c3aed",
+      "matchesExistingVar": null
+    },
+    {
+      "themePath": "theme.extend.colors.brand.600",
+      "proposedVar": "--tw-color-brand-600",
+      "value": "#1a56db",
+      "matchesExistingVar": "--atlas-blue"
+    },
+    {
+      "themePath": "theme.extend.colors.brand.700",
+      "proposedVar": "--tw-color-brand-700",
+      "value": "#1e429f",
+      "matchesExistingVar": "--atlas-blue-dark"
+    },
+    {
+      "themePath": "theme.extend.colors.brand.DEFAULT",
+      "proposedVar": "--tw-color-brand",
+      "value": "#1a56db",
+      "matchesExistingVar": "--atlas-blue"
+    },
+    {
+      "themePath": "theme.extend.colors.danger",
+      "proposedVar": "--tw-color-danger",
+      "value": "#b91c1c",
+      "matchesExistingVar": "--brand-danger"
+    },
+    {
+      "themePath": "theme.extend.spacing.18",
+      "proposedVar": "--tw-spacing-18",
+      "value": "4.5rem",
+      "matchesExistingVar": null
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+/* Atlas UI core stylesheet.
+ * Grown organically since 2019 — three naming eras coexist:
+ *   2019:  --atlasCamelCase        (--atlasGray100)
+ *   2021:  --snake_case            (--btn_primary_bg)
+ *   2023:  --kebab-case            (--surface-default)
+ * This inconsistency is intentional: it is what ds-retrofit must normalize.
+ */
+
+:root {
+  /* ---- palette (2019 era) ---- */
+  --atlas-blue: #1a56db;
+  --atlas-blue-dark: #1e429f;
+  --atlasGray50: #f9fafb;
+  --atlasGray100: #f3f4f6;
+  --atlasGray300: #d1d5db;
+  --atlasGray700: #374151;
+  --atlasGray900: #111827;
+
+  /* ---- text (2021 era) ---- */
+  --color_text_main: #111827;
+  --color_text_subtle: #6b7280;
+  --color_text_inverse: #ffffff;
+
+  /* ---- surfaces (2023 era) ---- */
+  --surface-default: #ffffff;
+  --surface-sunken: var(--atlasGray100);
+  --surface-card: #ffffff;
+
+  /* ---- status ---- */
+  --brand-danger: #b91c1c;
+  --brand-danger-bg: #fef2f2;
+  --brand-warning: #92400e;
+  --brand-warning-bg: #fffbeb;
+  --brand-success: #047857;
+  --brand-success-bg: #ecfdf5;
+  --link-color: var(--atlas-blue);
+
+  /* ---- spacing ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+
+  /* ---- shape ---- */
+  --radius_sm: 3px;
+  --radius_md: 6px;
+  --radius_pill: 999px;
+
+  /* ---- type ---- */
+  --font-body: "Helvetica Neue", Arial, sans-serif;
+  --fontSizeBase: 14px;
+  --fontSizeSmall: 12px;
+  --fw-bold: 600;
+
+  /* ---- effects ---- */
+  --shadow-card: 0 1px 3px rgba(17, 24, 39, 0.12);
+  --transition-fast: 150ms;
+
+  /* ---- component-ish (2021 era) ---- */
+  --btn_primary_bg: var(--atlas-blue);
+  --btn_primary_bg_hover: var(--atlas-blue-dark);
+  --input-border: var(--atlasGray300);
+}
+
+/* Half-finished dark theme (only two tokens ever got overridden). */
+[data-theme="dark"] {
+  --surface-default: #111827;
+  --color_text_main: #f9fafb;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fontSizeBase);
+  color: var(--color_text_main);
+  background: var(--surface-default);
+}
+
+.atlas-btn {
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius_md);
+  font-weight: var(--fw-bold);
+  border: 1px solid transparent;
+  transition: background-color var(--transition-fast) ease;
+  cursor: pointer;
+}
+
+.atlas-btn--primary {
+  background: var(--btn_primary_bg);
+  color: #fff; /* hardcoded sin: should be var(--color_text_inverse) */
+}
+
+.atlas-btn--primary:hover {
+  background: var(--btn_primary_bg_hover);
+}
+
+.atlas-btn--secondary {
+  background: var(--surface-default);
+  color: var(--color_text_main);
+  border-color: var(--input-border);
+}
+
+.atlas-btn--danger {
+  background: var(--brand-danger);
+  color: #ffffff; /* hardcoded sin */
+}
+
+.atlas-input {
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius_sm);
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fontSizeBase);
+  color: var(--color_text_main);
+  background: var(--surface-default);
+}
+
+.atlas-input:focus {
+  outline: 2px solid #1a56db; /* hardcoded sin: should be var(--atlas-blue) */
+  outline-offset: 1px;
+}
+
+.atlas-card {
+  background: var(--surface-card);
+  border: 1px solid var(--atlasGray300);
+  border-radius: var(--radius_md);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-4);
+}
+
+.atlas-banner {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius_sm);
+  border: 1px solid;
+  font-size: var(--fontSizeSmall);
+}
+
+.atlas-banner--info {
+  background: #eff6ff; /* hardcoded sin: never tokenized */
+  border-color: #bfdbfe; /* hardcoded sin */
+  color: var(--atlasGray700);
+}
+
+.atlas-banner--danger {
+  background: var(--brand-danger-bg);
+  border-color: var(--brand-danger);
+  color: var(--brand-danger);
+}
+
+.atlas-banner--warning {
+  background: var(--brand-warning-bg);
+  border-color: var(--brand-warning);
+  color: var(--brand-warning);
+}
+
+.atlas-banner--success {
+  background: var(--brand-success-bg);
+  border-color: var(--brand-success);
+  color: var(--brand-success);
+}

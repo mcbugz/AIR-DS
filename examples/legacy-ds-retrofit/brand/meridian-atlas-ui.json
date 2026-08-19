@@ -1,0 +1,13 @@
+{
+  "$description": "Retrofit brand descriptor synthesized by @ds/retrofit — display metadata for the context compiler (resolved token values live in registries/tokens-index.json).",
+  "name": "meridian-atlas-ui",
+  "source": "retrofit",
+  "package": "@meridian/atlas-ui",
+  "detected": {
+    "cssFiles": 1,
+    "tailwindConfig": "tailwind.config.js",
+    "dtcgFiles": 0,
+    "tokens": 44,
+    "components": 4
+  }
+}

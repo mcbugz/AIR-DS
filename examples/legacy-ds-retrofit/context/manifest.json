@@ -1,0 +1,339 @@
+{
+  "$description": "GENERATED manifest for the @ds/context agent-context bundle — every emitted file with its sha256, plus the source inputs it was compiled from. Do not edit.",
+  "brand": "meridian-atlas-ui",
+  "generatedAt": "2026-08-19T00:00:00.000Z",
+  "compiler": "@ds/context@0.1.0",
+  "sourceHash": "sha256:b95446232cde065deaa4686e6a5d26a81ddfb47ae79b6e5489f3228fb45ee253",
+  "budgets": {
+    "indexMaxTokens": 2000,
+    "sliceMaxTokens": 25000
+  },
+  "inputs": [
+    {
+      "path": ".claude/agents/ds-auditor.md",
+      "sha256": "4c1ce43a584eac4132ac73b3f311f89627bcabe0e780bf04766e434980ddc0eb"
+    },
+    {
+      "path": "examples/legacy-ds-retrofit/brand/meridian-atlas-ui.json",
+      "sha256": "6663ee8b6bca232665eee140f365b8c00a348785c9cd77d43990608a0d8815ff"
+    },
+    {
+      "path": "docs/specs/negative-rules.md",
+      "sha256": "ffdd8c8a1f12b9752023c3adf6ff41aa1c103678383d4327ab83e3937ba81af3"
+    },
+    {
+      "path": "packages/react/CONTRIBUTING-COMPONENT.md",
+      "sha256": "046611e909eb3691bcfe88752b492c8920ab7dd93917f37ad606349baf3b01c2"
+    },
+    {
+      "path": "packages/react/src/components/Alert/Alert.stories.tsx",
+      "sha256": "47e018efa5a7bf49e5ec8bdde4439c55638bd78eef9a7abf1998ae6537c7c3d2"
+    },
+    {
+      "path": "packages/react/src/components/Badge/Badge.stories.tsx",
+      "sha256": "afdaccddb1deae46ecb074640e937546034f914e731ba2fb3f7c099a35bd1c52"
+    },
+    {
+      "path": "packages/react/src/components/Button/Button.stories.tsx",
+      "sha256": "7bd98510ebfe5f369563f8d1727fbe4e6e3e51358ce0292587f314c121f09c21"
+    },
+    {
+      "path": "packages/react/src/components/Card/Card.stories.tsx",
+      "sha256": "99111a013000ef9bcb1ec485bed4042b42319ff5a3d0079305331489b7fac9d5"
+    },
+    {
+      "path": "packages/react/src/components/Checkbox/Checkbox.stories.tsx",
+      "sha256": "1b9471623b3f6aba4fa0c8e7c66f00b1aa88c467b1c0bc976acc53ad583c9f07"
+    },
+    {
+      "path": "packages/react/src/components/Dialog/Dialog.stories.tsx",
+      "sha256": "c275a1fc731c563ec41f20d197f5324abc60c5bd78f4549afe1cbe34da224bf9"
+    },
+    {
+      "path": "packages/react/src/components/IconButton/IconButton.stories.tsx",
+      "sha256": "6186bc36b05cb88e52fdc67aff9975d6929082578b1e43e9e435a8d66a50b79c"
+    },
+    {
+      "path": "packages/react/src/components/RadioGroup/RadioGroup.stories.tsx",
+      "sha256": "cc803e37ccc1a712d36a12eb4b0472ea942d3353dfaabc8a16c3538941a51d6b"
+    },
+    {
+      "path": "packages/react/src/components/Select/Select.stories.tsx",
+      "sha256": "5427617577c6424f9748460d5856d3bcbc5f87641b1f11aa856b22fb41bc30d9"
+    },
+    {
+      "path": "packages/react/src/components/Switch/Switch.stories.tsx",
+      "sha256": "b5b125561d88a6ac88a11b3c99d13751128fcc23875ba8bdd35a8588a5a7f64e"
+    },
+    {
+      "path": "packages/react/src/components/Tabs/Tabs.stories.tsx",
+      "sha256": "e258c43473c8f78025880ebfefae640e60295c5c9656854701f101e1a5235e88"
+    },
+    {
+      "path": "packages/react/src/components/TextArea/TextArea.stories.tsx",
+      "sha256": "ff6b0d4eed36b63a43a9c831e471147d0ad4f5a43f34d02807189c6dbd5afa00"
+    },
+    {
+      "path": "packages/react/src/components/TextField/TextField.stories.tsx",
+      "sha256": "bd960b1324304e6633a777045d3b0c4d27a4c2b63f90d4106e230a39d09765df"
+    },
+    {
+      "path": "packages/react/src/components/Tooltip/Tooltip.stories.tsx",
+      "sha256": "fa7b6adff6eb143ef7b542121f1ad56a2c83b03e0b73abd5de81daebd62c6375"
+    },
+    {
+      "path": "examples/legacy-ds-retrofit/registries/components-index.json",
+      "sha256": "586935e0307f32086edc8854aad0618737602a17cf167bbc44f90c5852de3cd2"
+    },
+    {
+      "path": "examples/legacy-ds-retrofit/registries/contrast-report.json",
+      "sha256": "9b26e18ec17e8cd1e7e98b3e0140d497c1582a964c52dc22c3ba6bd7d90f47f1"
+    },
+    {
+      "path": "examples/legacy-ds-retrofit/registries/tokens-index.json",
+      "sha256": "31615476547b6dd27d7e04c208536dc023991494c7b6096e68784f9fb15afb85"
+    }
+  ],
+  "files": [
+    {
+      "path": ".well-known/skills/index.json",
+      "sha256": "d01a67e8949e3a1f66bcdff9d43f45bd1ec711a3ac99aebc0c793d54ef5e1d6a",
+      "bytes": 2006,
+      "estTokens": 500
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "0df095b832016054a513847a7bfe350e686a9c14f273d3b8909f4c99218b5fe9",
+      "bytes": 1836,
+      "estTokens": 457
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "0df095b832016054a513847a7bfe350e686a9c14f273d3b8909f4c99218b5fe9",
+      "bytes": 1836,
+      "estTokens": 457
+    },
+    {
+      "path": "agents/ds-auditor.md",
+      "sha256": "b0cd8845582cedb71dd25f6c75ed0d981e0f1403f07c482e08e5c5803be66ec2",
+      "bytes": 7756,
+      "estTokens": 1930
+    },
+    {
+      "path": "docs/Banner.md",
+      "sha256": "88ed54812865187ff31a5c7a04b3f77f54ad1f1a94c936eeeabfc85ae068ac13",
+      "bytes": 983,
+      "estTokens": 244
+    },
+    {
+      "path": "docs/Button.md",
+      "sha256": "e1ddffbec4e620385d592982637d4d1162ad670dcb7dee6596d91f4d915af90f",
+      "bytes": 1483,
+      "estTokens": 369
+    },
+    {
+      "path": "docs/Card.md",
+      "sha256": "00edfb08d5a9138ac8e11f5cae71c6d516bf303464900239398e2c8379d7e74d",
+      "bytes": 1119,
+      "estTokens": 278
+    },
+    {
+      "path": "docs/Input.md",
+      "sha256": "d5ec51da6b7de7756cdedfadd85e28f011bfe3207f8322618a7a19a5bfe33f64",
+      "bytes": 1288,
+      "estTokens": 317
+    },
+    {
+      "path": "docs/tokens.md",
+      "sha256": "8322448b84d2b32885fad55bd4ecf87368a1c1c5b26c23207d2744fcb2a41042",
+      "bytes": 8622,
+      "estTokens": 2150
+    },
+    {
+      "path": "editor/claude/CLAUDE.md",
+      "sha256": "87499099327df7837df744f36dcc5ca8c0531dc80b1b57ff37c9b8ab57e02df8",
+      "bytes": 6021,
+      "estTokens": 1498
+    },
+    {
+      "path": "editor/copilot/.github/copilot-instructions.md",
+      "sha256": "73d17eb17c0d3db780d819c6217f84ae67db2fa3ec0f6761a83beeec7fad3d7c",
+      "bytes": 6016,
+      "estTokens": 1497
+    },
+    {
+      "path": "editor/cursor/.cursor/rules/ds.mdc",
+      "sha256": "49d9c46e0fbd8ffb2f4c685de258b2c874e218318f3c5e73e249c3907b7f22ae",
+      "bytes": 6119,
+      "estTokens": 1522
+    },
+    {
+      "path": "editor/v0/instructions.md",
+      "sha256": "a2a6ac7b49d68509c99e245fdf1c2eb1040033a8aa1c4e04d44954c32e61a284",
+      "bytes": 6445,
+      "estTokens": 1601
+    },
+    {
+      "path": "extension-points.json",
+      "sha256": "3f5c803ce31f51c01ad2054295f721817bfd36853f2160ddc474259d68e995af",
+      "bytes": 1447,
+      "estTokens": 360
+    },
+    {
+      "path": "llms-components.txt",
+      "sha256": "fe3ac84b60aa79205f2262ab3d554fc11e59cbddafdfb0101e954aac0b981316",
+      "bytes": 3212,
+      "estTokens": 793
+    },
+    {
+      "path": "llms-full.txt",
+      "sha256": "953e10d2b6bdf65db6b2c1d0e6d8bd6d7c222a3dbb8ced94668e000d7a0ce1ab",
+      "bytes": 22889,
+      "estTokens": 5687
+    },
+    {
+      "path": "llms-migration.txt",
+      "sha256": "e94dc986e96e01e6d863579cdcb2ca3a660f36edbaafa9cf600808655bfd23fa",
+      "bytes": 7157,
+      "estTokens": 1780
+    },
+    {
+      "path": "llms-theming.txt",
+      "sha256": "2be43e8038fb9c416fda57b5677dab473e73cbf5982b709c51e8c45e967d8950",
+      "bytes": 2963,
+      "estTokens": 734
+    },
+    {
+      "path": "llms-tokens.txt",
+      "sha256": "1845d3d57f7c4b6d299934b3e1b5f0b1df238e1cf0de55b2f091b6264445cffc",
+      "bytes": 9256,
+      "estTokens": 2307
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "da3d75982bf4f57bef9a956225dcbeaf6d2a9a845c40492fc32de51576762983",
+      "bytes": 2858,
+      "estTokens": 710
+    },
+    {
+      "path": "registries/components-index.json",
+      "sha256": "586935e0307f32086edc8854aad0618737602a17cf167bbc44f90c5852de3cd2",
+      "bytes": 4629,
+      "estTokens": 1155
+    },
+    {
+      "path": "registries/contrast-report.json",
+      "sha256": "9b26e18ec17e8cd1e7e98b3e0140d497c1582a964c52dc22c3ba6bd7d90f47f1",
+      "bytes": 17085,
+      "estTokens": 4264
+    },
+    {
+      "path": "registries/tokens-index.json",
+      "sha256": "31615476547b6dd27d7e04c208536dc023991494c7b6096e68784f9fb15afb85",
+      "bytes": 20924,
+      "estTokens": 5226
+    },
+    {
+      "path": "skills/audit-a11y/SKILL.md",
+      "sha256": "3ec4bf97b21deec6b96df988b83da13acbf81d2b1db5489dd86e35f7e4f8fbe9",
+      "bytes": 1495,
+      "estTokens": 372
+    },
+    {
+      "path": "skills/audit-a11y/references/contrast-pairs.md",
+      "sha256": "d7edadd5cbbf147221b82d1e2c957dc3ebabfb63bbda61e3169f2e75cc5ae605",
+      "bytes": 2345,
+      "estTokens": 586
+    },
+    {
+      "path": "skills/build-screen/SKILL.md",
+      "sha256": "ed75636d05e2e40ea04d7378803f6c54636432a4b51539de6ef74a1d261bc849",
+      "bytes": 2001,
+      "estTokens": 496
+    },
+    {
+      "path": "skills/build-screen/references/checklist.md",
+      "sha256": "54e4dba026e12d9f4f595915e6eeaf8f75f021b98fe86746b043c03836cf34e2",
+      "bytes": 912,
+      "estTokens": 227
+    },
+    {
+      "path": "skills/contribute-component/SKILL.md",
+      "sha256": "653084ef4e6fad9d23ad9d04d760dfdf0f18eb9d18a47509f5df56c544ea2320",
+      "bytes": 1600,
+      "estTokens": 399
+    },
+    {
+      "path": "skills/contribute-component/references/contributing.md",
+      "sha256": "5fd59cb7f7729435368a055a67b44d48cea61a834d95b35c27a7256844b8a9d5",
+      "bytes": 10155,
+      "estTokens": 2526
+    },
+    {
+      "path": "skills/design-to-code/SKILL.md",
+      "sha256": "af1a1e034689f8a14b6322f3b8883e59f7d4967674521fdaa39fa7bcac226967",
+      "bytes": 2934,
+      "estTokens": 726
+    },
+    {
+      "path": "skills/design-to-code/references/brief-template.md",
+      "sha256": "c0302120e755d22d66b9db2643e7045b9920c434e9c55765a4ab86df60c54e16",
+      "bytes": 3378,
+      "estTokens": 839
+    },
+    {
+      "path": "skills/design-to-code/references/extraction-checklist.md",
+      "sha256": "68b4eadd32e7bc05c8c0348708041e790ba1ee41da81137a1e62ee3edae4601c",
+      "bytes": 3168,
+      "estTokens": 787
+    },
+    {
+      "path": "skills/design-to-code/references/figma-adapter.md",
+      "sha256": "0cef4528be41e3dd14b2a92ef64459b3f1a3cc98c3a51e343cc6c40bd394be86",
+      "bytes": 3091,
+      "estTokens": 764
+    },
+    {
+      "path": "skills/migrate/SKILL.md",
+      "sha256": "c48665a021d2157c19d1dde388ea43679dfcaf0c2482b9d8f8332eccc51a79b2",
+      "bytes": 1163,
+      "estTokens": 288
+    },
+    {
+      "path": "skills/migrate/references/migration-map.md",
+      "sha256": "cd4eab86f6ffb63f18977d027cf0f63c82f1e0dbd1858db8bd2903da3ee04531",
+      "bytes": 5586,
+      "estTokens": 1392
+    },
+    {
+      "path": "skills/use-system/SKILL.md",
+      "sha256": "2d5fcfc7b2117dccd6024691428ae5653063f60908580d50803652d20f75f632",
+      "bytes": 6601,
+      "estTokens": 1643
+    },
+    {
+      "path": "skills/use-system/references/components.md",
+      "sha256": "f4ae99023655d450ca021e2a356a689c47d9743bd10d635729bf290b70cc083b",
+      "bytes": 798,
+      "estTokens": 196
+    },
+    {
+      "path": "skills/use-system/references/negative-rules.md",
+      "sha256": "0ccbee1817c25aa94665bf1a4e6d2ef14a5e24f4a288ee555af0a4922fa7471b",
+      "bytes": 4734,
+      "estTokens": 1179
+    },
+    {
+      "path": "skills/use-system/references/tokens.md",
+      "sha256": "3ef21ebb367b7280eeb979b781599b2ec7ceb7df4d73794d5e1291e8688db882",
+      "bytes": 2172,
+      "estTokens": 533
+    }
+  ],
+  "warnings": [
+    "optional registry registries/icons-metadata.json not found in examples/legacy-ds-retrofit/registries — icon surfaces omitted from this bundle.",
+    "optional registry registries/patterns-index.json not found in examples/legacy-ds-retrofit/registries — pattern surfaces omitted from this bundle.",
+    "registry component Banner is not used in any story file (ground-truth gap)",
+    "registry component Input is not used in any story file (ground-truth gap)"
+  ]
+}

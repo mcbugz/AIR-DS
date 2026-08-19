@@ -1,0 +1,29 @@
+{
+  "$description": "Machine-readable twin of RETROFIT.md — the retrofit run summary.",
+  "package": "@meridian/atlas-ui",
+  "brand": "meridian-atlas-ui",
+  "detection": {
+    "css": [
+      "styles/atlas.css"
+    ],
+    "tailwind": "tailwind.config.js",
+    "dtcg": [],
+    "componentEntry": "src/index.ts"
+  },
+  "counts": {
+    "tokens": 44,
+    "tokensByAdapter": {
+      "css": 37,
+      "tailwind": 7,
+      "dtcg": 0
+    },
+    "components": 4,
+    "contrastPairs": 35,
+    "contrastFailures": 14,
+    "unaudited": 13,
+    "hardcodedLiterals": 5,
+    "contextFiles": 40
+  },
+  "contextStatus": "emitted",
+  "warnings": []
+}

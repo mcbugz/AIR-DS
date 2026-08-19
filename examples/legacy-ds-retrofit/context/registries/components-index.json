@@ -1,0 +1,135 @@
+{
+  "$description": "GENERATED closed-world component registry synthesized by @ds/retrofit from @meridian/atlas-ui. Any component not listed here does not exist — an import of an unlisted name is provably fabricated. Props were extracted from the library's OWN types by react-docgen-typescript; untyped (plain JS) components appear with an empty props list and low confidence (see RETROFIT.md). `racBase`/`racPropsNote`/`racProps` are null: no react-aria-components contract was detected in the target. `tokenPrefix` is null: no component-tier token namespaces were synthesized. `storyFile` (target-repo-relative) is present only when a co-located stories file was detected. `example` is a synthesized minimal usage, not ground truth. Regenerate with: ds-retrofit <repo> -o <outdir>",
+  "package": "@meridian/atlas-ui",
+  "components": [
+    {
+      "name": "Banner",
+      "description": "Atlas status banner. Untyped legacy JavaScript — no prop contract at all;\n`tone` is one of info | danger | warning | success by convention only.",
+      "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": null,
+      "example": "<Banner />",
+      "props": [
+        {
+          "name": "tone",
+          "type": "any",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "description": "Atlas push button. Renders a native `<button>` with the `.atlas-btn`\nclass family from styles/atlas.css.",
+      "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": null,
+      "storyFile": "src/components/Button.stories.tsx",
+      "example": "<Button size=\"sm\" variant=\"primary\" />",
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Disables the control."
+        },
+        {
+          "name": "onClick",
+          "type": "() => void",
+          "required": false,
+          "defaultValue": null,
+          "description": "Click handler."
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "defaultValue": "md",
+          "description": "Control size."
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"danger\"",
+          "required": false,
+          "defaultValue": "primary",
+          "description": "Visual style of the button."
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "description": "Atlas content card — bordered, raised surface (`.atlas-card`).",
+      "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": null,
+      "example": "<Card />",
+      "props": [
+        {
+          "name": "padded",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Apply the default inner padding."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Optional heading rendered at the top of the card."
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "description": "Atlas text input with a stacked label. Loosely typed on purpose —\nthe props type is inline and `type` is an open string.",
+      "racBase": null,
+      "racPropsNote": null,
+      "racProps": null,
+      "tokenPrefix": null,
+      "example": "<Input label=\"…\" />",
+      "props": [
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Error message; when set the input gets the error border."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": "Visible label rendered above the control."
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Native input type (free-form string — legacy API)."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

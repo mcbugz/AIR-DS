@@ -1,0 +1,36 @@
+{
+  "$description": "GENERATED skills discovery manifest for Design System — compiled by @ds/context, do not edit. Source hash sha256:b95446232cde065d.",
+  "brand": "meridian-atlas-ui",
+  "skills": [
+    {
+      "name": "use-system",
+      "description": "How to build UI with this design system: closed-world registries, token-only styling, the negative-rule catalog of known hallucinations. Load before writing any component or CSS.",
+      "path": "skills/use-system/SKILL.md"
+    },
+    {
+      "name": "build-screen",
+      "description": "Workflow for composing a full screen: enumerate the registry, compose components with token-based layout CSS, then pass the deterministic validation gauntlet.",
+      "path": "skills/build-screen/SKILL.md"
+    },
+    {
+      "name": "design-to-code",
+      "description": "Turn ANY design input (screenshot, written spec, redline — Figma optional via a documented client adapter, never a dependency) into a completed design brief before code: extract only registry components/tokens/patterns, HALT on anything not enumerated, then build via build-screen and pass the gauntlet.",
+      "path": "skills/design-to-code/SKILL.md"
+    },
+    {
+      "name": "migrate",
+      "description": "Migrating existing UI (raw HTML/CSS, Tailwind, Chakra/MUI/Ant/shadcn) onto this design system, driven by the wrong→right negative-rule catalog.",
+      "path": "skills/migrate/SKILL.md"
+    },
+    {
+      "name": "contribute-component",
+      "description": "Adding a new component to the design system itself: exact file set, TSX/CSS/story/test rules, and the generate+typecheck+test gate. Compiled from CONTRIBUTING-COMPONENT.md.",
+      "path": "skills/contribute-component/SKILL.md"
+    },
+    {
+      "name": "audit-a11y",
+      "description": "Accessibility audit checklist beyond automated axe runs: focus order, focus-visible rings, keyboard paths, ARIA labeling, contrast pairs from the audited report.",
+      "path": "skills/audit-a11y/SKILL.md"
+    }
+  ]
+}

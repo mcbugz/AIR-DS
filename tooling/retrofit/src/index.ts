@@ -1,0 +1,11 @@
+export { runRetrofit, detectAdapters, findAirRoot } from './pipeline.js';
+export type { RetrofitOptions } from './pipeline.js';
+export { cssTokens, extractCustomProperties, findHardcodedColors, stripCssComments, coerceValue } from './css-adapter.js';
+export { tailwindTokens } from './tailwind-adapter.js';
+export { dtcgTokens, looksLikeTokenTree } from './dtcg-adapter.js';
+export { buildContrastReport, contrastRatio, parseColor, relativeLuminance } from './contrast.js';
+export { componentIndex, collectSourceFiles, matchGlob, resolveEntry, synthesizeExample } from './components.js';
+export { buildGauntletConfig, detectVarPrefixes } from './gauntlet-config.js';
+export { renderRetrofitMd } from './report.js';
+export { normalizeName, inferType, resolveVarRefs, aliasTarget, isColorValue } from './normalize.js';
+export type * from './types.js';

@@ -1,0 +1,44 @@
+{
+  "$description": "GENERATED machine contract for allowlisted customization of Design System (ADR-006 §4) — compiled by @ds/context from the registries, do not edit. Anything not allowlisted here is closed. Source hash sha256:b95446232cde065d.",
+  "brand": "meridian-atlas-ui",
+  "tokenOverrides": {
+    "brandTier": "full",
+    "semanticTier": "by-engagement",
+    "componentHooks": []
+  },
+  "composition": {
+    "slots": [],
+    "patterns": []
+  },
+  "forbidden": [
+    {
+      "surface": "component-internals",
+      "detail": "Component source and component CSS are never forked, patched, or restyled; internals (including anything reached via non-public paths) are not an override surface.",
+      "rules": [
+        "NR-005",
+        "NR-009"
+      ]
+    },
+    {
+      "surface": "base-classes",
+      "detail": "Component base classes (the lowercased component name) are internal styling contracts, not customization hooks — never target them from consumer CSS.",
+      "rules": [
+        "NR-010"
+      ]
+    },
+    {
+      "surface": "deep-imports",
+      "detail": "Import only from `@ds/react`; deep dist paths are not public API.",
+      "rules": [
+        "NR-005"
+      ]
+    },
+    {
+      "surface": "cross-component-hooks",
+      "detail": "A component's `--ds-<component>-*` hooks style that component ONLY — overriding one component must never restyle another.",
+      "rules": [
+        "NR-008"
+      ]
+    }
+  ]
+}

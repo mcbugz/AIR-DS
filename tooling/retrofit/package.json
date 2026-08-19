@@ -1,0 +1,32 @@
+{
+  "name": "@ds/retrofit",
+  "version": "0.1.0",
+  "description": "Retrofit ingestion: an existing design system in (CSS custom properties / Tailwind config / DTCG source / React component library) -> the AIR-DS AI layer out (synthesized closed-world registries, compiled context bundle, gauntlet starter config) on top of THEIR components — no rewrite. Deterministic, credential-free, no LLM.",
+  "type": "module",
+  "bin": {
+    "ds-retrofit": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "echo '@ds/retrofit lint: no-op placeholder'"
+  },
+  "dependencies": {
+    "react-docgen-typescript": "^2.4.0",
+    "typescript": "~5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "vitest": "^3.0.0"
+  }
+}

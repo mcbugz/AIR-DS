@@ -1,0 +1,567 @@
+{
+  "$description": "GENERATED best-effort WCAG audit synthesized by @ds/retrofit from a scanned design system. Pair inference is heuristic: (1) stem pairs — a color token rendered on its `.bg`/`.background`/`.surface` twin; (2) global pairs — every text-classified color token (name matches text/fg/foreground/ink/link/label/heading) on every surface-classified color token (surface/bg/background/fill/canvas/panel), capped at 100 pairs. `resolvesTo` lists custom properties whose pure var() alias chains land on the pair member; `aliasIndex` maps each alias to the pair ids it inherits. Every color token in no pair appears under `unaudited` with a reason — treat that list as an audit backlog, not a pass.",
+  "standard": "WCAG 2.2 AA (normal text)",
+  "threshold": 4.5,
+  "brand": "examples/legacy-ds-retrofit/brand/meridian-atlas-ui.json",
+  "failures": 14,
+  "pairs": [
+    {
+      "id": "brand.danger|brand.danger.bg",
+      "foreground": "brand.danger",
+      "background": "brand.danger.bg",
+      "foregroundValue": "#b91c1c",
+      "backgroundValue": "#fef2f2",
+      "ratio": 5.91,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "brand.success|brand.success.bg",
+      "foreground": "brand.success",
+      "background": "brand.success.bg",
+      "foregroundValue": "#047857",
+      "backgroundValue": "#ecfdf5",
+      "ratio": 5.21,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "brand.warning|brand.warning.bg",
+      "foreground": "brand.warning",
+      "background": "brand.warning.bg",
+      "foregroundValue": "#92400e",
+      "backgroundValue": "#fffbeb",
+      "ratio": 6.84,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|brand.danger.bg",
+      "foreground": "color.text.inverse",
+      "background": "brand.danger.bg",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#fef2f2",
+      "ratio": 1.09,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|brand.success.bg",
+      "foreground": "color.text.inverse",
+      "background": "brand.success.bg",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#ecfdf5",
+      "ratio": 1.05,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|brand.warning.bg",
+      "foreground": "color.text.inverse",
+      "background": "brand.warning.bg",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#fffbeb",
+      "ratio": 1.04,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|btn.primary.bg",
+      "foreground": "color.text.inverse",
+      "background": "btn.primary.bg",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#1a56db",
+      "ratio": 6.18,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|btn.primary.bg.hover",
+      "foreground": "color.text.inverse",
+      "background": "btn.primary.bg.hover",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#1e429f",
+      "ratio": 8.99,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|surface.card",
+      "foreground": "color.text.inverse",
+      "background": "surface.card",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#ffffff",
+      "ratio": 1,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|surface.default",
+      "foreground": "color.text.inverse",
+      "background": "surface.default",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#ffffff",
+      "ratio": 1,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.inverse|surface.sunken",
+      "foreground": "color.text.inverse",
+      "background": "surface.sunken",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#f3f4f6",
+      "ratio": 1.1,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|brand.danger.bg",
+      "foreground": "color.text.main",
+      "background": "brand.danger.bg",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#fef2f2",
+      "ratio": 16.22,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|brand.success.bg",
+      "foreground": "color.text.main",
+      "background": "brand.success.bg",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#ecfdf5",
+      "ratio": 16.84,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|brand.warning.bg",
+      "foreground": "color.text.main",
+      "background": "brand.warning.bg",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#fffbeb",
+      "ratio": 17.11,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|btn.primary.bg",
+      "foreground": "color.text.main",
+      "background": "btn.primary.bg",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#1a56db",
+      "ratio": 2.87,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|btn.primary.bg.hover",
+      "foreground": "color.text.main",
+      "background": "btn.primary.bg.hover",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#1e429f",
+      "ratio": 1.97,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|surface.card",
+      "foreground": "color.text.main",
+      "background": "surface.card",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#ffffff",
+      "ratio": 17.74,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|surface.default",
+      "foreground": "color.text.main",
+      "background": "surface.default",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#ffffff",
+      "ratio": 17.74,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.main|surface.sunken",
+      "foreground": "color.text.main",
+      "background": "surface.sunken",
+      "foregroundValue": "#111827",
+      "backgroundValue": "#f3f4f6",
+      "ratio": 16.12,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|brand.danger.bg",
+      "foreground": "color.text.subtle",
+      "background": "brand.danger.bg",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#fef2f2",
+      "ratio": 4.42,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|brand.success.bg",
+      "foreground": "color.text.subtle",
+      "background": "brand.success.bg",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#ecfdf5",
+      "ratio": 4.59,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|brand.warning.bg",
+      "foreground": "color.text.subtle",
+      "background": "brand.warning.bg",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#fffbeb",
+      "ratio": 4.66,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|btn.primary.bg",
+      "foreground": "color.text.subtle",
+      "background": "btn.primary.bg",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#1a56db",
+      "ratio": 1.28,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|btn.primary.bg.hover",
+      "foreground": "color.text.subtle",
+      "background": "btn.primary.bg.hover",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#1e429f",
+      "ratio": 1.86,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|surface.card",
+      "foreground": "color.text.subtle",
+      "background": "surface.card",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#ffffff",
+      "ratio": 4.83,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|surface.default",
+      "foreground": "color.text.subtle",
+      "background": "surface.default",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#ffffff",
+      "ratio": 4.83,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "color.text.subtle|surface.sunken",
+      "foreground": "color.text.subtle",
+      "background": "surface.sunken",
+      "foregroundValue": "#6b7280",
+      "backgroundValue": "#f3f4f6",
+      "ratio": 4.39,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|brand.danger.bg",
+      "foreground": "link.color",
+      "background": "brand.danger.bg",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#fef2f2",
+      "ratio": 5.65,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|brand.success.bg",
+      "foreground": "link.color",
+      "background": "brand.success.bg",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#ecfdf5",
+      "ratio": 5.87,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|brand.warning.bg",
+      "foreground": "link.color",
+      "background": "brand.warning.bg",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#fffbeb",
+      "ratio": 5.96,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|btn.primary.bg",
+      "foreground": "link.color",
+      "background": "btn.primary.bg",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#1a56db",
+      "ratio": 1,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|btn.primary.bg.hover",
+      "foreground": "link.color",
+      "background": "btn.primary.bg.hover",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#1e429f",
+      "ratio": 1.46,
+      "required": 4.5,
+      "pass": false,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|surface.card",
+      "foreground": "link.color",
+      "background": "surface.card",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#ffffff",
+      "ratio": 6.18,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|surface.default",
+      "foreground": "link.color",
+      "background": "surface.default",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#ffffff",
+      "ratio": 6.18,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    },
+    {
+      "id": "link.color|surface.sunken",
+      "foreground": "link.color",
+      "background": "surface.sunken",
+      "foregroundValue": "#1a56db",
+      "backgroundValue": "#f3f4f6",
+      "ratio": 5.62,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": [],
+        "background": []
+      }
+    }
+  ],
+  "aliasIndex": {},
+  "unaudited": [
+    {
+      "name": "atlas.blue",
+      "cssVar": "--atlas-blue",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.blue.dark",
+      "cssVar": "--atlas-blue-dark",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.gray.100",
+      "cssVar": "--atlasGray100",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.gray.300",
+      "cssVar": "--atlasGray300",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.gray.50",
+      "cssVar": "--atlasGray50",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.gray.700",
+      "cssVar": "--atlasGray700",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "atlas.gray.900",
+      "cssVar": "--atlasGray900",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "input.border",
+      "cssVar": "--input-border",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "tw.color.accent",
+      "cssVar": "--tw-color-accent",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "tw.color.brand",
+      "cssVar": "--tw-color-brand",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "tw.color.brand.600",
+      "cssVar": "--tw-color-brand-600",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "tw.color.brand.700",
+      "cssVar": "--tw-color-brand-700",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    },
+    {
+      "name": "tw.color.danger",
+      "cssVar": "--tw-color-danger",
+      "reason": "No text/surface pairing inferred by the retrofit heuristic (name matched neither a text nor a surface class and no stem twin exists) — confirm the intended pairings and audit manually."
+    }
+  ]
+}
