@@ -15,7 +15,23 @@ export function SiteHeader() {
   return (
     <nav className="site-header" aria-label="Page sections">
       <a className="site-header-brand" href="#top">
-        AIR-DS
+        {/* The AIR mark (docs/assets/air-mark.svg, inlined so currentColor
+            inherits the header's text token and re-themes with the brand). */}
+        <svg
+          viewBox="0 0 48 48"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17h20a5.5 5.5 0 1 0-5.5-5.5" />
+          <path d="M7 26h30a6.5 6.5 0 1 0-6.5-6.5" />
+          <path d="M7 35h16a4.5 4.5 0 1 1-4.5 4.5" />
+        </svg>
+        <span>AIR-DS</span>
       </a>
       <div className="site-header-links">
         {LINKS.map((l) => (
