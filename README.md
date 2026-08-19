@@ -22,6 +22,19 @@ One neutral, token-driven design system, engineered for re-branding, that ships 
 | **White-label** | Customer = one brand token file. The `acme` sample goes from intake file to a fully branded system — every AI artifact included — in ~260 ms |
 | **Tests** | 662 across six packages |
 
+## The control plane (Mandate v2)
+
+The design system above is the proof; these are the product — the governance layer for AI-generated UI at enterprise scale ([docs/strategy/mandate-v2.md](docs/strategy/mandate-v2.md)). All credential-free, all deterministic:
+
+| Capability | Command | What it proves |
+|---|---|---|
+| **Assess any repo's AI-readiness** | `pnpm --filter @ds/assess exec ds-assess <repo>` | Six evidence-backed pillars, graded. This repo: 99.4/A; a typical 2023 DS fixture: 6.6/F with the gaps named |
+| **Retrofit an existing design system** | `pnpm --filter @ds/retrofit exec ds-retrofit <repo> -o <out>` | Their CSS vars/Tailwind/React lib in → registries, compiled machine surface, and a fabrication-blocking gauntlet on top of *their* components ([proof fixture](examples/legacy-ds-retrofit/)) |
+| **Govern a fleet of repos** | `ds-fleet collect … && ds-fleet render` | Hallucination rate, first-pass gauntlet rate, eval/a11y/policy compliance across N repos in one executive dashboard; policy-as-code breaches exit nonzero |
+| **Safe generative UI at runtime** | `@ds/genui` — schema + validator + renderer | Agents emit a wire format that can *only* compose registry components; host-bound intents, never code. 51-case fuzz: every injection rejected or inert |
+| **Beyond React** | tokens `dist/wc/`, `dist/react-native/`, [`@ds/wc`](packages/wc/) | Same token graph, new render targets; `<ds-button>` with its own closed-world registry ([demo](examples/wc-demo/)) |
+| **Auditor-ready evidence** | `pnpm --filter @ds/validate run evidence` | WCAG + provenance + dependency bundle with freshly executed gate results |
+
 ## Getting started
 
 Prereqs: Node ≥ 24, pnpm 9.

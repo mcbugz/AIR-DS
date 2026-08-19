@@ -397,3 +397,34 @@
   color: var(--ds-color-text-muted);
   max-inline-size: var(--ds-size-container-md);
 }
+
+/* --- Control plane section (Mandate v2) --- */
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(var(--ds-size-control-md) * 8), 1fr));
+  gap: var(--ds-space-gap-lg);
+  margin-block-start: var(--ds-space-6);
+}
+.control-head {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-gap-sm);
+}
+.control-title {
+  font-weight: var(--ds-text-weight-semibold);
+  font-size: var(--ds-text-size-md);
+  color: var(--ds-color-text-primary);
+}
+.control-body {
+  margin: 0;
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+}
+.control-proof {
+  margin: var(--ds-space-3) 0 0;
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-text-size-sm);
+  line-height: var(--ds-text-leading-normal);
+  font-style: italic;
+}

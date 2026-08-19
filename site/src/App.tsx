@@ -3,6 +3,7 @@ import { Stats } from './sections/Stats';
 import { Gallery } from './sections/Gallery';
 import { ReferencePanel } from './sections/ReferencePanel';
 import { HowItWorks } from './sections/HowItWorks';
+import { ControlPlane } from './sections/ControlPlane';
 import { GetStarted } from './sections/GetStarted';
 import { Footer } from './sections/Footer';
 
@@ -21,6 +22,7 @@ export function App() {
         <Gallery />
         <ReferencePanel />
         <HowItWorks />
+        <ControlPlane />
         <GetStarted />
       </main>
       <Footer />
