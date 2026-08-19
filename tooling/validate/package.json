@@ -29,6 +29,7 @@
     "release:pack": "bash ../../scripts/release-pack.sh"
   },
   "devDependencies": {
+    "@ds/fleet": "workspace:^",
     "@types/node": "^24.0.0",
     "axe-core": "^4.10.0",
     "esbuild": "^0.25.0",

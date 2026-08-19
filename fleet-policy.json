@@ -1,0 +1,11 @@
+{
+  "$schema": "ds-fleet/policy.v1",
+  "tokenOverrides": {
+    "semanticTier": "forbidden",
+    "allowlist": []
+  },
+  "minEvalCritical": 1.0,
+  "minFirstPass": 0.8,
+  "browserAxe": "optional",
+  "maxFabrications": 0
+}

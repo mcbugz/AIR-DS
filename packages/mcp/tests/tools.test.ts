@@ -19,7 +19,7 @@ afterAll(async () => {
 });
 
 describe('tool registration', () => {
-  it('exposes exactly the six contract tools', async () => {
+  it('exposes exactly the seven contract tools', async () => {
     const { tools } = await session.client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual([
       'audit_checklist',
@@ -27,6 +27,7 @@ describe('tool registration', () => {
       'get_theming_guide',
       'list_tokens',
       'search_docs',
+      'validate_genui',
       'validate_usage',
     ]);
     for (const tool of tools) {
@@ -207,5 +208,38 @@ describe('get_theming_guide', () => {
     expect(guide.contrast!.pairCount).toBeGreaterThan(0);
     expect(guide.overrides.allowed.length).toBeGreaterThan(0);
     expect(guide.overrides.notAllowed.join(' ')).toMatch(/NR-008/);
+  });
+});
+
+describe('validate_genui', () => {
+  it('accepts a valid document and rejects a fabricated component', async () => {
+    const good = await callTool(session.client, 'validate_genui', {
+      document: JSON.stringify({
+        version: '1.0',
+        screen: { title: 'Test', nodes: [{ component: 'Badge', props: { tone: 'info' }, children: ['Hi'] }] },
+      }),
+    });
+    expect((good.json() as { valid: boolean }).valid).toBe(true);
+
+    const bad = await callTool(session.client, 'validate_genui', {
+      document: JSON.stringify({ version: '1.0', screen: { nodes: [{ component: 'Wizard', props: {} }] } }),
+    });
+    const parsed = bad.json() as { valid: boolean; errors: Array<{ rule: string }> };
+    expect(parsed.valid).toBe(false);
+    expect(parsed.errors.map((e) => e.rule)).toContain('unknown-component');
+
+    const box = await callTool(session.client, 'validate_genui', {
+      document: JSON.stringify({ version: '1.0', screen: { nodes: [{ component: 'Box', props: {} }] } }),
+    });
+    const boxParsed = box.json() as { valid: boolean; errors: Array<{ rule: string }> };
+    expect(boxParsed.valid).toBe(false);
+    expect(boxParsed.errors.map((e) => e.rule)).toContain('layout-primitive');
+  });
+
+  it('returns a doc-shape error for non-JSON input', async () => {
+    const res = await callTool(session.client, 'validate_genui', { document: 'not json {' });
+    const parsed = res.json() as { valid: boolean; errors: Array<{ rule: string }> };
+    expect(parsed.valid).toBe(false);
+    expect(parsed.errors[0]!.rule).toBe('doc-shape');
   });
 });

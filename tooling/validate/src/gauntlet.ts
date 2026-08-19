@@ -1,3 +1,4 @@
+import { checkPolicy } from '@ds/fleet';
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -31,7 +32,7 @@ import type { GauntletOptions, GauntletReport, StepResult, Violation } from './t
  * gauntlet never needs a browser; warn-skips when chromium is not installed.
  */
 
-const STEP_ORDER = ['typecheck', 'lint', 'build', 'test', 'registry-check'] as const;
+const STEP_ORDER = ['typecheck', 'lint', 'build', 'test', 'registry-check', 'policy-check'] as const;
 
 function run(
   cmd: string,
@@ -208,7 +209,27 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
     return warnings.length > 0 ? { status: 'warn', detail: warnings.join('\n') } : { status: 'pass' };
   });
 
-  // 6. stories-axe (opt-in, --browser) — browser-run axe over every Storybook
+  // 6. policy-check — fleet policy-as-code (M3, tooling/fleet/INTEGRATION.md).
+  // No-op warn until the repo commits a fleet-policy.json; a committed policy
+  // makes breaches merge-blocking. Deterministic: pure function of the policy
+  // file, metrics history, and brand overrides — safe in the gate (ADR-005).
+  record('policy-check', () => {
+    const verdict = checkPolicy(root);
+    if (!verdict.policyPresent) {
+      return { status: 'warn', detail: 'no fleet-policy.json — repo is ungoverned (policy check skipped)' };
+    }
+    return verdict.ok
+      ? { status: 'pass', detail: `${verdict.checks.length} policy check(s) satisfied` }
+      : {
+          status: 'fail',
+          detail: verdict.checks
+            .filter((c) => !c.ok)
+            .map((c) => `${c.id}: expected ${c.expected}; got ${c.actual}${c.detail ? ` (${c.detail})` : ''}`)
+            .join('\n'),
+        };
+  });
+
+  // 7. stories-axe (opt-in, --browser) — browser-run axe over every Storybook
   // story (G6). Warn-skip when the optional local chromium is absent so the
   // credential-free rule holds; delegates to the stories-axe CLI otherwise.
   if (opts.browser) {

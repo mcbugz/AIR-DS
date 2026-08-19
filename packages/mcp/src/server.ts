@@ -13,6 +13,9 @@ import { buildSearchIndex, searchDocs } from './search.js';
 import { validateUsage } from './validate.js';
 import { buildChecklist, CHECKLIST_SCOPES, type ChecklistScope } from './checklist.js';
 import { buildThemingGuide } from './theming.js';
+// The /validate subpath is react-free — the MCP server must boot without
+// React (the full @ds/genui entry also exports the renderer).
+import { validateDocument as validateGenUIDocument } from '@ds/genui/validate';
 
 export interface ServerOptions {
   registryDir?: string;
@@ -136,6 +139,38 @@ export function createDsMcpServer(options: ServerOptions = {}): DsMcpServer {
       },
     },
     ({ code, css }) => jsonResult(validateUsage(registry, catalog, css === undefined ? { code } : { code, css })),
+  );
+
+  server.registerTool(
+    'validate_genui',
+    {
+      title: 'Validate a generative-UI document',
+      description:
+        'Deterministically validate a generative-UI JSON document (wire format 1.0, @ds/genui) against the loaded registries. Closed world: unknown components, illegal props, event handlers, styling escapes, and off-vocabulary layout values are rejected with { path, rule, message, fix }. No LLM in this path.',
+      inputSchema: {
+        document: z.string().max(1_048_576).describe('The genui document as a JSON string (max 1 MiB)'),
+      },
+    },
+    ({ document }) => {
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(document);
+      } catch (e) {
+        return jsonResult({
+          valid: false,
+          errors: [{ path: '$', rule: 'doc-shape', message: `Not valid JSON: ${(e as Error).message}`, fix: 'Emit a single JSON object matching the genui 1.0 wire format.' }],
+        });
+      }
+      // Both packages type the SAME canonical registry files; @ds/mcp's local
+      // types predate the racProps/tokenPrefix enrichment and keep them
+      // optional. The runtime data always carries them (generated registry),
+      // so the structural cast is sound.
+      const result = validateGenUIDocument(parsed, {
+        components: registry.components,
+        tokens: registry.tokens,
+      } as unknown as Parameters<typeof validateGenUIDocument>[1]);
+      return jsonResult(result);
+    },
   );
 
   server.registerTool(

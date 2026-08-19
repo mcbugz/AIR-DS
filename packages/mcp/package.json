@@ -26,6 +26,7 @@
     "lint": "echo '@ds/mcp lint: no-op placeholder (token-value lint lives in @ds/validate)'"
   },
   "dependencies": {
+    "@ds/genui": "workspace:^",
     "@modelcontextprotocol/sdk": "^1.21.0",
     "zod": "^3.25.76"
   },

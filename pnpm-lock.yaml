@@ -65,6 +65,9 @@ importers:
 
   packages/mcp:
     dependencies:
+      '@ds/genui':
+        specifier: workspace:^
+        version: link:../genui
       '@modelcontextprotocol/sdk':
         specifier: ^1.21.0
         version: 1.30.0(zod@3.25.76)
@@ -264,6 +267,9 @@ importers:
 
   tooling/validate:
     devDependencies:
+      '@ds/fleet':
+        specifier: workspace:^
+        version: link:../fleet
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.3

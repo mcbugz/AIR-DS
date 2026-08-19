@@ -81,10 +81,10 @@ describe('groupBySha', () => {
 
 describe('repoRates', () => {
   it('first-pass rate = passed gauntlet runs / total gauntlet runs', () => {
-    // 3 gauntlet runs, 2 passed -> 2/3 = 0.6667 (4 places)
+    // 3 gauntlet runs across 2 releases; first run per release: 1/2 = 0.5 (FB-16 semantics)
     const lines = [gauntletLine('s1', true), gauntletLine('s2', false), gauntletLine('s2', true), evalsLine('s2', 8, 10)];
     const rates = repoRates(lines);
-    expect(rates.gauntletFirstPass).toEqual({ passed: 2, total: 3, rate: 0.6667 });
+    expect(rates.gauntletFirstPass).toEqual({ passed: 1, total: 2, rate: 0.5 });
     expect(rates.evalCompliance).toEqual({ passed: 8, total: 10, rate: 0.8 });
     expect(rates.runsTotal).toBe(4);
   });

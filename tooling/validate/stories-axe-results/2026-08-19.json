@@ -1,6 +1,6 @@
 {
   "date": "2026-08-19",
-  "durationMs": 30252,
+  "durationMs": 29801,
   "summary": {
     "stories": 97,
     "clean": 97,
@@ -18,7 +18,7 @@
       "name": "Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 340
+      "durationMs": 345
     },
     {
       "id": "components-alert--dismiss-fires-on-dismiss",
@@ -26,7 +26,7 @@
       "name": "Dismiss Fires On Dismiss",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 307
     },
     {
       "id": "components-alert--dismissible",
@@ -34,7 +34,7 @@
       "name": "Dismissible",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 305
     },
     {
       "id": "components-alert--info",
@@ -42,7 +42,7 @@
       "name": "Info",
       "status": "clean",
       "violations": [],
-      "durationMs": 308
+      "durationMs": 304
     },
     {
       "id": "components-alert--static-danger-zone",
@@ -50,7 +50,7 @@
       "name": "Static Danger Zone",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 304
     },
     {
       "id": "components-alert--success",
@@ -58,7 +58,7 @@
       "name": "Success",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 303
     },
     {
       "id": "components-alert--warning",
@@ -74,7 +74,7 @@
       "name": "With Title",
       "status": "clean",
       "violations": [],
-      "durationMs": 309
+      "durationMs": 304
     },
     {
       "id": "components-badge--danger",
@@ -82,7 +82,7 @@
       "name": "Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 301
     },
     {
       "id": "components-badge--info",
@@ -90,7 +90,7 @@
       "name": "Info",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 301
     },
     {
       "id": "components-badge--neutral",
@@ -98,7 +98,7 @@
       "name": "Neutral",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 300
     },
     {
       "id": "components-badge--success",
@@ -106,7 +106,7 @@
       "name": "Success",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 298
     },
     {
       "id": "components-badge--warning",
@@ -114,7 +114,7 @@
       "name": "Warning",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 301
     },
     {
       "id": "components-button--danger",
@@ -122,7 +122,7 @@
       "name": "Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 302
+      "durationMs": 301
     },
     {
       "id": "components-button--disabled",
@@ -130,7 +130,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 297
     },
     {
       "id": "components-button--disabled-danger",
@@ -138,7 +138,7 @@
       "name": "Disabled Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 302
+      "durationMs": 296
     },
     {
       "id": "components-button--ghost",
@@ -146,7 +146,7 @@
       "name": "Ghost",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 301
     },
     {
       "id": "components-button--loading",
@@ -162,7 +162,7 @@
       "name": "Loading Blocks Press",
       "status": "clean",
       "violations": [],
-      "durationMs": 302
+      "durationMs": 300
     },
     {
       "id": "components-button--press-fires-on-press",
@@ -170,7 +170,7 @@
       "name": "Press Fires On Press",
       "status": "clean",
       "violations": [],
-      "durationMs": 302
+      "durationMs": 299
     },
     {
       "id": "components-button--primary",
@@ -178,7 +178,7 @@
       "name": "Primary",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 303
     },
     {
       "id": "components-button--secondary",
@@ -186,7 +186,7 @@
       "name": "Secondary",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 301
     },
     {
       "id": "components-button--sizes",
@@ -194,7 +194,7 @@
       "name": "Sizes",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 303
     },
     {
       "id": "components-card--body-only",
@@ -210,7 +210,7 @@
       "name": "Flat",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 302
     },
     {
       "id": "components-card--full-composition",
@@ -218,7 +218,7 @@
       "name": "Full Composition",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 300
     },
     {
       "id": "components-card--raised",
@@ -226,7 +226,7 @@
       "name": "Raised",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 303
     },
     {
       "id": "components-checkbox--checked",
@@ -234,7 +234,7 @@
       "name": "Checked",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 303
     },
     {
       "id": "components-checkbox--default",
@@ -242,7 +242,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 298
+      "durationMs": 303
     },
     {
       "id": "components-checkbox--disabled",
@@ -250,7 +250,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 301
+      "durationMs": 300
     },
     {
       "id": "components-checkbox--disabled-blocks-toggle",
@@ -258,7 +258,7 @@
       "name": "Disabled Blocks Toggle",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 300
     },
     {
       "id": "components-checkbox--disabled-checked",
@@ -266,7 +266,7 @@
       "name": "Disabled Checked",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 300
     },
     {
       "id": "components-checkbox--indeterminate",
@@ -274,7 +274,7 @@
       "name": "Indeterminate",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 305
     },
     {
       "id": "components-checkbox--invalid",
@@ -282,7 +282,7 @@
       "name": "Invalid",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 306
     },
     {
       "id": "components-checkbox--invalid-checked",
@@ -298,7 +298,7 @@
       "name": "Toggle Fires On Change",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 303
     },
     {
       "id": "components-dialog--default",
@@ -306,7 +306,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 301
+      "durationMs": 300
     },
     {
       "id": "components-dialog--keyboard-interaction",
@@ -322,7 +322,7 @@
       "name": "Non Dismissable",
       "status": "clean",
       "violations": [],
-      "durationMs": 411
+      "durationMs": 308
     },
     {
       "id": "components-dialog--sizes",
@@ -330,7 +330,7 @@
       "name": "Sizes",
       "status": "clean",
       "violations": [],
-      "durationMs": 317
+      "durationMs": 313
     },
     {
       "id": "components-iconbutton--danger",
@@ -338,7 +338,7 @@
       "name": "Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 306
     },
     {
       "id": "components-iconbutton--disabled",
@@ -346,7 +346,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 298
     },
     {
       "id": "components-iconbutton--disabled-blocks-press",
@@ -354,7 +354,7 @@
       "name": "Disabled Blocks Press",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 303
     },
     {
       "id": "components-iconbutton--disabled-danger",
@@ -362,7 +362,7 @@
       "name": "Disabled Danger",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 302
     },
     {
       "id": "components-iconbutton--disabled-primary",
@@ -370,7 +370,7 @@
       "name": "Disabled Primary",
       "status": "clean",
       "violations": [],
-      "durationMs": 298
+      "durationMs": 299
     },
     {
       "id": "components-iconbutton--disabled-secondary",
@@ -378,7 +378,7 @@
       "name": "Disabled Secondary",
       "status": "clean",
       "violations": [],
-      "durationMs": 301
+      "durationMs": 298
     },
     {
       "id": "components-iconbutton--ghost",
@@ -386,7 +386,7 @@
       "name": "Ghost",
       "status": "clean",
       "violations": [],
-      "durationMs": 308
+      "durationMs": 302
     },
     {
       "id": "components-iconbutton--press-fires-on-press",
@@ -394,7 +394,7 @@
       "name": "Press Fires On Press",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 301
     },
     {
       "id": "components-iconbutton--primary",
@@ -402,7 +402,7 @@
       "name": "Primary",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 298
     },
     {
       "id": "components-iconbutton--secondary",
@@ -410,7 +410,7 @@
       "name": "Secondary",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 302
     },
     {
       "id": "components-iconbutton--sizes",
@@ -426,7 +426,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 302
     },
     {
       "id": "components-radiogroup--disabled-blocks-selection",
@@ -434,7 +434,7 @@
       "name": "Disabled Blocks Selection",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 304
     },
     {
       "id": "components-radiogroup--disabled-item",
@@ -442,7 +442,7 @@
       "name": "Disabled Item",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 308
     },
     {
       "id": "components-radiogroup--horizontal",
@@ -450,7 +450,7 @@
       "name": "Horizontal",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 312
     },
     {
       "id": "components-radiogroup--invalid",
@@ -458,7 +458,7 @@
       "name": "Invalid",
       "status": "clean",
       "violations": [],
-      "durationMs": 310
+      "durationMs": 312
     },
     {
       "id": "components-radiogroup--selection-and-arrow-keys",
@@ -466,7 +466,7 @@
       "name": "Selection And Arrow Keys",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 308
     },
     {
       "id": "components-radiogroup--vertical",
@@ -474,7 +474,7 @@
       "name": "Vertical",
       "status": "clean",
       "violations": [],
-      "durationMs": 309
+      "durationMs": 308
     },
     {
       "id": "components-radiogroup--with-description",
@@ -482,7 +482,7 @@
       "name": "With Description",
       "status": "clean",
       "violations": [],
-      "durationMs": 309
+      "durationMs": 311
     },
     {
       "id": "components-select--default",
@@ -490,7 +490,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 311
+      "durationMs": 312
     },
     {
       "id": "components-select--disabled",
@@ -498,7 +498,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 311
+      "durationMs": 307
     },
     {
       "id": "components-select--disabled-blocks-open",
@@ -506,7 +506,7 @@
       "name": "Disabled Blocks Open",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 313
     },
     {
       "id": "components-select--disabled-option",
@@ -514,7 +514,7 @@
       "name": "Disabled Option",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 309
     },
     {
       "id": "components-select--invalid",
@@ -522,7 +522,7 @@
       "name": "Invalid",
       "status": "clean",
       "violations": [],
-      "durationMs": 313
+      "durationMs": 317
     },
     {
       "id": "components-select--open-and-select-updates-value",
@@ -530,7 +530,7 @@
       "name": "Open And Select Updates Value",
       "status": "clean",
       "violations": [],
-      "durationMs": 301
+      "durationMs": 304
     },
     {
       "id": "components-select--selected",
@@ -538,7 +538,7 @@
       "name": "Selected",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 306
     },
     {
       "id": "components-select--with-description",
@@ -546,7 +546,7 @@
       "name": "With Description",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 309
     },
     {
       "id": "components-switch--disabled",
@@ -554,7 +554,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 303
+      "durationMs": 302
     },
     {
       "id": "components-switch--disabled-blocks-toggle",
@@ -562,7 +562,7 @@
       "name": "Disabled Blocks Toggle",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 302
     },
     {
       "id": "components-switch--disabled-on",
@@ -570,7 +570,7 @@
       "name": "Disabled On",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 303
     },
     {
       "id": "components-switch--off",
@@ -578,7 +578,7 @@
       "name": "Off",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 305
     },
     {
       "id": "components-switch--on",
@@ -594,7 +594,7 @@
       "name": "Toggle Fires On Change",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 306
     },
     {
       "id": "components-tabs--click-and-arrow-keys-switch-panels",
@@ -602,7 +602,7 @@
       "name": "Click And Arrow Keys Switch Panels",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 316
     },
     {
       "id": "components-tabs--default",
@@ -618,7 +618,7 @@
       "name": "Disabled Tab",
       "status": "clean",
       "violations": [],
-      "durationMs": 311
+      "durationMs": 308
     },
     {
       "id": "components-tabs--disabled-tab-blocks-selection",
@@ -626,7 +626,7 @@
       "name": "Disabled Tab Blocks Selection",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 306
     },
     {
       "id": "components-tabs--many-tabs",
@@ -634,7 +634,7 @@
       "name": "Many Tabs",
       "status": "clean",
       "violations": [],
-      "durationMs": 313
+      "durationMs": 314
     },
     {
       "id": "components-textarea--auto-grow",
@@ -642,7 +642,7 @@
       "name": "Auto Grow",
       "status": "clean",
       "violations": [],
-      "durationMs": 313
+      "durationMs": 327
     },
     {
       "id": "components-textarea--default",
@@ -650,7 +650,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 312
+      "durationMs": 307
     },
     {
       "id": "components-textarea--disabled",
@@ -658,7 +658,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 312
+      "durationMs": 314
     },
     {
       "id": "components-textarea--disabled-blocks-typing",
@@ -666,7 +666,7 @@
       "name": "Disabled Blocks Typing",
       "status": "clean",
       "violations": [],
-      "durationMs": 305
+      "durationMs": 301
     },
     {
       "id": "components-textarea--invalid",
@@ -674,7 +674,7 @@
       "name": "Invalid",
       "status": "clean",
       "violations": [],
-      "durationMs": 310
+      "durationMs": 308
     },
     {
       "id": "components-textarea--typing-fires-on-change",
@@ -682,7 +682,7 @@
       "name": "Typing Fires On Change",
       "status": "clean",
       "violations": [],
-      "durationMs": 304
+      "durationMs": 306
     },
     {
       "id": "components-textarea--with-description",
@@ -690,7 +690,7 @@
       "name": "With Description",
       "status": "clean",
       "violations": [],
-      "durationMs": 311
+      "durationMs": 306
     },
     {
       "id": "components-textfield--default",
@@ -698,7 +698,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 310
+      "durationMs": 307
     },
     {
       "id": "components-textfield--disabled",
@@ -706,7 +706,7 @@
       "name": "Disabled",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 303
     },
     {
       "id": "components-textfield--disabled-blocks-typing",
@@ -714,7 +714,7 @@
       "name": "Disabled Blocks Typing",
       "status": "clean",
       "violations": [],
-      "durationMs": 306
+      "durationMs": 302
     },
     {
       "id": "components-textfield--invalid",
@@ -722,7 +722,7 @@
       "name": "Invalid",
       "status": "clean",
       "violations": [],
-      "durationMs": 308
+      "durationMs": 307
     },
     {
       "id": "components-textfield--invalid-shows-error-message",
@@ -730,7 +730,7 @@
       "name": "Invalid Shows Error Message",
       "status": "clean",
       "violations": [],
-      "durationMs": 310
+      "durationMs": 306
     },
     {
       "id": "components-textfield--required",
@@ -746,7 +746,7 @@
       "name": "Typing Updates Value",
       "status": "clean",
       "violations": [],
-      "durationMs": 417
+      "durationMs": 305
     },
     {
       "id": "components-textfield--with-description",
@@ -762,7 +762,7 @@
       "name": "Default",
       "status": "clean",
       "violations": [],
-      "durationMs": 307
+      "durationMs": 306
     },
     {
       "id": "components-tooltip--focus-shows-tooltip",
@@ -770,7 +770,7 @@
       "name": "Focus Shows Tooltip",
       "status": "clean",
       "violations": [],
-      "durationMs": 314
+      "durationMs": 306
     },
     {
       "id": "components-tooltip--on-icon-button-trigger",
@@ -778,7 +778,7 @@
       "name": "On Icon Button Trigger",
       "status": "clean",
       "violations": [],
-      "durationMs": 314
+      "durationMs": 305
     },
     {
       "id": "components-tooltip--placements",
@@ -786,7 +786,7 @@
       "name": "Placements",
       "status": "clean",
       "violations": [],
-      "durationMs": 433
+      "durationMs": 313
     }
   ]
 }

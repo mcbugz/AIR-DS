@@ -61,6 +61,13 @@ export interface ShaGroup {
   counts: MetricsLine['registry_counts'];
   /** Whether ALL gauntlet lines in this group passed (null if none). */
   gauntletAllPassed: boolean | null;
+  /**
+   * Whether the FIRST gauntlet run at this release passed (null if none).
+   * This is the brief §8 "first-pass" semantics: later red/green runs at the
+   * same sha are the dev loop doing its job, not new verdicts on the release
+   * (FB-16 — the all-runs metric created a doom loop inside the merge gate).
+   */
+  gauntletFirstRunPassed: boolean | null;
 }
 
 /** Group history lines per git sha, preserving first-seen (chronological) order. */
@@ -80,6 +87,7 @@ export function groupBySha(lines: MetricsLine[]): ShaGroup[] {
         fabrications: 0,
         counts: line.registry_counts,
         gauntletAllPassed: null,
+        gauntletFirstRunPassed: null,
       };
       groups.set(line.git_sha, g);
       order.push(line.git_sha);
@@ -87,6 +95,7 @@ export function groupBySha(lines: MetricsLine[]): ShaGroup[] {
     g.ts = line.ts;
     g.counts = line.registry_counts;
     if (line.gauntlet) {
+      if (g.gauntlet === null) g.gauntletFirstRunPassed = line.gauntlet.passed;
       g.gauntlet = line.gauntlet;
       g.gauntletAllPassed =
         (g.gauntletAllPassed ?? true) && line.gauntlet.passed;

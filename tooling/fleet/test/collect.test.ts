@@ -40,7 +40,7 @@ describe('collectRepo normalization (per fixture)', () => {
   it('atlas-checkout: exemplary — 12 runs, 6/6 gauntlet, evals 26/26, axe clean, policy passing', () => {
     const r = collectRepo({ id: 'atlas-checkout', root: repoDir('atlas-checkout') });
     expect(r.lines).toBe(12);
-    expect(r.rates.gauntletFirstPass).toEqual({ passed: 6, total: 6, rate: 1 });
+    expect(r.rates.gauntletFirstPass).toEqual({ passed: 5, total: 5, rate: 1 });
     expect(r.latest?.sha).toBe('a5e2a39');
     expect(r.latest?.evals).toMatchObject({ passed: 26, total: 26, critical: 1 });
     expect(r.latest?.storiesAxe).toMatchObject({ stories: 110, gatePassed: true });
@@ -54,37 +54,37 @@ describe('collectRepo normalization (per fixture)', () => {
     expect(r.deltas.tokens).toBe(2);
   });
 
-  it('nova-billing: drifting — first-pass 6/9, fabrications creeping, still within its policy', () => {
+  it('nova-billing: drifting — first-pass 3/5, fabrications creeping, still within its policy', () => {
     const r = collectRepo({ id: 'nova-billing', root: repoDir('nova-billing') });
     expect(r.lines).toBe(13);
-    expect(r.rates.gauntletFirstPass).toEqual({ passed: 6, total: 9, rate: 0.6667 });
-    expect(r.trend.gauntletPass).toEqual([1, 1, 0, 0, 0]); // one failing run taints the release
+    expect(r.rates.gauntletFirstPass).toEqual({ passed: 3, total: 5, rate: 0.6 });
+    expect(r.trend.gauntletPass).toEqual([1, 1, 1, 0, 0]); // drift begins at the 4th release
     expect(r.trend.evalOverall).toEqual([1, null, 0.96, null, 0.92]);
     expect(r.latest?.fabrications).toBe(2); // max within the latest sha group
     expect(r.rates.fabricationsTotal).toBe(2);
-    // health: 0.4*0.6667 + 0.3*0.92 + 0.2*0.8 + 0.1*1 = 0.8027
-    expect(r.health).toBe(0.8027);
+    // health: 0.4*0.6 + 0.3*0.92 + 0.2*0.8 + 0.1*1 = 0.776
+    expect(r.health).toBe(0.776);
     expect(r.policy).toMatchObject({ present: true, ok: true });
   });
 
   it('quasar-admin: drifting — axe gate failing but policy declares browserAxe optional', () => {
     const r = collectRepo({ id: 'quasar-admin', root: repoDir('quasar-admin') });
-    expect(r.rates.gauntletFirstPass).toEqual({ passed: 4, total: 6, rate: 0.6667 });
+    expect(r.rates.gauntletFirstPass).toEqual({ passed: 3, total: 4, rate: 0.75 });
     expect(r.latest?.storiesAxe).toMatchObject({ serious: 1, gatePassed: false });
     expect(r.latest?.fabrications).toBe(1);
-    // health: 0.4*0.6667 + 0.3*0.9 + 0.2*0.9 + 0.1*0 = 0.7167
-    expect(r.health).toBe(0.7167);
+    // health: 0.4*0.75 + 0.3*0.9 + 0.2*0.9 + 0.1*0 = 0.75
+    expect(r.health).toBe(0.75);
     expect(r.policy).toMatchObject({ present: true, ok: true });
   });
 
   it('comet-storefront: failing — every policy knob breached', () => {
     const r = collectRepo({ id: 'comet-storefront', root: repoDir('comet-storefront') });
-    expect(r.rates.gauntletFirstPass).toEqual({ passed: 2, total: 6, rate: 0.3333 });
+    expect(r.rates.gauntletFirstPass).toEqual({ passed: 1, total: 4, rate: 0.25 });
     expect(r.rates.fabricationsTotal).toBe(9);
     expect(r.latest?.fabrications).toBe(5);
     expect(r.latest?.gauntletSteps).toEqual(['typecheck', 'lint', 'build', 'test']); // registry-check dropped
-    // health: 0.4*0.3333 + 0.3*0.864 + 0.2*0.5 + 0.1*0.5 = 0.5425
-    expect(r.health).toBe(0.5425);
+    // health: 0.4*0.25 + 0.3*0.864 + 0.2*0.5 + 0.1*0.5 = 0.5092
+    expect(r.health).toBe(0.5092);
     expect(r.policy.present).toBe(true);
     expect(r.policy.ok).toBe(false);
     expect([...r.policy.failing].sort()).toEqual([
@@ -120,8 +120,8 @@ describe('fleet rollups over the six synthetic repos (hand-computed)', () => {
   it('hallucination rate 12/55 = 0.2182 per run', () => {
     expect(h.hallucinationRate).toBe(0.2182);
   });
-  it('first-pass rate 23/32 = 0.7188', () => {
-    expect(h.firstPassRate).toBe(0.7188);
+  it('first-pass rate 17/23 = 0.7391 (first run per release — FB-16)', () => {
+    expect(h.firstPassRate).toBe(0.7391);
   });
   it('eval compliance 116/123 = 0.9431', () => {
     expect(h.evalCompliance).toBe(0.9431);
@@ -134,9 +134,9 @@ describe('fleet rollups over the six synthetic repos (hand-computed)', () => {
   });
   it('worst-3 by health: comet, quasar, nova', () => {
     expect(data.fleet.worst).toEqual([
-      { id: 'comet-storefront', health: 0.5425 },
-      { id: 'quasar-admin', health: 0.7167 },
-      { id: 'nova-billing', health: 0.8027 },
+      { id: 'comet-storefront', health: 0.5092 },
+      { id: 'quasar-admin', health: 0.75 },
+      { id: 'nova-billing', health: 0.776 },
     ]);
   });
   it('deterministic generatedAt = max observed line ts', () => {
@@ -154,8 +154,13 @@ describe('full 7-repo manifest (live repo asserted loosely)', () => {
     const air = data.repos.find((r) => r.id === 'air-ds');
     expect(air).toBeDefined();
     expect(air?.lines).toBeGreaterThanOrEqual(16);
-    expect(air?.rates.gauntletFirstPass.total).toBeGreaterThanOrEqual(8);
-    expect(air?.policy.present).toBe(false); // this repo has not adopted a policy yet
+    expect(air?.rates.gauntletFirstPass.total).toBeGreaterThanOrEqual(5); // releases (shas), not runs — FB-16 semantics
+    // This repo governs itself: fleet-policy.json was adopted when the
+    // gauntlet gained the policy-check step (Mandate v2 reconciliation).
+    // Loose by design: `ok` is a live number (first-pass rate moves with
+    // real dev history) — presence is the invariant, verdicts are data.
+    expect(air?.policy.present).toBe(true);
+    expect(typeof air?.policy.ok).toBe('boolean');
   });
 
   it('rejects duplicate repo ids and empty ref lists', () => {

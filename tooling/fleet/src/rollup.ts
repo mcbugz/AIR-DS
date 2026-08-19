@@ -61,9 +61,12 @@ export function repoLatest(lines: MetricsLine[]): RepoLatest | null {
 }
 
 export function repoRates(lines: MetricsLine[]): RepoRates {
-  const gauntletLines = lines.filter((l) => l.gauntlet);
-  const passed = gauntletLines.filter((l) => l.gauntlet?.passed).length;
-  const total = gauntletLines.length;
+  // First-pass is per RELEASE (sha), decided by the FIRST gauntlet run at
+  // that sha — later runs at the same sha are the dev loop iterating, not
+  // new verdicts (FB-16; brief §8 "% passing validation on first attempt").
+  const releases = groupBySha(lines).filter((g) => g.gauntletFirstRunPassed !== null);
+  const passed = releases.filter((g) => g.gauntletFirstRunPassed).length;
+  const total = releases.length;
   const latest = repoLatest(lines);
   const evals = latest?.evals ?? null;
   return {

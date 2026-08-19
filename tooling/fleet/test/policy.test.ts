@@ -82,7 +82,7 @@ describe('checkPolicy verdicts per fixture repo', () => {
     const v = checkPolicy(repoDir('nova-billing'));
     expect(v.ok).toBe(true);
     expect(v.checks.map((c) => c.id)).not.toContain('max-fabrications');
-    expect(v.checks.find((c) => c.id === 'min-first-pass')?.actual).toContain('66.7%');
+    expect(v.checks.find((c) => c.id === 'min-first-pass')?.actual).toContain('60.0%');
   });
 
   it('quasar-admin: failing axe gate is not a breach when browserAxe is optional', () => {
@@ -99,7 +99,7 @@ describe('checkPolicy verdicts per fixture repo', () => {
     const byId = Object.fromEntries(v.checks.map((c) => [c.id, c]));
     expect(byId['token-overrides']?.detail).toContain('color.text.link');
     expect(byId['min-eval-critical']?.actual).toBe('85.7%');
-    expect(byId['min-first-pass']?.actual).toContain('(2/6)');
+    expect(byId['min-first-pass']?.actual).toContain('(1/4)');
     expect(byId['required-gauntlet-steps']?.detail).toBe('missing: registry-check');
     expect(byId['browser-axe']?.actual).toBe('no stories-axe run recorded');
     expect(byId['max-fabrications']?.actual).toBe('5');

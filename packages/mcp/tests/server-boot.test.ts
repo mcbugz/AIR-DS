@@ -42,7 +42,7 @@ describe('built ds-mcp binary over stdio', () => {
     expect(serverInfo?.name).toBe('ds-mcp');
   });
 
-  it('lists the six tools with input schemas', async () => {
+  it('lists the seven tools with input schemas', async () => {
     const { tools } = await client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual([
       'audit_checklist',
@@ -50,6 +50,7 @@ describe('built ds-mcp binary over stdio', () => {
       'get_theming_guide',
       'list_tokens',
       'search_docs',
+      'validate_genui',
       'validate_usage',
     ]);
     const search = tools.find((t) => t.name === 'search_docs')!;
