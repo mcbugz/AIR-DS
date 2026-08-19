@@ -1,0 +1,49 @@
+{
+  "$description": "Fixture contrast report for evidence-pack tests.",
+  "standard": "WCAG 2.2 AA (normal text)",
+  "threshold": 4.5,
+  "brand": "brands/default.json",
+  "failures": 0,
+  "pairs": [
+    {
+      "id": "color.text.primary|color.surface.default",
+      "foreground": "color.text.primary",
+      "background": "color.surface.default",
+      "foregroundValue": "#000000",
+      "backgroundValue": "#ffffff",
+      "ratio": 21,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": ["--ds-button-text"],
+        "background": ["--ds-card-surface", "--ds-dialog-surface"]
+      }
+    },
+    {
+      "id": "color.text.onaccent|color.accent.primary",
+      "foreground": "color.text.onaccent",
+      "background": "color.accent.primary",
+      "foregroundValue": "#ffffff",
+      "backgroundValue": "#1d4ed8",
+      "ratio": 6.29,
+      "required": 4.5,
+      "pass": true,
+      "resolvesTo": {
+        "foreground": ["--ds-button-text-primary"],
+        "background": ["--ds-button-surface-primary-default"]
+      }
+    }
+  ],
+  "aliasIndex": {
+    "--ds-button-text-primary": ["color.text.onaccent|color.accent.primary"],
+    "--ds-card-surface": ["color.text.primary|color.surface.default"]
+  },
+  "unaudited": [
+    {
+      "name": "button.border.primary",
+      "cssVar": "--ds-button-border-primary",
+      "aliasOf": "color.accent.primary",
+      "reason": "Border color — a non-text edge outside the WCAG 2.2 AA normal-text gate."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "@fx/beta",
+  "version": "1.0.0",
+  "dependencies": {
+    "base-lib": "^2.0.0"
+  }
+}

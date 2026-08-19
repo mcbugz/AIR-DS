@@ -1,0 +1,792 @@
+{
+  "date": "2026-08-19",
+  "durationMs": 30252,
+  "summary": {
+    "stories": 97,
+    "clean": 97,
+    "withViolations": 0,
+    "renderErrors": 0,
+    "violations": 0,
+    "byImpact": {}
+  },
+  "gate": [],
+  "allowlisted": 0,
+  "results": [
+    {
+      "id": "components-alert--danger",
+      "title": "Components/Alert",
+      "name": "Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 340
+    },
+    {
+      "id": "components-alert--dismiss-fires-on-dismiss",
+      "title": "Components/Alert",
+      "name": "Dismiss Fires On Dismiss",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-alert--dismissible",
+      "title": "Components/Alert",
+      "name": "Dismissible",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-alert--info",
+      "title": "Components/Alert",
+      "name": "Info",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 308
+    },
+    {
+      "id": "components-alert--static-danger-zone",
+      "title": "Components/Alert",
+      "name": "Static Danger Zone",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-alert--success",
+      "title": "Components/Alert",
+      "name": "Success",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-alert--warning",
+      "title": "Components/Alert",
+      "name": "Warning",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-alert--with-title",
+      "title": "Components/Alert",
+      "name": "With Title",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 309
+    },
+    {
+      "id": "components-badge--danger",
+      "title": "Components/Badge",
+      "name": "Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-badge--info",
+      "title": "Components/Badge",
+      "name": "Info",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-badge--neutral",
+      "title": "Components/Badge",
+      "name": "Neutral",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-badge--success",
+      "title": "Components/Badge",
+      "name": "Success",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-badge--warning",
+      "title": "Components/Badge",
+      "name": "Warning",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-button--danger",
+      "title": "Components/Button",
+      "name": "Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 302
+    },
+    {
+      "id": "components-button--disabled",
+      "title": "Components/Button",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-button--disabled-danger",
+      "title": "Components/Button",
+      "name": "Disabled Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 302
+    },
+    {
+      "id": "components-button--ghost",
+      "title": "Components/Button",
+      "name": "Ghost",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-button--loading",
+      "title": "Components/Button",
+      "name": "Loading",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 301
+    },
+    {
+      "id": "components-button--loading-blocks-press",
+      "title": "Components/Button",
+      "name": "Loading Blocks Press",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 302
+    },
+    {
+      "id": "components-button--press-fires-on-press",
+      "title": "Components/Button",
+      "name": "Press Fires On Press",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 302
+    },
+    {
+      "id": "components-button--primary",
+      "title": "Components/Button",
+      "name": "Primary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-button--secondary",
+      "title": "Components/Button",
+      "name": "Secondary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-button--sizes",
+      "title": "Components/Button",
+      "name": "Sizes",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-card--body-only",
+      "title": "Components/Card",
+      "name": "Body Only",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 300
+    },
+    {
+      "id": "components-card--flat",
+      "title": "Components/Card",
+      "name": "Flat",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-card--full-composition",
+      "title": "Components/Card",
+      "name": "Full Composition",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-card--raised",
+      "title": "Components/Card",
+      "name": "Raised",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-checkbox--checked",
+      "title": "Components/Checkbox",
+      "name": "Checked",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-checkbox--default",
+      "title": "Components/Checkbox",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 298
+    },
+    {
+      "id": "components-checkbox--disabled",
+      "title": "Components/Checkbox",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 301
+    },
+    {
+      "id": "components-checkbox--disabled-blocks-toggle",
+      "title": "Components/Checkbox",
+      "name": "Disabled Blocks Toggle",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-checkbox--disabled-checked",
+      "title": "Components/Checkbox",
+      "name": "Disabled Checked",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-checkbox--indeterminate",
+      "title": "Components/Checkbox",
+      "name": "Indeterminate",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-checkbox--invalid",
+      "title": "Components/Checkbox",
+      "name": "Invalid",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-checkbox--invalid-checked",
+      "title": "Components/Checkbox",
+      "name": "Invalid Checked",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 310
+    },
+    {
+      "id": "components-checkbox--toggle-fires-on-change",
+      "title": "Components/Checkbox",
+      "name": "Toggle Fires On Change",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-dialog--default",
+      "title": "Components/Dialog",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 301
+    },
+    {
+      "id": "components-dialog--keyboard-interaction",
+      "title": "Components/Dialog",
+      "name": "Keyboard Interaction",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 314
+    },
+    {
+      "id": "components-dialog--non-dismissable",
+      "title": "Components/Dialog",
+      "name": "Non Dismissable",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 411
+    },
+    {
+      "id": "components-dialog--sizes",
+      "title": "Components/Dialog",
+      "name": "Sizes",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 317
+    },
+    {
+      "id": "components-iconbutton--danger",
+      "title": "Components/IconButton",
+      "name": "Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-iconbutton--disabled",
+      "title": "Components/IconButton",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-iconbutton--disabled-blocks-press",
+      "title": "Components/IconButton",
+      "name": "Disabled Blocks Press",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-iconbutton--disabled-danger",
+      "title": "Components/IconButton",
+      "name": "Disabled Danger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-iconbutton--disabled-primary",
+      "title": "Components/IconButton",
+      "name": "Disabled Primary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 298
+    },
+    {
+      "id": "components-iconbutton--disabled-secondary",
+      "title": "Components/IconButton",
+      "name": "Disabled Secondary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 301
+    },
+    {
+      "id": "components-iconbutton--ghost",
+      "title": "Components/IconButton",
+      "name": "Ghost",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 308
+    },
+    {
+      "id": "components-iconbutton--press-fires-on-press",
+      "title": "Components/IconButton",
+      "name": "Press Fires On Press",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-iconbutton--primary",
+      "title": "Components/IconButton",
+      "name": "Primary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-iconbutton--secondary",
+      "title": "Components/IconButton",
+      "name": "Secondary",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-iconbutton--sizes",
+      "title": "Components/IconButton",
+      "name": "Sizes",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-radiogroup--disabled",
+      "title": "Components/RadioGroup",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-radiogroup--disabled-blocks-selection",
+      "title": "Components/RadioGroup",
+      "name": "Disabled Blocks Selection",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-radiogroup--disabled-item",
+      "title": "Components/RadioGroup",
+      "name": "Disabled Item",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-radiogroup--horizontal",
+      "title": "Components/RadioGroup",
+      "name": "Horizontal",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-radiogroup--invalid",
+      "title": "Components/RadioGroup",
+      "name": "Invalid",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 310
+    },
+    {
+      "id": "components-radiogroup--selection-and-arrow-keys",
+      "title": "Components/RadioGroup",
+      "name": "Selection And Arrow Keys",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-radiogroup--vertical",
+      "title": "Components/RadioGroup",
+      "name": "Vertical",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 309
+    },
+    {
+      "id": "components-radiogroup--with-description",
+      "title": "Components/RadioGroup",
+      "name": "With Description",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 309
+    },
+    {
+      "id": "components-select--default",
+      "title": "Components/Select",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 311
+    },
+    {
+      "id": "components-select--disabled",
+      "title": "Components/Select",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 311
+    },
+    {
+      "id": "components-select--disabled-blocks-open",
+      "title": "Components/Select",
+      "name": "Disabled Blocks Open",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-select--disabled-option",
+      "title": "Components/Select",
+      "name": "Disabled Option",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-select--invalid",
+      "title": "Components/Select",
+      "name": "Invalid",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 313
+    },
+    {
+      "id": "components-select--open-and-select-updates-value",
+      "title": "Components/Select",
+      "name": "Open And Select Updates Value",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 301
+    },
+    {
+      "id": "components-select--selected",
+      "title": "Components/Select",
+      "name": "Selected",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-select--with-description",
+      "title": "Components/Select",
+      "name": "With Description",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-switch--disabled",
+      "title": "Components/Switch",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 303
+    },
+    {
+      "id": "components-switch--disabled-blocks-toggle",
+      "title": "Components/Switch",
+      "name": "Disabled Blocks Toggle",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-switch--disabled-on",
+      "title": "Components/Switch",
+      "name": "Disabled On",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-switch--off",
+      "title": "Components/Switch",
+      "name": "Off",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-switch--on",
+      "title": "Components/Switch",
+      "name": "On",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 313
+    },
+    {
+      "id": "components-switch--toggle-fires-on-change",
+      "title": "Components/Switch",
+      "name": "Toggle Fires On Change",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-tabs--click-and-arrow-keys-switch-panels",
+      "title": "Components/Tabs",
+      "name": "Click And Arrow Keys Switch Panels",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-tabs--default",
+      "title": "Components/Tabs",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-tabs--disabled-tab",
+      "title": "Components/Tabs",
+      "name": "Disabled Tab",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 311
+    },
+    {
+      "id": "components-tabs--disabled-tab-blocks-selection",
+      "title": "Components/Tabs",
+      "name": "Disabled Tab Blocks Selection",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-tabs--many-tabs",
+      "title": "Components/Tabs",
+      "name": "Many Tabs",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 313
+    },
+    {
+      "id": "components-textarea--auto-grow",
+      "title": "Components/TextArea",
+      "name": "Auto Grow",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 313
+    },
+    {
+      "id": "components-textarea--default",
+      "title": "Components/TextArea",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 312
+    },
+    {
+      "id": "components-textarea--disabled",
+      "title": "Components/TextArea",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 312
+    },
+    {
+      "id": "components-textarea--disabled-blocks-typing",
+      "title": "Components/TextArea",
+      "name": "Disabled Blocks Typing",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 305
+    },
+    {
+      "id": "components-textarea--invalid",
+      "title": "Components/TextArea",
+      "name": "Invalid",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 310
+    },
+    {
+      "id": "components-textarea--typing-fires-on-change",
+      "title": "Components/TextArea",
+      "name": "Typing Fires On Change",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 304
+    },
+    {
+      "id": "components-textarea--with-description",
+      "title": "Components/TextArea",
+      "name": "With Description",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 311
+    },
+    {
+      "id": "components-textfield--default",
+      "title": "Components/TextField",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 310
+    },
+    {
+      "id": "components-textfield--disabled",
+      "title": "Components/TextField",
+      "name": "Disabled",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-textfield--disabled-blocks-typing",
+      "title": "Components/TextField",
+      "name": "Disabled Blocks Typing",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-textfield--invalid",
+      "title": "Components/TextField",
+      "name": "Invalid",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 308
+    },
+    {
+      "id": "components-textfield--invalid-shows-error-message",
+      "title": "Components/TextField",
+      "name": "Invalid Shows Error Message",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 310
+    },
+    {
+      "id": "components-textfield--required",
+      "title": "Components/TextField",
+      "name": "Required",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 306
+    },
+    {
+      "id": "components-textfield--typing-updates-value",
+      "title": "Components/TextField",
+      "name": "Typing Updates Value",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 417
+    },
+    {
+      "id": "components-textfield--with-description",
+      "title": "Components/TextField",
+      "name": "With Description",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-tooltip--default",
+      "title": "Components/Tooltip",
+      "name": "Default",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 307
+    },
+    {
+      "id": "components-tooltip--focus-shows-tooltip",
+      "title": "Components/Tooltip",
+      "name": "Focus Shows Tooltip",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 314
+    },
+    {
+      "id": "components-tooltip--on-icon-button-trigger",
+      "title": "Components/Tooltip",
+      "name": "On Icon Button Trigger",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 314
+    },
+    {
+      "id": "components-tooltip--placements",
+      "title": "Components/Tooltip",
+      "name": "Placements",
+      "status": "clean",
+      "violations": [],
+      "durationMs": 433
+    }
+  ]
+}

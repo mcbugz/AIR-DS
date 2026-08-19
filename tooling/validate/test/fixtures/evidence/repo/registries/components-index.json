@@ -1,0 +1,6 @@
+{
+  "components": [
+    { "name": "Button", "directory": "packages/react/src/components/Button" },
+    { "name": "Card", "directory": "packages/react/src/components/Card" }
+  ]
+}

@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { checkAxeAvailability } from './benchmark/axe.ts';
+import { gitCommitTs } from './metrics/record.ts';
 import { findRepoRoot, loadRegistryContext, registriesPresent } from './registry.ts';
 import { validateFiles } from './validate.ts';
 import {
@@ -102,7 +103,14 @@ export function runGauntlet(opts: GauntletOptions = {}): GauntletReport {
       { label: '@ds/tokens build', dir: 'packages/tokens', args: ['--filter', '@ds/tokens', 'build'] },
       { label: '@ds/react build', dir: 'packages/react', args: ['--filter', '@ds/react', 'build'] },
       { label: '@ds/react generate', dir: 'packages/react', args: ['--filter', '@ds/react', 'generate'] },
-      { label: '@ds/context build', dir: 'packages/context', args: ['--filter', '@ds/context', 'build'] },
+      // Pinned --now (HEAD commit time, the metrics/record.ts pattern): a
+      // gauntlet rebuild of the SAME tree emits a byte-identical context
+      // bundle, so evidence-pack artifact hashes are reproducible (M6).
+      {
+        label: '@ds/context build',
+        dir: 'packages/context',
+        args: ['--filter', '@ds/context', 'build', '--now', gitCommitTs(root)],
+      },
       { label: '@ds/mcp build', dir: 'packages/mcp', args: ['--filter', '@ds/mcp', 'build'] },
     ];
     const warnings: string[] = [];

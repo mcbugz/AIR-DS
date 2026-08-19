@@ -25,6 +25,39 @@ export type {
   MetricsLine,
   RegistryCounts,
 } from './metrics/record.ts';
+// M6 compliance evidence pack: one command -> auditor-ready bundle
+// (fresh-executed gauntlet/evals, WCAG evidence, provenance, dependency
+// inventory from the lockfile). See src/evidence/pack.ts.
+export {
+  EvidenceError,
+  generateEvidence,
+  renderEvidenceMarkdown,
+  stripTimings,
+} from './evidence/pack.ts';
+export type { EvidenceOptions, EvidenceResult, EvidenceRunners } from './evidence/pack.ts';
+export { EVIDENCE_SCHEMA_VERSION, validateEvidenceDoc } from './evidence/schema.ts';
+export type { EvidenceDoc } from './evidence/schema.ts';
+export {
+  collectContrastEvidence,
+  collectVitestAxeEvidence,
+  latestStoriesAxeFile,
+  scanTestFileForAxe,
+  summarizeStoriesAxe,
+} from './evidence/wcag.ts';
+export {
+  collectArtifactHashes,
+  collectGitProvenance,
+  collectReproducibility,
+  collectToolchain,
+} from './evidence/provenance.ts';
+export {
+  canonicalId,
+  collectDependencyInventory,
+  localLicenseMap,
+  parseLockfileYaml,
+  transitiveClosure,
+} from './evidence/dependencies.ts';
+export type { DependencyInventory, InventoryEntry, PackageInventory } from './evidence/dependencies.ts';
 export { buildRegistryContext, findRepoRoot, loadRegistryContext } from './registry.ts';
 /**
  * F6 bundle-shape check: `registriesPresent(dir)` reports whether the

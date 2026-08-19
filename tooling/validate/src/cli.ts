@@ -5,14 +5,19 @@
  * Usage:
  *   ds-validate [--json] [--root <dir>] [--skip step,step] [--only step,step] [--verbose] [--browser]
  *   ds-validate files <path...> [--json] [--root <dir>]
+ *   ds-validate evidence [-o <dir>] [--now <iso>] [--json] [--no-browser] [--root <dir>]
  *
  * --browser appends the opt-in stories-axe step (browser-run axe over every
  * Storybook story, G6); default off so the core gauntlet stays browser-free.
+ *
+ * `evidence` (M6) executes the gauntlet + evals FRESH and emits the
+ * auditor-ready compliance evidence pack (default: <root>/evidence-pack/).
  *
  * Exit code is non-zero on any failure (merge-blocking, ADR-005).
  */
 
 import { resolve } from 'node:path';
+import { EvidenceError, generateEvidence } from './evidence/pack.ts';
 import { runGauntlet, STEP_ORDER } from './gauntlet.ts';
 import {
   appendMetricsLine,
@@ -30,13 +35,17 @@ interface Args {
   skip: string[];
   only: string[];
   files: string[];
-  mode: 'gauntlet' | 'files';
+  mode: 'gauntlet' | 'files' | 'evidence';
   /** Opt-in stories-axe browser step (G6) — default off, core gauntlet stays browser-free. */
   browser: boolean;
   /** Skip the metrics/history.jsonl append for this run. */
   noMetrics: boolean;
   /** Pin the metrics timestamp (default: HEAD commit time). */
   now: string | null;
+  /** evidence mode: output directory (default <root>/evidence-pack). */
+  out: string | null;
+  /** evidence mode: never launch a browser for stories-axe. */
+  noBrowser: boolean;
 }
 
 function parseArgs(argv: string[]): Args {
@@ -53,10 +62,15 @@ function parseArgs(argv: string[]): Args {
     browser: false,
     noMetrics: false,
     now: null,
+    out: null,
+    noBrowser: false,
   };
   let i = 0;
   if (argv[0] === 'files') {
     args.mode = 'files';
+    i = 1;
+  } else if (argv[0] === 'evidence') {
+    args.mode = 'evidence';
     i = 1;
   }
   for (; i < argv.length; i++) {
@@ -69,13 +83,18 @@ function parseArgs(argv: string[]): Args {
     else if (a === '--browser') args.browser = true;
     else if (a === '--no-metrics') args.noMetrics = true;
     else if (a === '--now') args.now = argv[++i] ?? null;
+    else if (a === '-o' || a === '--out') args.out = resolve(argv[++i] ?? 'evidence-pack');
+    else if (a === '--no-browser') args.noBrowser = true;
+    else if (a === '--') continue; // pnpm run forwards the literal `--` separator
     else if (a === '--help' || a === '-h') {
       console.log(
         `ds-validate — AIR-DS validation gauntlet\n\n` +
           `  ds-validate [--json] [--root <dir>] [--skip s1,s2] [--only s1,s2] [--verbose] [--no-metrics] [--now <iso>] [--browser]\n` +
-          `  ds-validate files <path...> [--json] [--root <dir>]\n\n` +
+          `  ds-validate files <path...> [--json] [--root <dir>]\n` +
+          `  ds-validate evidence [-o <dir>] [--now <iso>] [--json] [--no-browser] [--root <dir>]\n\n` +
           `Steps (fixed order, fail-fast): ${STEP_ORDER.join(' -> ')}\n` +
-          `--browser adds the opt-in stories-axe step (browser-run axe over every Storybook story; needs a local chromium, warn-skips without one)`,
+          `--browser adds the opt-in stories-axe step (browser-run axe over every Storybook story; needs a local chromium, warn-skips without one)\n` +
+          `evidence executes the gauntlet + evals FRESH and writes the auditor-ready compliance pack (default <root>/evidence-pack/, self-gitignoring); aborts if either fails`,
       );
       process.exit(0);
     } else if (!a.startsWith('--')) args.files.push(a);
@@ -112,7 +131,39 @@ function printReport(report: GauntletReport): void {
 
 const args = parseArgs(process.argv.slice(2));
 
-if (args.mode === 'files') {
+if (args.mode === 'evidence') {
+  try {
+    const result = generateEvidence({
+      root: args.root,
+      ...(args.out ? { outDir: args.out } : {}),
+      ...(args.now ? { now: args.now } : {}),
+      browser: args.noBrowser ? 'off' : 'auto',
+      log: args.json ? () => {} : (msg) => console.log(msg),
+    });
+    if (args.json) {
+      console.log(JSON.stringify({ outDir: result.outDir, files: result.files, evidence: result.doc }, null, 2));
+    } else {
+      const sa = result.doc.wcag.storiesAxe;
+      console.log(
+        `\nEVIDENCE PACK WRITTEN — ${result.outDir}\n` +
+          `  gauntlet: PASS (fresh, ${result.doc.gauntlet.steps.length} steps, ${result.doc.gauntlet.fabrications} fabrications)\n` +
+          `  evals: ${result.doc.evals.passed}/${result.doc.evals.total} (fresh)\n` +
+          `  contrast: ${result.doc.wcag.contrast.pairCount} pairs, ${result.doc.wcag.contrast.failures} failures\n` +
+          `  stories-axe: ${sa ? `${sa.stories} stories, ${sa.violations} violations (${sa.source}${sa.staleness.stale ? `, stale ${sa.staleness.ageDays}d` : ''})` : 'not available'}\n` +
+          `  vitest-axe: ${result.doc.wcag.vitestAxe.componentsWithAxe}/${result.doc.wcag.vitestAxe.componentsTotal} components, ${result.doc.wcag.vitestAxe.totalAssertions} assertions\n` +
+          `  dependencies: ${result.doc.dependencies.entries.length} unique packages (${result.doc.dependencies.licenses.unknown} unknown licenses)\n` +
+          `  files: ${result.files.length} (see SHA256SUMS)`,
+      );
+    }
+    process.exit(0);
+  } catch (error) {
+    if (error instanceof EvidenceError) {
+      console.error(error.message);
+      process.exit(1);
+    }
+    throw error;
+  }
+} else if (args.mode === 'files') {
   if (args.files.length === 0) {
     console.error('ds-validate files: no paths given');
     process.exit(2);

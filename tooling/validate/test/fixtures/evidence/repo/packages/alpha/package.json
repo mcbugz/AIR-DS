@@ -1,0 +1,11 @@
+{
+  "name": "@fx/alpha",
+  "version": "1.0.0",
+  "dependencies": {
+    "@fx/beta": "workspace:*",
+    "left-pad": "^1.3.0"
+  },
+  "devDependencies": {
+    "tiny-dev": "^1.0.0"
+  }
+}

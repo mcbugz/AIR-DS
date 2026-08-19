@@ -1,0 +1,7 @@
+{
+  "tokens": [
+    { "name": "color.text.primary", "cssVar": "--ds-color-text-primary", "tier": "semantic" },
+    { "name": "color.surface.default", "cssVar": "--ds-color-surface-default", "tier": "semantic" },
+    { "name": "button.text", "cssVar": "--ds-button-text", "tier": "component" }
+  ]
+}

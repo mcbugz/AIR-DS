@@ -1,0 +1,19 @@
+{
+  "date": "2026-08-01",
+  "durationMs": 1234,
+  "summary": {
+    "stories": 3,
+    "clean": 3,
+    "withViolations": 0,
+    "renderErrors": 0,
+    "violations": 0,
+    "byImpact": {}
+  },
+  "gate": [],
+  "allowlisted": 0,
+  "results": [
+    { "id": "components-button--primary", "title": "Components/Button", "name": "Primary", "status": "clean", "violations": [], "durationMs": 300 },
+    { "id": "components-button--secondary", "title": "Components/Button", "name": "Secondary", "status": "clean", "violations": [], "durationMs": 290 },
+    { "id": "components-card--default", "title": "Components/Card", "name": "Default", "status": "clean", "violations": [], "durationMs": 280 }
+  ]
+}

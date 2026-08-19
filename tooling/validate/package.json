@@ -24,6 +24,7 @@
     "evals": "node src/evals/run-evals.ts",
     "benchmark": "node src/benchmark/run.ts",
     "stories-axe": "node src/stories-axe/run.ts",
+    "evidence": "node src/cli.ts evidence",
     "metrics:report": "node src/metrics/report.ts",
     "release:pack": "bash ../../scripts/release-pack.sh"
   },
