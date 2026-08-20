@@ -1,7 +1,7 @@
 const STATS: Array<{ value: string; label: string }> = [
   { value: '232', label: 'public tokens, three tiers' },
   { value: '14 + 25', label: 'components + icons' },
-  { value: '~1,300', label: 'tests across nine packages' },
+  { value: '1,013', label: 'tests across eleven packages' },
   { value: '97 / 0', label: 'stories / axe violations' },
   { value: '21 / 21', label: 'eval pairs passing' },
   { value: '260 ms', label: 'full customer re-theme' },

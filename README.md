@@ -20,7 +20,7 @@ One neutral, token-driven design system, engineered for re-branding, that ships 
 | **Machine surface** | llms.txt family, markdown twins, 6 agent skills (incl. `design-to-code`), 4 editor channels (Cursor/Copilot/Claude Code/v0), a 6-tool MCP server, extension-points contract, per-customer auditor agent — all generated, never hand-written |
 | **Enforcement** | One deterministic gauntlet (`pnpm validate`), 11+ custom rules, 21 eval pairs at 1.0 on critical gates, fixture-replay benchmark, per-release metrics — **no LLM in the merge path** |
 | **White-label** | Customer = one brand token file. The `acme` sample goes from intake file to a fully branded system — every AI artifact included — in ~260 ms |
-| **Tests** | 662 across six packages |
+| **Tests** | 1,013 across eleven packages (measured, not estimated) |
 
 ## The control plane (Mandate v2)
 
