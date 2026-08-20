@@ -13,7 +13,7 @@ export function Footer() {
             Overview deck (.pptx)
           </a>
           <a href={`${REPO}/blob/main/docs/architecture.md`}>Architecture</a>
-          <a href={`${REPO}/blob/main/docs/brief.md`}>Original brief</a>
+          <a href={`${REPO}/blob/main/docs/EVOLUTION.md`}>The record: brief → mandate</a>
         </nav>
         <p className="footer-note">
           AIR-DS is built by an agent team and gated by a deterministic validation gauntlet — no

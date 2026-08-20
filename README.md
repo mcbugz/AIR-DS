@@ -9,7 +9,7 @@ One neutral, token-driven design system, engineered for re-branding, that ships 
 > Every legal token and component is enumerated in generated registries. Anything not in a registry is provably fabricated — and unmergeable, not merely "flagged."
 
 - 📋 **Overview deck:** [docs/AIR-DS-overview.pptx](docs/AIR-DS-overview.pptx)
-- 🏗 **Architecture:** [docs/architecture.md](docs/architecture.md) · **Original brief:** [docs/brief.md](docs/brief.md) · **Decisions:** [docs/decisions/](docs/decisions/)
+- 🏗 **Architecture:** [docs/architecture.md](docs/architecture.md) · **The record (brief → mandate, dated):** [docs/EVOLUTION.md](docs/EVOLUTION.md) · **Decisions:** [docs/decisions/](docs/decisions/)
 
 ## What's here, measured
 
